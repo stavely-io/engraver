@@ -1,0 +1,10 @@
+import { DIATONIC_PITCH_RANGE } from '@/lib/modules/musical-core/constants/pitch';
+import { Vex } from '@stavely-io/vexflow';
+
+export const VEXFLOW_MEASURE_LINE_GAP = Vex.Flow.STAVE_LINE_DISTANCE;
+
+export const MEASURE_OVERLAY_COLUMN_HEIGHT = VEXFLOW_MEASURE_LINE_GAP / 2;
+
+export const MEASURE_OVERLAY_COLUMN_Y_SHIFT = MEASURE_OVERLAY_COLUMN_HEIGHT / 2;
+
+export const ENGRAVER_OCTAVE_RANGE_HEIGHT = DIATONIC_PITCH_RANGE * VEXFLOW_MEASURE_LINE_GAP;

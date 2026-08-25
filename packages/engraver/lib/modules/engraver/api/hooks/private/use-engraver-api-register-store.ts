@@ -1,0 +1,14 @@
+import { useContext } from "react";
+import { StoreApi } from "zustand";
+
+import { EngraverAPIContext } from "../../context/engraver-api.js";
+import { EngraverPrivateAPIStore } from "../../store/engraver-api-store.js";
+
+export function useEngraverPrivateAPIStore():
+  StoreApi<EngraverPrivateAPIStore> | undefined {
+  const engraverAPIStore = useContext(EngraverAPIContext);
+  if (!engraverAPIStore) {
+    return undefined;
+  }
+  return engraverAPIStore.engraverAPIStore;
+}

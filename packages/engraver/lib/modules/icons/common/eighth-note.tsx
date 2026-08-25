@@ -1,0 +1,24 @@
+/* eslint-disable no-magic-numbers */
+import { LucideProps } from 'lucide-react';
+import { FC } from 'react';
+
+const EighthNote: FC<LucideProps> = ({ size = 24, strokeWidth = 1.6, ...props }) => {
+  return (
+    <svg width={size} height={size} viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' {...props}>
+      <path
+        d='M9.2 21.6001C10.9673 21.6001 12.4 20.1674 12.4 18.4001C12.4 16.6328 10.9673 15.2001 9.2 15.2001C7.43269 15.2001 6 16.6328 6 18.4001C6 20.1674 7.43269 21.6001 9.2 21.6001Z'
+        fill='currentColor'
+      />
+      <path d='M12.4 18.4001C12.4 13.4014 12.4 5.6001 12.4 5.6001V18.4001Z' fill='currentColor' />
+      <path
+        d='M12.4 18.4001C12.4 20.1674 10.9673 21.6001 9.2 21.6001C7.43269 21.6001 6 20.1674 6 18.4001C6 16.6328 7.43269 15.2001 9.2 15.2001C10.9673 15.2001 12.4 16.6328 12.4 18.4001ZM12.4 18.4001C12.4 13.4014 12.4 5.6001 12.4 5.6001L18 8.4001'
+        stroke='currentColor'
+        strokeWidth={strokeWidth}
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  );
+};
+
+export default EighthNote;
