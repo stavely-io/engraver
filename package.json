@@ -2,10 +2,10 @@
   "name": "Engraver",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "keywords": [],
   "author": "Stavely",
   "license": "ISC",
@@ -17,22 +17,10 @@
     }
   },
   "packageManager": "pnpm@11.24.0",
-  "type": "module",
   "devDependencies": {
     "@commitlint/config-conventional": "^21.2.2",
-    "@testing-library/react": "^16.3.2",
-    "@vitejs/plugin-react": "^6.1.0",
     "commitlint": "^21.2.2",
-    "eslint": "^10.9.1",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-simple-import-sort": "^14.0.0",
     "lefthook": "^2.1.10",
-    "playwright": "^1.62.1",
-    "prettier": "^3.9.6",
-    "publint": "^0.3.24",
-    "typescript": "^7.0.2",
-    "vite": "^8.2.2",
-    "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.11"
+    "publint": "^0.3.24"
   }
 }
