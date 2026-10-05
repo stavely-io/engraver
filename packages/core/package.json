@@ -35,6 +35,10 @@
     "publint": "publint",
     "prepublishOnly": "vp run build"
   },
+  "dependencies": {
+    "@stavely-io/vexflow": "catalog:",
+    "smplr": "catalog:"
+  },
   "devDependencies": {
     "@types/node": "^26.1.1",
     "bumpp": "^11.1.0",

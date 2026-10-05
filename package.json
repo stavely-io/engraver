@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "prepare": "vp hooks enable",
-    "ready": "vp check && vp run -r test && vp run -r build && vp run -r publint",
-    "dev": "vp run website#dev"
+    "ready": "vp check && vp run -r test && vp run -r build && vp run -r publint"
   },
   "devDependencies": {
     "publint": "catalog:",
