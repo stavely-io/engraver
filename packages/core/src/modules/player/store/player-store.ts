@@ -1,0 +1,12 @@
+import { createStore } from 'zustand';
+
+import { createPlayerActionsSlice, PlayerSliceActions } from './slices/player-actions.slice';
+import { createPlayerValuesSlice, PlayerSliceValues } from './slices/player-values.slice';
+
+export type PlayerStore = PlayerSliceValues & PlayerSliceActions;
+
+export const createPlayerStore = () =>
+  createStore<PlayerStore>()((...params) => ({
+    ...createPlayerActionsSlice()(...params),
+    ...createPlayerValuesSlice()(...params),
+  }));
