@@ -1,16 +1,20 @@
 {
   "name": "core",
   "version": "0.0.0",
-  "description": "A starter for creating a TypeScript package.",
-  "homepage": "https://github.com/author/library#readme",
+  "description": "Core package for Engraver",
+  "homepage": "https://github.com/stavely-io/engraver#readme",
   "bugs": {
-    "url": "https://github.com/author/library/issues"
+    "url": "https://github.com/stavely-io/engraver/issues"
   },
   "license": "MIT",
-  "author": "Author Name <author.name@mail.com>",
+  "contributors": [
+    "Jakub Ciszewski jciszewski123@gmail.com",
+    "Jakub Kotara jakub.kotara14@gmail.com",
+    "Marek Małek "
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/author/library.git"
+    "url": "git+https://github.com/stavely-io/engraver.git"
   },
   "files": [
     "dist"
@@ -28,12 +32,13 @@
     "dev": "vp pack --watch",
     "test": "vp test",
     "check": "vp check",
+    "publint": "publint",
     "prepublishOnly": "vp run build"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
     "bumpp": "^11.1.0",
-    "typescript": "^7.0.2",
+    "typescript": "catalog:",
     "vite-plus": "catalog:"
   }
 }

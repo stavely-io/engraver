@@ -1,26 +1,24 @@
 {
-  "name": "Engraver",
+  "name": "engraver",
   "version": "0.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "private": true,
   "type": "module",
-  "keywords": [],
-  "author": "Stavely",
-  "license": "ISC",
+  "scripts": {
+    "ready": "vp check && vp run -r test && vp run -r build && vp run -r publint",
+    "dev": "vp run website#dev"
+  },
+  "devDependencies": {
+    "publint": "catalog:",
+    "vite-plus": "catalog:"
+  },
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.24.0",
+      "version": "12.9.1",
       "onFail": "download"
     }
   },
-  "packageManager": "pnpm@11.24.0",
-  "devDependencies": {
-    "@commitlint/config-conventional": "^21.2.2",
-    "commitlint": "^21.2.2",
-    "lefthook": "^2.1.10",
-    "publint": "^0.3.24"
+  "engines": {
+    "node": ">=22.18.0"
   }
 }
