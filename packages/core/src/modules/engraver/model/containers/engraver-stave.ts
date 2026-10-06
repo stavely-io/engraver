@@ -1,10 +1,10 @@
-import { EngraverStaveData } from "../../api/types/engraver-api.types";
-import { EngraverPlayableSelectableCoordinates } from "../../controller/interaction/action-handler/types/engraver-coordinates";
+import type { EngraverStaveData } from "../../api/types/engraver-api.types";
+import type { EngraverPlayableSelectableCoordinates } from "../../controller/interaction/action-handler/types/engraver-coordinates";
 import {
-  EngraverBlockable,
-  EngraverPlayableSelectable,
+  type EngraverBlockable,
+  type EngraverPlayableSelectable,
   EngraverStaveVoice,
-  EngraverTickable,
+  type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
@@ -16,7 +16,7 @@ import { Duration } from "@/modules/musical-core/models/duration";
 import { KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Tie } from "@/modules/musical-core/models/tie";
-import { Clef } from "@/modules/musical-core/types/clef.types";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
 import { Fraction } from "@stavely-io/vexflow";

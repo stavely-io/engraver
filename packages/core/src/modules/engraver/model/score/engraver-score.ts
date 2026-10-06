@@ -1,17 +1,17 @@
-import { ScoreData } from "../../api/types/engraver-api.types";
-import { EngraverBlockConfig } from "../../view/types/config/score/engraver-block-config";
+import type { ScoreData } from "../../api/types/engraver-api.types";
+import type { EngraverBlockConfig } from "../../view/types/config/score/engraver-block-config";
 import { EngraverStave } from "../containers/engraver-stave";
 import {
-  EngraverBlockable,
+  type EngraverBlockable,
   EngraverChromaticShiftDirection,
-  EngraverSelectable,
-  EngraverTickable,
+  type EngraverSelectable,
+  type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverTie } from "../elements/notation/engraver-tie";
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
-import { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
+import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
 import { Chord } from "@/modules/musical-core/models/chord";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Pitch } from "@/modules/musical-core/models/pitch";

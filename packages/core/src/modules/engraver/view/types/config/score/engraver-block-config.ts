@@ -1,4 +1,4 @@
-import { EngraverPlayableSelectableCoordinates } from "@/modules/engraver/controller/interaction/action-handler/types/engraver-coordinates";
+import type { EngraverPlayableSelectableCoordinates } from "@/modules/engraver/controller/interaction/action-handler/types/engraver-coordinates";
 
 export interface EngraverBlockConfig {
   isScoreBlocked?: boolean;

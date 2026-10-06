@@ -5,7 +5,7 @@ import { SmplrAdapter } from "@/modules/engraver/controller/adapters/smplr-adapt
 export class PlaybackTogglePlayExecutor extends EngraverActionExecutor<EngraverActionType.PLAYBACK_TOGGLE> {
   private readonly smplrAdapter: SmplrAdapter = new SmplrAdapter();
   public execute(): void {
-    this.context.player
+    void this.context.player
       .getState()
       .instrument?.play(
         this.smplrAdapter.adapt(this.context.score),

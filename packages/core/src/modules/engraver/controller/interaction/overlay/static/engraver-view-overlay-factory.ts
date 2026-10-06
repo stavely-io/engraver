@@ -1,21 +1,21 @@
 import { EngraverStave } from "../../../../model/containers/engraver-stave";
 import { DEFAULT_ENGRAVER_VOICES } from "../../../../model/core/types/engraver-model.types";
 import { EngraverScore } from "../../../../model/score/engraver-score";
+import { MEASURE_OVERLAY_COLUMN_HEIGHT } from "../../../presentation/constants/layout";
 import { EngraverLayoutCalculator } from "../../../presentation/layout/engraver-layout-calculator";
-import {
+import type {
   VFMeasureData,
   VFScoreCoreData,
   VFStaveData,
   VFSystemData,
 } from "../../../rendering/types/vf-data";
-import {
+import type {
   EngraverMeasureLayout,
   EngraverStaveLayout,
   EngraverSystemLayout,
   EngraverViewOverlay,
 } from "../../../store/slices/engraver-overlay.slice";
 /* eslint-disable no-magic-numbers */
-import { MEASURE_OVERLAY_COLUMN_HEIGHT } from "@/modules/engraver/view/components/engraver-sheet/engraver-score/overlay/constants/layout";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
 import { ClefType } from "@/modules/musical-core/types/clef.types";

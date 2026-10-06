@@ -5,7 +5,7 @@ import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental, Dot, StaveNote, Stem } from "@stavely-io/vexflow";
 
-type StemDirection = typeof Stem.UP | typeof Stem.DOWN;
+type StemDirection = typeof Stem.UP;
 
 export class VFChordFactory {
   public static create(engraverChord: EngraverChord, measureActiveVoiceCount: number): StaveNote {
@@ -49,7 +49,7 @@ export class VFChordFactory {
       STEM_DIRECTION_UP_STARTING_PITCH_MAP[engraverChord.parentVoice.parentMeasure.clef.type];
 
     if (pitches.length > 1) {
-      pitches.sort(Pitch.compareDiatonically);
+      pitches.sort((p1, p2) => Pitch.compareDiatonically(p1, p2));
       const pitchLow = pitches[0];
       const pitchHigh = pitches[pitches.length - 1];
 

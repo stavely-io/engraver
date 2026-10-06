@@ -1,5 +1,5 @@
-import { EngraverPlayableSelectableCoordinatesKey } from '../../../../controller/interaction/action-handler/types/engraver-coordinates';
-import { Color } from '../../colors.types';
+import type { EngraverPlayableSelectableCoordinatesKey } from "../../../../controller/interaction/action-handler/types/engraver-coordinates";
+import type { Color } from "../../colors.types";
 
 export type EngraverGhostOverlayTheme = {
   firstVoice: Color;
@@ -11,7 +11,10 @@ export type EngraverSelectionTheme = {
   secondVoice: Color;
 };
 
-export type EngraverPlayableSelectableColorMap = Map<EngraverPlayableSelectableCoordinatesKey, Color>;
+export type EngraverPlayableSelectableColorMap = Map<
+  EngraverPlayableSelectableCoordinatesKey,
+  Color
+>;
 
 // TODO: this needs a proper refactor tbh
 export type EngraverThemeConfig = {

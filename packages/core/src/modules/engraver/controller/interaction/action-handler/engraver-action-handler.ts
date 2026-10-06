@@ -1,5 +1,5 @@
 import { EngraverScore } from "../../../model/score/engraver-score";
-import { EngraverStoreAPI } from "../../store/types/store-api";
+import type { EngraverStoreAPI } from "../../store/types/store-api";
 import { EngraverActionExecutor } from "./executors/abstract/engraver-action-executor";
 import { ApplyChromaticShiftExecutor } from "./executors/apply/apply-chromatic-shift-executor";
 import { ApplyTieExecutor } from "./executors/apply/apply-tie-executor";
@@ -19,11 +19,11 @@ import { MoveSelectionExecutor } from "./executors/selection/move-selection-exec
 import { RemoveSelectionExecutor } from "./executors/selection/remove-selection-executor";
 import { ToggleInputModeExecutor } from "./executors/toggle/toggle-input-mode-executor";
 import { ToggleViewModeExecutor } from "./executors/toggle/toggle-view-mode-executor";
-import { EngraverActionExecutorContext } from "./executors/types/engraver-action-executor-context";
-import { EngraverAction, EngraverActionMap } from "./types/actions/engraver-action";
+import type { EngraverActionExecutorContext } from "./executors/types/engraver-action-executor-context";
+import type { EngraverAction, EngraverActionMap } from "./types/actions/engraver-action";
 import { EngraverActionType } from "./types/actions/engraver-action-type.enum";
-import { PlayerStore } from "@/modules/player/store/player-store";
-import { StoreApi } from "zustand";
+import type { PlayerStore } from "@/modules/player/store/player-store";
+import type { StoreApi } from "zustand";
 
 export class EngraverActionHandler {
   private executors: Record<EngraverActionType, EngraverActionExecutor<keyof EngraverActionMap>>;

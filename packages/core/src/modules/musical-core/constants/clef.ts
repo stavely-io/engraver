@@ -1,4 +1,4 @@
-import { Clef, ClefType } from "../types/clef.types";
+import { type Clef, ClefType } from "../types/clef.types";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
 

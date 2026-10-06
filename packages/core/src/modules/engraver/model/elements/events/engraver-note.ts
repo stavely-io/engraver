@@ -1,12 +1,12 @@
 import { Duration } from "../../../../musical-core/models/duration";
 import { Pitch } from "../../../../musical-core/models/pitch";
 import { Accidental } from "../../../../musical-core/types/accidental.enum";
-import { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
+import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
 import { EngraverSelectableMixin } from "../../core/mixins/engraver-selectable-mixin";
 import {
-  EngraverBlockable,
+  type EngraverBlockable,
   EngraverChromaticShiftDirection,
-  IEngraverPlayableSelectable,
+  type IEngraverPlayableSelectable,
 } from "../../core/types/engraver-model.types";
 import { AccidentalScope } from "../../helpers/accidental-scope";
 import { EngraverTie } from "../notation/engraver-tie";

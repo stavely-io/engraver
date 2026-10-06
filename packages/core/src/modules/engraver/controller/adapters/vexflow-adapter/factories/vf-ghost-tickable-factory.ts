@@ -1,15 +1,15 @@
-import { VFGhostVoice, VFMeasureData } from "../../../rendering/types/vf-data";
+import type { VFGhostVoice, VFMeasureData } from "../../../rendering/types/vf-data";
 import { VFChordFactory } from "./core/vf-chord-factory";
 import { VFRestFactory } from "./core/vf-rest-factory";
 import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
 import {
-  EngraverNoteModifiers,
+  type EngraverNoteModifiers,
   EngraverStaveVoice,
-  EngraverTickable,
+  type EngraverTickable,
 } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
-import { EngraverGhostOverlayTheme } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
+import type { EngraverGhostOverlayTheme } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Pitch } from "@/modules/musical-core/models/pitch";

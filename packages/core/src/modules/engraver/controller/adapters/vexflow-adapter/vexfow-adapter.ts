@@ -1,15 +1,30 @@
-import { Stave } from '@stavely-io/vexflow';
-
-import { EngraverMeasure } from '../../../model/containers/engraver-measure';
-import { EngraverStave } from '../../../model/containers/engraver-stave';
-import { EngraverScore } from '../../../model/score/engraver-score';
-import { EngraverPlayableSelectableColorMap } from '../../../view/types/config/score/engraver-theme-config';
-import { VFMeasureData, VFScoreCoreData, VFScoreData, VFStaveData, VFSystemData } from '../../rendering/types/vf-data';
-import { EngraverOneWayAdapter } from '../types/adapter.types';
-import { VFArtifactsFactory } from './factories/vf-artifacts-factory';
-import { VFVoiceFactory } from './factories/vf-voice-factory';
-import { BarlinePainter, RestAligner, SystemDivider, TickablePainter, VoiceFormatter } from './formatters';
-import { MeasureLayout, SystemLayout, VexflowAdapterContext } from './types/vexflow-adapter.types';
+import { EngraverMeasure } from "../../../model/containers/engraver-measure";
+import { EngraverStave } from "../../../model/containers/engraver-stave";
+import { EngraverScore } from "../../../model/score/engraver-score";
+import type { EngraverPlayableSelectableColorMap } from "../../../view/types/config/score/engraver-theme-config";
+import type {
+  VFMeasureData,
+  VFScoreCoreData,
+  VFScoreData,
+  VFStaveData,
+  VFSystemData,
+} from "../../rendering/types/vf-data";
+import type { EngraverOneWayAdapter } from "../types/adapter.types";
+import { VFArtifactsFactory } from "./factories/vf-artifacts-factory";
+import { VFVoiceFactory } from "./factories/vf-voice-factory";
+import {
+  BarlinePainter,
+  RestAligner,
+  SystemDivider,
+  TickablePainter,
+  VoiceFormatter,
+} from "./formatters";
+import type {
+  MeasureLayout,
+  SystemLayout,
+  VexflowAdapterContext,
+} from "./types/vexflow-adapter.types";
+import { Stave } from "@stavely-io/vexflow";
 
 export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFScoreData> {
   public adapt(
@@ -47,7 +62,9 @@ export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFSc
       staveCount: staves.length,
       measureCount: staves[0].measuresData.length,
       staves,
-      globalMeasureIndices: systemLayout.measureWidths.map((_, i) => systemLayout.startMeasureIndex + i),
+      globalMeasureIndices: systemLayout.measureWidths.map(
+        (_, i) => systemLayout.startMeasureIndex + i,
+      ),
       measureWidths: systemLayout.measureWidths,
     };
   }
@@ -76,7 +93,11 @@ export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFSc
     return { measuresData };
   }
 
-  private adaptMeasure(measure: EngraverMeasure, layout: MeasureLayout, previousVFMeasures: Stave[]): VFMeasureData {
+  private adaptMeasure(
+    measure: EngraverMeasure,
+    layout: MeasureLayout,
+    previousVFMeasures: Stave[],
+  ): VFMeasureData {
     const { measureWidth, globalMeasureIndex, localMeasureIndex, measureYPos } = layout;
     const vfVoices = measure.voices.map((v) => VFVoiceFactory.create(v, measure.activeVoiceCount));
 

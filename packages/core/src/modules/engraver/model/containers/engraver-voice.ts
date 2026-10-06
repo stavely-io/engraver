@@ -1,9 +1,9 @@
 import { Duration } from "../../../musical-core/models/duration";
 import { BaseDuration } from "../../../musical-core/types/base-duration.enum";
 import {
-  EngraverBlockable,
+  type EngraverBlockable,
   EngraverStaveVoice,
-  EngraverTickable,
+  type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverRest } from "../elements/events/engraver-rest";

@@ -1,4 +1,4 @@
-import { EngraverActionMap } from "../../types/actions/engraver-action";
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";

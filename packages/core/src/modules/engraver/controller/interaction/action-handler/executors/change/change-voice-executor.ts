@@ -1,9 +1,9 @@
-import { EngraverActionMap } from "../../types/actions/engraver-action";
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import {
-  EngraverPlayableSelectable,
-  EngraverSelectable,
+  type EngraverPlayableSelectable,
+  type EngraverSelectable,
   EngraverStaveVoice,
 } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";

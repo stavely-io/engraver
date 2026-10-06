@@ -2,7 +2,6 @@ import { Tickable } from "./abstract/tickable";
 import { Duration } from "./duration";
 import { Note } from "./note";
 import { Pitch } from "./pitch";
-import { ChordDTO } from "@/api/types/exercises/dto-model-types";
 
 export class Chord extends Tickable {
   public notes: Note[];
@@ -10,12 +9,6 @@ export class Chord extends Tickable {
     super(duration);
     this.notes = pitches.map((pitch) => new Note(pitch));
     this.notes.sort((noteA, noteB) => Pitch.compareEnharmonically(noteA.pitch, noteB.pitch));
-  }
-
-  public static fromDTO(chordDTO: ChordDTO): Chord {
-    const duration = Duration.fromDTO(chordDTO.duration);
-    const pitches = chordDTO.pitches.map(Pitch.fromString);
-    return new Chord(pitches, duration);
   }
 
   public addNote(pitch: Pitch) {

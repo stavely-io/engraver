@@ -8,7 +8,7 @@ import {
   DEFAULT_BASE_DURATIONS,
 } from "../../../../musical-core/types/base-duration.enum";
 import { DEFAULT_DOT_COUNTS } from "../../../../musical-core/types/dot-count.enum";
-import {
+import type {
   EngraverMenuAccidentalConfig,
   EngraverMenuDotsConfig,
   EngraverMenuDurationsConfig,

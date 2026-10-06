@@ -1,7 +1,7 @@
 import {
   REST_PLACEMENT_MAP,
   RestDurationPlacement,
-  VoicePlacementKey,
+  type VoicePlacementKey,
 } from "../../constants/rest-placement";
 import { VFStaveNoteType } from "../../types/vexflow-adapter.types";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";

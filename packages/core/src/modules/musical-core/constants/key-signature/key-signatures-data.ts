@@ -1,7 +1,7 @@
 import {
   KeySignatureMode,
   KeySignatureName,
-  KeySignatureProps,
+  type KeySignatureProps,
   KeySignatureType,
 } from "../../types/key-signature.types";
 import { Pitch } from "@/modules/musical-core/models/pitch";

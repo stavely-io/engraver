@@ -1,7 +1,7 @@
 import { EngraverLayoutCalculator } from "../../../../presentation/layout/engraver-layout-calculator";
-import { SystemXLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
+import type { SystemXLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
 import { EngraverStave } from "@/modules/engraver/model/containers/engraver-stave";
-import { EngraverStaveModifiers } from "@/modules/engraver/model/core/types/engraver-model.types";
+import type { EngraverStaveModifiers } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 export class SystemHorizontalDivider {

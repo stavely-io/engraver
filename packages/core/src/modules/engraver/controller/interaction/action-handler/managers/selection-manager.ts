@@ -1,7 +1,7 @@
-import { SelectableEngraverMenuValues } from "../../../store/slices/menu/engraver-menu-values.slice";
-import { EngraverOverlayElement } from "../../overlay/types/engraver-overlay-element";
-import { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
-import {
+import type { SelectableEngraverMenuValues } from "../../../store/slices/menu/engraver-menu-values.slice";
+import type { EngraverOverlayElement } from "../../overlay/types/engraver-overlay-element";
+import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
+import type {
   EngraverPlayableSelectable,
   EngraverSelectable,
 } from "@/modules/engraver/model/core/types/engraver-model.types";

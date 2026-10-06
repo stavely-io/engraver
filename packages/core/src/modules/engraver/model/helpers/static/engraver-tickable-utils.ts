@@ -1,4 +1,4 @@
-import { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
+import type { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
 
 export class EngraverTickableUtils {
   public static compareByScorePosition(a: EngraverTickable, b: EngraverTickable): number {

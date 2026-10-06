@@ -1,9 +1,9 @@
 import { MAX_VOICE_COUNT } from "../../../model/constants/limitations";
-import { EngraverScoreConfig } from "../../../view/types/config/score/engraver-score-config";
+import type { EngraverScoreConfig } from "../../../view/types/config/score/engraver-score-config";
 import { SystemVerticalDivider } from "../../adapters/vexflow-adapter/formatters/system-divider";
-import { EngraverOverlayElement } from "../../interaction/overlay/types/engraver-overlay-element";
+import type { EngraverOverlayElement } from "../../interaction/overlay/types/engraver-overlay-element";
 import { Pitch } from "@/modules/musical-core/models/pitch";
-import { StateCreator } from "zustand";
+import type { StateCreator } from "zustand";
 
 export interface EngraverMeasureLayout {
   measureLeftX: number;

@@ -1,15 +1,15 @@
-import { VFGhostVoice } from '../types/vf-data';
-import { EngraverVFRenderer } from './abstract/engraver-renderer';
+import type { VFGhostVoice } from "../types/vf-data";
+import { EngraverVFRenderer } from "./abstract/engraver-renderer";
 
 export class EngraverGhostOverlayRenderer extends EngraverVFRenderer {
-  private static readonly VF_GHOST_ID = 'engraver-ghost-overlay';
-  private static readonly VF_GHOST_SELECTOR = 'svg#' + EngraverGhostOverlayRenderer.VF_GHOST_ID;
+  private static readonly VF_GHOST_ID = "engraver-ghost-overlay";
+  private static readonly VF_GHOST_SELECTOR = "svg#" + EngraverGhostOverlayRenderer.VF_GHOST_ID;
 
   private _svgContainer: SVGSVGElement | null = null;
 
   public get svgContainer(): SVGSVGElement {
     if (!this._svgContainer) {
-      throw Error('Div container is undefined. Did you bind the container?');
+      throw Error("Div container is undefined. Did you bind the container?");
     }
     return this._svgContainer;
   }
@@ -38,8 +38,10 @@ export class EngraverGhostOverlayRenderer extends EngraverVFRenderer {
   }
 
   private bindSVGContainer(): void {
-    this._svgContainer = this.divContainer.querySelector<SVGSVGElement>(EngraverGhostOverlayRenderer.VF_GHOST_SELECTOR);
-    this.svgContainer.style.position = 'absolute';
-    this.svgContainer.style.top = '0';
+    this._svgContainer = this.divContainer.querySelector<SVGSVGElement>(
+      EngraverGhostOverlayRenderer.VF_GHOST_SELECTOR,
+    );
+    this.svgContainer.style.position = "absolute";
+    this.svgContainer.style.top = "0";
   }
 }

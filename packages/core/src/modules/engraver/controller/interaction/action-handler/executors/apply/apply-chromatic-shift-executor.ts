@@ -1,6 +1,6 @@
-import { EngraverActionMap } from '../../types/actions/engraver-action';
-import { EngraverActionType } from '../../types/actions/engraver-action-type.enum';
-import { EngraverActionExecutor } from '../abstract/engraver-action-executor';
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ApplyChromaticShiftExecutor extends EngraverActionExecutor<EngraverActionType.APPLY_CHROMATIC_SHIFT> {
   public execute(payload: EngraverActionMap[EngraverActionType.APPLY_CHROMATIC_SHIFT]): void {

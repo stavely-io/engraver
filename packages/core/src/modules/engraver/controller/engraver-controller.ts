@@ -1,19 +1,18 @@
-import { StoreApi } from 'zustand';
-
-import { Pitch } from '../../musical-core/models/pitch';
-import { PlayerStore } from '../../player';
-import { ScoreData } from '../api/types/engraver-api.types';
-import { EngraverScore } from '../model/score/engraver-score';
-import { EngraverScoreConfig } from '../view/types/config/score/engraver-score-config';
-import { EngraverThemeConfig } from '../view/types/config/score/engraver-theme-config';
-import { EngraverAction } from './interaction/action-handler/types/actions/engraver-action';
-import { EngraverOverlayCoordinates } from './interaction/action-handler/types/engraver-coordinates';
-import { EngraverInteractionManager } from './interaction/engraver-interaction-manager';
-import { EngraverScorePresenter } from './presentation/engraver-score-presenter';
-import { EngraverRenderingService } from './rendering/engraver-rendering-service';
-import { EngraverStoreAPI } from './store/types/store-api';
-import { EngraverThemeManager } from './theme/engraver-theme-manager';
-import { EngraverThemeType } from './theme/theme.types';
+import { Pitch } from "../../musical-core/models/pitch";
+import type { PlayerStore } from "../../player";
+import type { ScoreData } from "../api/types/engraver-api.types";
+import { EngraverScore } from "../model/score/engraver-score";
+import type { EngraverScoreConfig } from "../view/types/config/score/engraver-score-config";
+import type { EngraverThemeConfig } from "../view/types/config/score/engraver-theme-config";
+import type { EngraverAction } from "./interaction/action-handler/types/actions/engraver-action";
+import type { EngraverOverlayCoordinates } from "./interaction/action-handler/types/engraver-coordinates";
+import { EngraverInteractionManager } from "./interaction/engraver-interaction-manager";
+import { EngraverScorePresenter } from "./presentation/engraver-score-presenter";
+import { EngraverRenderingService } from "./rendering/engraver-rendering-service";
+import type { EngraverStoreAPI } from "./store/types/store-api";
+import { EngraverThemeManager } from "./theme/engraver-theme-manager";
+import { EngraverThemeType } from "./theme/theme.types";
+import type { StoreApi } from "zustand";
 
 export class EngraverController {
   private readonly score: EngraverScore;
@@ -36,7 +35,10 @@ export class EngraverController {
       this.player,
       this.themeManager,
     );
-    this.scorePresenter = new EngraverScorePresenter(this.renderingService.score, this.themeManager);
+    this.scorePresenter = new EngraverScorePresenter(
+      this.renderingService.score,
+      this.themeManager,
+    );
   }
 
   public setTheme(theme: EngraverThemeType | EngraverThemeConfig): void {

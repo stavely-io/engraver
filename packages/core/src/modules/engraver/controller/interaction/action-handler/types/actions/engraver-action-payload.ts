@@ -1,4 +1,4 @@
-import {
+import type {
   EngraverPlayableSelectableCoordinates,
   EngraverTickableCoordinates,
 } from "../engraver-coordinates";

@@ -1,5 +1,5 @@
-import { EngraverTickableCoordinates } from "../../interaction/action-handler/types/engraver-coordinates";
-import { VFMeasureData } from "./vf-data";
+import type { EngraverTickableCoordinates } from "../../interaction/action-handler/types/engraver-coordinates";
+import type { VFMeasureData } from "./vf-data";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";

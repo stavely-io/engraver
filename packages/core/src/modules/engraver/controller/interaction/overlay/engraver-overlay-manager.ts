@@ -1,14 +1,14 @@
 import { EngraverScore } from "../../../model/score/engraver-score";
 import { VFGhostTickableFactory } from "../../adapters/vexflow-adapter/factories/vf-ghost-tickable-factory";
 import { EngraverRenderingService } from "../../rendering/engraver-rendering-service";
-import { VFScoreData } from "../../rendering/types/vf-data";
-import { EngraverStoreAPI } from "../../store/types/store-api";
+import type { VFScoreData } from "../../rendering/types/vf-data";
+import type { EngraverStoreAPI } from "../../store/types/store-api";
 import { EngraverThemeManager } from "../../theme/engraver-theme-manager";
-import { EngraverOverlayCoordinates } from "../action-handler/types/engraver-coordinates";
+import type { EngraverOverlayCoordinates } from "../action-handler/types/engraver-coordinates";
 import { EngraverSelectionHighlighter } from "./observer/engraver-selection-highlighter";
 import { EngraverOverlayMapper } from "./static/engraver-overlay-mapper";
 import { EngraverViewOverlayLayoutFactory } from "./static/engraver-view-overlay-factory";
-import { EngraverOverlayElement } from "./types/engraver-overlay-element";
+import type { EngraverOverlayElement } from "./types/engraver-overlay-element";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 
 export class EngraverOverlayManager {

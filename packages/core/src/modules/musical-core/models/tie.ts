@@ -1,5 +1,5 @@
-import { EngraverPlayableSelectableCoordinates } from '../../engraver/controller/interaction/action-handler/types/engraver-coordinates';
-import { Note } from './note';
+import type { EngraverPlayableSelectableCoordinates } from "../../engraver/controller/interaction/action-handler/types/engraver-coordinates";
+import { Note } from "./note";
 
 export class Tie {
   constructor(

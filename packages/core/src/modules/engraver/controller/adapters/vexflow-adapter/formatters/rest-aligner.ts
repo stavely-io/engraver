@@ -1,5 +1,5 @@
 import { EngraverScoreRenderer } from "../../../rendering/renderers/engraver-score-renderer";
-import { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 import { VFStaveNoteType } from "../types/vexflow-adapter.types";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { StaveNote, Voice } from "@stavely-io/vexflow";

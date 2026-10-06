@@ -1,9 +1,11 @@
-import { createStore } from 'zustand';
-
-import { EngraverConfig } from '../../view/types/config/engraver-config';
-import { createEngraverOverlaySlice, EngraverOverlaySlice } from './slices/engraver-overlay.slice';
-import { createEngraverScoreSlice, EngraverScoreSlice } from './slices/engraver-score.slice';
-import { createEngraverMenuSlice, EngraverMenuSlice } from './slices/menu/engraver-menu.slice';
+import type { EngraverConfig } from "../../view/types/config/engraver-config";
+import {
+  createEngraverOverlaySlice,
+  type EngraverOverlaySlice,
+} from "./slices/engraver-overlay.slice";
+import { createEngraverScoreSlice, type EngraverScoreSlice } from "./slices/engraver-score.slice";
+import { createEngraverMenuSlice, type EngraverMenuSlice } from "./slices/menu/engraver-menu.slice";
+import { createStore } from "zustand/vanilla";
 
 export type EngraverStore = EngraverScoreSlice & EngraverMenuSlice & EngraverOverlaySlice;
 

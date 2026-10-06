@@ -1,4 +1,8 @@
-import { VFScoreArtifacts, VFScoreCoreData, VFSystemData } from "../../../rendering/types/vf-data";
+import type {
+  VFScoreArtifacts,
+  VFScoreCoreData,
+  VFSystemData,
+} from "../../../rendering/types/vf-data";
 import { VFStaveConnectorFactory } from "./atrifacts/vf-stave-connectors-factory";
 import { VFTieFactory } from "./atrifacts/vf-tie-factory";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";

@@ -1,6 +1,5 @@
-import { Formatter, Voice } from '@stavely-io/vexflow';
-
-import { VFScoreCoreData } from '../../../rendering/types/vf-data';
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import { Formatter, Voice } from "@stavely-io/vexflow";
 
 export class VoiceFormatter {
   public static readonly COLLISION_FACTOR = 20;
@@ -30,11 +29,17 @@ export class VoiceFormatter {
           formatter.joinVoices(measureData.vfVoices);
         });
 
-        system.staves.forEach((stave) => stave.measuresData[measureIndex].vfMeasure.setNoteStartX(startX));
+        system.staves.forEach((stave) =>
+          stave.measuresData[measureIndex].vfMeasure.setNoteStartX(startX),
+        );
 
-        formatter.format(measureVoices, measureWidth - (startX - measureX) - this.COLLISION_FACTOR, {
-          stave: vfMeasure,
-        });
+        formatter.format(
+          measureVoices,
+          measureWidth - (startX - measureX) - this.COLLISION_FACTOR,
+          {
+            stave: vfMeasure,
+          },
+        );
       }
     });
   }

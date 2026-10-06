@@ -1,7 +1,7 @@
-import { VFScoreCoreData } from "../../../rendering/types/vf-data";
-import { EngraverPlayableSelectableCoordinates } from "../../action-handler/types/engraver-coordinates";
-import { EngraverOverlayElement } from "../types/engraver-overlay-element";
-import { EngraverSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { EngraverPlayableSelectableCoordinates } from "../../action-handler/types/engraver-coordinates";
+import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
+import type { EngraverSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 import { StaveNote } from "@stavely-io/vexflow";

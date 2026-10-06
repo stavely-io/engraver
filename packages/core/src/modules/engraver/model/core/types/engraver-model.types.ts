@@ -1,4 +1,4 @@
-import {
+import type {
   EngraverPlayableSelectableCoordinates,
   EngraverTickableCoordinates,
 } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
@@ -9,7 +9,7 @@ import { EngraverRest } from "../../elements/events/engraver-rest";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { Clef } from "@/modules/musical-core/types/clef.types";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
 import { enumValues } from "@/utils/enum";

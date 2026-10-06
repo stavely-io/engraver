@@ -1,10 +1,10 @@
-import { BarlineType } from '@stavely-io/vexflow';
-
-import { VFMeasureData, VFScoreCoreData } from '../../../rendering/types/vf-data';
+import type { VFMeasureData, VFScoreCoreData } from "../../../rendering/types/vf-data";
+import { BarlineType } from "@stavely-io/vexflow";
 
 export class BarlinePainter {
   public static paint(data: VFScoreCoreData): void {
-    if (this.isBarlineToBePainted(data)) this.getLastMeasure(data).vfMeasure.setEndBarType(BarlineType.END);
+    if (this.isBarlineToBePainted(data))
+      this.getLastMeasure(data).vfMeasure.setEndBarType(BarlineType.END);
   }
 
   private static isBarlineToBePainted(data: VFScoreCoreData): boolean {

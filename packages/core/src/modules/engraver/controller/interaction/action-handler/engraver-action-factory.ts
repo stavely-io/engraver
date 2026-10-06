@@ -1,7 +1,7 @@
 import { EngraverViewMode } from "../../../view/types/engraver-mode.types";
-import { EngraverActionMap } from "./types/actions/engraver-action";
+import type { EngraverActionMap } from "./types/actions/engraver-action";
 import { EngraverActionType } from "./types/actions/engraver-action-type.enum";
-import {
+import type {
   EngraverPlayableSelectableCoordinates,
   EngraverTickableCoordinates,
 } from "./types/engraver-coordinates";

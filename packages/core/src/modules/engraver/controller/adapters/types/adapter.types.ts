@@ -1,4 +1,4 @@
-import { Args } from "@/modules/engraver/model/types/misc.types";
+import type { Args } from "@/modules/engraver/model/types/misc.types";
 
 export interface EngraverOneWayAdapter<InputType, OutputType> {
   adapt(input: InputType, ...args: Args): OutputType;

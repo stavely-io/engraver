@@ -1,13 +1,13 @@
-import { Duration } from '../../../../musical-core/models/duration';
-import { Rest } from '../../../../musical-core/models/rest';
-import { EngraverPlayableSelectableCoordinates } from '../../../controller/interaction/action-handler/types/engraver-coordinates';
-import { EngraverVoice } from '../../containers/engraver-voice';
-import { EngraverSelectableMixin } from '../../core/mixins/engraver-selectable-mixin';
-import {
+import { Duration } from "../../../../musical-core/models/duration";
+import { Rest } from "../../../../musical-core/models/rest";
+import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
+import { EngraverVoice } from "../../containers/engraver-voice";
+import { EngraverSelectableMixin } from "../../core/mixins/engraver-selectable-mixin";
+import type {
   EngraverBlockable,
   IEngraverPlayableSelectable,
   IEngraverTickable,
-} from '../../core/types/engraver-model.types';
+} from "../../core/types/engraver-model.types";
 
 /**
  * Represents a rest element in the engraving model, extending selectable and tickable functionality.

@@ -1,4 +1,4 @@
-import {
+import type {
   EngraverApplyActionPayload,
   EngraverApplyChromaticShiftActionPayload,
   EngraverChangeActionPayload,

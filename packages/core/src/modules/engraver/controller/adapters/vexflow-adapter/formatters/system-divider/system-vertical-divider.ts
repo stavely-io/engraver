@@ -1,12 +1,12 @@
 import { EngraverViewOverlayLayoutFactory } from "../../../../interaction/overlay/static/engraver-view-overlay-factory";
-import { SystemLayout, SystemXLayout } from "../../types/vexflow-adapter.types";
-import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import type { SystemLayout, SystemXLayout } from "../../types/vexflow-adapter.types";
 import {
   ENGRAVER_OCTAVE_RANGE_HEIGHT,
   MEASURE_OVERLAY_COLUMN_HEIGHT,
-} from "@/modules/engraver/view/components/engraver-sheet/engraver-score/overlay/constants/layout";
-import { Clef } from "@/modules/musical-core/types/clef.types";
+} from "@/modules/engraver/controller/presentation/constants/layout";
+import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
+import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
 
 export class SystemVerticalDivider {
   public static readonly STAVE_GAP = 100;

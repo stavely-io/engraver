@@ -7,10 +7,10 @@ import { applyMixins } from "../../utils/mixin";
 import { MAX_VOICE_COUNT } from "../constants/limitations";
 import { TimeMixin } from "../core/mixins/time-mixin";
 import {
-  EngraverBlockable,
+  type EngraverBlockable,
   EngraverChromaticShiftDirection,
   EngraverStaveVoice,
-  EngraverTickable,
+  type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
@@ -22,8 +22,7 @@ import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
 import { KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Rest } from "@/modules/musical-core/models/rest";
-import { Clef } from "@/modules/musical-core/types/clef.types";
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+import type { Clef } from "@/modules/musical-core/types/clef.types";
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 import { Fraction } from "@stavely-io/vexflow";
 

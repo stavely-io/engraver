@@ -1,6 +1,6 @@
-import { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
-import { Clef } from "@/modules/musical-core/types/clef.types";
-import { StateCreator } from "zustand";
+import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
+import type { StateCreator } from "zustand";
 
 export interface EngraverScoreSlice {
   measureCount: number;

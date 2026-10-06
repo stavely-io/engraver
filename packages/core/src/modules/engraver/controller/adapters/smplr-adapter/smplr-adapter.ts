@@ -1,4 +1,4 @@
-import { EngraverOneWayAdapter } from "../types/adapter.types";
+import type { EngraverOneWayAdapter } from "../types/adapter.types";
 import { SmplrNoteFactory } from "./factories/smplr-note-factory";
 import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
 import { EngraverStave } from "@/modules/engraver/model/containers/engraver-stave";
@@ -6,7 +6,7 @@ import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
-import { SmplrNote, SmplrScoreData } from "@/modules/player/smplr/types/smplr";
+import type { SmplrNote, SmplrScoreData } from "@/modules/player/smplr/types/smplr";
 import { Fraction } from "@stavely-io/vexflow";
 
 export class SmplrAdapter implements EngraverOneWayAdapter<EngraverScore, SmplrScoreData> {

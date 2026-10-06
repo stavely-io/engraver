@@ -1,6 +1,6 @@
-import { Constructor } from '../../../utils/mixin';
-import { IDFactory } from '../factories/id-factory';
-import { EngraverSelectable } from '../types/engraver-model.types';
+import type { Constructor } from "../../../utils/mixin";
+import { IDFactory } from "../factories/id-factory";
+import type { EngraverSelectable } from "../types/engraver-model.types";
 
 export function EngraverSelectableMixin<TBase extends Constructor>(Base: TBase) {
   return class extends Base implements EngraverSelectable {

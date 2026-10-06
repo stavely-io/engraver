@@ -1,4 +1,4 @@
-import { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
+import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
 import { EngraverStave } from "../../containers/engraver-stave";
 import { EngraverNote } from "../events/engraver-note";
 import { EngraverTickableUtils } from "@/modules/engraver/model/helpers/static/engraver-tickable-utils";

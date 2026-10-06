@@ -1,7 +1,6 @@
-import { Soundfont } from 'smplr';
-
-import { METRONOME_DATA, SmplrInstrument } from '../../types/instrument';
-import { PlayingOptions, SmplrNote, SmplrScoreData } from '../../types/smplr';
+import { METRONOME_DATA, type SmplrInstrument } from "../../types/instrument";
+import type { PlayingOptions, SmplrNote, SmplrScoreData } from "../../types/smplr";
+import { Soundfont } from "smplr";
 
 export abstract class SmplrPlayer {
   public static readonly DEFAULT_NOTE_VELOCITY = 80;
@@ -34,12 +33,16 @@ export abstract class SmplrPlayer {
     this.loaded = true;
   }
 
-  public async play(input: SmplrScoreData, bpm: number = SmplrPlayer.DEFAULT_BPM, playingOptions?: PlayingOptions) {
+  public async play(
+    input: SmplrScoreData,
+    bpm: number = SmplrPlayer.DEFAULT_BPM,
+    playingOptions?: PlayingOptions,
+  ) {
     if (!this.loaded) {
-      throw new Error('Instrument not loaded. You need to `init()` before playing');
+      throw new Error("Instrument not loaded. You need to `init()` before playing");
     }
     if (!SmplrPlayer.metronomeLoaded) {
-      throw new Error('Metronome not loaded');
+      throw new Error("Metronome not loaded");
     }
 
     this.stop();
@@ -68,7 +71,12 @@ export abstract class SmplrPlayer {
     SmplrPlayer.metronome?.stop();
   }
 
-  private playNotes(notes: SmplrNote[], startTime: number, secondsPerBeat: number, isMetronome: boolean = false) {
+  private playNotes(
+    notes: SmplrNote[],
+    startTime: number,
+    secondsPerBeat: number,
+    isMetronome: boolean = false,
+  ) {
     const player = isMetronome ? SmplrPlayer.metronome : this.instrument;
     notes.forEach((note) => {
       player!.start({

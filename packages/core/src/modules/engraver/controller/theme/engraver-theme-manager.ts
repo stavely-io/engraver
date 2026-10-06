@@ -1,14 +1,14 @@
-import { EngraverThemeConfig } from '../../view/types/config/score/engraver-theme-config';
-import { EngraverThemeType } from './theme.types';
+import type { EngraverThemeConfig } from "../../view/types/config/score/engraver-theme-config";
+import { EngraverThemeType } from "./theme.types";
 
 export class EngraverThemeManager {
   private themeConfig: EngraverThemeConfig | undefined;
   private static readonly ENGRAVER_THEMES: Record<EngraverThemeType, EngraverThemeConfig> = {
     [EngraverThemeType.LIGHT]: {
-      scoreTheme: '#000000',
+      scoreTheme: "#000000",
     },
     [EngraverThemeType.DARK]: {
-      scoreTheme: '#FFFFFF',
+      scoreTheme: "#FFFFFF",
     },
   };
 
@@ -21,7 +21,7 @@ export class EngraverThemeManager {
   }
 
   public setTheme(theme: EngraverThemeType | EngraverThemeConfig) {
-    if (typeof theme === 'object') {
+    if (typeof theme === "object") {
       this.themeConfig = { scoreTheme: this.themeConfig?.scoreTheme, ...theme };
     } else {
       this.themeConfig = { ...this.themeConfig, ...EngraverThemeManager.ENGRAVER_THEMES[theme] };

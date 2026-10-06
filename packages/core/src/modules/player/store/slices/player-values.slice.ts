@@ -1,5 +1,5 @@
 import { SmplrPlayer } from "@/modules/player/smplr/model/abstract/smplr-player";
-import { StateCreator } from "zustand";
+import type { StateCreator } from "zustand";
 
 export interface PlayerSliceValues {
   audioContext?: AudioContext;

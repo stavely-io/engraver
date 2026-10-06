@@ -1,4 +1,4 @@
-import { EngraverTickable } from "../../../../model/core/types/engraver-model.types";
+import type { EngraverTickable } from "../../../../model/core/types/engraver-model.types";
 import { EngraverChord } from "../../../../model/elements/events/engraver-chord";
 import { VFChordFactory } from "./core/vf-chord-factory";
 import { VFRestFactory } from "./core/vf-rest-factory";

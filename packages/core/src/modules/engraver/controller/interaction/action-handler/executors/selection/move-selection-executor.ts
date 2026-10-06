@@ -1,7 +1,7 @@
 import { EngraverOverlayMapper } from "../../../overlay/static/engraver-overlay-mapper";
-import { EngraverActionMap } from "../../types/actions/engraver-action";
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverPlayableSelectableCoordinates } from "../../types/engraver-coordinates";
+import type { EngraverPlayableSelectableCoordinates } from "../../types/engraver-coordinates";
 import { EngraverMoveSelectionDirection } from "../../types/selection/engraver-move-selected-direction.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";

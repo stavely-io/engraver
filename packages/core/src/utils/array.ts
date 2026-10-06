@@ -8,7 +8,7 @@
  * */
 export const randomChoice = <T>(array: T[]): T => {
   if (array.length === 0) {
-    throw new Error('Cannot choose from an empty array');
+    throw new Error("Cannot choose from an empty array");
   }
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];

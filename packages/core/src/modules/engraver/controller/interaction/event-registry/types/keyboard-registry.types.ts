@@ -1,5 +1,5 @@
 import { EngraverActionFactory } from "../../action-handler/engraver-action-factory";
-import { EngraverAction } from "../../action-handler/types/actions/engraver-action";
+import type { EngraverAction } from "../../action-handler/types/actions/engraver-action";
 import { EngraverMoveSelectionDirection } from "../../action-handler/types/selection/engraver-move-selected-direction.enum";
 import { KeyboardClickContextKeyFactory } from "../factories/keyboard-click-context-key-factory";
 import { KeyboardKey } from "./keyboard-keys.enum";

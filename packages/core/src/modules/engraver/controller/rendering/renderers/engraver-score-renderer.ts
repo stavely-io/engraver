@@ -1,19 +1,20 @@
-import { StaveNote, Voice } from '@stavely-io/vexflow';
-
-import { Color } from '../../../view/types/colors.types';
-import { VFScoreData } from '../types/vf-data';
-import { EngraverVFRenderer } from './abstract/engraver-renderer';
+import type { Color } from "../../../view/types/colors.types";
+import type { VFScoreData } from "../types/vf-data";
+import { EngraverVFRenderer } from "./abstract/engraver-renderer";
+import { StaveNote, Voice } from "@stavely-io/vexflow";
 
 export class EngraverScoreRenderer extends EngraverVFRenderer {
-  private static readonly VF_SCORE_ID = 'engraver-score';
-  private static readonly VF_SCORE_SELECTOR = 'svg#' + EngraverScoreRenderer.VF_SCORE_ID;
+  private static readonly VF_SCORE_ID = "engraver-score";
+  private static readonly VF_SCORE_SELECTOR = "svg#" + EngraverScoreRenderer.VF_SCORE_ID;
 
   public bind(container: HTMLDivElement) {
     super.bind(container, EngraverScoreRenderer.VF_SCORE_ID);
   }
 
   public unBind(): void {
-    this.divContainer.querySelector<SVGSVGElement>(EngraverScoreRenderer.VF_SCORE_SELECTOR)?.remove();
+    this.divContainer
+      .querySelector<SVGSVGElement>(EngraverScoreRenderer.VF_SCORE_SELECTOR)
+      ?.remove();
     super.unBind();
   }
 
@@ -37,7 +38,9 @@ export class EngraverScoreRenderer extends EngraverVFRenderer {
         });
       });
     });
-    data.artifacts.staveConnectors.forEach((staveConnector) => staveConnector.setContext(this.context).draw());
+    data.artifacts.staveConnectors.forEach((staveConnector) =>
+      staveConnector.setContext(this.context).draw(),
+    );
     data.artifacts.ties.forEach((tie) => {
       tie.setContext(this.context).draw();
     });
@@ -47,7 +50,8 @@ export class EngraverScoreRenderer extends EngraverVFRenderer {
     if (voiceIndex === 0) return true;
 
     const tickables = voice.getTickables();
-    const isSingleRest = tickables.length === 1 && tickables[0] instanceof StaveNote && tickables[0].isRest();
+    const isSingleRest =
+      tickables.length === 1 && tickables[0] instanceof StaveNote && tickables[0].isRest();
 
     return !isSingleRest;
   }

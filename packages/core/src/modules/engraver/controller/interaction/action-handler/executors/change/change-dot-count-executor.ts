@@ -1,7 +1,7 @@
-import { EngraverActionMap } from "../../types/actions/engraver-action";
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
-import {
+import type {
   EngraverPlayableSelectable,
   EngraverSelectable,
 } from "@/modules/engraver/model/core/types/engraver-model.types";

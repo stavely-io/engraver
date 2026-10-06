@@ -1,4 +1,4 @@
-import { EngraverPlayableSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
+import type { EngraverPlayableSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 

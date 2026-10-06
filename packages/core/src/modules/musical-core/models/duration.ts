@@ -1,7 +1,6 @@
 import { DurationIterator } from "../iterators/duration-iterator";
 import { BaseDuration } from "../types/base-duration.enum";
 import { DotCount } from "../types/dot-count.enum";
-import { DurationDTO } from "@/api/types/exercises/dto-model-types";
 import { UnknownDurationValueError } from "@/modules/engraver/model/errors/time-errors";
 import {
   HALF_NOTE_BEATS,
@@ -20,9 +19,6 @@ export class Duration {
       throw new UnknownDurationValueError(baseValue);
     }
   }
-  public static fromDTO = (durationDTO: DurationDTO): Duration => {
-    return new Duration(durationDTO.baseValue, durationDTO.dotCount);
-  };
   public static isBaseDuration = (value: string): boolean => {
     // Check if the value is of base Duration type
     if (Object.values(BaseDuration).includes(value as BaseDuration)) return true;

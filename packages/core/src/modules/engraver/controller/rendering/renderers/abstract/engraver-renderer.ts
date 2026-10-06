@@ -1,6 +1,5 @@
-import { RenderContext, Renderer } from '@stavely-io/vexflow';
-
-import { Args } from '../../../../model/types/misc.types';
+import type { Args } from "../../../../model/types/misc.types";
+import { RenderContext, Renderer } from "@stavely-io/vexflow";
 
 export abstract class EngraverVFRenderer {
   protected _context?: RenderContext;
@@ -9,21 +8,21 @@ export abstract class EngraverVFRenderer {
 
   public get context(): RenderContext {
     if (!this._context) {
-      throw Error('VF context is undefined. Did you bind the container?');
+      throw Error("VF context is undefined. Did you bind the container?");
     }
     return this._context;
   }
 
   public get containerWidth(): number {
     if (!this._divContainer) {
-      throw Error('Div container is undefined. Did you bind the container?');
+      throw Error("Div container is undefined. Did you bind the container?");
     }
     return this._divContainer.clientWidth;
   }
 
   public get divContainer(): HTMLDivElement {
     if (!this._divContainer) {
-      throw Error('Div container is undefined. Did you bind the container?');
+      throw Error("Div container is undefined. Did you bind the container?");
     }
     return this._divContainer;
   }
@@ -32,14 +31,14 @@ export abstract class EngraverVFRenderer {
 
   public clear(): void {
     if (!this._context) {
-      throw Error('VF context is undefined. Did you bind the container?');
+      throw Error("VF context is undefined. Did you bind the container?");
     }
     this._context.clear();
   }
 
   public updateRendererContext(newHeight: number, newWidth: number): void {
     if (!this._renderer) {
-      throw Error('VF Renderer is undefined. Did you bind the container?');
+      throw Error("VF Renderer is undefined. Did you bind the container?");
     }
 
     this._renderer.resize(newWidth, newHeight);

@@ -1,20 +1,24 @@
-import { Formatter, RenderContext, Stave, Voice } from '@stavely-io/vexflow';
-
-import { EngraverMeasure } from '../../../model/containers/engraver-measure';
-import { EngraverStaveModifiers } from '../../../model/core/types/engraver-model.types';
-import { EngraverScore } from '../../../model/score/engraver-score';
-import { VFVoiceFactory } from '../../adapters/vexflow-adapter/factories/vf-voice-factory';
-import { SystemVerticalDivider } from '../../adapters/vexflow-adapter/formatters/system-divider';
+import { EngraverMeasure } from "../../../model/containers/engraver-measure";
+import type { EngraverStaveModifiers } from "../../../model/core/types/engraver-model.types";
+import { EngraverScore } from "../../../model/score/engraver-score";
+import { VFVoiceFactory } from "../../adapters/vexflow-adapter/factories/vf-voice-factory";
+import { SystemVerticalDivider } from "../../adapters/vexflow-adapter/formatters/system-divider";
+import { Formatter, RenderContext, Stave, Voice } from "@stavely-io/vexflow";
 
 export class EngraverLayoutCalculator {
-  public static calculateRawMeasureWidths(score: EngraverScore, containerWidth: number): number[][] {
+  public static calculateRawMeasureWidths(
+    score: EngraverScore,
+    containerWidth: number,
+  ): number[][] {
     return score.staves.map((stave) =>
       stave.measures.map((measure) => this.calculateMinMeasureWidth(measure, containerWidth)),
     );
   }
 
   public static calculateMinMeasureWidth(measure: EngraverMeasure, containerWidth: number): number {
-    const vfVoices = measure.voices.map((voice) => VFVoiceFactory.create(voice, measure.activeVoiceCount));
+    const vfVoices = measure.voices.map((voice) =>
+      VFVoiceFactory.create(voice, measure.activeVoiceCount),
+    );
 
     return Math.min(
       Math.max(
@@ -39,7 +43,9 @@ export class EngraverLayoutCalculator {
     }
 
     if (!context) {
-      throw Error('RenderContext is mandatory to calculate modifiers width from EngraverStaveModifiers ');
+      throw Error(
+        "RenderContext is mandatory to calculate modifiers width from EngraverStaveModifiers ",
+      );
     }
 
     const vfStave = new Stave(0, 0, SystemVerticalDivider.MIN_MEASURE_WIDTH);

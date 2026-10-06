@@ -1,16 +1,16 @@
-import { EngraverScore } from '../../model/score/engraver-score';
-import { EngraverThemeConfig } from '../../view/types/config/score/engraver-theme-config';
-import { VexflowAdapter } from '../adapters/vexflow-adapter/vexfow-adapter';
-import { EngraverScoreRenderer } from '../rendering/renderers/engraver-score-renderer';
-import { VFScoreData } from '../rendering/types/vf-data';
-import { EngraverThemeManager } from '../theme/engraver-theme-manager';
+import { EngraverScore } from "../../model/score/engraver-score";
+import type { EngraverThemeConfig } from "../../view/types/config/score/engraver-theme-config";
+import { VexflowAdapter } from "../adapters/vexflow-adapter/vexfow-adapter";
+import { EngraverScoreRenderer } from "../rendering/renderers/engraver-score-renderer";
+import type { VFScoreData } from "../rendering/types/vf-data";
+import { EngraverThemeManager } from "../theme/engraver-theme-manager";
 
 export class EngraverScorePresenter {
   private readonly adapter: VexflowAdapter = new VexflowAdapter();
   private static readonly DEFAULT_SCORE_THEME: Required<
-    Pick<EngraverThemeConfig, 'scoreTheme' | 'playableSelectablesTheme'>
+    Pick<EngraverThemeConfig, "scoreTheme" | "playableSelectablesTheme">
   > = {
-    scoreTheme: 'rgb(255, 255, 255)',
+    scoreTheme: "rgb(255, 255, 255)",
     playableSelectablesTheme: new Map(),
   } as const;
 
@@ -39,7 +39,8 @@ export class EngraverScorePresenter {
         EngraverScorePresenter.DEFAULT_SCORE_THEME.playableSelectablesTheme,
     );
     this.renderer.setScoreColor(
-      this.themeManager.currentTheme?.scoreTheme ?? EngraverScorePresenter.DEFAULT_SCORE_THEME.scoreTheme,
+      this.themeManager.currentTheme?.scoreTheme ??
+        EngraverScorePresenter.DEFAULT_SCORE_THEME.scoreTheme,
     );
     this.renderer.render(VFData);
     return VFData;

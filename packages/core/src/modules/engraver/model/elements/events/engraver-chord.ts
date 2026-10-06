@@ -1,12 +1,11 @@
-import { Fraction } from '@stavely-io/vexflow';
-
-import { Chord } from '../../../../musical-core/models/chord';
-import { Duration } from '../../../../musical-core/models/duration';
-import { Pitch } from '../../../../musical-core/models/pitch';
-import { EngraverTickableCoordinates } from '../../../controller/interaction/action-handler/types/engraver-coordinates';
-import { EngraverVoice } from '../../containers/engraver-voice';
-import { EngraverBlockable, IEngraverTickable } from '../../core/types/engraver-model.types';
-import { EngraverNote } from './engraver-note';
+import { Chord } from "../../../../musical-core/models/chord";
+import { Duration } from "../../../../musical-core/models/duration";
+import { Pitch } from "../../../../musical-core/models/pitch";
+import type { EngraverTickableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
+import { EngraverVoice } from "../../containers/engraver-voice";
+import type { EngraverBlockable, IEngraverTickable } from "../../core/types/engraver-model.types";
+import { EngraverNote } from "./engraver-note";
+import { Fraction } from "@stavely-io/vexflow";
 // TODO:  create a musical-core class Note which would be the base class for EngraverNote -> this will be a bigger refactor
 // this feels awkward that chord has both pitches and notes (with the same pitches)
 
@@ -132,7 +131,10 @@ export class EngraverChord extends Chord implements IEngraverTickable, EngraverB
       this.sortNotes();
     }
     if (this.notes.length === 0) {
-      this.parentVoice.parentMeasure.changeTickableToRest(this.tickableIndex, this.parentVoice.voiceIndex);
+      this.parentVoice.parentMeasure.changeTickableToRest(
+        this.tickableIndex,
+        this.parentVoice.voiceIndex,
+      );
     }
   }
 

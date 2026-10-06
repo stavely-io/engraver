@@ -1,8 +1,13 @@
-import { SEMITONES_IN_OCTAVE } from '../constants/general';
-import { KEY_SIGNATURES_DATA } from '../constants/key-signature/key-signatures-data';
-import { BasePitchLabel } from '../types/base-pitch-label.enum';
-import { KeySignatureMode, KeySignatureName, KeySignatureProps, KeySignatureType } from '../types/key-signature.types';
-import { Pitch } from './pitch';
+import { SEMITONES_IN_OCTAVE } from "../constants/general";
+import { KEY_SIGNATURES_DATA } from "../constants/key-signature/key-signatures-data";
+import { BasePitchLabel } from "../types/base-pitch-label.enum";
+import {
+  KeySignatureMode,
+  KeySignatureName,
+  type KeySignatureProps,
+  KeySignatureType,
+} from "../types/key-signature.types";
+import { Pitch } from "./pitch";
 
 export class KeySignature implements KeySignatureProps {
   public readonly mode: KeySignatureMode;
@@ -45,7 +50,8 @@ export class KeySignature implements KeySignatureProps {
   public getLowerPitch(currentPitch: Pitch): Pitch {
     const currentPitchChromaticValue = currentPitch.chromaticValue;
     let newOctave = currentPitch.octave;
-    const nextPitchIndex = (currentPitchChromaticValue + SEMITONES_IN_OCTAVE - 1) % SEMITONES_IN_OCTAVE;
+    const nextPitchIndex =
+      (currentPitchChromaticValue + SEMITONES_IN_OCTAVE - 1) % SEMITONES_IN_OCTAVE;
     const newPitch = this.chromaticScaleDown[nextPitchIndex];
     if (
       [BasePitchLabel.D, BasePitchLabel.C].includes(currentPitch.pitchLabel) &&

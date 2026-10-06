@@ -1,7 +1,7 @@
-import { EngraverActionMap } from "../../types/actions/engraver-action";
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
-import { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
+import type { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";

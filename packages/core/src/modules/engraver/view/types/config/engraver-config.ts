@@ -1,7 +1,7 @@
-import { EngraverMenuConfig } from './engraver-menu-config';
-import { EngraverUIConfig } from './engraver-ui-config';
-import { EngraverScoreConfig } from './score/engraver-score-config';
-import { EngraverThemeConfig } from './score/engraver-theme-config';
+import type { EngraverMenuConfig } from "./engraver-menu-config";
+import type { EngraverUIConfig } from "./engraver-ui-config";
+import type { EngraverScoreConfig } from "./score/engraver-score-config";
+import type { EngraverThemeConfig } from "./score/engraver-theme-config";
 
 export interface EngraverConfig {
   engraverScoreConfig: EngraverScoreConfig;

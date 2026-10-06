@@ -1,7 +1,7 @@
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { SmplrPlayer } from "@/modules/player/smplr/model/abstract/smplr-player";
-import { SmplrNote } from "@/modules/player/smplr/types/smplr";
+import type { SmplrNote } from "@/modules/player/smplr/types/smplr";
 import { capitalize } from "@/utils/other";
 import { Fraction } from "@stavely-io/vexflow";
 

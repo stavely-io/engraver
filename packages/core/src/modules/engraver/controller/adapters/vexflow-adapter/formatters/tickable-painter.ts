@@ -1,7 +1,7 @@
 import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../interaction/action-handler/factories/engraver-playable-selectable-key-factory";
-import { VFScoreCoreData } from "../../../rendering/types/vf-data";
-import { Color } from "@/modules/engraver/view/types/colors.types";
-import { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { Color } from "@/modules/engraver/view/types/colors.types";
+import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 import { StaveNote } from "@stavely-io/vexflow";
 
 export class TickablePainter {
