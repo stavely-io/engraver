@@ -1,4 +1,4 @@
-import { enumValues } from '../../../utils/enum';
+import { enumValues } from "../../../utils/enum";
 
 export enum DotCount {
   ZERO = 0,

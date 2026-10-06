@@ -1,12 +1,12 @@
-import { ClefType } from '../types/clef.types';
-import { KeySignatureName } from '../types/key-signature.types';
-import { TimeSignature } from '../types/time-signature.types';
+import { ClefType } from "../types/clef.types";
+import { KeySignatureName } from "../types/key-signature.types";
+import { TimeSignature } from "../types/time-signature.types";
 
 export function clefTypeFromString(input: string): ClefType {
   switch (input.toLowerCase()) {
-    case 'treble':
+    case "treble":
       return ClefType.TREBLE;
-    case 'bass':
+    case "bass":
       return ClefType.BASS;
     default:
       throw new Error(`Unknown clef type: ${input}`);

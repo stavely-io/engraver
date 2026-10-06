@@ -1,4 +1,4 @@
-import { Pitch } from '../models/pitch';
+import { Pitch } from "../models/pitch";
 
 export interface Clef {
   type: ClefType;
@@ -7,6 +7,6 @@ export interface Clef {
 }
 
 export enum ClefType {
-  TREBLE = 'treble',
-  BASS = 'bass',
+  TREBLE = "treble",
+  BASS = "bass",
 }

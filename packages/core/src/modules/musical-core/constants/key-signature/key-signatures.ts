@@ -1,5 +1,5 @@
-import { KeySignature } from '../../models/key-signature';
-import { KeySignatureName } from '../../types/key-signature.types';
+import { KeySignature } from "../../models/key-signature";
+import { KeySignatureName } from "../../types/key-signature.types";
 
 export const KEY_SIGNATURES: Record<KeySignatureName, KeySignature> = {
   [KeySignatureName.A_MAJOR]: new KeySignature(KeySignatureName.A_MAJOR),

@@ -1,6 +1,5 @@
-import { Fraction } from '@stavely-io/vexflow';
-
-import { Duration } from '../duration';
+import { Duration } from "../duration";
+import { Fraction } from "@stavely-io/vexflow";
 
 export abstract class Tickable {
   private readonly _duration: Duration;

@@ -1,9 +1,8 @@
-import { Fraction } from '@stavely-io/vexflow';
-
-import { Tickable } from '../models/abstract/tickable';
-import { Chord } from '../models/chord';
-import { Note } from '../models/note';
-import { Rest } from '../models/rest';
+import { Tickable } from "../models/abstract/tickable";
+import { Chord } from "../models/chord";
+import { Note } from "../models/note";
+import { Rest } from "../models/rest";
+import { Fraction } from "@stavely-io/vexflow";
 
 export function calculateNoteTotalDuration(
   note: Note,
@@ -11,7 +10,7 @@ export function calculateNoteTotalDuration(
   tickableIndex: number,
 ): Fraction {
   if (tickableIndex >= mergedVoiceTickables.length) {
-    throw new Error('Given tickableIndex ${tickableIndex} is out of bonds');
+    throw new Error("Given tickableIndex ${tickableIndex} is out of bonds");
   }
   const tickable = mergedVoiceTickables[tickableIndex];
   if (!(tickable instanceof Chord)) {
@@ -19,7 +18,9 @@ export function calculateNoteTotalDuration(
   }
 
   if (!tickable.notes.includes(note)) {
-    throw new Error(`Given note does not belond to a chord found on tickableIndex ${tickableIndex}`);
+    throw new Error(
+      `Given note does not belond to a chord found on tickableIndex ${tickableIndex}`,
+    );
   }
 
   const totalDuration = new Fraction(0);
@@ -37,7 +38,10 @@ export function calculateNoteTotalDuration(
   return totalDuration;
 }
 
-export function calculateRestTotalDuration(mergedVoiceTickables: Tickable[], tickableIndex: number) {
+export function calculateRestTotalDuration(
+  mergedVoiceTickables: Tickable[],
+  tickableIndex: number,
+) {
   const totalDuration = new Fraction(0);
   let currentRest = mergedVoiceTickables[tickableIndex];
   if (!(currentRest instanceof Rest)) {

@@ -1,5 +1,5 @@
-import { Pitch } from './pitch';
-import { Tie } from './tie';
+import { Pitch } from "./pitch";
+import { Tie } from "./tie";
 
 export class Note {
   public leftTie: Tie | null = null;

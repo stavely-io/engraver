@@ -1,5 +1,5 @@
-import { EngraverActionType } from '../../types/actions/engraver-action-type.enum';
-import { EngraverActionExecutor } from '../abstract/engraver-action-executor';
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ApplyTupletExecutor extends EngraverActionExecutor<EngraverActionType.APPLY_TUPLET> {
   public execute(): void {
@@ -7,6 +7,6 @@ export class ApplyTupletExecutor extends EngraverActionExecutor<EngraverActionTy
       return;
     }
 
-    throw new Error('Unimplemented!');
+    throw new Error("Unimplemented!");
   }
 }

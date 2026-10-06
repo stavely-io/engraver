@@ -1,5 +1,5 @@
-import { EngraverActionType } from '../../types/actions/engraver-action-type.enum';
-import { EngraverActionExecutor } from '../abstract/engraver-action-executor';
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ToggleViewModeExecutor extends EngraverActionExecutor<EngraverActionType.TOGGLE_VIEW_MODE> {
   public execute(): void {

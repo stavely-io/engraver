@@ -1,6 +1,6 @@
-import { DIATONIC_PITCH_RANGE, DIATONIC_PITCH_VALUES_MAP } from '../constants/pitch';
-import { Pitch } from '../models/pitch';
-import { BasePitchLabel } from '../types/base-pitch-label.enum';
+import { DIATONIC_PITCH_RANGE, DIATONIC_PITCH_VALUES_MAP } from "../constants/pitch";
+import { Pitch } from "../models/pitch";
+import { BasePitchLabel } from "../types/base-pitch-label.enum";
 
 export class BasePitchIterator implements Iterator<Pitch>, Iterable<Pitch> {
   private currentPitch: Pitch;
@@ -21,7 +21,9 @@ export class BasePitchIterator implements Iterator<Pitch>, Iterable<Pitch> {
 
   private getLowerOverlayPitch(pitch: Pitch): Pitch {
     const currentBaseLabel = pitch.pitchLabel;
-    const nextIndex = (DIATONIC_PITCH_VALUES_MAP[currentBaseLabel] + DIATONIC_PITCH_RANGE - 1) % DIATONIC_PITCH_RANGE;
+    const nextIndex =
+      (DIATONIC_PITCH_VALUES_MAP[currentBaseLabel] + DIATONIC_PITCH_RANGE - 1) %
+      DIATONIC_PITCH_RANGE;
     const nextBaseLabel = Object.values(BasePitchLabel)[nextIndex];
     const nextOctave = currentBaseLabel === BasePitchLabel.C ? pitch.octave - 1 : pitch.octave;
     return new Pitch(nextBaseLabel, nextOctave);
@@ -45,7 +47,9 @@ export class BasePitchIterator implements Iterator<Pitch>, Iterable<Pitch> {
     }
 
     const prevPitch = this.currentPitch;
-    this.currentPitch = this.descending ? this.getLowerOverlayPitch(prevPitch) : this.getHigherOverlayPitch(prevPitch);
+    this.currentPitch = this.descending
+      ? this.getLowerOverlayPitch(prevPitch)
+      : this.getHigherOverlayPitch(prevPitch);
     return { value: prevPitch, done: false };
   }
 

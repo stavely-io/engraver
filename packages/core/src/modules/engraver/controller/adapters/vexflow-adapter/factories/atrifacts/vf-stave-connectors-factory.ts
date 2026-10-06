@@ -1,18 +1,24 @@
-import { Stave, StaveConnector } from '@stavely-io/vexflow';
+import { Stave, StaveConnector } from "@stavely-io/vexflow";
 
 export class VFStaveConnectorFactory {
-  public static create(upperStave: Stave[], lowerStave: Stave[], isLastSystem: boolean): StaveConnector[] {
+  public static create(
+    upperStave: Stave[],
+    lowerStave: Stave[],
+    isLastSystem: boolean,
+  ): StaveConnector[] {
     if (upperStave.length !== lowerStave.length) {
-      throw Error('Connected staves must have the same number of measures!');
+      throw Error("Connected staves must have the same number of measures!");
     }
 
     return upperStave
-      .map((measure, measureIndex) => this.createStaveConnector(measure, lowerStave[measureIndex], 'singleLeft'))
+      .map((measure, measureIndex) =>
+        this.createStaveConnector(measure, lowerStave[measureIndex], "singleLeft"),
+      )
       .concat([
         this.createStaveConnector(
           upperStave[upperStave.length - 1],
           lowerStave[lowerStave.length - 1],
-          isLastSystem ? 'boldDoubleRight' : 'singleRight',
+          isLastSystem ? "boldDoubleRight" : "singleRight",
         ),
       ]);
   }

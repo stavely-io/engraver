@@ -13,4 +13,6 @@ export const capitalize = (text: string): string => {
  * @returns text in camelCase
  */
 export const snakeToCamel = (text: string): string =>
-  text.toLowerCase().replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', ''));
+  text
+    .toLowerCase()
+    .replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace("-", "").replace("_", ""));

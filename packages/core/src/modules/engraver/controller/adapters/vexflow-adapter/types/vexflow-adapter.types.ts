@@ -1,9 +1,9 @@
-import { RenderContext } from '@stavely-io/vexflow';
+import { RenderContext } from "@stavely-io/vexflow";
 
 export enum VFStaveNoteType {
-  NOTE = 'n',
-  REST = 'r',
-  SLASHED = 's',
+  NOTE = "n",
+  REST = "r",
+  SLASHED = "s",
 }
 
 export type VexflowAdapterContext = {

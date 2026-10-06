@@ -1,4 +1,4 @@
-import { KeyboardKey } from '../types/keyboard-keys.enum';
+import { KeyboardKey } from "../types/keyboard-keys.enum";
 
 export class KeyboardClickContextKeyFactory {
   public static create(event: KeyboardEvent) {
