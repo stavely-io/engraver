@@ -37,7 +37,8 @@
   },
   "dependencies": {
     "@stavely-io/vexflow": "catalog:",
-    "smplr": "catalog:"
+    "smplr": "catalog:",
+    "zustand": "catalog:"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

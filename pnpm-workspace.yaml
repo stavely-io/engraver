@@ -8,12 +8,12 @@ catalogMode: prefer
 catalog:
   "@stavely-io/vexflow": ^5.0.2
   "@types/node": ^24
-  lefthook: ^2.1.16
   publint: ^0.3.25
   smplr: ^1.1.0
   typescript: ^7.0.2
   vite: npm:@voidzero-dev/vite-plus-core@1.0.0
   vite-plus: 1.0.0
+  zustand: ^5.0.15
 overrides:
   vite@*: "catalog:"
 peerDependencyRules:
