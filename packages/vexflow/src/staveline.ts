@@ -9,9 +9,9 @@
 // purposes, such as diagrams.
 
 import { Element } from './element';
-import { FontInfo } from './font';
-import { RenderContext } from './rendercontext';
-import { StaveNote } from './stavenote';
+import type { FontInfo } from './font';
+import type { RenderContext } from './rendercontext';
+import type { StaveNote } from './stavenote';
 import { Tables } from './tables';
 import { TextJustification } from './textnote';
 import { Category } from './typeguard';

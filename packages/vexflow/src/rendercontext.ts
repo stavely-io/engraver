@@ -1,7 +1,7 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2021.
 // MIT License
 
-import { FontInfo } from './font';
+import type { FontInfo } from './font';
 import { Category } from './typeguard';
 
 export interface TextMeasure {

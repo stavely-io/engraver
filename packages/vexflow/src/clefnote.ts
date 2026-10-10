@@ -2,7 +2,8 @@
 // Author Taehoon Moon 2014
 // MIT License
 
-import { Clef, ClefAnnotatiomType, ClefType } from './clef';
+import type { ClefAnnotatiomType, ClefType } from './clef';
+import { Clef } from './clef';
 import { Glyph } from './glyph';
 import { Note } from './note';
 import { Category } from './typeguard';

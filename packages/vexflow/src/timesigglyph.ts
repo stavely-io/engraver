@@ -4,8 +4,9 @@
 // Renders time signatures glyphs for staffs
 // This class is used by TimeSignature to render the associated glyphs
 
-import { Glyph, GlyphMetrics } from './glyph';
-import { TimeSignature } from './timesignature';
+import type { GlyphMetrics } from './glyph';
+import { Glyph } from './glyph';
+import type { TimeSignature } from './timesignature';
 import { defined } from './util';
 
 export class TimeSignatureGlyph extends Glyph {

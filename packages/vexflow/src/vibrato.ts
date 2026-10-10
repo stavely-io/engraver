@@ -3,8 +3,8 @@
 
 import { Bend } from './bend';
 import { Modifier } from './modifier';
-import { ModifierContext, ModifierContextState } from './modifiercontext';
-import { RenderContext } from './rendercontext';
+import type { ModifierContext, ModifierContextState } from './modifiercontext';
+import type { RenderContext } from './rendercontext';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 

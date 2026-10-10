@@ -3,11 +3,12 @@
 // Author Larry Kuhns 2013
 // Class to draws string numbers into the notation.
 
-import { Builder } from './easyscore';
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { Builder } from './easyscore';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Modifier, ModifierPosition } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { StemmableNote } from './stemmablenote';
+import type { ModifierContextState } from './modifiercontext';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { TextFormatter } from './textformatter';
 import { Category } from './typeguard';

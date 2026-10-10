@@ -1,10 +1,11 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
-import { ArticulationStruct } from './articulation';
-import { Font } from './font';
+import type { ArticulationStruct } from './articulation';
+import type { Font } from './font';
 import { Fraction } from './fraction';
-import { Glyph, GlyphProps } from './glyph';
-import { KeyProps } from './note';
+import type { GlyphProps } from './glyph';
+import { Glyph } from './glyph';
+import type { KeyProps } from './note';
 import { RuntimeError } from './util';
 
 const RESOLUTION = 16384;

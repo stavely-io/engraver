@@ -6,8 +6,9 @@
 // type in VexFlow. This object would most likely be formatted in a Voice
 // with `TextNotes` - which are used to represent other dynamics markings.
 
-import { Note, NoteStruct } from './note';
-import { RenderContext } from './rendercontext';
+import type { NoteStruct } from './note';
+import { Note } from './note';
+import type { RenderContext } from './rendercontext';
 import { TickContext } from './tickcontext';
 import { Category } from './typeguard';
 import { log } from './util';

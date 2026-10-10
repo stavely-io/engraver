@@ -1,8 +1,9 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
 import { Glyph } from './glyph';
-import { GlyphNote, GlyphNoteOptions } from './glyphnote';
-import { NoteStruct } from './note';
+import type { GlyphNoteOptions } from './glyphnote';
+import { GlyphNote } from './glyphnote';
+import type { NoteStruct } from './note';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 

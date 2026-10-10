@@ -4,13 +4,14 @@
 // This file implements the `StringNumber` class which renders string
 // number annotations beside notes.
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Modifier, ModifierPosition } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Note } from './note';
+import type { ModifierContextState } from './modifiercontext';
+import type { Note } from './note';
 import { Renderer } from './renderer';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { Category, isStaveNote, isStemmableNote } from './typeguard';
 import { RuntimeError } from './util';

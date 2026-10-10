@@ -1,21 +1,22 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Accidental } from './accidental';
+import type { Accidental } from './accidental';
 import { Articulation } from './articulation';
-import { PartialBeamDirection } from './beam';
+import type { PartialBeamDirection } from './beam';
 import { Dot } from './dot';
-import { Factory } from './factory';
+import type { Factory } from './factory';
 import { FretHandFinger } from './frethandfinger';
 import { Music } from './music';
-import { Note } from './note';
-import { Grammar, Match, Parser, Result, Rule, RuleFunction } from './parser';
-import { RenderContext } from './rendercontext';
+import type { Note } from './note';
+import type { Grammar, Match, Result, Rule, RuleFunction } from './parser';
+import { Parser } from './parser';
+import type { RenderContext } from './rendercontext';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
-import { TupletOptions } from './tuplet';
+import type { StemmableNote } from './stemmablenote';
+import type { TupletOptions } from './tuplet';
 import { defined, log, RuntimeError } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 // To enable logging for this class. Set `Vex.Flow.EasyScore.DEBUG` to `true`.
 // eslint-disable-next-line

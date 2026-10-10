@@ -4,7 +4,7 @@
 
 import { Glyph } from './glyph';
 import { Modifier, ModifierPosition } from './modifier';
-import { ModifierContextState } from './modifiercontext';
+import type { ModifierContextState } from './modifiercontext';
 import { Note } from './note';
 import { Tables } from './tables';
 import { Category, isGraceNote } from './typeguard';

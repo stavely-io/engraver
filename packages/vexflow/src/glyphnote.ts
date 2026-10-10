@@ -2,9 +2,10 @@
 //
 // Any glyph that is set to appear on a Stave and take up musical time and graphical space.
 
-import { BoundingBox } from './boundingbox';
-import { Glyph } from './glyph';
-import { Note, NoteStruct } from './note';
+import type { BoundingBox } from './boundingbox';
+import type { Glyph } from './glyph';
+import type { NoteStruct } from './note';
+import { Note } from './note';
 import { Category } from './typeguard';
 
 export interface GlyphNoteOptions {

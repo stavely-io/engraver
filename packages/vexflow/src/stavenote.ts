@@ -8,15 +8,16 @@
 //
 // See `tests/stavenote_tests.ts` for usage examples.
 
-import { Beam } from './beam';
+import type { Beam } from './beam';
 import { BoundingBox } from './boundingbox';
-import { ElementStyle } from './element';
+import type { ElementStyle } from './element';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { KeyProps, Note, NoteStruct } from './note';
+import type { ModifierContextState } from './modifiercontext';
+import type { KeyProps, Note, NoteStruct } from './note';
 import { NoteHead } from './notehead';
-import { Stave } from './stave';
-import { Stem, StemOptions } from './stem';
+import type { Stave } from './stave';
+import type { StemOptions } from './stem';
+import { Stem } from './stem';
 import { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { Category } from './typeguard';

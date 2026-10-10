@@ -6,9 +6,10 @@
 // using this class.
 
 import { Element } from './element';
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
-import { Note } from './note';
-import { RenderContext } from './rendercontext';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
+import type { Note } from './note';
+import type { RenderContext } from './rendercontext';
 import { Renderer } from './renderer';
 import { Tables } from './tables';
 import { Category } from './typeguard';

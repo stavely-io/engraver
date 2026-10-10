@@ -8,10 +8,11 @@
 // See `tests/tabnote_tests.ts` for usage examples.
 
 import { Font } from './font';
-import { Glyph, GlyphProps } from './glyph';
+import type { GlyphProps } from './glyph';
+import { Glyph } from './glyph';
 import { Modifier } from './modifier';
-import { Stave } from './stave';
-import { StaveNoteStruct } from './stavenote';
+import type { Stave } from './stave';
+import type { StaveNoteStruct } from './stavenote';
 import { Stem } from './stem';
 import { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';

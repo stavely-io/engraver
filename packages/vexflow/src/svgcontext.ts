@@ -2,8 +2,10 @@
 // MIT License
 // @author Gregory Ristow (2015)
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
-import { GroupAttributes, RenderContext, TextMeasure } from './rendercontext';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
+import type { GroupAttributes, TextMeasure } from './rendercontext';
+import { RenderContext } from './rendercontext';
 import { Tables } from './tables';
 import { normalizeAngle, prefix, RuntimeError } from './util';
 

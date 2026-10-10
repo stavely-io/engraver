@@ -47,9 +47,9 @@
 import { Element } from './element';
 import { Formatter } from './formatter';
 import { Glyph } from './glyph';
-import { Note } from './note';
+import type { Note } from './note';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 import { defined, RuntimeError } from './util';

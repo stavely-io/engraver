@@ -1,8 +1,10 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Font, FontInfo } from './font';
-import { GroupAttributes, RenderContext, TextMeasure } from './rendercontext';
+import type { FontInfo } from './font';
+import { Font } from './font';
+import type { GroupAttributes, TextMeasure } from './rendercontext';
+import { RenderContext } from './rendercontext';
 import { globalObject, warn } from './util';
 import { isHTMLCanvas } from './web';
 

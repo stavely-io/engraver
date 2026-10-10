@@ -4,9 +4,9 @@
 
 import { Glyph } from './glyph';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
+import type { ModifierContextState } from './modifiercontext';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { Category, isTabNote } from './typeguard';
 import { defined, log, RuntimeError } from './util';

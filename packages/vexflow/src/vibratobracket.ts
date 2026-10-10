@@ -3,7 +3,7 @@
 // MIT License
 
 import { Element } from './element';
-import { Note } from './note';
+import type { Note } from './note';
 import { Category } from './typeguard';
 import { log } from './util';
 import { Vibrato } from './vibrato';

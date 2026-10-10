@@ -15,19 +15,7 @@ export class RuntimeError extends Error {
 /** VexFlow can be used outside of the browser (e.g., Node) where `window` may not be defined. */
 // eslint-disable-next-line
 export function globalObject(): typeof globalThis & any {
-  if (typeof globalThis !== 'undefined') {
-    return globalThis;
-  }
-  if (typeof self !== 'undefined') {
-    return self;
-  }
-  if (typeof window !== 'undefined') {
-    return window;
-  }
-  if (typeof global !== 'undefined') {
-    return global;
-  }
-  return Function('return this')();
+  return globalThis;
 }
 
 /**

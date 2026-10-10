@@ -1,7 +1,7 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { ModifierContext } from './modifiercontext';
+import type { ModifierContext } from './modifiercontext';
 import { Note } from './note';
 import { Barline, BarlineType } from './stavebarline';
 import { Category } from './typeguard';

@@ -4,8 +4,8 @@
 // This class implements dot modifiers for notes.
 
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Note } from './note';
+import type { ModifierContextState } from './modifiercontext';
+import type { Note } from './note';
 import { Category, isGraceNote, isStaveNote, isTabNote } from './typeguard';
 import { RuntimeError } from './util';
 

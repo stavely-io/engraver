@@ -1,16 +1,21 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { BoundingBox, Bounds } from './boundingbox';
+import type { Bounds } from './boundingbox';
+import { BoundingBox } from './boundingbox';
 import { Clef } from './clef';
-import { Element, ElementStyle } from './element';
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { ElementStyle } from './element';
+import { Element } from './element';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { KeySignature } from './keysignature';
 import { Barline, BarlineType } from './stavebarline';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
+import type { StaveModifier} from './stavemodifier';
+import { StaveModifierPosition } from './stavemodifier';
 import { Repetition } from './staverepetition';
 import { StaveSection } from './stavesection';
-import { StaveTempo, StaveTempoOptions } from './stavetempo';
+import type { StaveTempoOptions } from './stavetempo';
+import { StaveTempo } from './stavetempo';
 import { StaveText } from './stavetext';
 import { Volta } from './stavevolta';
 import { Tables } from './tables';

@@ -2,8 +2,8 @@
 // MIT License
 
 import { Element } from './element';
-import { ModifierContext } from './modifiercontext';
-import { Note } from './note';
+import type { ModifierContext } from './modifiercontext';
+import type { Note } from './note';
 import { Category } from './typeguard';
 import { defined, RuntimeError } from './util';
 

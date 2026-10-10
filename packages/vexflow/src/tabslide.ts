@@ -4,9 +4,10 @@
 // This class implements varies types of ties between contiguous notes. The
 // ties include: regular ties, hammer ons, pull offs, and slides.
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
-import { TieNotes } from './stavetie';
-import { TabNote } from './tabnote';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
+import type { TieNotes } from './stavetie';
+import type { TabNote } from './tabnote';
 import { TabTie } from './tabtie';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';

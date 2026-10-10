@@ -1,6 +1,7 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
-import { Stave, StaveOptions } from './stave';
+import type { StaveOptions } from './stave';
+import { Stave } from './stave';
 import { Category } from './typeguard';
 
 export class TabStave extends Stave {

@@ -6,14 +6,14 @@
 import { Fraction } from './fraction';
 import { Glyph } from './glyph';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
+import type { ModifierContextState } from './modifiercontext';
 import { Music } from './music';
-import { Note } from './note';
+import type { Note } from './note';
 import { Tables } from './tables';
-import { Tickable } from './tickable';
+import type { Tickable } from './tickable';
 import { Category, isAccidental, isGraceNote, isGraceNoteGroup, isStaveNote } from './typeguard';
 import { defined, log } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 type StaveLineAccidentalLayoutMetrics = {
   column: number;

@@ -1,13 +1,13 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { BoundingBox } from './boundingbox';
+import type { BoundingBox } from './boundingbox';
 import { Element } from './element';
 import { Fraction } from './fraction';
-import { RenderContext } from './rendercontext';
-import { Stave } from './stave';
+import type { RenderContext } from './rendercontext';
+import type { Stave } from './stave';
 import { Tables } from './tables';
-import { Tickable } from './tickable';
+import type { Tickable } from './tickable';
 import { Category } from './typeguard';
 import { defined, RuntimeError, sumArray } from './util';
 

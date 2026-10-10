@@ -3,15 +3,15 @@
 
 import { Element } from './element';
 import { Fraction } from './fraction';
-import { Modifier } from './modifier';
-import { ModifierContext } from './modifiercontext';
-import { Stave } from './stave';
+import type { Modifier } from './modifier';
+import type { ModifierContext } from './modifiercontext';
+import type { Stave } from './stave';
 import { Tables } from './tables';
-import { TickContext } from './tickcontext';
-import { Tuplet } from './tuplet';
+import type { TickContext } from './tickcontext';
+import type { Tuplet } from './tuplet';
 import { Category } from './typeguard';
 import { defined, RuntimeError } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 /** Formatter metrics interface */
 export interface FormatterMetrics {

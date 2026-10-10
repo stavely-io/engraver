@@ -4,8 +4,8 @@
 // A base class for stave modifiers (e.g. clefs, key signatures)
 
 import { Element } from './element';
-import { Glyph } from './glyph';
-import { Stave } from './stave';
+import type { Glyph } from './glyph';
+import type { Stave } from './stave';
 import { Category } from './typeguard';
 import { defined } from './util';
 

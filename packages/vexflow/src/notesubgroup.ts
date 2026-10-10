@@ -9,9 +9,9 @@
 
 import { Formatter } from './formatter';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Note } from './note';
-import { RenderContext } from './rendercontext';
+import type { ModifierContextState } from './modifiercontext';
+import type { Note } from './note';
+import type { RenderContext } from './rendercontext';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 import { Voice } from './voice';

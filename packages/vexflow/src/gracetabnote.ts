@@ -9,7 +9,8 @@
 // See `tests/gracetabnote_tests.ts` for usage examples.
 
 import { Font } from './font';
-import { TabNote, TabNoteStruct } from './tabnote';
+import type { TabNoteStruct } from './tabnote';
+import { TabNote } from './tabnote';
 import { Category } from './typeguard';
 
 export class GraceTabNote extends TabNote {

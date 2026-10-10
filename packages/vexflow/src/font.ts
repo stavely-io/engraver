@@ -1,9 +1,9 @@
-import { ChordSymbolMetrics } from './chordsymbol';
-import { ClefMetrics } from './clef';
-import { NoteHeadMetrics } from './notehead';
-import { OrnamentMetrics } from './ornament';
-import { StringNumberMetrics } from './stringnumber';
-import { TupletMetrics } from './tuplet';
+import type { ChordSymbolMetrics } from './chordsymbol';
+import type { ClefMetrics } from './clef';
+import type { NoteHeadMetrics } from './notehead';
+import type { OrnamentMetrics } from './ornament';
+import type { StringNumberMetrics } from './stringnumber';
+import type { TupletMetrics } from './tuplet';
 import { defined } from './util';
 
 export interface FontInfo {

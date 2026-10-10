@@ -2,10 +2,11 @@
 // MIT License
 
 import { Element } from './element';
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Glyph } from './glyph';
-import { RenderContext } from './rendercontext';
-import { StaveNote } from './stavenote';
+import type { RenderContext } from './rendercontext';
+import type { StaveNote } from './stavenote';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 import { log, RuntimeError } from './util';

@@ -1,20 +1,21 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Beam } from './beam';
+import type { Beam } from './beam';
 import { Font } from './font';
-import { Fraction } from './fraction';
-import { GlyphProps } from './glyph';
-import { Modifier } from './modifier';
-import { drawDot, RenderContext } from './rendercontext';
-import { Stave } from './stave';
-import { Stroke } from './strokes';
+import type { Fraction } from './fraction';
+import type { GlyphProps } from './glyph';
+import type { Modifier } from './modifier';
+import type { RenderContext } from './rendercontext';
+import { drawDot } from './rendercontext';
+import type { Stave } from './stave';
+import type { Stroke } from './strokes';
 import { Tables } from './tables';
 import { Tickable } from './tickable';
-import { TickContext } from './tickcontext';
+import type { TickContext } from './tickcontext';
 import { Category } from './typeguard';
 import { defined, RuntimeError } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 export interface KeyProps {
   stem_down_x_offset?: number;

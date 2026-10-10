@@ -4,7 +4,7 @@
 // This file implements the `Stem` object. Generally this object is handled
 // by its parent `StemmableNote`.
 
-import { BoundingBox } from './boundingbox';
+import type { BoundingBox } from './boundingbox';
 import { Element } from './element';
 import { Tables } from './tables';
 import { Category } from './typeguard';

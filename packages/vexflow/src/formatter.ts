@@ -2,18 +2,18 @@
 // MIT License
 
 import { Beam } from './beam';
-import { BoundingBox } from './boundingbox';
+import type { BoundingBox } from './boundingbox';
 import { Font } from './font';
 import { Fraction } from './fraction';
 import { ModifierContext } from './modifiercontext';
-import { RenderContext } from './rendercontext';
+import type { RenderContext } from './rendercontext';
 import { Stave } from './stave';
 import { StaveConnector } from './staveconnector';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
-import { TabNote } from './tabnote';
-import { TabStave } from './tabstave';
-import { Tickable } from './tickable';
+import type { TabNote } from './tabnote';
+import type { TabStave } from './tabstave';
+import type { Tickable } from './tickable';
 import { TickContext } from './tickcontext';
 import { isNote, isStaveNote } from './typeguard';
 import { defined, log, midLine, RuntimeError, sumArray } from './util';

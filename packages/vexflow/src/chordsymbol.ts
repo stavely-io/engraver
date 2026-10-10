@@ -9,12 +9,13 @@
 //
 // See `tests/chordsymbol_tests.ts` for usage examples.
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Glyph } from './glyph';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Note } from './note';
-import { StemmableNote } from './stemmablenote';
+import type { ModifierContextState } from './modifiercontext';
+import type { Note } from './note';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { TextFormatter } from './textformatter';
 import { Category, isStemmableNote } from './typeguard';

@@ -4,7 +4,7 @@
 import { Glyph } from './glyph';
 import { Note } from './note';
 import { Tables } from './tables';
-import { TextNoteStruct } from './textnote';
+import type { TextNoteStruct } from './textnote';
 import { Category } from './typeguard';
 import { defined, log, RuntimeError } from './util';
 

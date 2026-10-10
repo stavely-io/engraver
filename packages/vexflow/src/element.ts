@@ -2,10 +2,11 @@
 // @author Mohit Cheppudira
 // MIT License
 
-import { BoundingBox } from './boundingbox';
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { BoundingBox } from './boundingbox';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Registry } from './registry';
-import { RenderContext } from './rendercontext';
+import type { RenderContext } from './rendercontext';
 import { Category } from './typeguard';
 import { defined, prefix } from './util';
 

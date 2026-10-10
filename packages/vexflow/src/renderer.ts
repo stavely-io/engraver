@@ -2,7 +2,7 @@
 // MIT License
 
 import { CanvasContext } from './canvascontext';
-import { RenderContext } from './rendercontext';
+import type { RenderContext } from './rendercontext';
 import { SVGContext } from './svgcontext';
 import { isRenderContext } from './typeguard';
 import { RuntimeError } from './util';

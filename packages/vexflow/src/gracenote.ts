@@ -1,6 +1,7 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
-import { StaveNote, StaveNoteStruct } from './stavenote';
+import type { StaveNoteStruct } from './stavenote';
+import { StaveNote } from './stavenote';
 import { Stem } from './stem';
 import { Tables } from './tables';
 import { Category } from './typeguard';

@@ -1,12 +1,12 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 import { Element } from './element';
-import { FontInfo } from './font';
+import type { FontInfo } from './font';
 import { Modifier, ModifierPosition } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Stave } from './stave';
+import type { ModifierContextState } from './modifiercontext';
+import type { Stave } from './stave';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { TextFormatter } from './textformatter';
 import { Category, isStemmableNote, isTabNote } from './typeguard';

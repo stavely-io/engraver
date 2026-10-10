@@ -4,7 +4,8 @@
 //
 // This class implements diatonic key management.
 
-import { KeyParts, Music } from './music';
+import type { KeyParts} from './music';
+import { Music } from './music';
 import { RuntimeError } from './util';
 
 export class KeyManager {

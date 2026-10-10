@@ -2,14 +2,14 @@
 // Author: Larry Kuhns.
 // MIT License
 
-import { Builder } from './easyscore';
+import type { Builder } from './easyscore';
 import { Glyph } from './glyph';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
-import { Note } from './note';
-import { Stave } from './stave';
+import type { ModifierContextState } from './modifiercontext';
+import type { Note } from './note';
+import type { Stave } from './stave';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
 import { Category, isGraceNote, isStaveNote, isStemmableNote, isTabNote } from './typeguard';
 import { defined, log, RuntimeError } from './util';

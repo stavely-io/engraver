@@ -1,9 +1,11 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Glyph } from './glyph';
-import { Note, NoteStruct } from './note';
+import type { NoteStruct } from './note';
+import { Note } from './note';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';

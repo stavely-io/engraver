@@ -6,8 +6,8 @@
 import { Element } from './element';
 import { Glyph } from './glyph';
 import { NoteHead } from './notehead';
-import { RenderContext } from './rendercontext';
-import { Stave } from './stave';
+import type { RenderContext } from './rendercontext';
+import type { Stave } from './stave';
 import { StaveModifierPosition } from './stavemodifier';
 import { Tables } from './tables';
 import { TimeSignature } from './timesignature';

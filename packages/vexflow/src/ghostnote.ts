@@ -2,9 +2,9 @@
 //
 // ## Description
 
-import { ModifierContext } from './modifiercontext';
-import { NoteStruct } from './note';
-import { Stave } from './stave';
+import type { ModifierContext } from './modifiercontext';
+import type { NoteStruct } from './note';
+import type { Stave } from './stave';
 import { StemmableNote } from './stemmablenote';
 import { Category, isAnnotation } from './typeguard';
 import { RuntimeError } from './util';

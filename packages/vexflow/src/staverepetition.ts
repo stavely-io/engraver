@@ -1,9 +1,10 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Larry Kuhns 2011
 
-import { Font, FontInfo, FontStyle, FontWeight } from './font';
+import type { FontInfo} from './font';
+import { Font, FontStyle, FontWeight } from './font';
 import { Glyph } from './glyph';
-import { Stave } from './stave';
+import type { Stave } from './stave';
 import { StaveModifier } from './stavemodifier';
 import { Tables } from './tables';
 import { Category } from './typeguard';

@@ -8,8 +8,8 @@
 
 import { Element } from './element';
 import { Modifier } from './modifier';
-import { Note } from './note';
-import { RenderContext } from './rendercontext';
+import type { Note } from './note';
+import type { RenderContext } from './rendercontext';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';
 

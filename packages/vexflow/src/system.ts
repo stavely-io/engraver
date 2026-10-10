@@ -3,15 +3,17 @@
 
 import { BoundingBox } from './boundingbox';
 import { Element } from './element';
-import { Factory } from './factory';
-import { FormatParams, Formatter, FormatterOptions } from './formatter';
+import type { Factory } from './factory';
+import type { FormatParams, FormatterOptions } from './formatter';
+import { Formatter } from './formatter';
 import { Note } from './note';
-import { RenderContext } from './rendercontext';
-import { Stave, StaveOptions } from './stave';
-import { StaveConnector, StaveConnectorType } from './staveconnector';
+import type { RenderContext } from './rendercontext';
+import type { StaveOptions } from './stave';
+import { Stave } from './stave';
+import type { StaveConnector, StaveConnectorType } from './staveconnector';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 export interface SystemFormatterOptions extends FormatterOptions {
   alpha?: number;

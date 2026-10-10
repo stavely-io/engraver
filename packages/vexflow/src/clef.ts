@@ -3,7 +3,7 @@
 // MIT License
 
 import { Glyph } from './glyph';
-import { Stave } from './stave';
+import type { Stave } from './stave';
 import { StaveModifier, StaveModifierPosition } from './stavemodifier';
 import { Tables } from './tables';
 import { Category } from './typeguard';

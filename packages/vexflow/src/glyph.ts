@@ -4,9 +4,9 @@
 import { BoundingBox } from './boundingbox';
 import { BoundingBoxComputation } from './boundingboxcomputation';
 import { Element } from './element';
-import { Font, FontGlyph } from './font';
-import { RenderContext } from './rendercontext';
-import { Stave } from './stave';
+import type { Font, FontGlyph } from './font';
+import type { RenderContext } from './rendercontext';
+import type { Stave } from './stave';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 import { defined, RuntimeError } from './util';

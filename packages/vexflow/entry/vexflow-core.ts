@@ -10,7 +10,8 @@
 // Remember to call `Flow.setMusicFont(fontName)` after fetching the font module.
 
 import { Flow } from '../src/flow';
-import { Font, FontModule } from '../src/font';
+import type { FontModule } from '../src/font';
+import { Font } from '../src/font';
 import { loadTextFonts } from '../src/fonts/textfonts';
 import { globalObject, RuntimeError } from '../src/util';
 

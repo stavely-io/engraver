@@ -2,11 +2,12 @@
 // MIT License
 
 import { BoundingBox } from './boundingbox';
-import { ElementStyle } from './element';
+import type { ElementStyle } from './element';
 import { Glyph } from './glyph';
-import { Note, NoteStruct } from './note';
-import { RenderContext } from './rendercontext';
-import { Stave } from './stave';
+import type { NoteStruct } from './note';
+import { Note } from './note';
+import type { RenderContext } from './rendercontext';
+import type { Stave } from './stave';
 import { Stem } from './stem';
 import { Tables } from './tables';
 import { Category } from './typeguard';

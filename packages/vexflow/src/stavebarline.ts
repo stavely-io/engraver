@@ -2,8 +2,9 @@
 //
 // Author Larry Kuhns 2011
 
-import { Stave } from './stave';
-import { LayoutMetrics, StaveModifier, StaveModifierPosition } from './stavemodifier';
+import type { Stave } from './stave';
+import type { LayoutMetrics} from './stavemodifier';
+import { StaveModifier, StaveModifierPosition } from './stavemodifier';
 import { Tables } from './tables';
 import { Category } from './typeguard';
 

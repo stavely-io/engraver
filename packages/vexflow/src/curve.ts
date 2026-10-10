@@ -4,7 +4,7 @@
 // This class implements curves (for slurs)
 
 import { Element } from './element';
-import { Note } from './note';
+import type { Note } from './note';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';
 

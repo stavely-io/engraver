@@ -2,17 +2,17 @@
 // Author: Ron B. Yeh
 // MIT License
 
-import { Accidental } from './accidental';
-import { Annotation } from './annotation';
-import { Dot } from './dot';
-import { GraceNote } from './gracenote';
-import { GraceNoteGroup } from './gracenotegroup';
-import { Note } from './note';
-import { RenderContext } from './rendercontext.js';
-import { Barline } from './stavebarline';
-import { StaveNote } from './stavenote';
-import { StemmableNote } from './stemmablenote';
-import { TabNote } from './tabnote';
+import type { Accidental } from './accidental';
+import type { Annotation } from './annotation';
+import type { Dot } from './dot';
+import type { GraceNote } from './gracenote';
+import type { GraceNoteGroup } from './gracenotegroup';
+import type { Note } from './note';
+import type { RenderContext } from './rendercontext.js';
+import type { Barline } from './stavebarline';
+import type { StaveNote } from './stavenote';
+import type { StemmableNote } from './stemmablenote';
+import type { TabNote } from './tabnote';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 

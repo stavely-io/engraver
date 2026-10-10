@@ -2,7 +2,7 @@
 // Author Mark Meeus 2019
 
 import { KeySignature } from './keysignature';
-import { ModifierContext } from './modifiercontext';
+import type { ModifierContext } from './modifiercontext';
 import { Note } from './note';
 import { Category } from './typeguard';
 

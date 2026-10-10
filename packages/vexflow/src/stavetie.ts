@@ -4,8 +4,8 @@
 // ties include: regular ties, hammer ons, pull offs, and slides.
 
 import { Element } from './element';
-import { FontInfo } from './font';
-import { Note } from './note';
+import type { FontInfo } from './font';
+import type { Note } from './note';
 import { Category } from './typeguard';
 import { RuntimeError } from './util';
 

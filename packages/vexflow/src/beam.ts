@@ -3,15 +3,16 @@
 
 import { Element } from './element';
 import { Fraction } from './fraction';
-import { Note } from './note';
-import { RenderContext } from './rendercontext';
+import type { Note } from './note';
+import type { RenderContext } from './rendercontext';
 import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
+import type { StemmableNote } from './stemmablenote';
 import { Tables } from './tables';
-import { Tuplet, TupletLocation } from './tuplet';
+import type { Tuplet} from './tuplet';
+import { TupletLocation } from './tuplet';
 import { Category, isStaveNote, isTabNote } from './typeguard';
 import { RuntimeError } from './util';
-import { Voice } from './voice';
+import type { Voice } from './voice';
 
 function calculateStemDirection(notes: StemmableNote[]) {
   let lineSum = 0;

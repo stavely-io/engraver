@@ -2,9 +2,9 @@
 // MIT License
 
 import { Element } from './element';
-import { FontInfo } from './font';
+import type { FontInfo } from './font';
 import { Modifier } from './modifier';
-import { ModifierContextState } from './modifiercontext';
+import type { ModifierContextState } from './modifiercontext';
 import { TextFormatter } from './textformatter';
 import { Category, isTabNote } from './typeguard';
 import { RuntimeError } from './util';

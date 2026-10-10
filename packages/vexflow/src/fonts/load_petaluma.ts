@@ -1,8 +1,9 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { ChordSymbolGlyphMetrics } from '../chordsymbol';
-import { Font, FontMetrics } from '../font';
+import type { ChordSymbolGlyphMetrics } from '../chordsymbol';
+import type { FontMetrics } from '../font';
+import { Font } from '../font';
 import { CommonMetrics } from './common_metrics';
 import { PetalumaFont } from './petaluma_glyphs';
 

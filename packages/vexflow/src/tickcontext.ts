@@ -5,8 +5,8 @@
 // tabs, etc.
 
 import { Fraction } from './fraction';
-import { NoteMetrics } from './note';
-import { Tickable } from './tickable';
+import type { NoteMetrics } from './note';
+import type { Tickable } from './tickable';
 import { RuntimeError } from './util';
 
 export interface TickContextMetrics extends NoteMetrics {
