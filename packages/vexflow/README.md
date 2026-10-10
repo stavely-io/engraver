@@ -32,4 +32,4 @@ vp check
 
 ## Fonts
 
-`tools/fonts/` contains the scripts that generate `src/fonts/*.ts` from the font files. See `tools/fonts/README.md`.
+`tools/fonts/` contains the scripts that generate `src/fonts/*.ts` from the font files (ES modules, run with `node` from that directory). See `tools/fonts/README.md`. The scripts write plain JSON, so run `vp fmt src/fonts` afterwards.

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   glyphs: {
     v39: {
       x_min: -171.5,

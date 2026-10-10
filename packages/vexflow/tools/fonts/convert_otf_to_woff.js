@@ -9,9 +9,9 @@
 // Or perhaps we need a different npm package for converting directly from OTF to WOFF/WOFF2.
 // Currently, we rely on external services like: https://www.fontsquirrel.com/tools/webfont-generator
 
-const fs = require('fs');
-const process = require('process');
-const opentype = require('opentype.js');
+import fs from 'node:fs';
+import process from 'node:process';
+import opentype from 'opentype.js';
 
 const args = process.argv.slice(2);
 if (args.length < 2) {

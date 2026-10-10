@@ -6,7 +6,7 @@
 //          The value is `null` if the glyph doesn't exist in gonville.js or custom.js.
 //
 // Add SMuFL codes here and regenerate the src/fonts/xxxxx_glyphs.ts files when needed.
-module.exports = {
+export default {
   // staff brackets and dividers (e000-e00f)
   bracketTop: 'v1b',
   bracketBottom: 'v10',

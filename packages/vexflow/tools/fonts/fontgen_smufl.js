@@ -3,12 +3,10 @@
 // Convert SMuFL OTF font to Vexflow glyph file.
 // Usage: node fontgen_smufl.js Bravura_1.392.otf ../../src/fonts/bravura_glyphs.ts
 
-const fs = require('fs');
-const process = require('process');
-// eslint-disable-next-line
-const opentype = require('opentype.js');
-const prettier = require('prettier');
-const prettierConfig = require('../../.prettierrc.js');
+import fs from 'node:fs';
+import process from 'node:process';
+import opentype from 'opentype.js';
+import VALID_CODES from './config/valid_codes.js';
 
 function LogError(...args) {
   // eslint-disable-next-line
@@ -67,7 +65,6 @@ const outFile = args[1];
 const font = opentype.loadSync(fontFile);
 const glyphNamesData = fs.readFileSync('./config/glyphnames.json');
 const glyphNames = JSON.parse(glyphNamesData);
-const VALID_CODES = require('./config/valid_codes');
 
 const fontData = {};
 
@@ -101,11 +98,8 @@ const fileData = {
 // Set the variable name to the font family name
 const fontName = fileData.fontFamily.replace(/\s+/g, '') + 'Font';
 
-// Use our prettier rules to format the output JSON file. See: .prettierrc.js
-// That way, if we ever edit & save the file, the diff will be minimal.
-// We use String.slice(0, -1) to remove the final newline character.
-prettierConfig.parser = 'json5'; // Tell prettier we are parsing JSON.
-const body = prettier.format(JSON.stringify(fileData, null, 2), prettierConfig).slice(0, -1);
+// Output is plain JSON. Run `vp fmt` on the generated file afterwards.
+const body = JSON.stringify(fileData, null, 2);
 
 LogError('Writing to file:', outFile);
 fs.writeFileSync(outFile, `export const ${fontName} = ${body};\n`);

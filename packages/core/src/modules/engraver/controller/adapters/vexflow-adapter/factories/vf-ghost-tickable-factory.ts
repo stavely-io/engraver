@@ -13,15 +13,7 @@ import type { EngraverGhostOverlayTheme } from "@/modules/engraver/view/types/co
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Pitch } from "@/modules/musical-core/models/pitch";
-import {
-  Accidental,
-  Dot,
-  Formatter,
-  Stave,
-  StaveNote,
-  Voice,
-  VoiceMode,
-} from "@engraver/vexflow";
+import { Accidental, Dot, Formatter, Stave, StaveNote, Voice, VoiceMode } from "@engraver/vexflow";
 
 export class VFGhostTickableFactory {
   private static readonly VF_DEFAULT_LINE_COUNT = 5;

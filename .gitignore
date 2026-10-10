@@ -29,6 +29,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.project
+.settings/
+
+# Python (vexflow font tools)
+__pycache__/
+*.pyc
 
 # AI agent worktrees
 .claude/worktrees/

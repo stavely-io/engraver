@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   glyphs: {
     v0: {
       x_min: 0,
