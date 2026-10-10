@@ -1,3 +1,4 @@
+import { version } from '../package.json';
 import { Accidental } from './accidental';
 import { Annotation, AnnotationHorizontalJustify, AnnotationVerticalJustify } from './annotation';
 import { Articulation } from './articulation';
@@ -83,7 +84,6 @@ import { TimeSigNote } from './timesignote';
 import { Tremolo } from './tremolo';
 import { Tuning } from './tuning';
 import { Tuplet } from './tuplet';
-import { DATE, ID, VERSION } from './version';
 import { Vibrato } from './vibrato';
 import { VibratoBracket } from './vibratobracket';
 import { Voice, VoiceMode } from './voice';
@@ -92,11 +92,7 @@ export class Flow {
   static get BUILD() {
     return {
       /** version number. */
-      VERSION: VERSION,
-      /** git commit ID that this library was built from. */
-      ID: ID,
-      /** The date when this library was compiled. */
-      DATE: DATE,
+      VERSION: version,
     };
   }
 

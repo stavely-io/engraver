@@ -87,7 +87,6 @@ export * from './tuning';
 export * from './tuplet';
 export * from './typeguard';
 export * from './util';
-// Do not export './version'. It is accessible via Vex.Flow.BUILD.
 export * from './vex';
 export * from './vibrato';
 export * from './vibratobracket';
