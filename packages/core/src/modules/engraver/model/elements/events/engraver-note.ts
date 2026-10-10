@@ -1,3 +1,5 @@
+import { Note } from "@/modules/musical-core/models/note";
+
 import { Duration } from "../../../../musical-core/models/duration";
 import { Pitch } from "../../../../musical-core/models/pitch";
 import { Accidental } from "../../../../musical-core/types/accidental.enum";
@@ -11,7 +13,6 @@ import {
 import { AccidentalScope } from "../../helpers/accidental-scope";
 import { EngraverTie } from "../notation/engraver-tie";
 import { EngraverChord } from "./engraver-chord";
-import { Note } from "@/modules/musical-core/models/note";
 
 export class EngraverNote
   extends EngraverSelectableMixin(Object)

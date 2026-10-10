@@ -3,11 +3,12 @@
 //
 // BoundingBoxComputation Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import type { RenderContext } from "../src/index";
 import { BoundingBoxComputation, Glyph, OutlineCode } from "../src/index";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("BoundingBoxComputation", () => {
   test("Point Test", point);

@@ -1,8 +1,9 @@
+import { MAX_DOT_MODIFIERS } from "@/modules/engraver/model/constants/limitations";
+import { InvalidDotModifierError } from "@/modules/engraver/model/errors/time-errors";
+
 import { Duration } from "../models/duration";
 import { BaseDuration } from "../types/base-duration.enum";
 import { DotCount } from "../types/dot-count.enum";
-import { MAX_DOT_MODIFIERS } from "@/modules/engraver/model/constants/limitations";
-import { InvalidDotModifierError } from "@/modules/engraver/model/errors/time-errors";
 
 export class DurationIterator implements Iterator<Duration>, Iterable<Duration> {
   private currentDuration: Duration;

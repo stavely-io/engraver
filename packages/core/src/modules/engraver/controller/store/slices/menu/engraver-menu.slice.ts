@@ -1,3 +1,7 @@
+import type { EngraverMenuConfig } from "@/modules/engraver/view/types/config/engraver-menu-config";
+
+import type { StateCreator } from "zustand";
+
 import {
   createEngraverMenuActionsSlice,
   type EngraverMenuSliceActions,
@@ -6,8 +10,6 @@ import {
   createEngraverMenuValuesSlice,
   type EngraverMenuSliceValues,
 } from "./engraver-menu-values.slice";
-import type { EngraverMenuConfig } from "@/modules/engraver/view/types/config/engraver-menu-config";
-import type { StateCreator } from "zustand";
 
 export type EngraverMenuSlice = EngraverMenuSliceValues & EngraverMenuSliceActions;
 

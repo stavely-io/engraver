@@ -3,9 +3,10 @@
 //
 // VexFlow Test Support Library
 
+import { test } from "vite-plus/test";
+
 import type { ContextBuilder, RenderContext } from "../src/index";
 import { Factory, Flow, Font, Renderer } from "../src/index";
-import { test } from "vite-plus/test";
 
 export interface TestOptions {
   elementId: string;

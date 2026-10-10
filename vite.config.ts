@@ -6,20 +6,25 @@ export default defineConfig({
     ignorePatterns: ["packages/vexflow/tools/**"],
     sortImports: {
       customGroups: [
-        // Node.js builtins
-        { groupName: "node", elementNamePattern: ["^node:"] },
-        // Workspace packages (@engraver/*)
-        { groupName: "engraver", elementNamePattern: ["^@engraver/"] },
-        // Other external packages
-        { groupName: "other-external", elementNamePattern: ["^\\w"] },
-        // Internal aliases (like "@/...")
-        { groupName: "internal-alias", elementNamePattern: ["^@/"] },
-        // Side effect imports
-        { groupName: "side-effect", elementNamePattern: ["^\\u0000"] },
-        // Relative imports
-        { groupName: "relative", elementNamePattern: ["^\\."] },
+        { groupName: "node", elementNamePattern: ["node:*"] },
+        { groupName: "engraver", elementNamePattern: ["@engraver/**"] },
+        { groupName: "internal-alias", elementNamePattern: ["@/**"] },
       ],
-      groups: ["node", "engraver", "other-external", "internal-alias", "side-effect", "relative"],
+      groups: [
+        "node",
+        "engraver",
+        "internal-alias",
+        ["type-external", "value-external"],
+        [
+          "type-parent",
+          "type-sibling",
+          "type-index",
+          "value-parent",
+          "value-sibling",
+          "value-index",
+        ],
+        "unknown",
+      ],
     },
   },
   staged: {

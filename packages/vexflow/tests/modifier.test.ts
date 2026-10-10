@@ -3,8 +3,9 @@
 //
 // ModifierContext Tests
 
-import { Modifier, ModifierContext } from "../src/index";
 import { describe, expect, test } from "vite-plus/test";
+
+import { Modifier, ModifierContext } from "../src/index";
 
 describe("ModifierContext", () => {
   test("Modifier Width Test", width);

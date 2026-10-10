@@ -1,10 +1,12 @@
-import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
+import { Fraction } from "@engraver/vexflow";
+
 import type { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { Fraction } from "@engraver/vexflow";
+
+import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
 
 export class BlockedManager {
   constructor(private readonly context: EngraverActionExecutorContext) {}

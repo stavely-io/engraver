@@ -1,4 +1,3 @@
-import type { EngraverMenuSliceValues } from "./engraver-menu-values.slice";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import {
   EngraverInputMode,
@@ -7,7 +6,10 @@ import {
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+
 import type { StateCreator } from "zustand";
+
+import type { EngraverMenuSliceValues } from "./engraver-menu-values.slice";
 
 export interface EngraverMenuSliceActions {
   changeSelectedDotCount: (newDotCount: DotCount) => void;

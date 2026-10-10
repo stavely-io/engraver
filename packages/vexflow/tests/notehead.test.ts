@@ -8,6 +8,8 @@
 //       The SVGContext operates differently. It just sets the sx and sy as the new scale, instead of multiplying it.
 //       See: https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale
 
+import { describe, expect } from "vite-plus/test";
+
 import { Flow } from "../src/flow";
 import { Formatter } from "../src/formatter";
 import { NoteHead } from "../src/notehead";
@@ -20,7 +22,6 @@ import { TickContext } from "../src/tickcontext";
 import { Voice } from "../src/voice";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("NoteHead", () => {
   runTests("Basic", basic);

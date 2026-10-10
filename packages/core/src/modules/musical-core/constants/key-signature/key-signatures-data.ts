@@ -1,12 +1,13 @@
+import { Pitch } from "@/modules/musical-core/models/pitch";
+import { Accidental } from "@/modules/musical-core/types/accidental.enum";
+import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
+
 import {
   KeySignatureMode,
   KeySignatureName,
   type KeySignatureProps,
   KeySignatureType,
 } from "../../types/key-signature.types";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
 
 const ARBITRARY_OCTAVE_VALUE = 5;
 

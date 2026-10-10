@@ -1,5 +1,6 @@
-import type { Args } from "../../../../model/types/misc.types";
 import { RenderContext, Renderer } from "@engraver/vexflow";
+
+import type { Args } from "../../../../model/types/misc.types";
 
 export abstract class EngraverVFRenderer {
   protected _context?: RenderContext;

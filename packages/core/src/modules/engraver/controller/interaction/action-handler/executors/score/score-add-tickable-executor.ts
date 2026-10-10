@@ -1,12 +1,13 @@
-import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import type { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Pitch } from "@/modules/musical-core/models/pitch";
+
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ScoreAddTickableExecutor extends EngraverActionExecutor<EngraverActionType.SCORE_ADD_TICKABLE> {
   public execute(payload: EngraverActionMap[EngraverActionType.SCORE_ADD_TICKABLE]): void {

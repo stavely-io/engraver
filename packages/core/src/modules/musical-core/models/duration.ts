@@ -1,6 +1,5 @@
-import { DurationIterator } from "../iterators/duration-iterator";
-import { BaseDuration } from "../types/base-duration.enum";
-import { DotCount } from "../types/dot-count.enum";
+import { Fraction } from "@engraver/vexflow";
+
 import { UnknownDurationValueError } from "@/modules/engraver/model/errors/time-errors";
 import {
   HALF_NOTE_BEATS,
@@ -8,7 +7,10 @@ import {
   QUARTER_NOTE_BEATS,
   WHOLE_NOTE_BEATS,
 } from "@/modules/musical-core/constants/time";
-import { Fraction } from "@engraver/vexflow";
+
+import { DurationIterator } from "../iterators/duration-iterator";
+import { BaseDuration } from "../types/base-duration.enum";
+import { DotCount } from "../types/dot-count.enum";
 
 export class Duration {
   constructor(

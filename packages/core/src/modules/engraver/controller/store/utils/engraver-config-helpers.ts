@@ -1,3 +1,5 @@
+import { onlyUnique } from "@/utils/array";
+
 import { Duration } from "../../../../musical-core/models/duration";
 import {
   Accidental,
@@ -13,7 +15,6 @@ import type {
   EngraverMenuDotsConfig,
   EngraverMenuDurationsConfig,
 } from "../../../view/types/config/engraver-menu-config";
-import { onlyUnique } from "@/utils/array";
 
 export function createDurationsState(config?: EngraverMenuDurationsConfig): BaseDuration[] {
   return createState(

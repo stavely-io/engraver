@@ -1,3 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
+import { Fraction } from "@engraver/vexflow";
+
+import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { KeySignature } from "@/modules/musical-core/models/key-signature";
+import { Pitch } from "@/modules/musical-core/models/pitch";
+import { Rest } from "@/modules/musical-core/models/rest";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
+
 import { Chord } from "../../../musical-core/models/chord";
 import { Duration } from "../../../musical-core/models/duration";
 import { Accidental } from "../../../musical-core/types/accidental.enum";
@@ -18,13 +27,6 @@ import { EngraverRest } from "../elements/events/engraver-rest";
 import { AccidentalScope } from "../helpers/accidental-scope";
 import { EngraverStave } from "./engraver-stave";
 import { EngraverVoice } from "./engraver-voice";
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Rest } from "@/modules/musical-core/models/rest";
-import type { Clef } from "@/modules/musical-core/types/clef.types";
-/* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
-import { Fraction } from "@engraver/vexflow";
 
 export class EngraverMeasureInitError extends Error {
   constructor(message: string) {

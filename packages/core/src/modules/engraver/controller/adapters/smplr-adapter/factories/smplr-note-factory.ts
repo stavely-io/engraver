@@ -1,9 +1,10 @@
+import { Fraction } from "@engraver/vexflow";
+
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { SmplrPlayer } from "@/modules/player/smplr/model/abstract/smplr-player";
 import type { SmplrNote } from "@/modules/player/smplr/types/smplr";
 import { capitalize } from "@/utils/other";
-import { Fraction } from "@engraver/vexflow";
 
 export class SmplrNoteFactory {
   private static readonly REST_ARBITRARY_PITCH = "C4";

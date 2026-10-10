@@ -1,6 +1,7 @@
-import { EngraverStaveVoice } from "../core/types/engraver-model.types";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { enumValues } from "@/utils/enum";
+
+import { EngraverStaveVoice } from "../core/types/engraver-model.types";
 
 export const MAX_DOT_MODIFIERS = DotCount.THREE;
 

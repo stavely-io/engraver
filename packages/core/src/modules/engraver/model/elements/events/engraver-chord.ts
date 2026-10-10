@@ -1,3 +1,5 @@
+import { Fraction } from "@engraver/vexflow";
+
 import { Chord } from "../../../../musical-core/models/chord";
 import { Duration } from "../../../../musical-core/models/duration";
 import { Pitch } from "../../../../musical-core/models/pitch";
@@ -5,7 +7,6 @@ import type { EngraverTickableCoordinates } from "../../../controller/interactio
 import { EngraverVoice } from "../../containers/engraver-voice";
 import type { EngraverBlockable, IEngraverTickable } from "../../core/types/engraver-model.types";
 import { EngraverNote } from "./engraver-note";
-import { Fraction } from "@engraver/vexflow";
 // TODO:  create a musical-core class Note which would be the base class for EngraverNote -> this will be a bigger refactor
 // this feels awkward that chord has both pitches and notes (with the same pitches)
 

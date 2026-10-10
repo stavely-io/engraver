@@ -1,6 +1,3 @@
-import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import type {
   EngraverPlayableSelectable,
   EngraverSelectable,
@@ -10,6 +7,10 @@ import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ChangeDotCountExecutor extends EngraverActionExecutor<EngraverActionType.CHANGE_DOT_COUNT> {
   public execute(payload: EngraverActionMap[EngraverActionType.CHANGE_DOT_COUNT]): void {

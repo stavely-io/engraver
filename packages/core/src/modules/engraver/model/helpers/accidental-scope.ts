@@ -1,9 +1,10 @@
-import { HIGHEST_OCTAVE, LOWEST_OCTAVE } from "../constants/limitations";
 import { KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
 import { KeySignatureType } from "@/modules/musical-core/types/key-signature.types";
+
+import { HIGHEST_OCTAVE, LOWEST_OCTAVE } from "../constants/limitations";
 
 /**
  * Represents the scope of accidentals for a given key signature and octave range.

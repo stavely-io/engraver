@@ -3,8 +3,9 @@
 //
 // Tuning Tests
 
-import { Tuning } from "../src/tuning";
 import { describe, expect, test } from "vite-plus/test";
+
+import { Tuning } from "../src/tuning";
 
 describe("Tuning", () => {
   test("Standard Tuning", standard);

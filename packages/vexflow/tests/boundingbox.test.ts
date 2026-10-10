@@ -3,8 +3,9 @@
 //
 // Bounding Box Tests
 
-import { BoundingBox } from "../src/index";
 import { describe, expect, test } from "vite-plus/test";
+
+import { BoundingBox } from "../src/index";
 
 describe("BoundingBox", () => {
   test("Initialization Test", initialization);

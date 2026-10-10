@@ -1,3 +1,5 @@
+import type { StoreApi } from "zustand";
+
 import { Pitch } from "../../musical-core/models/pitch";
 import type { PlayerStore } from "../../player";
 import type { ScoreData } from "../api/types/engraver-api.types";
@@ -12,7 +14,6 @@ import { EngraverRenderingService } from "./rendering/engraver-rendering-service
 import type { EngraverStoreAPI } from "./store/types/store-api";
 import { EngraverThemeManager } from "./theme/engraver-theme-manager";
 import { EngraverThemeType } from "./theme/theme.types";
-import type { StoreApi } from "zustand";
 
 export class EngraverController {
   private readonly score: EngraverScore;

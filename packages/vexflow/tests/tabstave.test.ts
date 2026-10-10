@@ -3,11 +3,12 @@
 //
 // TabStave Tests
 
+import { describe, expect } from "vite-plus/test";
+
 import type { ContextBuilder } from "../src/renderer";
 import { TabStave } from "../src/tabstave";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("TabStave", () => {
   runTests("TabStave Draw Test", draw);

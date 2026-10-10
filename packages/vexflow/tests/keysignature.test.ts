@@ -4,8 +4,9 @@
 // Key Signature Tests
 //
 
-import { Flow } from "../src/flow";
 import { describe, expect, test } from "vite-plus/test";
+
+import { Flow } from "../src/flow";
 
 describe("KeySignature", () => {
   test("Key Parser Test", parser);

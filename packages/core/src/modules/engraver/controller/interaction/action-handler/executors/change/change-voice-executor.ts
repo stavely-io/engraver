@@ -1,6 +1,3 @@
-import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import {
   type EngraverPlayableSelectable,
   type EngraverSelectable,
@@ -8,6 +5,10 @@ import {
 } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
+
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ChangeVoiceExecutor extends EngraverActionExecutor<EngraverActionType.CHANGE_VOICE> {
   public execute(payload: EngraverActionMap[EngraverActionType.CHANGE_VOICE]): void {

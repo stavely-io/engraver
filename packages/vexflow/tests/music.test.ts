@@ -3,9 +3,10 @@
 //
 // Music Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { KeyManager } from "../src/keymanager";
 import { Music } from "../src/music";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("MusicTests", () => {
   test("Valid Notes", validNotes);

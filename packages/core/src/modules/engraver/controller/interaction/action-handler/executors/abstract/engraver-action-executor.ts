@@ -1,8 +1,9 @@
+import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+
 import { BlockedManager } from "../../managers/blocked-manager";
 import { SelectionManager } from "../../managers/selection-manager";
 import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import type { EngraverActionExecutorContext } from "../types/engraver-action-executor-context";
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 
 export abstract class EngraverActionExecutor<T extends keyof EngraverActionMap> {
   public readonly selectionManager: SelectionManager;

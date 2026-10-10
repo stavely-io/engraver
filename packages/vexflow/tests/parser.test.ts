@@ -3,9 +3,10 @@
 //
 // Parser Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import type { Grammar, Result, RuleFunction } from "../src/parser";
 import { Parser } from "../src/parser";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Parser", () => {
   test("Basic", basic);

@@ -6,6 +6,8 @@
 // TODO: In StaveNote.preFormat() line 929, should noteHeadPadding default to StaveNote.minNoteheadPadding?
 //       The bounding box of a note changes slightly when we add a ModifierContext (even if we add zero modifiers).
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Accidental } from "../src/accidental";
 import { Annotation, AnnotationVerticalJustify } from "../src/annotation";
 import { Articulation } from "../src/articulation";
@@ -29,7 +31,6 @@ import { Stroke } from "../src/strokes";
 import { TickContext } from "../src/tickcontext";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("StaveNote", () => {
   test("Tick", ticks);

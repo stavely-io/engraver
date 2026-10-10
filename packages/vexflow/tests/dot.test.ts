@@ -3,6 +3,8 @@
 //
 // Dot Tests
 
+import { describe, expect } from "vite-plus/test";
+
 import { Beam } from "../src/beam";
 import { Dot } from "../src/dot";
 import { ModifierContext } from "../src/modifiercontext";
@@ -14,7 +16,6 @@ import { StaveNote } from "../src/stavenote";
 import { TickContext } from "../src/tickcontext";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("Dot", () => {
   runTests("Basic", basic);

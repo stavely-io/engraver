@@ -1,3 +1,10 @@
+import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
+import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
+import { Chord } from "@/modules/musical-core/models/chord";
+import { Duration } from "@/modules/musical-core/models/duration";
+import { Pitch } from "@/modules/musical-core/models/pitch";
+import { Accidental } from "@/modules/musical-core/types/accidental.enum";
+
 import type { ScoreData } from "../../api/types/engraver-api.types";
 import type { EngraverBlockConfig } from "../../view/types/config/score/engraver-block-config";
 import { EngraverStave } from "../containers/engraver-stave";
@@ -10,12 +17,6 @@ import {
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverTie } from "../elements/notation/engraver-tie";
-import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
-import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
-import { Chord } from "@/modules/musical-core/models/chord";
-import { Duration } from "@/modules/musical-core/models/duration";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 
 /**
  * Represents a musical score for the engraver, containing multiple staves and measures.

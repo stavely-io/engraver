@@ -6,8 +6,9 @@
 // TODO: KeyManager.getAccidental(key) specifies that the return value's .accidental property is string | undefined.
 //       However, we check it against null.
 
-import { KeyManager } from "../src/index";
 import { describe, expect, test } from "vite-plus/test";
+
+import { KeyManager } from "../src/index";
 
 describe("KeyManager", () => {
   test("Valid Notes", works);

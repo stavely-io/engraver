@@ -1,5 +1,6 @@
-import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 import { Formatter, Voice } from "@engraver/vexflow";
+
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 
 export class VoiceFormatter {
   public static readonly COLLISION_FACTOR = 20;

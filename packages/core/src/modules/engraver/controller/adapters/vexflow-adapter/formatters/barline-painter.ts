@@ -1,5 +1,6 @@
-import type { VFMeasureData, VFScoreCoreData } from "../../../rendering/types/vf-data";
 import { BarlineType } from "@engraver/vexflow";
+
+import type { VFMeasureData, VFScoreCoreData } from "../../../rendering/types/vf-data";
 
 export class BarlinePainter {
   public static paint(data: VFScoreCoreData): void {

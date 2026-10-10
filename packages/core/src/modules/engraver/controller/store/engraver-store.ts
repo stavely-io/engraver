@@ -1,3 +1,5 @@
+import { createStore } from "zustand/vanilla";
+
 import type { EngraverConfig } from "../../view/types/config/engraver-config";
 import {
   createEngraverOverlaySlice,
@@ -5,7 +7,6 @@ import {
 } from "./slices/engraver-overlay.slice";
 import { createEngraverScoreSlice, type EngraverScoreSlice } from "./slices/engraver-score.slice";
 import { createEngraverMenuSlice, type EngraverMenuSlice } from "./slices/menu/engraver-menu.slice";
-import { createStore } from "zustand/vanilla";
 
 export type EngraverStore = EngraverScoreSlice & EngraverMenuSlice & EngraverOverlaySlice;
 

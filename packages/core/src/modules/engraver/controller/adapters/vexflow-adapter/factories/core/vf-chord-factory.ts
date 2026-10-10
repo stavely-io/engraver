@@ -1,9 +1,11 @@
-import { STEM_DIRECTION_UP_STARTING_PITCH_MAP } from "../../constants/stem-direction";
-import { VFStaveNoteType } from "../../types/vexflow-adapter.types";
+import { Accidental, Dot, StaveNote, Stem } from "@engraver/vexflow";
+
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Accidental, Dot, StaveNote, Stem } from "@engraver/vexflow";
+
+import { STEM_DIRECTION_UP_STARTING_PITCH_MAP } from "../../constants/stem-direction";
+import { VFStaveNoteType } from "../../types/vexflow-adapter.types";
 
 type StemDirection = typeof Stem.UP;
 

@@ -3,9 +3,10 @@
 //
 // Registry Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import type { Element } from "../src/index";
 import { EasyScore, Factory, Registry, StaveNote } from "../src/index";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Registry", () => {
   test("Register and Clear", registerAndClear);

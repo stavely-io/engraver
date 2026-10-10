@@ -1,9 +1,10 @@
+import { Fraction } from "@engraver/vexflow";
+
 import { DurationIterator } from "@/modules/musical-core/iterators/duration-iterator";
 import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
 import { Chord } from "@/modules/musical-core/models/chord";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
-import { Fraction } from "@engraver/vexflow";
 
 // TODO: make a dedicated class (TimeSignature) in time signature update, move to core as there is no 'engraver' logic
 export class TimeMixin {

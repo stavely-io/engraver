@@ -1,8 +1,9 @@
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { EngraverTieInitError } from "@/modules/engraver/model/elements/notation/engraver-tie";
+
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ApplyTieExecutor extends EngraverActionExecutor<EngraverActionType.APPLY_TIE> {
   public execute(): void {

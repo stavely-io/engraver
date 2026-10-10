@@ -1,5 +1,6 @@
-import { SmplrPlayer } from "../abstract/smplr-player";
 import { Soundfont } from "smplr";
+
+import { SmplrPlayer } from "../abstract/smplr-player";
 
 export class SmplrPianoPlayer extends SmplrPlayer {
   constructor(context: AudioContext) {

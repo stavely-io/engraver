@@ -3,6 +3,8 @@
 //
 // TabNote Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Dot } from "../src/dot";
 import { Flow } from "../src/flow";
 import { Font, FontWeight } from "../src/font";
@@ -17,7 +19,6 @@ import { TickContext } from "../src/tickcontext";
 import { Voice, VoiceMode } from "../src/voice";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("TabNote", () => {
   test("Tick", ticks);

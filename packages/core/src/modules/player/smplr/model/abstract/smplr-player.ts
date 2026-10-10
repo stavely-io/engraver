@@ -1,6 +1,7 @@
+import { Soundfont } from "smplr";
+
 import { METRONOME_DATA, type SmplrInstrument } from "../../types/instrument";
 import type { PlayingOptions, SmplrNote, SmplrScoreData } from "../../types/smplr";
-import { Soundfont } from "smplr";
 
 export abstract class SmplrPlayer {
   public static readonly DEFAULT_NOTE_VELOCITY = 80;

@@ -3,13 +3,14 @@
 //
 // StaveModifier Tests
 
+import { describe, expect } from "vite-plus/test";
+
 import type { ContextBuilder } from "../src/renderer";
 import { Stave } from "../src/stave";
 import { BarlineType } from "../src/stavebarline";
 import { StaveModifierPosition } from "../src/stavemodifier";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("StaveModifier", () => {
   runTests("Stave Draw Test", draw);

@@ -1,9 +1,10 @@
+import { Formatter, RenderContext, Stave, Voice } from "@engraver/vexflow";
+
 import { EngraverMeasure } from "../../../model/containers/engraver-measure";
 import type { EngraverStaveModifiers } from "../../../model/core/types/engraver-model.types";
 import { EngraverScore } from "../../../model/score/engraver-score";
 import { VFVoiceFactory } from "../../adapters/vexflow-adapter/factories/vf-voice-factory";
 import { SystemVerticalDivider } from "../../adapters/vexflow-adapter/formatters/system-divider";
-import { Formatter, RenderContext, Stave, Voice } from "@engraver/vexflow";
 
 export class EngraverLayoutCalculator {
   public static calculateRawMeasureWidths(

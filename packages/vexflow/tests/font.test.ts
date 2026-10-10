@@ -3,6 +3,8 @@
 //
 // Font Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Accidental } from "../src/accidental";
 import { Bend } from "../src/bend";
 import { CanvasContext } from "../src/canvascontext";
@@ -13,7 +15,6 @@ import { StaveNote } from "../src/stavenote";
 import { TextBracket } from "../src/textbracket";
 import { TextNote } from "../src/textnote";
 import { Voice } from "../src/voice";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Font", () => {
   test("setFont", setFont);

@@ -1,7 +1,8 @@
+import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+
 import type { ScoreLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
 import { SystemHorizontalDivider } from "./system-horizontal-divider";
 import { SystemVerticalDivider } from "./system-vertical-divider";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 export class SystemDivider {
   static divide(score: EngraverScore, context: VexflowAdapterContext): ScoreLayout {

@@ -5,11 +5,12 @@
 
 // TODO: Factory.Beam()'s 'notes' argument is a StemmableNote[], but we only have access to Tickable[].
 
+import { describe, expect } from "vite-plus/test";
+
 import type { StemmableNote, TabNoteStruct } from "../src/index";
 import { Stem, Voice } from "../src/index";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("Beam", () => {
   runTests("Auto-stemmed Beam", autoStem);

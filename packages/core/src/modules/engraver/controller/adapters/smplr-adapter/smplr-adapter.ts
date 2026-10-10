@@ -1,5 +1,5 @@
-import type { EngraverOneWayAdapter } from "../types/adapter.types";
-import { SmplrNoteFactory } from "./factories/smplr-note-factory";
+import { Fraction } from "@engraver/vexflow";
+
 import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
 import { EngraverStave } from "@/modules/engraver/model/containers/engraver-stave";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
@@ -7,7 +7,9 @@ import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 import type { SmplrNote, SmplrScoreData } from "@/modules/player/smplr/types/smplr";
-import { Fraction } from "@engraver/vexflow";
+
+import type { EngraverOneWayAdapter } from "../types/adapter.types";
+import { SmplrNoteFactory } from "./factories/smplr-note-factory";
 
 export class SmplrAdapter implements EngraverOneWayAdapter<EngraverScore, SmplrScoreData> {
   public adapt(input: EngraverScore): SmplrScoreData {

@@ -7,6 +7,8 @@
 // eslint-disable-next-line
 // @ts-nocheck to support ES5 style class declaration in the fakeES5() test case.
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { CanvasContext } from "../src/canvascontext";
 import { StaveNote } from "../src/stavenote";
 import { StemmableNote } from "../src/stemmablenote";
@@ -19,7 +21,6 @@ import {
   isStemmableNote,
   isTabNote,
 } from "../src/typeguard";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("TypeGuard", () => {
   test("Real VexFlow Types", real);

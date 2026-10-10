@@ -1,6 +1,5 @@
-import type { VFGhostVoice, VFMeasureData } from "../../../rendering/types/vf-data";
-import { VFChordFactory } from "./core/vf-chord-factory";
-import { VFRestFactory } from "./core/vf-rest-factory";
+import { Accidental, Dot, Formatter, Stave, StaveNote, Voice, VoiceMode } from "@engraver/vexflow";
+
 import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
 import {
   type EngraverNoteModifiers,
@@ -13,7 +12,10 @@ import type { EngraverGhostOverlayTheme } from "@/modules/engraver/view/types/co
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Accidental, Dot, Formatter, Stave, StaveNote, Voice, VoiceMode } from "@engraver/vexflow";
+
+import type { VFGhostVoice, VFMeasureData } from "../../../rendering/types/vf-data";
+import { VFChordFactory } from "./core/vf-chord-factory";
+import { VFRestFactory } from "./core/vf-rest-factory";
 
 export class VFGhostTickableFactory {
   private static readonly VF_DEFAULT_LINE_COUNT = 5;

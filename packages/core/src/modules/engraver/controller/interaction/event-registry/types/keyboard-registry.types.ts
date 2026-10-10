@@ -1,13 +1,14 @@
-import { EngraverActionFactory } from "../../action-handler/engraver-action-factory";
-import type { EngraverAction } from "../../action-handler/types/actions/engraver-action";
-import { EngraverMoveSelectionDirection } from "../../action-handler/types/selection/engraver-move-selected-direction.enum";
-import { KeyboardClickContextKeyFactory } from "../factories/keyboard-click-context-key-factory";
-import { KeyboardKey } from "./keyboard-keys.enum";
 import { EngraverChromaticShiftDirection } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverViewMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+
+import { EngraverActionFactory } from "../../action-handler/engraver-action-factory";
+import type { EngraverAction } from "../../action-handler/types/actions/engraver-action";
+import { EngraverMoveSelectionDirection } from "../../action-handler/types/selection/engraver-move-selected-direction.enum";
+import { KeyboardClickContextKeyFactory } from "../factories/keyboard-click-context-key-factory";
+import { KeyboardKey } from "./keyboard-keys.enum";
 
 export type KeyboardClickContext = ReturnType<typeof KeyboardClickContextKeyFactory.create>;
 

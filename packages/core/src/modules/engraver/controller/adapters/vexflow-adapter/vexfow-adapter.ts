@@ -1,3 +1,5 @@
+import { Stave } from "@engraver/vexflow";
+
 import { EngraverMeasure } from "../../../model/containers/engraver-measure";
 import { EngraverStave } from "../../../model/containers/engraver-stave";
 import { EngraverScore } from "../../../model/score/engraver-score";
@@ -24,7 +26,6 @@ import type {
   SystemLayout,
   VexflowAdapterContext,
 } from "./types/vexflow-adapter.types";
-import { Stave } from "@engraver/vexflow";
 
 export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFScoreData> {
   public adapt(

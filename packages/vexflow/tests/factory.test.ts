@@ -3,11 +3,12 @@
 //
 // Factory Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Factory } from "../src/factory";
 import { Barline } from "../src/stavebarline";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Factory", () => {
   test("Defaults", defaults);

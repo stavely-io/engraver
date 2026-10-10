@@ -1,9 +1,11 @@
+import { Pitch } from "@/modules/musical-core/models/pitch";
+
+import type { StateCreator } from "zustand";
+
 import { MAX_VOICE_COUNT } from "../../../model/constants/limitations";
 import type { EngraverScoreConfig } from "../../../view/types/config/score/engraver-score-config";
 import { SystemVerticalDivider } from "../../adapters/vexflow-adapter/formatters/system-divider";
 import type { EngraverOverlayElement } from "../../interaction/overlay/types/engraver-overlay-element";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import type { StateCreator } from "zustand";
 
 export interface EngraverMeasureLayout {
   measureLeftX: number;

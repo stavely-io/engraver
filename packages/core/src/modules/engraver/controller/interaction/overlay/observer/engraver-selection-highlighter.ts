@@ -1,7 +1,8 @@
-import type { EngraverStoreAPI } from "../../../store/types/store-api";
-import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import type { EngraverSelectionTheme } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
+
+import type { EngraverStoreAPI } from "../../../store/types/store-api";
+import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
 
 export class EngraverSelectionHighlighter {
   private static readonly DEFAULT_SELECTION_THEME: EngraverSelectionTheme = {

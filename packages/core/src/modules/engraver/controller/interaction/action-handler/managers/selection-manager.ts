@@ -1,6 +1,3 @@
-import type { SelectableEngraverMenuValues } from "../../../store/slices/menu/engraver-menu-values.slice";
-import type { EngraverOverlayElement } from "../../overlay/types/engraver-overlay-element";
-import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
 import type {
   EngraverPlayableSelectable,
   EngraverSelectable,
@@ -11,6 +8,10 @@ import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.t
 import { Duration } from "@/modules/musical-core/models/duration";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { commonElementProperty } from "@/utils/array";
+
+import type { SelectableEngraverMenuValues } from "../../../store/slices/menu/engraver-menu-values.slice";
+import type { EngraverOverlayElement } from "../../overlay/types/engraver-overlay-element";
+import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";
 
 export class SelectionManager {
   constructor(private readonly context: EngraverActionExecutorContext) {}

@@ -3,6 +3,8 @@
 //
 // Accidental Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Accidental } from "../src/accidental";
 import type { Factory } from "../src/factory";
 import { Formatter } from "../src/formatter";
@@ -15,7 +17,6 @@ import { isAccidental } from "../src/typeguard";
 import { Voice } from "../src/voice";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Accidental", () => {
   test("Automatic Accidentals - Simple Tests", autoAccidentalWorking);

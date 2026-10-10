@@ -1,5 +1,6 @@
-import { EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
 import { StaveNote, StaveTie } from "@engraver/vexflow";
+
+import { EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
 
 export class VFTieFactory {
   public static create(tie: EngraverTie, leftNote?: StaveNote, rightNote?: StaveNote): StaveTie {

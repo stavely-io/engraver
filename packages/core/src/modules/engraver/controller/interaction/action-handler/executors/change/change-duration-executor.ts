@@ -1,6 +1,3 @@
-import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
-import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 import type {
   EngraverPlayableSelectable,
   EngraverSelectable,
@@ -9,6 +6,10 @@ import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
 import { Duration } from "@/modules/musical-core/models/duration";
+
+import type { EngraverActionMap } from "../../types/actions/engraver-action";
+import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ChangeDurationExecutor extends EngraverActionExecutor<EngraverActionType.CHANGE_DURATION> {
   public execute(payload: EngraverActionMap[EngraverActionType.CHANGE_DURATION]): void {

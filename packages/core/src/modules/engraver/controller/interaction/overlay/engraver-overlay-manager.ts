@@ -1,3 +1,5 @@
+import { Pitch } from "@/modules/musical-core/models/pitch";
+
 import { EngraverScore } from "../../../model/score/engraver-score";
 import { VFGhostTickableFactory } from "../../adapters/vexflow-adapter/factories/vf-ghost-tickable-factory";
 import { EngraverRenderingService } from "../../rendering/engraver-rendering-service";
@@ -9,7 +11,6 @@ import { EngraverSelectionHighlighter } from "./observer/engraver-selection-high
 import { EngraverOverlayMapper } from "./static/engraver-overlay-mapper";
 import { EngraverViewOverlayLayoutFactory } from "./static/engraver-view-overlay-factory";
 import type { EngraverOverlayElement } from "./types/engraver-overlay-element";
-import { Pitch } from "@/modules/musical-core/models/pitch";
 
 export class EngraverOverlayManager {
   private readonly selectionHighlighter: EngraverSelectionHighlighter;

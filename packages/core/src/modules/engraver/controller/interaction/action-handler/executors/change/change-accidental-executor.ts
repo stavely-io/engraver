@@ -1,7 +1,8 @@
+import { Accidental } from "@/modules/musical-core/types/accidental.enum";
+
 import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
-import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 export class ChangeAccidentalExecutor extends EngraverActionExecutor<EngraverActionType.CHANGE_ACCIDENTAL> {
   public execute(payload: EngraverActionMap[EngraverActionType.CHANGE_ACCIDENTAL]): void {
     const { score, store } = this.context;

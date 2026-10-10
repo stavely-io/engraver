@@ -3,6 +3,8 @@
 //
 // Voice Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Flow } from "../src/flow";
 import { Formatter } from "../src/formatter";
 import type { ContextBuilder } from "../src/renderer";
@@ -13,7 +15,6 @@ import { Voice } from "../src/voice";
 import { MockTickable } from "./mocks";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Voice", () => {
   test("Strict Test", strict);

@@ -1,3 +1,6 @@
+import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { Chord } from "@/modules/musical-core/models/chord";
+
 import { Duration } from "../../../musical-core/models/duration";
 import { BaseDuration } from "../../../musical-core/types/base-duration.enum";
 import {
@@ -8,8 +11,6 @@ import {
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverRest } from "../elements/events/engraver-rest";
 import { EngraverMeasure } from "./engraver-measure";
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
-import { Chord } from "@/modules/musical-core/models/chord";
 
 /**
  * Represents a musical voice within a measure for engraving purposes.

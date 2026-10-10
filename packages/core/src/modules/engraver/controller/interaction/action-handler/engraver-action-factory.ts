@@ -1,11 +1,3 @@
-import { EngraverViewMode } from "../../../view/types/engraver-mode.types";
-import type { EngraverActionMap } from "./types/actions/engraver-action";
-import { EngraverActionType } from "./types/actions/engraver-action-type.enum";
-import type {
-  EngraverPlayableSelectableCoordinates,
-  EngraverTickableCoordinates,
-} from "./types/engraver-coordinates";
-import { EngraverMoveSelectionDirection } from "./types/selection/engraver-move-selected-direction.enum";
 import {
   EngraverChromaticShiftDirection,
   EngraverStaveVoice,
@@ -14,6 +6,15 @@ import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+
+import { EngraverViewMode } from "../../../view/types/engraver-mode.types";
+import type { EngraverActionMap } from "./types/actions/engraver-action";
+import { EngraverActionType } from "./types/actions/engraver-action-type.enum";
+import type {
+  EngraverPlayableSelectableCoordinates,
+  EngraverTickableCoordinates,
+} from "./types/engraver-coordinates";
+import { EngraverMoveSelectionDirection } from "./types/selection/engraver-move-selected-direction.enum";
 
 export class EngraverActionFactory {
   private static createEngraverAction<T extends EngraverActionType>(

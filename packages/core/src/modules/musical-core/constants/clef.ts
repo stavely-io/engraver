@@ -1,6 +1,7 @@
-import { type Clef, ClefType } from "../types/clef.types";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
+
+import { type Clef, ClefType } from "../types/clef.types";
 
 export const CLEF_DATA: Record<ClefType, Clef> = {
   [ClefType.TREBLE]: {

@@ -3,6 +3,8 @@
 //
 // Formatter Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Beam } from "../src/beam";
 import { Dot } from "../src/dot";
 import { Flow } from "../src/flow";
@@ -13,7 +15,6 @@ import { Voice } from "../src/voice";
 import { MockTickable } from "./mocks";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Formatter", () => {
   test("TickContext Building", buildTickContexts);

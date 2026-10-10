@@ -3,8 +3,9 @@
 //
 // Fraction Tests
 
-import { Fraction } from "../src/fraction";
 import { describe, expect, test } from "vite-plus/test";
+
+import { Fraction } from "../src/fraction";
 
 describe("Fraction", () => {
   test("Basic", basic);

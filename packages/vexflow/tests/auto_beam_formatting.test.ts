@@ -6,12 +6,13 @@
 // TODO: Beam.generateBeams(voice.getTickables() as StemmableNote[], ...) requires a cast to StemmableNote[].
 //       Is there a cleaner way to handle this?
 
+import { describe, expect } from "vite-plus/test";
+
 import { Beam } from "../src/beam";
 import { Fraction } from "../src/fraction";
 import { Stem } from "../src/stem";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("Auto-Beaming", () => {
   runTests("Even Group Stem Directions", evenGroupStemDirections);

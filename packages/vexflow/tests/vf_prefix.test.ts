@@ -5,6 +5,8 @@
 //
 // VexFlow classes are available under the Vex.Flow.* namespace.
 
+import { describe, expect, test } from "vite-plus/test";
+
 import {
   Accidental,
   Annotation,
@@ -85,7 +87,6 @@ import {
   Volta,
 } from "../src/index";
 import { Vex as VexNamespace } from "../src/vex";
-import { describe, expect, test } from "vite-plus/test";
 
 // Use very flexible typing, so we can use the Vex.Flow.* API in unusual ways without warnings.
 // eslint-disable-next-line

@@ -1,8 +1,10 @@
-import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../interaction/action-handler/factories/engraver-playable-selectable-key-factory";
-import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import { StaveNote } from "@engraver/vexflow";
+
 import type { Color } from "@/modules/engraver/view/types/colors.types";
 import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
-import { StaveNote } from "@engraver/vexflow";
+
+import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../interaction/action-handler/factories/engraver-playable-selectable-key-factory";
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 
 export class TickablePainter {
   public static paint(vfScoreData: VFScoreCoreData, map: EngraverPlayableSelectableColorMap): void {

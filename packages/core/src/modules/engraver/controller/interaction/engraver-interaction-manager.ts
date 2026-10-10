@@ -1,3 +1,8 @@
+import { Pitch } from "@/modules/musical-core/models/pitch";
+import type { PlayerStore } from "@/modules/player/store/player-store";
+
+import type { StoreApi } from "zustand";
+
 import { EngraverScore } from "../../model/score/engraver-score";
 import { EngraverRenderingService } from "../rendering/engraver-rendering-service";
 import type { VFScoreData } from "../rendering/types/vf-data";
@@ -9,9 +14,6 @@ import type { EngraverOverlayCoordinates } from "./action-handler/types/engraver
 import { EngraverEventRegistry } from "./event-registry/engraver-event-registry";
 import { EngraverFocusManager } from "./focus-manager/engraver-focus-manager";
 import { EngraverOverlayManager } from "./overlay/engraver-overlay-manager";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import type { PlayerStore } from "@/modules/player/store/player-store";
-import type { StoreApi } from "zustand";
 
 export class EngraverInteractionManager {
   private readonly actionHandler: EngraverActionHandler;

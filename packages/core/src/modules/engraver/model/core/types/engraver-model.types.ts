@@ -1,3 +1,11 @@
+import { Duration } from "@/modules/musical-core/models/duration";
+import { KeySignature } from "@/modules/musical-core/models/key-signature";
+import { Accidental } from "@/modules/musical-core/types/accidental.enum";
+import type { Clef } from "@/modules/musical-core/types/clef.types";
+import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
+import { enumValues } from "@/utils/enum";
+
 import type {
   EngraverPlayableSelectableCoordinates,
   EngraverTickableCoordinates,
@@ -6,13 +14,6 @@ import { EngraverInputMode } from "../../../view/types/engraver-mode.types";
 import { EngraverChord } from "../../elements/events/engraver-chord";
 import { EngraverNote } from "../../elements/events/engraver-note";
 import { EngraverRest } from "../../elements/events/engraver-rest";
-import { Duration } from "@/modules/musical-core/models/duration";
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
-import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import type { Clef } from "@/modules/musical-core/types/clef.types";
-import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
-import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
-import { enumValues } from "@/utils/enum";
 
 export type EngraverTickable = EngraverChord | EngraverRest;
 

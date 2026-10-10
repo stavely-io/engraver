@@ -1,5 +1,3 @@
-import { Accidental } from "../types/accidental.enum";
-import { BasePitchLabel } from "../types/base-pitch-label.enum";
 import { SEMITONES_IN_OCTAVE } from "@/modules/musical-core/constants/general";
 import {
   ACCIDENTAL_VALUE_MAP,
@@ -7,6 +5,9 @@ import {
   DIATONIC_PITCH_RANGE,
   DIATONIC_PITCH_VALUES_MAP,
 } from "@/modules/musical-core/constants/pitch";
+
+import { Accidental } from "../types/accidental.enum";
+import { BasePitchLabel } from "../types/base-pitch-label.enum";
 
 export const PITCH_REGEX = /^([A-G])(?:(#{1,2}|b{1,2}))?\/(-?\d+)$/;
 

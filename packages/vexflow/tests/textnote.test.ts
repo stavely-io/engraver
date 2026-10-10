@@ -3,12 +3,13 @@
 //
 // Text Note Tests
 
+import { describe, expect } from "vite-plus/test";
+
 import { Flow } from "../src/flow";
 import { Font } from "../src/font";
 import { TextNote } from "../src/textnote";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("TextNote", () => {
   runTests("TextNote Superscript and Subscript", superscriptAndSubscript);

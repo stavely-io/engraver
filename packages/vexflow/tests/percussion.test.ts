@@ -6,11 +6,12 @@
 
 // TODO: Type 'Tickable[]' is not assignable to type 'StemmableNote[]'.
 
+import { describe, expect } from "vite-plus/test";
+
 import type { ContextBuilder, RenderContext, StaveNoteStruct } from "../src/index";
 import { Stave, StaveNote, TickContext } from "../src/index";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { runTests } from "./vexflow_test_helpers";
-import { describe, expect } from "vite-plus/test";
 
 describe("Percussion", () => {
   runTests("Percussion Notes", drawNotes);

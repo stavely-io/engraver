@@ -1,6 +1,8 @@
-import type { PlayerSliceValues } from "./player-values.slice";
 import { SMPLR_INSTRUMENT_MAP, SmplrInstrumentType } from "@/modules/player/smplr";
+
 import type { StateCreator } from "zustand";
+
+import type { PlayerSliceValues } from "./player-values.slice";
 
 export interface PlayerSliceActions {
   changeBpm: (bpm: number) => void;

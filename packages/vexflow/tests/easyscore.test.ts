@@ -3,6 +3,8 @@
 //
 // EasyScore Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Articulation } from "../src/articulation";
 import { EasyScore } from "../src/easyscore";
 import { FretHandFinger } from "../src/frethandfinger";
@@ -13,7 +15,6 @@ import { Stem } from "../src/stem";
 import { Tuplet } from "../src/tuplet";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("EasyScore", () => {
   test("Basic", basic);

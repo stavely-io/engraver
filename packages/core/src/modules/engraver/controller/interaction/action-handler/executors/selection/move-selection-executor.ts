@@ -1,12 +1,13 @@
+import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
+import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
+
 import { EngraverOverlayMapper } from "../../../overlay/static/engraver-overlay-mapper";
 import type { EngraverActionMap } from "../../types/actions/engraver-action";
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import type { EngraverPlayableSelectableCoordinates } from "../../types/engraver-coordinates";
 import { EngraverMoveSelectionDirection } from "../../types/selection/engraver-move-selected-direction.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
-import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
-import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
 
 export class MoveSelectionExecutor extends EngraverActionExecutor<EngraverActionType.SELECT_MOVE_SELECTION> {
   public execute(payload: EngraverActionMap[EngraverActionType.SELECT_MOVE_SELECTION]): void {

@@ -1,6 +1,7 @@
+import { SmplrAdapter } from "@/modules/engraver/controller/adapters/smplr-adapter/smplr-adapter";
+
 import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
-import { SmplrAdapter } from "@/modules/engraver/controller/adapters/smplr-adapter/smplr-adapter";
 
 export class PlaybackTogglePlayExecutor extends EngraverActionExecutor<EngraverActionType.PLAYBACK_TOGGLE> {
   private readonly smplrAdapter: SmplrAdapter = new SmplrAdapter();

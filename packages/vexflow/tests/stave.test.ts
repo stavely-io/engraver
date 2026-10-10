@@ -6,6 +6,8 @@
 // TODO: Like Stave.setTempo(t: StaveTempoOptions, ...), Stave.setText(...) could declare an interface called StaveTextOptions.
 //       This helps developers because they can use the named type in their code for type checking.
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Accidental } from "../src/accidental";
 import { Beam } from "../src/beam";
 import { Clef } from "../src/clef";
@@ -24,7 +26,6 @@ import { TextJustification } from "../src/textnote";
 import { TimeSignature } from "../src/timesignature";
 import type { TestOptions } from "./vexflow_test_helpers";
 import { VexFlowTests, runTests } from "./vexflow_test_helpers";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("Stave", () => {
   test("StaveModifiers SortByCategory", sortByCategory);

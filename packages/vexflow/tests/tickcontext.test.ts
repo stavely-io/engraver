@@ -3,10 +3,11 @@
 //
 // TickContext Tests
 
+import { describe, expect, test } from "vite-plus/test";
+
 import { Flow } from "../src/flow";
 import { TickContext } from "../src/tickcontext";
 import { MockTickable } from "./mocks";
-import { describe, expect, test } from "vite-plus/test";
 
 describe("TickContext", () => {
   test("Current Tick Test", currentTick);

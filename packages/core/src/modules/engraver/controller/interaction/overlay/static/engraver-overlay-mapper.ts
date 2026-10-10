@@ -1,10 +1,12 @@
-import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
-import type { EngraverPlayableSelectableCoordinates } from "../../action-handler/types/engraver-coordinates";
-import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
+import { StaveNote } from "@engraver/vexflow";
+
 import type { EngraverSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
-import { StaveNote } from "@engraver/vexflow";
+
+import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { EngraverPlayableSelectableCoordinates } from "../../action-handler/types/engraver-coordinates";
+import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
 
 export class EngraverOverlayMapper {
   private static readonly VF_NOTEHEAD_CLASS = ".vf-notehead";

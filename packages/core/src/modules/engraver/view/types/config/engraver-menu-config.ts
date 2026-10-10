@@ -1,7 +1,8 @@
-import { EngraverViewMode } from "../engraver-mode.types";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+
+import { EngraverViewMode } from "../engraver-mode.types";
 
 /**
  * Configuration options for the Engraver menu component.

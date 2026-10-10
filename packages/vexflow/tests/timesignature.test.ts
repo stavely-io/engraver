@@ -3,8 +3,9 @@
 //
 // TimeSignature Tests
 
-import { TimeSignature } from "../src/timesignature";
 import { describe, expect, test } from "vite-plus/test";
+
+import { TimeSignature } from "../src/timesignature";
 
 describe("TimeSignature", () => {
   test("Time Signature Parser", parser);

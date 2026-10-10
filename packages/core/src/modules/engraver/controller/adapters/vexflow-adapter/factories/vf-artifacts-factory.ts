@@ -1,3 +1,9 @@
+import { StaveConnector, StaveNote, StaveTie } from "@engraver/vexflow";
+
+import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+import { EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
+import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+
 import type {
   VFScoreArtifacts,
   VFScoreCoreData,
@@ -5,10 +11,6 @@ import type {
 } from "../../../rendering/types/vf-data";
 import { VFStaveConnectorFactory } from "./atrifacts/vf-stave-connectors-factory";
 import { VFTieFactory } from "./atrifacts/vf-tie-factory";
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
-import { EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
-import { StaveConnector, StaveNote, StaveTie } from "@engraver/vexflow";
 
 export class VFArtifactsFactory {
   public static create(score: EngraverScore, vfScoreCoreData: VFScoreCoreData): VFScoreArtifacts {

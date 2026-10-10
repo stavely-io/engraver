@@ -3,8 +3,9 @@
 //
 // TextFormatter Tests
 
-import { TextFormatter } from "../src/textformatter";
 import { describe, expect, test } from "vite-plus/test";
+
+import { TextFormatter } from "../src/textformatter";
 
 describe("TextFormatter", () => {
   test("Basic", basic);
