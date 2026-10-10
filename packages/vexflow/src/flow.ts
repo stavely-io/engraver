@@ -236,10 +236,9 @@ export class Flow {
   /**
    * Used with vexflow-core which supports dynamic font loading.
    */
-  // eslint-disable-next-line
   static async fetchMusicFont(
-    fontName: string,
-    fontModuleOrPath?: string | FontModule,
+    _fontName: string,
+    _fontModuleOrPath?: string | FontModule,
   ): Promise<void> {
     // The default implementation does nothing.
     // See vexflow-core.ts for the implementation that vexflow-core.js uses.

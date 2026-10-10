@@ -389,7 +389,7 @@ export class Font {
     const files = Font.WEB_FONT_FILES;
     for (const fontName in files) {
       const fontPath = files[fontName];
-      Font.loadWebFont(fontName, host + fontPath);
+      void Font.loadWebFont(fontName, host + fontPath);
     }
   }
 

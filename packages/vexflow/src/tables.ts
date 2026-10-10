@@ -1326,7 +1326,8 @@ export class Tables {
     if (codeNoteHead != "")
       glyphTypeProperties = {
         ...glyphTypeProperties,
-        ...{ code_head: codeNoteHead, code: codeNoteHead },
+        code_head: codeNoteHead,
+        code: codeNoteHead,
       };
 
     const code_head = glyphTypeProperties.code_head as string;
