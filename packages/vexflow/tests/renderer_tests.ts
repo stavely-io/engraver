@@ -4,8 +4,6 @@
 //
 // Renderer Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
 import {
   CanvasContext,
   Factory,
@@ -18,7 +16,8 @@ import {
   Stave,
   StaveNote,
   SVGContext,
-} from '../src/index';
+} from "../src/index";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 // TODO: Should FactoryOptions.renderer.elementId also accept a canvas | div?
 
@@ -33,23 +32,23 @@ const USE_FACTORY = { useRendererAPI: false };
 
 const RendererTests = {
   Start(): void {
-    QUnit.module('Renderer');
+    QUnit.module("Renderer");
     const run = VexFlowTests.runTests;
 
     // Randomly choose one of four setup paths. See below for a description.
     // Refresh `flow.html` to see the test change each time.
     // We can manually check that they look identical
     // by opening `flow.html` in multiple tabs & quickly switching between tabs.
-    run('Random', random);
+    run("Random", random);
 
     // These are the four setup paths. They should all produce the same output.
     //   Use the:  Renderer API       OR  Factory API
     //   Pass in:  element ID string  OR  canvas/div element.
-    run('Renderer API with element ID string', stringElementId, USE_RENDERER);
-    run('Renderer API with canvas or div', canvasOrDivElement, USE_RENDERER);
-    run('Renderer API with context', passRenderContext);
-    run('Factory API with element ID string', stringElementId, USE_FACTORY);
-    run('Factory API with canvas or div', canvasOrDivElement, USE_FACTORY);
+    run("Renderer API with element ID string", stringElementId, USE_RENDERER);
+    run("Renderer API with canvas or div", canvasOrDivElement, USE_RENDERER);
+    run("Renderer API with context", passRenderContext);
+    run("Factory API with element ID string", stringElementId, USE_FACTORY);
+    run("Factory API with canvas or div", canvasOrDivElement, USE_FACTORY);
   },
 };
 
@@ -57,11 +56,11 @@ const RendererTests = {
  * Helper function to add three notes to a stave.
  */
 function drawStave(stave: Stave, context: RenderContext): void {
-  stave.addClef('bass').addTimeSignature('3/4').draw();
+  stave.addClef("bass").addTimeSignature("3/4").draw();
   Formatter.FormatAndDraw(context, stave, [
-    new StaveNote({ keys: ['C/4'], duration: '4' }),
-    new StaveNote({ keys: ['E/4'], duration: '4' }),
-    new StaveNote({ keys: ['G/4'], duration: '4' }),
+    new StaveNote({ keys: ["C/4"], duration: "4" }),
+    new StaveNote({ keys: ["E/4"], duration: "4" }),
+    new StaveNote({ keys: ["G/4"], duration: "4" }),
   ]);
 }
 
@@ -86,32 +85,34 @@ function random(options: TestOptions): void {
 
   // eslint-disable-next-line
   const element: any = document.getElementById(options.elementId);
-  const colorForElementType = useElementIDString ? '#CCCCCC' /* light gray */ : '#0074d9'; /* blue */
-  const lineStyleForWhichAPI = useRendererAPI ? 'solid' : 'dashed';
+  const colorForElementType = useElementIDString
+    ? "#CCCCCC" /* light gray */
+    : "#0074d9"; /* blue */
+  const lineStyleForWhichAPI = useRendererAPI ? "solid" : "dashed";
   const borderStyle = `3px ${lineStyleForWhichAPI} ${colorForElementType}`;
   let elementType;
   if (options.backend === Renderer.Backends.CANVAS) {
     // If the backend is canvas, we draw a border around the canvas directly.
     element.style.border = borderStyle;
-    elementType = '&lt;canvas&gt; element object';
+    elementType = "&lt;canvas&gt; element object";
   } else {
     // If the backend is SVG, we draw a border around the SVG child of the DIV.
     element.children[0].style.border = borderStyle;
-    elementType = '&lt;svg&gt; element object';
+    elementType = "&lt;svg&gt; element object";
   }
 
   if (useElementIDString) {
-    elementType = 'elementID string';
+    elementType = "elementID string";
   }
 
-  const whichAPI = useRendererAPI ? 'Renderer API' : 'Factory API';
+  const whichAPI = useRendererAPI ? "Renderer API" : "Factory API";
   element.parentElement.insertAdjacentHTML(
-    'beforeend',
+    "beforeend",
     `<div style='position:relative; bottom: 100px; font-size: 12pt;'>` +
       `<span style="border-bottom: ${borderStyle}; padding-bottom: 3px; ${lineStyleForWhichAPI}">${whichAPI}</span>` +
       ` with ` +
       `<span style="background-color:${colorForElementType}; padding: 3px; color:white;">${elementType}</span>` +
-      `</div><br>`
+      `</div><br>`,
   );
 }
 
@@ -169,7 +170,7 @@ function passRenderContext(options: TestOptions): void {
   let context: RenderContext;
   const element = document.getElementById(options.elementId) as HTMLCanvasElement | HTMLDivElement;
   if (isHTMLCanvas(element)) {
-    const ctx = element.getContext('2d');
+    const ctx = element.getContext("2d");
     if (!ctx) {
       throw new RuntimeError(`Couldn't get context from element "${options.elementId}"`);
     }

@@ -1,16 +1,16 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Glyph } from './glyph';
-import { Note } from './note';
-import { Tables } from './tables';
-import type { TextNoteStruct } from './textnote';
-import { Category } from './typeguard';
-import { defined, log, RuntimeError } from './util';
+import { Glyph } from "./glyph";
+import { Note } from "./note";
+import { Tables } from "./tables";
+import type { TextNoteStruct } from "./textnote";
+import { Category } from "./typeguard";
+import { defined, log, RuntimeError } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (TextDynamics.DEBUG) log('Vex.Flow.TextDynamics', args);
+  if (TextDynamics.DEBUG) log("Vex.Flow.TextDynamics", args);
 }
 
 /**
@@ -37,27 +37,27 @@ export class TextDynamics extends Note {
   static get GLYPHS(): Record<string, { code: string; width: number }> {
     return {
       f: {
-        code: 'dynamicForte',
+        code: "dynamicForte",
         width: 12,
       },
       p: {
-        code: 'dynamicPiano',
+        code: "dynamicPiano",
         width: 14,
       },
       m: {
-        code: 'dynamicMezzo',
+        code: "dynamicMezzo",
         width: 17,
       },
       s: {
-        code: 'dynamicSforzando',
+        code: "dynamicSforzando",
         width: 10,
       },
       z: {
-        code: 'dynamicZ',
+        code: "dynamicZ",
         width: 12,
       },
       r: {
-        code: 'dynamicRinforzando',
+        code: "dynamicRinforzando",
         width: 12,
       },
     };
@@ -75,13 +75,13 @@ export class TextDynamics extends Note {
   constructor(noteStruct: TextNoteStruct) {
     super(noteStruct);
 
-    this.sequence = (noteStruct.text || '').toLowerCase();
+    this.sequence = (noteStruct.text || "").toLowerCase();
     this.line = noteStruct.line || 0;
     this.glyphs = [];
 
     this.render_options = { ...this.render_options, glyph_font_size: Tables.NOTATION_FONT_SCALE };
 
-    L('New Dynamics Text: ', this.sequence);
+    L("New Dynamics Text: ", this.sequence);
   }
 
   /** Set the Stave line on which the note should be placed. */
@@ -98,13 +98,13 @@ export class TextDynamics extends Note {
     // create new glyphs.
     this.glyphs = [];
     // Iterate through each letter
-    this.sequence.split('').forEach((letter) => {
+    this.sequence.split("").forEach((letter) => {
       // Get the glyph data for the letter
       const glyph_data = TextDynamics.GLYPHS[letter];
-      if (!glyph_data) throw new RuntimeError('Invalid dynamics character: ' + letter);
+      if (!glyph_data) throw new RuntimeError("Invalid dynamics character: " + letter);
 
       const size = defined(this.render_options.glyph_font_size);
-      const glyph = new Glyph(glyph_data.code, size, { category: 'textNote' });
+      const glyph = new Glyph(glyph_data.code, size, { category: "textNote" });
 
       // Add the glyph
       this.glyphs.push(glyph);
@@ -124,7 +124,7 @@ export class TextDynamics extends Note {
     const x = this.getAbsoluteX();
     const y = this.checkStave().getYForLine(this.line + -3);
 
-    L('Rendering Dynamics: ', this.sequence);
+    L("Rendering Dynamics: ", this.sequence);
 
     let letter_x = x;
     this.glyphs.forEach((glyph, index) => {

@@ -3,17 +3,25 @@
 //
 // Vibrato Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Bend, ContextBuilder, Font, Formatter, TabNote, TabNoteStruct, TabStave, Vibrato } from '../src/index';
+import {
+  Bend,
+  ContextBuilder,
+  Font,
+  Formatter,
+  TabNote,
+  TabNoteStruct,
+  TabStave,
+  Vibrato,
+} from "../src/index";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const VibratoTests = {
   Start(): void {
-    QUnit.module('Vibrato');
+    QUnit.module("Vibrato");
     const run = VexFlowTests.runTests;
-    run('Simple Vibrato', simple);
-    run('Harsh Vibrato', harsh);
-    run('Vibrato with Bend', withBend);
+    run("Simple Vibrato", simple);
+    run("Harsh Vibrato", harsh);
+    run("Vibrato with Bend", withBend);
   },
 };
 
@@ -27,7 +35,7 @@ function simple(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 500, 240);
   ctx.scale(1.5, 1.5);
 
-  ctx.font = '10pt Arial';
+  ctx.font = "10pt Arial";
   const stave = new TabStave(10, 10, 450).addTabGlyph().setContext(ctx).draw();
 
   const notes = [
@@ -36,16 +44,16 @@ function simple(options: TestOptions, contextBuilder: ContextBuilder): void {
         { str: 2, fret: 10 },
         { str: 4, fret: 9 },
       ],
-      duration: 'h',
+      duration: "h",
     }).addModifier(new Vibrato(), 0),
     tabNote({
       positions: [{ str: 2, fret: 10 }],
-      duration: 'h',
+      duration: "h",
     }).addModifier(new Vibrato(), 0),
   ];
 
   Formatter.FormatAndDraw(ctx, stave, notes);
-  options.assert.ok(true, 'Simple Vibrato');
+  options.assert.ok(true, "Simple Vibrato");
 }
 
 /**
@@ -57,7 +65,7 @@ function harsh(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 500, 240);
   ctx.scale(1.5, 1.5);
 
-  ctx.font = '10pt Arial';
+  ctx.font = "10pt Arial";
   const stave = new TabStave(10, 10, 450).addTabGlyph().setContext(ctx).draw();
 
   const notes = [
@@ -66,16 +74,16 @@ function harsh(options: TestOptions, contextBuilder: ContextBuilder): void {
         { str: 2, fret: 10 },
         { str: 4, fret: 9 },
       ],
-      duration: 'h',
+      duration: "h",
     }).addModifier(new Vibrato().setHarsh(true), 0),
     tabNote({
       positions: [{ str: 2, fret: 10 }],
-      duration: 'h',
+      duration: "h",
     }).addModifier(new Vibrato().setHarsh(true), 0),
   ];
 
   Formatter.FormatAndDraw(ctx, stave, notes);
-  options.assert.ok(true, 'Harsh Vibrato');
+  options.assert.ok(true, "Harsh Vibrato");
 }
 
 function withBend(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -91,25 +99,25 @@ function withBend(options: TestOptions, contextBuilder: ContextBuilder): void {
         { str: 2, fret: 9 },
         { str: 3, fret: 9 },
       ],
-      duration: 'q',
+      duration: "q",
     })
-      .addModifier(new Bend('1/2', true), 0)
-      .addModifier(new Bend('1/2', true), 1)
+      .addModifier(new Bend("1/2", true), 0)
+      .addModifier(new Bend("1/2", true), 1)
       .addModifier(new Vibrato(), 0),
     tabNote({
       positions: [{ str: 2, fret: 10 }],
-      duration: 'q',
+      duration: "q",
     })
-      .addModifier(new Bend('Full', false), 0)
+      .addModifier(new Bend("Full", false), 0)
       .addModifier(new Vibrato().setVibratoWidth(60), 0),
     tabNote({
       positions: [{ str: 2, fret: 10 }],
-      duration: 'h',
+      duration: "h",
     }).addModifier(new Vibrato().setVibratoWidth(120).setHarsh(true), 0),
   ];
 
   Formatter.FormatAndDraw(ctx, stave, notes);
-  options.assert.ok(true, 'Vibrato with Bend');
+  options.assert.ok(true, "Vibrato with Bend");
 }
 
 VexFlowTests.register(VibratoTests);

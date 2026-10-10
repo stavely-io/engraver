@@ -8,26 +8,26 @@
 //
 // See `tests/stavenote_tests.ts` for usage examples.
 
-import type { Beam } from './beam';
-import { BoundingBox } from './boundingbox';
-import type { ElementStyle } from './element';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { KeyProps, Note, NoteStruct } from './note';
-import { NoteHead } from './notehead';
-import type { Stave } from './stave';
-import type { StemOptions } from './stem';
-import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { defined, log, midLine, RuntimeError } from './util';
+import type { Beam } from "./beam";
+import { BoundingBox } from "./boundingbox";
+import type { ElementStyle } from "./element";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { KeyProps, Note, NoteStruct } from "./note";
+import { NoteHead } from "./notehead";
+import type { Stave } from "./stave";
+import type { StemOptions } from "./stem";
+import { Stem } from "./stem";
+import { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { defined, log, midLine, RuntimeError } from "./util";
 
 function showDeprecationWarningForNoteHeads(): void {
   // eslint-disable-next-line
   console.warn(
-    'StaveNote.note_heads is deprecated. Use StaveNote.noteHeads instead.',
-    'This accessor will be removed in VexFlow 5.0.'
+    "StaveNote.note_heads is deprecated. Use StaveNote.noteHeads instead.",
+    "This accessor will be removed in VexFlow 5.0.",
   );
 }
 
@@ -72,14 +72,18 @@ export interface StaveNoteStruct extends NoteStruct {
 // To enable logging for this class. Set `Vex.Flow.StaveNote.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (StaveNote.DEBUG) log('Vex.Flow.StaveNote', args);
+  if (StaveNote.DEBUG) log("Vex.Flow.StaveNote", args);
 }
 
 const isInnerNoteIndex = (note: StaveNote, index: number) =>
   index === (note.getStemDirection() === Stem.UP ? note.keyProps.length - 1 : 0);
 
 // Helper methods for rest positioning in ModifierContext.
-function shiftRestVertical(rest: StaveNoteFormatSettings, note: StaveNoteFormatSettings, dir: number) {
+function shiftRestVertical(
+  rest: StaveNoteFormatSettings,
+  note: StaveNoteFormatSettings,
+  dir: number,
+) {
   const delta = dir;
 
   rest.line += delta;
@@ -89,7 +93,11 @@ function shiftRestVertical(rest: StaveNoteFormatSettings, note: StaveNoteFormatS
 }
 
 // Called from formatNotes :: center a rest between two notes
-function centerRest(rest: StaveNoteFormatSettings, noteU: StaveNoteFormatSettings, noteL: StaveNoteFormatSettings) {
+function centerRest(
+  rest: StaveNoteFormatSettings,
+  noteU: StaveNoteFormatSettings,
+  noteL: StaveNoteFormatSettings,
+) {
   const delta = rest.line - midLine(noteU.minLine, noteL.maxLine);
   rest.note.setKeyLine(0, rest.note.getKeyLine(0) - delta);
   rest.line -= delta;
@@ -124,7 +132,7 @@ export class StaveNote extends StemmableNote {
 
   static get minNoteheadPadding(): number {
     const musicFont = Tables.currentMusicFont();
-    return musicFont.lookupMetric('noteHead.minPadding');
+    return musicFont.lookupMetric("noteHead.minPadding");
   }
 
   /** Format notes inside a ModifierContext. */
@@ -148,7 +156,9 @@ export class StaveNote extends StemmableNote {
         minL = line - notes[i].glyphProps.line_below;
       } else {
         maxL =
-          stemDirection === 1 ? props[props.length - 1].keyProps.line + stemMax : props[props.length - 1].keyProps.line;
+          stemDirection === 1
+            ? props[props.length - 1].keyProps.line + stemMax
+            : props[props.length - 1].keyProps.line;
 
         minL = stemDirection === 1 ? props[0].keyProps.line : props[0].keyProps.line - stemMax;
       }
@@ -216,7 +226,9 @@ export class StaveNote extends StemmableNote {
     // Test for two voice note intersection
     if (voices === 2) {
       const lineSpacing =
-        noteU.note.hasStem() && noteL.note.hasStem() && noteU.stemDirection === noteL.stemDirection ? 0.0 : 0.5;
+        noteU.note.hasStem() && noteL.note.hasStem() && noteU.stemDirection === noteL.stemDirection
+          ? 0.0
+          : 0.5;
       if (noteL.isrest && noteU.isrest && noteU.note.duration === noteL.note.duration) {
         // HACK: Turned off as of STV-97, https://github.com/Galaktikkon/stavely/issues/97
         // noteL.note.render_options.draw = false;
@@ -234,12 +246,12 @@ export class StaveNote extends StemmableNote {
           const lineDiff = Math.abs(noteU.line - noteL.line);
           if (noteU.note.hasStem() && noteL.note.hasStem()) {
             const noteUHead = Tables.codeNoteHead(
-              noteU.note.sortedKeyProps[0].keyProps.code ?? 'N',
-              noteU.note.duration
+              noteU.note.sortedKeyProps[0].keyProps.code ?? "N",
+              noteU.note.duration,
             );
             const noteLHead = Tables.codeNoteHead(
-              noteL.note.sortedKeyProps[noteL.note.sortedKeyProps.length - 1].keyProps.code ?? 'N',
-              noteL.note.duration
+              noteL.note.sortedKeyProps[noteL.note.sortedKeyProps.length - 1].keyProps.code ?? "N",
+              noteL.note.duration,
             );
             if (
               // If unison is not configured, shift
@@ -247,9 +259,13 @@ export class StaveNote extends StemmableNote {
               // If we have different noteheads, shift
               noteUHead !== noteLHead ||
               // If we have different dot values, shift
-              noteU.note.getModifiers().filter((item) => item.getCategory() === Category.Dot && item.getIndex() === 0)
+              noteU.note
+                .getModifiers()
+                .filter((item) => item.getCategory() === Category.Dot && item.getIndex() === 0)
                 .length !==
-                noteL.note.getModifiers().filter((item) => item.getCategory() === Category.Dot && item.getIndex() === 0)
+                noteL.note
+                  .getModifiers()
+                  .filter((item) => item.getCategory() === Category.Dot && item.getIndex() === 0)
                   .length ||
               // If the notes are quite close but not on the same line, shift
               (lineDiff < 1 && lineDiff > 0) ||
@@ -303,7 +319,7 @@ export class StaveNote extends StemmableNote {
       return true;
     }
 
-    if (!noteM) throw new RuntimeError('InvalidState', 'noteM not defined.');
+    if (!noteM) throw new RuntimeError("InvalidState", "noteM not defined.");
 
     // For three voices, test if rests can be repositioned
     //
@@ -411,15 +427,15 @@ export class StaveNote extends StemmableNote {
 
     this.ledgerLineStyle = {};
 
-    this.clef = noteStruct.clef ?? 'treble';
+    this.clef = noteStruct.clef ?? "treble";
     this.octave_shift = noteStruct.octave_shift ?? 0;
 
     // Pull note rendering properties.
     this.glyphProps = Tables.getGlyphProps(this.duration, this.noteType);
     defined(
       this.glyphProps,
-      'BadArguments',
-      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`
+      "BadArguments",
+      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`,
     );
 
     // if true, displace note to right
@@ -585,12 +601,12 @@ export class StaveNote extends StemmableNote {
       const props = Tables.keyProperties(key, this.clef, options);
 
       if (!props) {
-        throw new RuntimeError('BadArguments', `Invalid key for note properties: ${key}`);
+        throw new RuntimeError("BadArguments", `Invalid key for note properties: ${key}`);
       }
 
       // Override line placement for default rests
-      if (props.key === 'R') {
-        if (this.duration === '1' || this.duration === 'w') {
+      if (props.key === "R") {
+        if (this.duration === "1" || this.duration === "w") {
           props.line = 4;
         } else {
           props.line = 3;
@@ -628,7 +644,10 @@ export class StaveNote extends StemmableNote {
   // Get the `BoundingBox` for the entire note
   getBoundingBox(): BoundingBox {
     if (!this.preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call getBoundingBox on an unformatted note.");
+      throw new RuntimeError(
+        "UnformattedNote",
+        "Can't call getBoundingBox on an unformatted note.",
+      );
     }
 
     const { width: w, modLeftPx, leftDisplacedHeadPx } = this.getMetrics();
@@ -679,7 +698,10 @@ export class StaveNote extends StemmableNote {
   // If `isTopNote` is `true` then get the top note's line number instead
   getLineNumber(isTopNote?: boolean): number {
     if (!this.keyProps.length) {
-      throw new RuntimeError('NoKeyProps', "Can't get bottom note line, because note is not initialized properly.");
+      throw new RuntimeError(
+        "NoKeyProps",
+        "Can't get bottom note line, because note is not initialized properly.",
+      );
     }
 
     let resultLine = this.keyProps[0].line;
@@ -730,7 +752,7 @@ export class StaveNote extends StemmableNote {
   }
 
   getStemX(): number {
-    if (this.noteType === 'r') {
+    if (this.noteType === "r") {
       return this.getCenterGlyphX();
     } else {
       // We adjust the origin of the stem because we want the stem left-aligned
@@ -745,14 +767,14 @@ export class StaveNote extends StemmableNote {
     const extents = this.getStemExtents();
     return Math.min(
       this.checkStave().getYForTopText(textLine),
-      extents.topY - this.render_options.annotation_spacing * (textLine + 1)
+      extents.topY - this.render_options.annotation_spacing * (textLine + 1),
     );
   }
   getYForBottomText(textLine: number): number {
     const extents = this.getStemExtents();
     return Math.max(
       this.checkStave().getYForTopText(textLine),
-      extents.baseY + this.render_options.annotation_spacing * textLine
+      extents.baseY + this.render_options.annotation_spacing * textLine,
     );
   }
 
@@ -820,14 +842,17 @@ export class StaveNote extends StemmableNote {
   getModifierStartXY(
     position: number,
     index: number,
-    options: { forceFlagRight?: boolean } = {}
+    options: { forceFlagRight?: boolean } = {},
   ): { x: number; y: number } {
     if (!this.preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call GetModifierStartXY on an unformatted note");
+      throw new RuntimeError(
+        "UnformattedNote",
+        "Can't call GetModifierStartXY on an unformatted note",
+      );
     }
 
     if (this.ys.length === 0) {
-      throw new RuntimeError('NoYValues', 'No Y-Values calculated for this note.');
+      throw new RuntimeError("NoYValues", "No Y-Values calculated for this note.");
     }
 
     const { ABOVE, BELOW, LEFT, RIGHT } = Modifier.Position;
@@ -915,12 +940,16 @@ export class StaveNote extends StemmableNote {
   // Calculates and sets the extra pixels to the left or right
   // if the note is displaced.
   calcNoteDisplacements(): void {
-    this.setLeftDisplacedHeadPx(this.displaced && this.stem_direction === Stem.DOWN ? this.getGlyphWidth() : 0);
+    this.setLeftDisplacedHeadPx(
+      this.displaced && this.stem_direction === Stem.DOWN ? this.getGlyphWidth() : 0,
+    );
 
     // For upstems with flags, the extra space is unnecessary, since it's taken
     // up by the flag.
     this.setRightDisplacedHeadPx(
-      !this.hasFlag() && this.displaced && this.stem_direction === Stem.UP ? this.getGlyphWidth() : 0
+      !this.hasFlag() && this.displaced && this.stem_direction === Stem.UP
+        ? this.getGlyphWidth()
+        : 0,
     );
   }
 
@@ -938,7 +967,8 @@ export class StaveNote extends StemmableNote {
       }
     }
 
-    let width = this.getGlyphWidth() + this.leftDisplacedHeadPx + this.rightDisplacedHeadPx + noteHeadPadding;
+    let width =
+      this.getGlyphWidth() + this.leftDisplacedHeadPx + this.rightDisplacedHeadPx + noteHeadPadding;
 
     // For upward flagged notes, the width of the flag needs to be added
     if (this.shouldDrawFlag() && this.stem_direction === Stem.UP) {
@@ -1003,8 +1033,10 @@ export class StaveNote extends StemmableNote {
       lowestLine = Math.min(line, lowestLine);
 
       if (notehead.isDisplaced()) {
-        highestDisplacedLine = highestDisplacedLine === undefined ? line : Math.max(line, highestDisplacedLine);
-        lowestDisplacedLine = lowestDisplacedLine === undefined ? line : Math.min(line, lowestDisplacedLine);
+        highestDisplacedLine =
+          highestDisplacedLine === undefined ? line : Math.max(line, highestDisplacedLine);
+        lowestDisplacedLine =
+          lowestDisplacedLine === undefined ? line : Math.min(line, lowestDisplacedLine);
       } else {
         highestNonDisplacedLine = Math.max(line, highestNonDisplacedLine);
         lowestNonDisplacedLine = Math.min(line, lowestNonDisplacedLine);
@@ -1059,7 +1091,7 @@ export class StaveNote extends StemmableNote {
 
     if (this.isRest()) return;
     if (!ctx) {
-      throw new RuntimeError('NoCanvasContext', "Can't draw without a canvas context.");
+      throw new RuntimeError("NoCanvasContext", "Can't draw without a canvas context.");
     }
 
     const {
@@ -1139,7 +1171,7 @@ export class StaveNote extends StemmableNote {
   drawFlag(): void {
     const ctx = this.checkContext();
     if (!ctx) {
-      throw new RuntimeError('NoCanvasContext', "Can't draw without a canvas context.");
+      throw new RuntimeError("NoCanvasContext", "Can't draw without a canvas context.");
     }
 
     if (this.shouldDrawFlag()) {
@@ -1176,7 +1208,7 @@ export class StaveNote extends StemmableNote {
     const ctx = this.checkContext();
     this._noteHeads.forEach((notehead) => {
       notehead.applyStyle(ctx);
-      ctx.openGroup('notehead', notehead.getAttribute('id'), { pointerBBox: true });
+      ctx.openGroup("notehead", notehead.getAttribute("id"), { pointerBBox: true });
       notehead.setContext(ctx).draw();
       this.drawModifiers(notehead);
       ctx.closeGroup();
@@ -1256,7 +1288,7 @@ export class StaveNote extends StemmableNote {
     if (this.render_options.draw === false) return;
 
     if (this.ys.length === 0) {
-      throw new RuntimeError('NoYValues', "Can't draw note without Y values.");
+      throw new RuntimeError("NoYValues", "Can't draw note without Y values.");
     }
 
     const ctx = this.checkContext();
@@ -1272,11 +1304,11 @@ export class StaveNote extends StemmableNote {
       this.stem.setNoteHeadXBounds(stemX, stemX);
     }
 
-    L('Rendering ', this.isChord() ? 'chord :' : 'note :', this.keys);
+    L("Rendering ", this.isChord() ? "chord :" : "note :", this.keys);
 
     // Apply the overall style -- may be contradicted by local settings:
     this.applyStyle();
-    ctx.openGroup('stavenote', this.getAttribute('id'));
+    ctx.openGroup("stavenote", this.getAttribute("id"));
     this.drawLedgerLines();
     if (shouldRenderStem) this.drawStem();
     this.drawNoteHeads();

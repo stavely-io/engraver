@@ -2,11 +2,11 @@
 //
 // Author Larry Kuhns 2011
 
-import type { Stave } from './stave';
-import type { LayoutMetrics} from './stavemodifier';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
-import { Tables } from './tables';
-import { Category } from './typeguard';
+import type { Stave } from "./stave";
+import type { LayoutMetrics } from "./stavemodifier";
+import { StaveModifier, StaveModifierPosition } from "./stavemodifier";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
 
 export enum BarlineType {
   SINGLE = 1,
@@ -121,7 +121,7 @@ export class Barline extends StaveModifier {
   }
 
   setType(type: string | number): this {
-    this.type = typeof type === 'string' ? Barline.typeString[type] : type;
+    this.type = typeof type === "string" ? Barline.typeString[type] : type;
 
     this.setWidth(this.widths[this.type]);
     this.setPadding(this.paddings[this.type]);
@@ -135,7 +135,7 @@ export class Barline extends StaveModifier {
     this.setRendered();
 
     this.applyStyle(ctx);
-    ctx.openGroup('stavebarline', this.getAttribute('id'));
+    ctx.openGroup("stavebarline", this.getAttribute("id"));
     switch (this.type) {
       case BarlineType.SINGLE:
         this.drawVerticalBar(stave, this.x, false);

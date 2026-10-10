@@ -1,10 +1,10 @@
-import type { ChordSymbolMetrics } from './chordsymbol';
-import type { ClefMetrics } from './clef';
-import type { NoteHeadMetrics } from './notehead';
-import type { OrnamentMetrics } from './ornament';
-import type { StringNumberMetrics } from './stringnumber';
-import type { TupletMetrics } from './tuplet';
-import { defined } from './util';
+import type { ChordSymbolMetrics } from "./chordsymbol";
+import type { ClefMetrics } from "./clef";
+import type { NoteHeadMetrics } from "./notehead";
+import type { OrnamentMetrics } from "./ornament";
+import type { StringNumberMetrics } from "./stringnumber";
+import type { TupletMetrics } from "./tuplet";
+import { defined } from "./util";
 
 export interface FontInfo {
   /** CSS font-family, e.g., 'Arial', 'Helvetica Neue, Arial, sans-serif', 'Times, serif' */
@@ -56,7 +56,10 @@ export interface FontMetrics extends Record<string, any> {
       shiftX?: number;
       shiftY?: number;
       scale?: number;
-      [key: string]: { point?: number; shiftX?: number; shiftY?: number; scale?: number } | number | undefined;
+      [key: string]:
+        | { point?: number; shiftX?: number; shiftY?: number; scale?: number }
+        | number
+        | undefined;
     }
   >;
 }
@@ -77,13 +80,13 @@ export interface FontGlyph {
 }
 
 export enum FontWeight {
-  NORMAL = 'normal',
-  BOLD = 'bold',
+  NORMAL = "normal",
+  BOLD = "bold",
 }
 
 export enum FontStyle {
-  NORMAL = 'normal',
-  ITALIC = 'italic',
+  NORMAL = "normal",
+  ITALIC = "italic",
 }
 
 // Internal <span></span> element for parsing CSS font shorthand strings.
@@ -96,10 +99,10 @@ export class Font {
   // STATIC MEMBERS
 
   /** Default sans-serif font family. */
-  static SANS_SERIF: string = 'Arial, sans-serif';
+  static SANS_SERIF: string = "Arial, sans-serif";
 
   /** Default serif font family. */
-  static SERIF: string = 'Times New Roman, serif';
+  static SERIF: string = "Times New Roman, serif";
 
   /** Default font size in `pt`. */
   static SIZE: number = 10;
@@ -110,7 +113,7 @@ export class Font {
     pt: 4 / 3,
     px: 1,
     em: 16,
-    '%': 4 / 25,
+    "%": 4 / 25,
     in: 96,
     mm: 96 / 25.4,
     cm: 96 / 2.54,
@@ -123,7 +126,7 @@ export class Font {
    * @returns the number of pixels that is equivalent to `fontSize`
    */
   static convertSizeToPixelValue(fontSize: string | number = Font.SIZE): number {
-    if (typeof fontSize === 'number') {
+    if (typeof fontSize === "number") {
       // Assume the numeric fontSize is specified in pt.
       return fontSize * Font.scaleToPxFrom.pt;
     } else {
@@ -131,7 +134,7 @@ export class Font {
       if (isNaN(value)) {
         return 0;
       }
-      const unit = fontSize.replace(/[\d.\s]/g, '').toLowerCase(); // Extract the unit by removing all numbers, dots, spaces.
+      const unit = fontSize.replace(/[\d.\s]/g, "").toLowerCase(); // Extract the unit by removing all numbers, dots, spaces.
       const conversionFactor = Font.scaleToPxFrom[unit] ?? 1;
       return value * conversionFactor;
     }
@@ -144,7 +147,7 @@ export class Font {
    * @returns the number of points that is equivalent to `fontSize`
    */
   static convertSizeToPointValue(fontSize: string | number = Font.SIZE): number {
-    if (typeof fontSize === 'number') {
+    if (typeof fontSize === "number") {
       // Assume the numeric fontSize is specified in pt.
       return fontSize;
     } else {
@@ -152,7 +155,7 @@ export class Font {
       if (isNaN(value)) {
         return 0;
       }
-      const unit = fontSize.replace(/[\d.\s]/g, '').toLowerCase(); // Extract the unit by removing all numbers, dots, spaces.
+      const unit = fontSize.replace(/[\d.\s]/g, "").toLowerCase(); // Extract the unit by removing all numbers, dots, spaces.
       const conversionFactor = (Font.scaleToPxFrom[unit] ?? 1) / Font.scaleToPxFrom.pt;
       return value * conversionFactor;
     }
@@ -169,16 +172,21 @@ export class Font {
     f?: string | FontInfo,
     size?: string | number,
     weight?: string | number,
-    style?: string
+    style?: string,
   ): Required<FontInfo> {
     // If f is a string but all other arguments are undefined, we assume that
     // f is CSS font shorthand (e.g., 'italic bold 10pt Arial').
-    if (typeof f === 'string' && size === undefined && weight === undefined && style === undefined) {
+    if (
+      typeof f === "string" &&
+      size === undefined &&
+      weight === undefined &&
+      style === undefined
+    ) {
       return Font.fromCSSString(f);
     }
 
     let family: string | undefined;
-    if (typeof f === 'object') {
+    if (typeof f === "object") {
       // f is a FontInfo object, so we extract its fields.
       family = f.family;
       size = f.size;
@@ -190,24 +198,24 @@ export class Font {
     }
 
     family = family ?? Font.SANS_SERIF;
-    size = size ?? Font.SIZE + 'pt';
+    size = size ?? Font.SIZE + "pt";
     weight = weight ?? FontWeight.NORMAL;
     style = style ?? FontStyle.NORMAL;
 
-    if (weight === '') {
+    if (weight === "") {
       weight = FontWeight.NORMAL;
     }
-    if (style === '') {
+    if (style === "") {
       style = FontStyle.NORMAL;
     }
 
     // If size is a number, we assume the unit is `pt`.
-    if (typeof size === 'number') {
+    if (typeof size === "number") {
       size = `${size}pt`;
     }
 
     // If weight is a number (e.g., 900), turn it into a string representation of that number.
-    if (typeof weight === 'number') {
+    if (typeof weight === "number") {
       weight = weight.toString();
     }
 
@@ -223,7 +231,7 @@ export class Font {
     // First, create a span element.
     // Then, set its style.font and extract it back out.
     if (!fontParser) {
-      fontParser = document.createElement('span');
+      fontParser = document.createElement("span");
     }
     fontParser.style.font = cssFontShorthand;
     const { fontFamily, fontSize, fontWeight, fontStyle } = fontParser.style;
@@ -235,36 +243,36 @@ export class Font {
    */
   static toCSSString(fontInfo?: FontInfo): string {
     if (!fontInfo) {
-      return '';
+      return "";
     }
 
     let style: string;
     const st = fontInfo.style;
-    if (st === FontStyle.NORMAL || st === '' || st === undefined) {
-      style = ''; // no space! Omit the style section.
+    if (st === FontStyle.NORMAL || st === "" || st === undefined) {
+      style = ""; // no space! Omit the style section.
     } else {
-      style = st.trim() + ' ';
+      style = st.trim() + " ";
     }
 
     let weight: string;
     const wt = fontInfo.weight;
-    if (wt === FontWeight.NORMAL || wt === '' || wt === undefined) {
-      weight = ''; // no space! Omit the weight section.
-    } else if (typeof wt === 'number') {
-      weight = wt + ' ';
+    if (wt === FontWeight.NORMAL || wt === "" || wt === undefined) {
+      weight = ""; // no space! Omit the weight section.
+    } else if (typeof wt === "number") {
+      weight = wt + " ";
     } else {
-      weight = wt.trim() + ' ';
+      weight = wt.trim() + " ";
     }
 
     let size: string;
     const sz = fontInfo.size;
     if (sz === undefined) {
-      size = Font.SIZE + 'pt ';
-    } else if (typeof sz === 'number') {
-      size = sz + 'pt ';
+      size = Font.SIZE + "pt ";
+    } else if (typeof sz === "number") {
+      size = sz + "pt ";
     } else {
       // size is already a string.
-      size = sz.trim() + ' ';
+      size = sz.trim() + " ";
     }
 
     const family: string = fontInfo.family ?? Font.SANS_SERIF;
@@ -280,11 +288,11 @@ export class Font {
    * If the fontSize argument was a string, the return value will be a string.
    */
   static scaleSize<T extends number | string>(fontSize: T, scaleFactor: number): T {
-    if (typeof fontSize === 'number') {
+    if (typeof fontSize === "number") {
       return (fontSize * scaleFactor) as T;
     } else {
       const value = parseFloat(fontSize);
-      const unit = fontSize.replace(/[\d.\s]/g, ''); // Remove all numbers, dots, spaces.
+      const unit = fontSize.replace(/[\d.\s]/g, ""); // Remove all numbers, dots, spaces.
       return `${value * scaleFactor}${unit}` as T;
     }
   }
@@ -296,13 +304,13 @@ export class Font {
   static isBold(weight?: string | number): boolean {
     if (!weight) {
       return false;
-    } else if (typeof weight === 'number') {
+    } else if (typeof weight === "number") {
       return weight >= 600;
     } else {
       // a string can be 'bold' or '700'
       const parsedWeight = parseInt(weight, 10);
       if (isNaN(parsedWeight)) {
-        return weight.toLowerCase() === 'bold';
+        return weight.toLowerCase() === "bold";
       } else {
         return parsedWeight >= 600;
       }
@@ -326,7 +334,7 @@ export class Font {
    * Alternative: https://cdn.jsdelivr.net/npm/vexflow-fonts@1.0.3/
    * Or you can use your own host.
    */
-  static WEB_FONT_HOST = 'https://unpkg.com/vexflow-fonts@1.0.3/';
+  static WEB_FONT_HOST = "https://unpkg.com/vexflow-fonts@1.0.3/";
 
   /**
    * These font files will be loaded from the CDN specified by `Font.WEB_FONT_HOST` when
@@ -334,8 +342,8 @@ export class Font {
    * set of fonts to load. See: `Font.loadWebFonts()`.
    */
   static WEB_FONT_FILES: Record<string /* fontName */, string /* fontPath */> = {
-    'Roboto Slab': 'robotoslab/RobotoSlab-Medium_2.001.woff',
-    PetalumaScript: 'petaluma/PetalumaScript_1.10_FS.woff',
+    "Roboto Slab": "robotoslab/RobotoSlab-Medium_2.001.woff",
+    PetalumaScript: "petaluma/PetalumaScript_1.10_FS.woff",
   };
 
   /**
@@ -347,8 +355,12 @@ export class Font {
   // Support distributions of the typescript compiler that do not yet include the FontFace API declarations.
   // eslint-disable-next-line
   // @ts-ignore
-  static async loadWebFont(fontName: string, woffURL: string, includeWoff2: boolean = true): Promise<FontFace> {
-    const woff2URL = includeWoff2 ? `url(${woffURL}2) format('woff2'), ` : '';
+  static async loadWebFont(
+    fontName: string,
+    woffURL: string,
+    includeWoff2: boolean = true,
+  ): Promise<FontFace> {
+    const woff2URL = includeWoff2 ? `url(${woffURL}2) format('woff2'), ` : "";
     const woff1URL = `url(${woffURL}) format('woff')`;
     const woffURLs = woff2URL + woff1URL;
     // eslint-disable-next-line
@@ -425,11 +437,11 @@ export class Font {
   }
 
   getData(): FontData {
-    return defined(this.data, 'FontError', 'Missing font data');
+    return defined(this.data, "FontError", "Missing font data");
   }
 
   getMetrics(): FontMetrics {
-    return defined(this.metrics, 'FontError', 'Missing metrics');
+    return defined(this.metrics, "FontError", "Missing metrics");
   }
 
   setData(data: FontData): void {
@@ -460,7 +472,7 @@ export class Font {
    */
   // eslint-disable-next-line
   lookupMetric(key: string, defaultValue?: Record<string, any> | number): any {
-    const keyParts = key.split('.');
+    const keyParts = key.split(".");
 
     // Start with the top level font metrics object, and keep looking deeper into the object (via each part of the period-delimited key).
     let currObj = this.getMetrics();
@@ -481,6 +493,6 @@ export class Font {
 
   /** For debugging. */
   toString(): string {
-    return '[' + this.name + ' Font]';
+    return "[" + this.name + " Font]";
   }
 }

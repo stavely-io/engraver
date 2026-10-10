@@ -1,19 +1,19 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { BoundingBox } from './boundingbox';
-import { Element } from './element';
-import type { Factory } from './factory';
-import type { FormatParams, FormatterOptions } from './formatter';
-import { Formatter } from './formatter';
-import { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import type { StaveOptions } from './stave';
-import { Stave } from './stave';
-import type { StaveConnector, StaveConnectorType } from './staveconnector';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
-import type { Voice } from './voice';
+import { BoundingBox } from "./boundingbox";
+import { Element } from "./element";
+import type { Factory } from "./factory";
+import type { FormatParams, FormatterOptions } from "./formatter";
+import { Formatter } from "./formatter";
+import { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import type { StaveOptions } from "./stave";
+import { Stave } from "./stave";
+import type { StaveConnector, StaveConnectorType } from "./staveconnector";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
+import type { Voice } from "./voice";
 
 export interface SystemFormatterOptions extends FormatterOptions {
   alpha?: number;
@@ -95,7 +95,7 @@ export class System extends Element {
   /** Set formatting options. */
   setOptions(options: SystemOptions = {}): void {
     if (!options.factory) {
-      throw new RuntimeError('NoFactory', 'System.setOptions(options) requires a factory.');
+      throw new RuntimeError("NoFactory", "System.setOptions(options) requires a factory.");
     }
     this.factory = options.factory;
     this.options = {
@@ -119,7 +119,7 @@ export class System extends Element {
       },
     };
 
-    if (this.options.noJustification === false && typeof options.width === 'undefined') {
+    if (this.options.noJustification === false && typeof options.width === "undefined") {
       this.options.autoWidth = true;
     }
   }
@@ -171,7 +171,7 @@ export class System extends Element {
    * Add connector between staves.
    * @param type see {@link StaveConnector.typeString}
    */
-  addConnector(type: StaveConnectorType = 'double'): StaveConnector {
+  addConnector(type: StaveConnectorType = "double"): StaveConnector {
     this.connector = this.factory.StaveConnector({
       top_stave: this.partStaves[0],
       bottom_stave: this.partStaves[this.partStaves.length - 1],
@@ -199,7 +199,12 @@ export class System extends Element {
 
     const stave =
       params.stave ??
-      this.factory.Stave({ x: this.options.x, y: this.options.y, width: this.options.width, options: staveOptions });
+      this.factory.Stave({
+        x: this.options.x,
+        y: this.options.y,
+        width: this.options.width,
+        options: staveOptions,
+      });
 
     const p = {
       spaceAbove: 0, // stave spaces
@@ -284,7 +289,11 @@ export class System extends Element {
         : this.options.width - (startX - this.options.x) - Stave.defaultPadding;
     }
     if (this.partVoices.length > 0) {
-      formatter.format(this.partVoices, this.options.noJustification ? 0 : justifyWidth, this.options.formatOptions);
+      formatter.format(
+        this.partVoices,
+        this.options.noJustification ? 0 : justifyWidth,
+        this.options.formatOptions,
+      );
     }
     formatter.postFormat();
 
@@ -295,7 +304,12 @@ export class System extends Element {
     this.startX = startX;
     this.debugNoteMetricsYs = debugNoteMetricsYs;
     this.lastY = y;
-    this.boundingBox = new BoundingBox(this.options.x, this.options.y, this.options.width, this.lastY - this.options.y);
+    this.boundingBox = new BoundingBox(
+      this.options.x,
+      this.options.y,
+      this.options.width,
+      this.lastY - this.options.y,
+    );
     Stave.formatBegModifiers(this.partStaves);
   }
 
@@ -304,7 +318,7 @@ export class System extends Element {
     // Render debugging information, if requested.
     const ctx = this.checkContext();
     if (!this.formatter || !this.startX || !this.lastY || !this.debugNoteMetricsYs) {
-      throw new RuntimeError('NoFormatter', 'format() must be called before draw()');
+      throw new RuntimeError("NoFormatter", "format() must be called before draw()");
     }
     this.setRendered();
 

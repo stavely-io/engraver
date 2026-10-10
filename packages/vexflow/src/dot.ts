@@ -3,11 +3,11 @@
 //
 // This class implements dot modifiers for notes.
 
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import { Category, isGraceNote, isStaveNote, isTabNote } from './typeguard';
-import { RuntimeError } from './util';
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import { Category, isGraceNote, isStaveNote, isTabNote } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export class Dot extends Modifier {
   static get CATEGORY(): string {
@@ -69,10 +69,10 @@ export class Dot extends Modifier {
         shift = right_shift;
       } else {
         // note object is not StaveNote or TabNote.
-        throw new RuntimeError('Internal', 'Unexpected instance.');
+        throw new RuntimeError("Internal", "Unexpected instance.");
       }
 
-      const note_id = note.getAttribute('id');
+      const note_id = note.getAttribute("id");
       dot_list.push({ line: props.line, note, note_id, dot });
       max_shift_map[note_id] = Math.max(max_shift_map[note_id] || shift, shift);
     }
@@ -102,7 +102,12 @@ export class Dot extends Modifier {
         } else {
           // note is on a line, so shift dot to space above the line
           half_shiftY = 0.5;
-          if (last_note != null && !last_note.isRest() && last_line != null && last_line - line === 0.5) {
+          if (
+            last_note != null &&
+            !last_note.isRest() &&
+            last_line != null &&
+            last_line - line === 0.5
+          ) {
             // previous note on a space, so shift dot to space below the line
             half_shiftY = -0.5;
           } else if (line + half_shiftY === prev_dotted_space) {

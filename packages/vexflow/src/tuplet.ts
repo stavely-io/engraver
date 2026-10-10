@@ -44,15 +44,15 @@
  * }
  */
 
-import { Element } from './element';
-import { Formatter } from './formatter';
-import { Glyph } from './glyph';
-import type { Note } from './note';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
+import { Element } from "./element";
+import { Formatter } from "./formatter";
+import { Glyph } from "./glyph";
+import type { Note } from "./note";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
 
 export interface TupletOptions {
   beats_occupied?: number;
@@ -113,14 +113,14 @@ export class Tuplet extends Element {
   static get metrics(): TupletMetrics {
     const tupletMetrics = Tables.currentMusicFont().getMetrics().tuplet;
 
-    if (!tupletMetrics) throw new RuntimeError('BadMetrics', `tuplet missing`);
+    if (!tupletMetrics) throw new RuntimeError("BadMetrics", `tuplet missing`);
     return tupletMetrics;
   }
 
   constructor(notes: Note[], options: TupletOptions = {}) {
     super();
     if (!notes || !notes.length) {
-      throw new RuntimeError('BadArguments', 'No notes provided for tuplet.');
+      throw new RuntimeError("BadArguments", "No notes provided for tuplet.");
     }
 
     this.options = options;
@@ -140,7 +140,9 @@ export class Tuplet extends Element {
     }
 
     this.ratioed =
-      this.options.ratioed != undefined ? this.options.ratioed : Math.abs(this.notes_occupied - this.num_notes) > 1;
+      this.options.ratioed != undefined
+        ? this.options.ratioed
+        : Math.abs(this.notes_occupied - this.num_notes) > 1;
     this.point = (Tables.NOTATION_FONT_SCALE * 3) / 5;
     this.y_pos = 16;
     this.x_pos = 100;
@@ -208,9 +210,9 @@ export class Tuplet extends Element {
   beatsOccupiedDeprecationWarning(): void {
     // eslint-disable-next-line
     console.warn(
-      'beats_occupied has been deprecated as an option for tuplets. Please use notes_occupied instead.',
-      'Calls to getBeatsOccupied / setBeatsOccupied should now be routed to getNotesOccupied / setNotesOccupied.',
-      'The old methods will be removed in VexFlow 5.0.'
+      "beats_occupied has been deprecated as an option for tuplets. Please use notes_occupied instead.",
+      "Calls to getBeatsOccupied / setBeatsOccupied should now be routed to getNotesOccupied / setNotesOccupied.",
+      "The old methods will be removed in VexFlow 5.0.",
     );
   }
 
@@ -239,14 +241,14 @@ export class Tuplet extends Element {
     this.numerator_glyphs = [];
     let n = this.num_notes;
     while (n >= 1) {
-      this.numerator_glyphs.unshift(new Glyph('timeSig' + (n % 10), this.point));
+      this.numerator_glyphs.unshift(new Glyph("timeSig" + (n % 10), this.point));
       n = parseInt((n / 10).toString(), 10);
     }
 
     this.denom_glyphs = [];
     n = this.notes_occupied;
     while (n >= 1) {
-      this.denom_glyphs.unshift(new Glyph('timeSig' + (n % 10), this.point));
+      this.denom_glyphs.unshift(new Glyph("timeSig" + (n % 10), this.point));
       n = parseInt((n / 10).toString(), 10);
     }
   }
@@ -279,7 +281,8 @@ export class Tuplet extends Element {
   getYPosition(): number {
     // offset the tuplet for any nested tuplets between
     // it and the notes:
-    const nested_tuplet_y_offset = this.getNestedTupletCount() * Tuplet.NESTING_OFFSET * -this.location;
+    const nested_tuplet_y_offset =
+      this.getNestedTupletCount() * Tuplet.NESTING_OFFSET * -this.location;
 
     // offset the tuplet for any manual y_offset:
     const y_offset = this.options.y_offset || 0;
@@ -357,7 +360,8 @@ export class Tuplet extends Element {
     // determine y value for tuplet
     this.y_pos = this.getYPosition();
 
-    const addGlyphWidth = (width: number, glyph: Glyph) => width + defined(glyph.getMetrics().width);
+    const addGlyphWidth = (width: number, glyph: Glyph) =>
+      width + defined(glyph.getMetrics().width);
 
     // calculate total width of tuplet notation
     let width = this.numerator_glyphs.reduce(addGlyphWidth, 0);
@@ -381,19 +385,19 @@ export class Tuplet extends Element {
           this.x_pos,
           this.y_pos + (this.location === Tuplet.LOCATION_BOTTOM ? 1 : 0),
           1,
-          this.location * 10
+          this.location * 10,
         );
         ctx.fillRect(
           this.x_pos + this.width,
           this.y_pos + (this.location === Tuplet.LOCATION_BOTTOM ? 1 : 0),
           1,
-          this.location * 10
+          this.location * 10,
         );
       }
     }
 
     // draw numerator glyphs
-    const shiftY = Tables.currentMusicFont().lookupMetric('digits.shiftY', 0);
+    const shiftY = Tables.currentMusicFont().lookupMetric("digits.shiftY", 0);
 
     let x_offset = 0;
     this.numerator_glyphs.forEach((glyph) => {

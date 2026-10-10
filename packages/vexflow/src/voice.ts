@@ -1,15 +1,15 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { BoundingBox } from './boundingbox';
-import { Element } from './element';
-import { Fraction } from './fraction';
-import type { RenderContext } from './rendercontext';
-import type { Stave } from './stave';
-import { Tables } from './tables';
-import type { Tickable } from './tickable';
-import { Category } from './typeguard';
-import { defined, RuntimeError, sumArray } from './util';
+import type { BoundingBox } from "./boundingbox";
+import { Element } from "./element";
+import { Fraction } from "./fraction";
+import type { RenderContext } from "./rendercontext";
+import type { Stave } from "./stave";
+import { Tables } from "./tables";
+import type { Tickable } from "./tickable";
+import { Category } from "./typeguard";
+import { defined, RuntimeError, sumArray } from "./util";
 
 export interface VoiceTime {
   num_beats: number;
@@ -65,7 +65,7 @@ export class Voice extends Element {
 
     // Convert the `time` string into a VoiceTime object if necessary.
     let voiceTime: VoiceTime | undefined;
-    if (typeof time === 'string') {
+    if (typeof time === "string") {
       // Time signature shortcut: "4/4", "3/8", etc.
       const match = time.match(/(\d+)\/(\d+)/);
       if (match) {
@@ -87,7 +87,10 @@ export class Voice extends Element {
     };
 
     // Recalculate total ticks.
-    this.totalTicks = new Fraction(this.time.num_beats * (this.time.resolution / this.time.beat_value), 1);
+    this.totalTicks = new Fraction(
+      this.time.num_beats * (this.time.resolution / this.time.beat_value),
+      1,
+    );
     // until tickables are added, the smallestTickCount is the same as the stated totalTicks duration.
     this.smallestTickCount = this.totalTicks.clone();
   }
@@ -208,7 +211,8 @@ export class Voice extends Element {
    */
   protected reCalculateExpTicksUsed(): number {
     const totalTicks = this.ticksUsed.value();
-    const exp = (tickable: Tickable) => Math.pow(this.options.softmaxFactor, tickable.getTicks().value() / totalTicks);
+    const exp = (tickable: Tickable) =>
+      Math.pow(this.options.softmaxFactor, tickable.getTicks().value() / totalTicks);
     this.expTicksUsed = sumArray(this.tickables.map(exp));
     return this.expTicksUsed;
   }
@@ -239,7 +243,7 @@ export class Voice extends Element {
         this.ticksUsed.greaterThan(this.totalTicks)
       ) {
         this.ticksUsed.subtract(ticks);
-        throw new RuntimeError('BadArgument', 'Too many ticks.');
+        throw new RuntimeError("BadArgument", "Too many ticks.");
       }
 
       // Track the smallest tickable for formatting.
@@ -281,7 +285,7 @@ export class Voice extends Element {
   }
 
   checkStave(): Stave {
-    return defined(this.stave, 'NoStave', 'No stave attached to instance.');
+    return defined(this.stave, "NoStave", "No stave attached to instance.");
   }
 
   /**
@@ -302,7 +306,11 @@ export class Voice extends Element {
       if (stave) {
         tickable.setStave(stave);
       }
-      defined(tickable.getStave(), 'MissingStave', 'The voice cannot draw tickables without staves.');
+      defined(
+        tickable.getStave(),
+        "MissingStave",
+        "The voice cannot draw tickables without staves.",
+      );
       const bb = tickable.getBoundingBox();
       if (bb) {
         boundingBox = boundingBox ? boundingBox.mergeWith(bb) : bb;

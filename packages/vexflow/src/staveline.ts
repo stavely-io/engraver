@@ -8,14 +8,14 @@
 // can format a `StaveLine` with arrows or colors for more pedagogical
 // purposes, such as diagrams.
 
-import { Element } from './element';
-import type { FontInfo } from './font';
-import type { RenderContext } from './rendercontext';
-import type { StaveNote } from './stavenote';
-import { Tables } from './tables';
-import { TextJustification } from './textnote';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import type { RenderContext } from "./rendercontext";
+import type { StaveNote } from "./stavenote";
+import { Tables } from "./tables";
+import { TextJustification } from "./textnote";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface StaveLineNotes {
   first_note: StaveNote;
@@ -36,7 +36,7 @@ function drawArrowHead(
   x1: number,
   y1: number,
   x2: number,
-  y2: number
+  y2: number,
 ): void {
   // all cases do this.
   ctx.beginPath();
@@ -106,7 +106,7 @@ export class StaveLine extends Element {
 
     this.setNotes(notes);
 
-    this.text = '';
+    this.text = "";
     this.resetFont();
 
     this.render_options = {
@@ -147,14 +147,17 @@ export class StaveLine extends Element {
   // Set the notes for the `StaveLine`
   setNotes(notes: StaveLineNotes): this {
     if (!notes.first_note && !notes.last_note) {
-      throw new RuntimeError('BadArguments', 'Notes needs to have either first_note or last_note set.');
+      throw new RuntimeError(
+        "BadArguments",
+        "Notes needs to have either first_note or last_note set.",
+      );
     }
 
     if (!notes.first_indices) notes.first_indices = [0];
     if (!notes.last_indices) notes.last_indices = [0];
 
     if (notes.first_indices.length !== notes.last_indices.length) {
-      throw new RuntimeError('BadArguments', 'Connected notes must have same number of indices.');
+      throw new RuntimeError("BadArguments", "Connected notes must have same number of indices.");
     }
 
     this.notes = notes;
@@ -179,9 +182,9 @@ export class StaveLine extends Element {
     }
 
     if (render_options.rounded_end) {
-      ctx.setLineCap('round');
+      ctx.setLineCap("round");
     } else {
-      ctx.setLineCap('square');
+      ctx.setLineCap("square");
     }
   }
 
@@ -199,7 +202,11 @@ export class StaveLine extends Element {
   }
 
   // Helper function to draw a line with arrow heads
-  protected drawArrowLine(ctx: RenderContext, pt1: { x: number; y: number }, pt2: { x: number; y: number }): void {
+  protected drawArrowLine(
+    ctx: RenderContext,
+    pt1: { x: number; y: number },
+    pt2: { x: number; y: number },
+  ): void {
     const both_arrows = this.render_options.draw_start_arrow && this.render_options.draw_end_arrow;
 
     const x1 = pt1.x;
@@ -246,7 +253,9 @@ export class StaveLine extends Element {
     // calculate the angle of the line
     const line_angle = Math.atan2(y2 - y1, x2 - x1);
     // h is the line length of a side of the arrow head
-    const h = Math.abs(this.render_options.arrowhead_length / Math.cos(this.render_options.arrowhead_angle));
+    const h = Math.abs(
+      this.render_options.arrowhead_length / Math.cos(this.render_options.arrowhead_angle),
+    );
 
     let angle1;
     let angle2;

@@ -1,12 +1,12 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Bend } from './bend';
-import { Modifier } from './modifier';
-import type { ModifierContext, ModifierContextState } from './modifiercontext';
-import type { RenderContext } from './rendercontext';
-import { Tables } from './tables';
-import { Category } from './typeguard';
+import { Bend } from "./bend";
+import { Modifier } from "./modifier";
+import type { ModifierContext, ModifierContextState } from "./modifiercontext";
+import type { RenderContext } from "./rendercontext";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
 
 export interface VibratoRenderOptions {
   wave_height: number;
@@ -25,7 +25,11 @@ export class Vibrato extends Modifier {
   public render_options: VibratoRenderOptions;
 
   /** Arrange vibratos inside a `ModifierContext`. */
-  static format(vibratos: Vibrato[], state: ModifierContextState, context: ModifierContext): boolean {
+  static format(
+    vibratos: Vibrato[],
+    state: ModifierContextState,
+    context: ModifierContext,
+  ): boolean {
     if (!vibratos || vibratos.length === 0) return false;
 
     // Vibratos are always on top.
@@ -37,7 +41,8 @@ export class Vibrato extends Modifier {
     const bends = context.getMembers(Bend.CATEGORY) as Bend[];
     if (bends && bends.length > 0) {
       const bendHeight =
-        bends.map((bb) => bb.getTextHeight()).reduce((a, b) => (a > b ? a : b)) / Tables.STAVE_LINE_DISTANCE;
+        bends.map((bb) => bb.getTextHeight()).reduce((a, b) => (a > b ? a : b)) /
+        Tables.STAVE_LINE_DISTANCE;
       text_line = text_line - (bendHeight + 1);
     } else {
       state.top_text_line += 1;
@@ -134,9 +139,19 @@ export class Vibrato extends Modifier {
       }
 
       for (i = 0; i < num_waves / 2; ++i) {
-        ctx.quadraticCurveTo(x - wave_width / 2, y + wave_height / 2 + wave_girth, x - wave_width, y + wave_girth);
+        ctx.quadraticCurveTo(
+          x - wave_width / 2,
+          y + wave_height / 2 + wave_girth,
+          x - wave_width,
+          y + wave_girth,
+        );
         x -= wave_width;
-        ctx.quadraticCurveTo(x - wave_width / 2, y - wave_height / 2 + wave_girth, x - wave_width, y + wave_girth);
+        ctx.quadraticCurveTo(
+          x - wave_width / 2,
+          y - wave_height / 2 + wave_girth,
+          x - wave_width,
+          y + wave_girth,
+        );
         x -= wave_width;
       }
       ctx.fill();

@@ -1,15 +1,15 @@
 export const SerifFont = {
   smufl: false,
-  name: 'SERIF',
+  name: "SERIF",
   spacing: 50,
-  Description: 'Built-in serif font',
+  Description: "Built-in serif font",
   bold: true,
   italic: true,
   monospaced: false,
   serifs: true,
 
   glyphs: {
-    '0': {
+    "0": {
       x_min: 49,
       x_max: 975,
       y_min: -27,
@@ -18,7 +18,7 @@ export const SerifFont = {
       leftSideBearing: 49,
       advanceWidth: 1024,
     },
-    '1': {
+    "1": {
       x_min: 227,
       x_max: 811,
       y_min: 0,
@@ -27,7 +27,7 @@ export const SerifFont = {
       leftSideBearing: 227,
       advanceWidth: 1024,
     },
-    '2': {
+    "2": {
       x_min: 61,
       x_max: 965,
       y_min: 0,
@@ -36,7 +36,7 @@ export const SerifFont = {
       leftSideBearing: 61,
       advanceWidth: 1024,
     },
-    '3': {
+    "3": {
       x_min: 88,
       x_max: 883,
       y_min: -27,
@@ -45,7 +45,7 @@ export const SerifFont = {
       leftSideBearing: 88,
       advanceWidth: 1024,
     },
-    '4': {
+    "4": {
       x_min: 25,
       x_max: 967,
       y_min: 0,
@@ -54,7 +54,7 @@ export const SerifFont = {
       leftSideBearing: 25,
       advanceWidth: 1024,
     },
-    '5': {
+    "5": {
       x_min: 66,
       x_max: 898,
       y_min: -27,
@@ -63,7 +63,7 @@ export const SerifFont = {
       leftSideBearing: 66,
       advanceWidth: 1024,
     },
-    '6': {
+    "6": {
       x_min: 70,
       x_max: 958,
       y_min: -27,
@@ -72,7 +72,7 @@ export const SerifFont = {
       leftSideBearing: 70,
       advanceWidth: 1024,
     },
-    '7': {
+    "7": {
       x_min: 41,
       x_max: 920,
       y_min: -16,
@@ -81,7 +81,7 @@ export const SerifFont = {
       leftSideBearing: 41,
       advanceWidth: 1024,
     },
-    '8': {
+    "8": {
       x_min: 115,
       x_max: 911,
       y_min: -27,
@@ -90,7 +90,7 @@ export const SerifFont = {
       leftSideBearing: 115,
       advanceWidth: 1024,
     },
-    '9': {
+    "9": {
       x_min: 61,
       x_max: 940,
       y_min: -41,
@@ -99,7 +99,7 @@ export const SerifFont = {
       leftSideBearing: 61,
       advanceWidth: 1024,
     },
-    ' ': {
+    " ": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -108,7 +108,7 @@ export const SerifFont = {
       leftSideBearing: 0,
       advanceWidth: 512,
     },
-    '!': {
+    "!": {
       x_min: 266,
       x_max: 488,
       y_min: -22,
@@ -126,7 +126,7 @@ export const SerifFont = {
       leftSideBearing: 157,
       advanceWidth: 836,
     },
-    '#': {
+    "#": {
       x_min: 10,
       x_max: 1016,
       y_min: -1,
@@ -144,7 +144,7 @@ export const SerifFont = {
       leftSideBearing: 90,
       advanceWidth: 1024,
     },
-    '%': {
+    "%": {
       x_min: 125,
       x_max: 1581,
       y_min: -30,
@@ -153,7 +153,7 @@ export const SerifFont = {
       leftSideBearing: 125,
       advanceWidth: 1706,
     },
-    '&': {
+    "&": {
       x_min: 86,
       x_max: 1536,
       y_min: -28,
@@ -171,7 +171,7 @@ export const SerifFont = {
       leftSideBearing: 97,
       advanceWidth: 369,
     },
-    '(': {
+    "(": {
       x_min: 98,
       x_max: 623,
       y_min: -363,
@@ -180,7 +180,7 @@ export const SerifFont = {
       leftSideBearing: 98,
       advanceWidth: 682,
     },
-    ')': {
+    ")": {
       x_min: 59,
       x_max: 584,
       y_min: -363,
@@ -189,7 +189,7 @@ export const SerifFont = {
       leftSideBearing: 59,
       advanceWidth: 682,
     },
-    '*': {
+    "*": {
       x_min: 137.96078522291893,
       x_max: 886.039214777081,
       y_min: 543,
@@ -198,7 +198,7 @@ export const SerifFont = {
       leftSideBearing: 137,
       advanceWidth: 1024,
     },
-    '+': {
+    "+": {
       x_min: 61,
       x_max: 1093,
       y_min: 2,
@@ -207,7 +207,7 @@ export const SerifFont = {
       leftSideBearing: 61,
       advanceWidth: 1155,
     },
-    ',': {
+    ",": {
       x_min: 115,
       x_max: 399,
       y_min: -291,
@@ -216,7 +216,7 @@ export const SerifFont = {
       leftSideBearing: 115,
       advanceWidth: 512,
     },
-    '-': {
+    "-": {
       x_min: 80,
       x_max: 584,
       y_min: 396,
@@ -225,7 +225,7 @@ export const SerifFont = {
       leftSideBearing: 80,
       advanceWidth: 682,
     },
-    '.': {
+    ".": {
       x_min: 143,
       x_max: 371,
       y_min: -22,
@@ -234,7 +234,7 @@ export const SerifFont = {
       leftSideBearing: 143,
       advanceWidth: 512,
     },
-    '/': {
+    "/": {
       x_min: -17,
       x_max: 586,
       y_min: -27,
@@ -243,7 +243,7 @@ export const SerifFont = {
       leftSideBearing: -17,
       advanceWidth: 569,
     },
-    ':': {
+    ":": {
       x_min: 166,
       x_max: 394,
       y_min: -22,
@@ -252,7 +252,7 @@ export const SerifFont = {
       leftSideBearing: 166,
       advanceWidth: 569,
     },
-    ';': {
+    ";": {
       x_min: 164,
       x_max: 448,
       y_min: -290,
@@ -261,7 +261,7 @@ export const SerifFont = {
       leftSideBearing: 164,
       advanceWidth: 569,
     },
-    '<': {
+    "<": {
       x_min: 57,
       x_max: 1098,
       y_min: -15,
@@ -270,7 +270,7 @@ export const SerifFont = {
       leftSideBearing: 57,
       advanceWidth: 1155,
     },
-    '=': {
+    "=": {
       x_min: 61,
       x_max: 1093,
       y_min: 246,
@@ -279,7 +279,7 @@ export const SerifFont = {
       leftSideBearing: 61,
       advanceWidth: 1155,
     },
-    '>': {
+    ">": {
       x_min: 57,
       x_max: 1098,
       y_min: -15,
@@ -288,7 +288,7 @@ export const SerifFont = {
       leftSideBearing: 57,
       advanceWidth: 1155,
     },
-    '?': {
+    "?": {
       x_min: 139,
       x_max: 848,
       y_min: -15,
@@ -297,7 +297,7 @@ export const SerifFont = {
       leftSideBearing: 139,
       advanceWidth: 909,
     },
-    '@': {
+    "@": {
       x_min: 238,
       x_max: 1657,
       y_min: -29,
@@ -540,7 +540,7 @@ export const SerifFont = {
       leftSideBearing: 18,
       advanceWidth: 1251,
     },
-    '[': {
+    "[": {
       x_min: 180,
       x_max: 612,
       y_min: -319,
@@ -549,7 +549,7 @@ export const SerifFont = {
       leftSideBearing: 180,
       advanceWidth: 682,
     },
-    '\\': {
+    "\\": {
       x_min: -17,
       x_max: 586,
       y_min: -27,
@@ -558,7 +558,7 @@ export const SerifFont = {
       leftSideBearing: -17,
       advanceWidth: 569,
     },
-    ']': {
+    "]": {
       x_min: 70,
       x_max: 502,
       y_min: -319,
@@ -567,7 +567,7 @@ export const SerifFont = {
       leftSideBearing: 70,
       advanceWidth: 682,
     },
-    '^': {
+    "^": {
       x_min: 49,
       x_max: 914,
       y_min: 608,
@@ -585,7 +585,7 @@ export const SerifFont = {
       leftSideBearing: 0,
       advanceWidth: 1024,
     },
-    '`': {
+    "`": {
       x_min: 39,
       x_max: 499,
       y_min: 1037,
@@ -828,7 +828,7 @@ export const SerifFont = {
       leftSideBearing: 55,
       advanceWidth: 909,
     },
-    '{': {
+    "{": {
       x_min: 205,
       x_max: 717,
       y_min: -377,
@@ -837,7 +837,7 @@ export const SerifFont = {
       leftSideBearing: 205,
       advanceWidth: 983,
     },
-    '|': {
+    "|": {
       x_min: 137,
       x_max: 273,
       y_min: -512,
@@ -846,7 +846,7 @@ export const SerifFont = {
       leftSideBearing: 137,
       advanceWidth: 410,
     },
-    '}': {
+    "}": {
       x_min: 266,
       x_max: 778,
       y_min: -377,
@@ -855,7 +855,7 @@ export const SerifFont = {
       leftSideBearing: 266,
       advanceWidth: 983,
     },
-    '~': {
+    "~": {
       x_min: 82,
       x_max: 1028,
       y_min: 380,
@@ -865,7 +865,7 @@ export const SerifFont = {
       advanceWidth: 1108,
     },
   },
-  fontFamily: 'serif',
+  fontFamily: "serif",
   resolution: 2048,
-  generatedOn: '2020-10-18T19:03:12.514Z',
+  generatedOn: "2020-10-18T19:03:12.514Z",
 };

@@ -3,28 +3,27 @@
 //
 // Tuplet Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Dot } from '../src/dot';
-import { Formatter } from '../src/formatter';
-import { Stem } from '../src/stem';
-import { Tuplet } from '../src/tuplet';
+import { Dot } from "../src/dot";
+import { Formatter } from "../src/formatter";
+import { Stem } from "../src/stem";
+import { Tuplet } from "../src/tuplet";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TupletTests = {
   Start(): void {
-    QUnit.module('Tuplet');
+    QUnit.module("Tuplet");
     const run = VexFlowTests.runTests;
-    run('Simple Tuplet', simple);
-    run('Beamed Tuplet', beamed);
-    run('Ratioed Tuplet', ratio);
-    run('Bottom Tuplet', bottom);
-    run('Bottom Ratioed Tuplet', bottomRatio);
-    run('Awkward Tuplet', awkward);
-    run('Complex Tuplet', complex);
-    run('Mixed Stem Direction Tuplet', mixedTop);
-    run('Mixed Stem Direction Bottom Tuplet', mixedBottom);
-    run('Nested Tuplets', nested);
-    run('Single Tuplets', single);
+    run("Simple Tuplet", simple);
+    run("Beamed Tuplet", beamed);
+    run("Ratioed Tuplet", ratio);
+    run("Bottom Tuplet", bottom);
+    run("Bottom Ratioed Tuplet", bottomRatio);
+    run("Awkward Tuplet", awkward);
+    run("Complex Tuplet", complex);
+    run("Mixed Stem Direction Tuplet", mixedTop);
+    run("Mixed Stem Direction Bottom Tuplet", mixedBottom);
+    run("Nested Tuplets", nested);
+    run("Single Tuplets", single);
   },
 };
 
@@ -35,25 +34,25 @@ const set = (key: string) => (value: number | string) => (object: any) => {
   object[key] = value;
   return object;
 };
-const setStemDirection = set('stem_direction');
+const setStemDirection = set("stem_direction");
 const setStemUp = setStemDirection(Stem.UP);
 const setStemDown = setStemDirection(Stem.DOWN);
-const setDurationToQuarterNote = set('duration')('4');
+const setDurationToQuarterNote = set("duration")("4");
 
 /**
  * Simple test case with one ascending triplet and one descending triplet.
  */
 function simple(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature('3/4');
+  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature("3/4");
 
   const notes = [
-    { keys: ['g/4'], duration: '4' },
-    { keys: ['a/4'], duration: '4' },
-    { keys: ['b/4'], duration: '4' },
-    { keys: ['b/4'], duration: '8' },
-    { keys: ['a/4'], duration: '8' },
-    { keys: ['g/4'], duration: '8' },
+    { keys: ["g/4"], duration: "4" },
+    { keys: ["a/4"], duration: "4" },
+    { keys: ["b/4"], duration: "4" },
+    { keys: ["b/4"], duration: "8" },
+    { keys: ["a/4"], duration: "8" },
+    { keys: ["g/4"], duration: "8" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -71,24 +70,24 @@ function simple(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Simple Test');
+  options.assert.ok(true, "Simple Test");
 }
 
 function beamed(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature('3/8');
+  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature("3/8");
 
   const notes = [
-    { keys: ['b/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['a/4'], duration: '8' },
-    { keys: ['f/4'], duration: '8' },
-    { keys: ['a/4'], duration: '8' },
-    { keys: ['f/4'], duration: '8' },
-    { keys: ['a/4'], duration: '8' },
-    { keys: ['f/4'], duration: '8' },
-    { keys: ['g/4'], duration: '8' },
+    { keys: ["b/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["a/4"], duration: "8" },
+    { keys: ["f/4"], duration: "8" },
+    { keys: ["a/4"], duration: "8" },
+    { keys: ["f/4"], duration: "8" },
+    { keys: ["a/4"], duration: "8" },
+    { keys: ["f/4"], duration: "8" },
+    { keys: ["g/4"], duration: "8" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -108,20 +107,20 @@ function beamed(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Beamed Test');
+  options.assert.ok(true, "Beamed Test");
 }
 
 function ratio(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature('4/4');
+  const stave = f.Stave({ x: 10, y: 10, width: 350 }).addTimeSignature("4/4");
 
   const notes = [
-    { keys: ['f/4'], duration: '4' },
-    { keys: ['a/4'], duration: '4' },
-    { keys: ['b/4'], duration: '4' },
-    { keys: ['g/4'], duration: '8' },
-    { keys: ['e/4'], duration: '8' },
-    { keys: ['g/4'], duration: '8' },
+    { keys: ["f/4"], duration: "4" },
+    { keys: ["a/4"], duration: "4" },
+    { keys: ["b/4"], duration: "4" },
+    { keys: ["g/4"], duration: "8" },
+    { keys: ["e/4"], duration: "8" },
+    { keys: ["g/4"], duration: "8" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -151,20 +150,20 @@ function ratio(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Ratioed Test');
+  options.assert.ok(true, "Ratioed Test");
 }
 
 function bottom(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 350, 160);
-  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature('3/4');
+  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature("3/4");
 
   const notes = [
-    { keys: ['f/4'], duration: '4' },
-    { keys: ['c/4'], duration: '4' },
-    { keys: ['g/4'], duration: '4' },
-    { keys: ['d/5'], duration: '8' },
-    { keys: ['g/3'], duration: '8' },
-    { keys: ['b/4'], duration: '8' },
+    { keys: ["f/4"], duration: "4" },
+    { keys: ["c/4"], duration: "4" },
+    { keys: ["g/4"], duration: "4" },
+    { keys: ["d/5"], duration: "8" },
+    { keys: ["g/3"], duration: "8" },
+    { keys: ["b/4"], duration: "8" },
   ]
     .map(setStemDown)
     .map(f.StaveNote.bind(f));
@@ -192,20 +191,20 @@ function bottom(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Bottom Test');
+  options.assert.ok(true, "Bottom Test");
 }
 
 function bottomRatio(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 350, 160);
-  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature('5/8');
+  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature("5/8");
 
   const notes = [
-    { keys: ['f/4'], duration: '4' },
-    { keys: ['c/4'], duration: '4' },
-    { keys: ['d/4'], duration: '4' },
-    { keys: ['d/5'], duration: '8' },
-    { keys: ['g/5'], duration: '8' },
-    { keys: ['b/4'], duration: '8' },
+    { keys: ["f/4"], duration: "4" },
+    { keys: ["c/4"], duration: "4" },
+    { keys: ["d/4"], duration: "4" },
+    { keys: ["d/5"], duration: "8" },
+    { keys: ["g/5"], duration: "8" },
+    { keys: ["b/4"], duration: "8" },
   ]
     .map(setStemDown)
     .map(f.StaveNote.bind(f));
@@ -239,7 +238,7 @@ function bottomRatio(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Bottom Ratioed Test');
+  options.assert.ok(true, "Bottom Ratioed Test");
 }
 
 function awkward(options: TestOptions): void {
@@ -247,21 +246,21 @@ function awkward(options: TestOptions): void {
   const stave = f.Stave({ x: 10, y: 10 });
 
   const notes = [
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['b/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['f/4'], duration: '16' },
-    { keys: ['e/4'], duration: '16' },
-    { keys: ['c/4'], duration: '16' },
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['f/4'], duration: '16' },
-    { keys: ['e/4'], duration: '16' },
-    { keys: ['c/4'], duration: '8' },
-    { keys: ['d/4'], duration: '8' },
-    { keys: ['e/4'], duration: '8' },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["b/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["f/4"], duration: "16" },
+    { keys: ["e/4"], duration: "16" },
+    { keys: ["c/4"], duration: "16" },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["f/4"], duration: "16" },
+    { keys: ["e/4"], duration: "16" },
+    { keys: ["c/4"], duration: "8" },
+    { keys: ["d/4"], duration: "8" },
+    { keys: ["e/4"], duration: "8" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -288,37 +287,37 @@ function awkward(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Awkward Test');
+  options.assert.ok(true, "Awkward Test");
 }
 
 function complex(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 600);
-  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature('4/4');
+  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature("4/4");
 
   const notes1 = [
-    { keys: ['b/4'], duration: '8d' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['g/4'], duration: '8' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['b/4'], duration: '16r' },
-    { keys: ['g/4'], duration: '32' },
-    { keys: ['f/4'], duration: '32' },
-    { keys: ['g/4'], duration: '32' },
-    { keys: ['f/4'], duration: '32' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['f/4'], duration: '8' },
-    { keys: ['b/4'], duration: '8' },
-    { keys: ['a/4'], duration: '8' },
-    { keys: ['g/4'], duration: '8' },
-    { keys: ['b/4'], duration: '8' },
-    { keys: ['a/4'], duration: '8' },
+    { keys: ["b/4"], duration: "8d" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["g/4"], duration: "8" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["b/4"], duration: "16r" },
+    { keys: ["g/4"], duration: "32" },
+    { keys: ["f/4"], duration: "32" },
+    { keys: ["g/4"], duration: "32" },
+    { keys: ["f/4"], duration: "32" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["f/4"], duration: "8" },
+    { keys: ["b/4"], duration: "8" },
+    { keys: ["a/4"], duration: "8" },
+    { keys: ["g/4"], duration: "8" },
+    { keys: ["b/4"], duration: "8" },
+    { keys: ["a/4"], duration: "8" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
 
   Dot.buildAndAttach([notes1[0]], { all: true });
 
-  const notes2 = [{ keys: ['c/4'] }, { keys: ['c/4'] }, { keys: ['c/4'] }, { keys: ['c/4'] }]
+  const notes2 = [{ keys: ["c/4"] }, { keys: ["c/4"] }, { keys: ["c/4"] }, { keys: ["c/4"] }]
     .map(setDurationToQuarterNote)
     .map(setStemDown)
     .map(f.StaveNote.bind(f));
@@ -355,7 +354,7 @@ function complex(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Complex Test');
+  options.assert.ok(true, "Complex Test");
 }
 
 function mixedTop(options: TestOptions): void {
@@ -363,12 +362,12 @@ function mixedTop(options: TestOptions): void {
   const stave = f.Stave({ x: 10, y: 10 });
 
   const notes = [
-    { keys: ['a/4'], stem_direction: 1 },
-    { keys: ['c/6'], stem_direction: -1 },
-    { keys: ['a/4'], stem_direction: 1 },
-    { keys: ['f/5'], stem_direction: 1 },
-    { keys: ['a/4'], stem_direction: -1 },
-    { keys: ['c/6'], stem_direction: -1 },
+    { keys: ["a/4"], stem_direction: 1 },
+    { keys: ["c/6"], stem_direction: -1 },
+    { keys: ["a/4"], stem_direction: 1 },
+    { keys: ["f/5"], stem_direction: 1 },
+    { keys: ["a/4"], stem_direction: -1 },
+    { keys: ["c/6"], stem_direction: -1 },
   ]
     .map(setDurationToQuarterNote)
     .map(f.StaveNote.bind(f));
@@ -400,7 +399,7 @@ function mixedTop(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Mixed Stem Direction Tuplet');
+  options.assert.ok(true, "Mixed Stem Direction Tuplet");
 }
 
 function mixedBottom(options: TestOptions): void {
@@ -408,12 +407,12 @@ function mixedBottom(options: TestOptions): void {
   const stave = f.Stave({ x: 10, y: 10 });
 
   const notes = [
-    { keys: ['f/3'], stem_direction: 1 },
-    { keys: ['a/5'], stem_direction: -1 },
-    { keys: ['a/4'], stem_direction: 1 },
-    { keys: ['f/3'], stem_direction: 1 },
-    { keys: ['a/4'], stem_direction: -1 },
-    { keys: ['c/4'], stem_direction: -1 },
+    { keys: ["f/3"], stem_direction: 1 },
+    { keys: ["a/5"], stem_direction: -1 },
+    { keys: ["a/4"], stem_direction: 1 },
+    { keys: ["f/3"], stem_direction: 1 },
+    { keys: ["a/4"], stem_direction: -1 },
+    { keys: ["c/4"], stem_direction: -1 },
   ]
     .map(setDurationToQuarterNote)
     .map(f.StaveNote.bind(f));
@@ -445,23 +444,23 @@ function mixedBottom(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Mixed Stem Direction Bottom Tuplet');
+  options.assert.ok(true, "Mixed Stem Direction Bottom Tuplet");
 }
 
 function nested(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature('4/4');
+  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature("4/4");
 
   const notes = [
     // Big triplet 1:
-    { keys: ['b/4'], duration: '4' },
-    { keys: ['a/4'], duration: '4' },
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['f/4'], duration: '16' },
-    { keys: ['a/4'], duration: '16' },
-    { keys: ['g/4'], duration: '16' },
-    { keys: ['b/4'], duration: '2' },
+    { keys: ["b/4"], duration: "4" },
+    { keys: ["a/4"], duration: "4" },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["f/4"], duration: "16" },
+    { keys: ["a/4"], duration: "16" },
+    { keys: ["g/4"], duration: "16" },
+    { keys: ["b/4"], duration: "2" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -493,22 +492,22 @@ function nested(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Nested Tuplets');
+  options.assert.ok(true, "Nested Tuplets");
 }
 
 function single(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature('4/4');
+  const stave = f.Stave({ x: 10, y: 10 }).addTimeSignature("4/4");
 
   const notes = [
     // Big triplet 1:
-    { keys: ['c/4'], duration: '4' },
-    { keys: ['d/4'], duration: '8' },
-    { keys: ['e/4'], duration: '8' },
-    { keys: ['f/4'], duration: '8' },
-    { keys: ['g/4'], duration: '8' },
-    { keys: ['a/4'], duration: '2' },
-    { keys: ['b/4'], duration: '4' },
+    { keys: ["c/4"], duration: "4" },
+    { keys: ["d/4"], duration: "8" },
+    { keys: ["e/4"], duration: "8" },
+    { keys: ["f/4"], duration: "8" },
+    { keys: ["g/4"], duration: "8" },
+    { keys: ["a/4"], duration: "2" },
+    { keys: ["b/4"], duration: "4" },
   ]
     .map(setStemUp)
     .map(f.StaveNote.bind(f));
@@ -568,7 +567,7 @@ function single(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Nested Tuplets');
+  options.assert.ok(true, "Nested Tuplets");
 }
 
 VexFlowTests.register(TupletTests);

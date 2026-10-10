@@ -7,14 +7,14 @@
 // render notes as a `Modifier`
 // ex) ClefNote, TimeSigNote and BarNote.
 
-import { Formatter } from './formatter';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { Voice } from './voice';
+import { Formatter } from "./formatter";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { Voice } from "./voice";
 
 export class NoteSubGroup extends Modifier {
   static get CATEGORY(): string {

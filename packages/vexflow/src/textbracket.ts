@@ -5,15 +5,15 @@
 // The octave transposition markings (8va, 8vb, 15va, 15vb) can be created
 // using this class.
 
-import { Element } from './element';
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { Renderer } from './renderer';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { log, RuntimeError } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { Renderer } from "./renderer";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { log, RuntimeError } from "./util";
 
 export interface TextBracketParams {
   start: Note;
@@ -26,7 +26,7 @@ export interface TextBracketParams {
 // To enable logging for this class. Set `Vex.Flow.TextBracket.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (TextBracket.DEBUG) log('Vex.Flow.TextBracket', args);
+  if (TextBracket.DEBUG) log("Vex.Flow.TextBracket", args);
 }
 
 export enum TextBracketPosition {
@@ -82,7 +82,7 @@ export class TextBracket extends Element {
    * @deprecated Use `TextBracket.Position` instead.
    */
   static get Positions(): typeof TextBracketPosition {
-    L('Positions is deprecated, use TextBracketPosition instead.');
+    L("Positions is deprecated, use TextBracketPosition instead.");
     return TextBracketPosition;
   }
 
@@ -90,11 +90,17 @@ export class TextBracket extends Element {
    * @deprecated Use `TextBracket.PositionString` instead.
    */
   static get PositionsString(): Record<string, number> {
-    L('PositionsString is deprecated, use PositionString instead.');
+    L("PositionsString is deprecated, use PositionString instead.");
     return TextBracket.PositionString;
   }
 
-  constructor({ start, stop, text = '', superscript = '', position = TextBracketPosition.TOP }: TextBracketParams) {
+  constructor({
+    start,
+    stop,
+    text = "",
+    superscript = "",
+    position = TextBracketPosition.TOP,
+  }: TextBracketParams) {
     super();
 
     this.start = start;
@@ -103,7 +109,7 @@ export class TextBracket extends Element {
     this.text = text;
     this.superscript = superscript;
 
-    this.position = typeof position === 'string' ? TextBracket.PositionString[position] : position;
+    this.position = typeof position === "string" ? TextBracket.PositionString[position] : position;
 
     this.line = 1;
 
@@ -112,7 +118,7 @@ export class TextBracket extends Element {
     this.render_options = {
       dashed: true,
       dash: [5],
-      color: 'black',
+      color: "black",
       line_width: 1,
       show_bracket: true,
       bracket_height: 8,
@@ -166,14 +172,14 @@ export class TextBracket extends Element {
         y = this.start.checkStave().getYForBottomText(this.line + Tables.TEXT_HEIGHT_OFFSET_HACK);
         break;
       default:
-        throw new RuntimeError('InvalidPosition', `The position ${this.position} is invalid.`);
+        throw new RuntimeError("InvalidPosition", `The position ${this.position} is invalid.`);
     }
 
     // Get the preliminary start and stop coordintates for the bracket
     const start = { x: this.start.getAbsoluteX(), y };
     const stop = { x: this.stop.getAbsoluteX(), y };
 
-    L('Rendering TextBracket: start:', start, 'stop:', stop, 'y:', y);
+    L("Rendering TextBracket: start:", start, "stop:", stop, "y:", y);
 
     const bracket_height = this.render_options.bracket_height * this.position;
 
@@ -233,7 +239,7 @@ export class TextBracket extends Element {
           line_y + 1 * this.position,
           end_x,
           line_y + bracket_height,
-          this.render_options.dash
+          this.render_options.dash,
         );
       }
     } else {

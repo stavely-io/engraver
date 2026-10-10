@@ -1,8 +1,8 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2021.
 // MIT License
 
-import type { FontInfo } from './font';
-import { Category } from './typeguard';
+import type { FontInfo } from "./font";
+import { Category } from "./typeguard";
 
 export interface TextMeasure {
   x: number;
@@ -37,7 +37,14 @@ export abstract class RenderContext {
   abstract beginPath(): this;
   abstract moveTo(x: number, y: number): this;
   abstract lineTo(x: number, y: number): this;
-  abstract bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): this;
+  abstract bezierCurveTo(
+    cp1x: number,
+    cp1y: number,
+    cp2x: number,
+    cp2y: number,
+    x: number,
+    y: number,
+  ): this;
   abstract quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): this;
   abstract arc(
     x: number,
@@ -45,7 +52,7 @@ export abstract class RenderContext {
     radius: number,
     startAngle: number,
     endAngle: number,
-    counterclockwise: boolean
+    counterclockwise: boolean,
   ): this;
   // eslint-disable-next-line
   abstract fill(attributes?: any): this;
@@ -67,7 +74,12 @@ export abstract class RenderContext {
   abstract set strokeStyle(style: string | CanvasGradient | CanvasPattern);
   abstract get strokeStyle(): string | CanvasGradient | CanvasPattern;
 
-  abstract setFont(f?: string | FontInfo, size?: string | number, weight?: string | number, style?: string): this;
+  abstract setFont(
+    f?: string | FontInfo,
+    size?: string | number,
+    weight?: string | number,
+    style?: string,
+  ): this;
   abstract getFont(): string;
 
   set font(f: string) {
@@ -94,7 +106,7 @@ export abstract class RenderContext {
  * @param y dot y coordinate
  * @param color
  */
-export function drawDot(ctx: RenderContext, x: number, y: number, color = '#F55'): void {
+export function drawDot(ctx: RenderContext, x: number, y: number, color = "#F55"): void {
   ctx.save();
   ctx.setFillStyle(color);
 

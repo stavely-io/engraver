@@ -2,15 +2,15 @@
 // Author: Balazs Forian-Szabo
 // MIT License
 
-import { Element } from './element';
-import type { Note } from './note';
-import { Category } from './typeguard';
-import { log } from './util';
-import { Vibrato } from './vibrato';
+import { Element } from "./element";
+import type { Note } from "./note";
+import { Category } from "./typeguard";
+import { log } from "./util";
+import { Vibrato } from "./vibrato";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (VibratoBracket.DEBUG) log('Vex.Flow.VibratoBracket', args);
+  if (VibratoBracket.DEBUG) log("Vex.Flow.VibratoBracket", args);
 }
 
 /** `VibratoBracket` renders vibrato effect between two notes. */
@@ -79,7 +79,9 @@ export class VibratoBracket extends Element {
     // If start note is not set then vibrato will be drawn
     // from the beginning of the stave
     const start_x: number =
-      (this.start && this.start.getAbsoluteX()) || (this.stop && this.stop.checkStave().getTieStartX()) || 0;
+      (this.start && this.start.getAbsoluteX()) ||
+      (this.stop && this.stop.checkStave().getTieStartX()) ||
+      0;
     // If stop note is not set then vibrato will be drawn
     // until the end of the stave
     const stop_x: number =
@@ -89,7 +91,7 @@ export class VibratoBracket extends Element {
 
     this.render_options.vibrato_width = stop_x - start_x;
 
-    L('Rendering VibratoBracket: start_x:', start_x, 'stop_x:', stop_x, 'y:', y);
+    L("Rendering VibratoBracket: start_x:", start_x, "stop_x:", stop_x, "y:", y);
 
     Vibrato.renderVibrato(ctx, start_x, y, this.render_options);
   }

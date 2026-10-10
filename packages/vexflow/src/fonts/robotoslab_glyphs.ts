@@ -1,7 +1,7 @@
 export const RobotoSlabFont = {
   spacing: 50,
   glyphs: {
-    ' ': {
+    " ": {
       x_min: 0,
       x_max: 509,
       y_min: 0,
@@ -10,7 +10,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 0,
       advanceWidth: 509,
     },
-    '0': {
+    "0": {
       x_min: 121,
       x_max: 1048,
       y_min: -21,
@@ -19,7 +19,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 121,
       advanceWidth: 1168,
     },
-    '1': {
+    "1": {
       x_min: 117,
       x_max: 767,
       y_min: 0,
@@ -28,7 +28,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 117,
       advanceWidth: 844,
     },
-    '2': {
+    "2": {
       x_min: 75.8474576645637,
       x_max: 1040,
       y_min: 0,
@@ -37,7 +37,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 75,
       advanceWidth: 1131,
     },
-    '3': {
+    "3": {
       x_min: 74.85365853658536,
       x_max: 994,
       y_min: -21,
@@ -46,7 +46,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 74,
       advanceWidth: 1106,
     },
-    '4': {
+    "4": {
       x_min: 63,
       x_max: 1114,
       y_min: 0,
@@ -55,7 +55,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 63,
       advanceWidth: 1187,
     },
-    '5': {
+    "5": {
       x_min: 96.8448275474953,
       x_max: 982,
       y_min: -21,
@@ -64,7 +64,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 96,
       advanceWidth: 1081,
     },
-    '6': {
+    "6": {
       x_min: 121,
       x_max: 1067,
       y_min: -21,
@@ -73,7 +73,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 121,
       advanceWidth: 1144,
     },
-    '7': {
+    "7": {
       x_min: 76,
       x_max: 1060,
       y_min: 0,
@@ -82,7 +82,7 @@ export const RobotoSlabFont = {
       leftSideBearing: -30,
       advanceWidth: 1128,
     },
-    '8': {
+    "8": {
       x_min: 92,
       x_max: 1039,
       y_min: -21,
@@ -91,7 +91,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 92,
       advanceWidth: 1131,
     },
-    '9': {
+    "9": {
       x_min: 84,
       x_max: 1026,
       y_min: -21,
@@ -100,7 +100,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 84,
       advanceWidth: 1154,
     },
-    '!': {
+    "!": {
       x_min: 143,
       x_max: 340,
       y_min: 0,
@@ -118,7 +118,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 166,
       advanceWidth: 770,
     },
-    '#': {
+    "#": {
       x_min: 63,
       x_max: 1179,
       y_min: 0,
@@ -136,7 +136,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 81,
       advanceWidth: 1110,
     },
-    '%': {
+    "%": {
       x_min: 77,
       x_max: 1384,
       y_min: -21,
@@ -145,7 +145,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 77,
       advanceWidth: 1460,
     },
-    '&': {
+    "&": {
       x_min: 74,
       x_max: 1242,
       y_min: -21,
@@ -163,7 +163,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 166,
       advanceWidth: 460,
     },
-    '(': {
+    "(": {
       x_min: 114,
       x_max: 650,
       y_min: -463,
@@ -172,7 +172,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 114,
       advanceWidth: 662,
     },
-    ')': {
+    ")": {
       x_min: 11,
       x_max: 547,
       y_min: -463,
@@ -181,7 +181,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 11,
       advanceWidth: 654,
     },
-    '*': {
+    "*": {
       x_min: 66,
       x_max: 893,
       y_min: 607,
@@ -190,7 +190,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 66,
       advanceWidth: 958,
     },
-    '+': {
+    "+": {
       x_min: 73,
       x_max: 1071,
       y_min: 146,
@@ -199,7 +199,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 73,
       advanceWidth: 1145,
     },
-    ',': {
+    ",": {
       x_min: 23,
       x_max: 315,
       y_min: -311,
@@ -208,7 +208,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 23,
       advanceWidth: 404,
     },
-    '-': {
+    "-": {
       x_min: 154,
       x_max: 643,
       y_min: 538,
@@ -217,7 +217,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 154,
       advanceWidth: 797,
     },
-    '.': {
+    ".": {
       x_min: 145,
       x_max: 342,
       y_min: 0,
@@ -226,7 +226,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 145,
       advanceWidth: 493,
     },
-    '/': {
+    "/": {
       x_min: 0,
       x_max: 774,
       y_min: -125,
@@ -235,7 +235,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 0,
       advanceWidth: 824,
     },
-    ':': {
+    ":": {
       x_min: 145,
       x_max: 342,
       y_min: 0,
@@ -244,7 +244,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 145,
       advanceWidth: 419,
     },
-    ';': {
+    ";": {
       x_min: 53,
       x_max: 345,
       y_min: -311,
@@ -253,7 +253,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 53,
       advanceWidth: 424,
     },
-    '<': {
+    "<": {
       x_min: 76,
       x_max: 892,
       y_min: 107,
@@ -262,7 +262,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 76,
       advanceWidth: 1017,
     },
-    '=': {
+    "=": {
       x_min: 147,
       x_max: 981,
       y_min: 407,
@@ -271,7 +271,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 147,
       advanceWidth: 1127,
     },
-    '>': {
+    ">": {
       x_min: 125,
       x_max: 980,
       y_min: 87,
@@ -280,7 +280,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 125,
       advanceWidth: 1060,
     },
-    '?': {
+    "?": {
       x_min: 65.92660602419838,
       x_max: 890,
       y_min: 0,
@@ -289,7 +289,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 65,
       advanceWidth: 953,
     },
-    '@': {
+    "@": {
       x_min: 84.3592218305664,
       x_max: 1705.2346925277395,
       y_min: -453,
@@ -532,7 +532,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 90,
       advanceWidth: 1197,
     },
-    '[': {
+    "[": {
       x_min: 157,
       x_max: 541,
       y_min: -312,
@@ -541,7 +541,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 157,
       advanceWidth: 573,
     },
-    '\\': {
+    "\\": {
       x_min: 36,
       x_max: 830,
       y_min: -125,
@@ -550,7 +550,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 36,
       advanceWidth: 841,
     },
-    ']': {
+    "]": {
       x_min: 23,
       x_max: 408,
       y_min: -312,
@@ -559,7 +559,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 23,
       advanceWidth: 552,
     },
-    '^': {
+    "^": {
       x_min: 71,
       x_max: 802,
       y_min: 729,
@@ -577,7 +577,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 119,
       advanceWidth: 1168,
     },
-    '`': {
+    "`": {
       x_min: 40,
       x_max: 456,
       y_min: 1288,
@@ -820,7 +820,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 88,
       advanceWidth: 1032,
     },
-    '{': {
+    "{": {
       x_min: 63,
       x_max: 671,
       y_min: -364,
@@ -829,7 +829,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 63,
       advanceWidth: 701,
     },
-    '|': {
+    "|": {
       x_min: 150,
       x_max: 307,
       y_min: -270,
@@ -838,7 +838,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 150,
       advanceWidth: 451,
     },
-    '}': {
+    "}": {
       x_min: 27,
       x_max: 635,
       y_min: -364,
@@ -847,7 +847,7 @@ export const RobotoSlabFont = {
       leftSideBearing: 27,
       advanceWidth: 701,
     },
-    '~': {
+    "~": {
       x_min: 121,
       x_max: 1257,
       y_min: 401,
@@ -857,7 +857,7 @@ export const RobotoSlabFont = {
       advanceWidth: 1386,
     },
   },
-  fontFamily: 'Roboto Slab',
+  fontFamily: "Roboto Slab",
   resolution: 2048,
-  generatedOn: '2020-06-15T19:12:58.120Z',
+  generatedOn: "2020-06-15T19:12:58.120Z",
 };

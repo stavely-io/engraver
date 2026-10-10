@@ -2,18 +2,18 @@
 // Author: Cyril Silverman
 // MIT License
 
-import { Glyph } from './glyph';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category, isTabNote } from './typeguard';
-import { defined, log, RuntimeError } from './util';
+import { Glyph } from "./glyph";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category, isTabNote } from "./typeguard";
+import { defined, log, RuntimeError } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Ornament.DEBUG) log('Vex.Flow.Ornament', args);
+  if (Ornament.DEBUG) log("Vex.Flow.Ornament", args);
 }
 
 export interface OrnamentMetrics {
@@ -40,7 +40,7 @@ export class Ornament extends Modifier {
   }
   static get minPadding(): number {
     const musicFont = Tables.currentMusicFont();
-    return musicFont.lookupMetric('noteHead.minPadding');
+    return musicFont.lookupMetric("noteHead.minPadding");
   }
 
   protected ornament: {
@@ -93,8 +93,11 @@ export class Ornament extends Modifier {
       if (Ornament.ornamentArticulation.indexOf(ornament.type) >= 0) {
         // Unfortunately we don't know the stem direction.  So we base it
         // on the line number, but also allow it to be overridden.
-        const ornamentNote = defined(ornament.note, 'NoAttachedNote');
-        if (ornamentNote.getLineNumber() >= 3 || ornament.getPosition() === Modifier.Position.ABOVE) {
+        const ornamentNote = defined(ornament.note, "NoAttachedNote");
+        if (
+          ornamentNote.getLineNumber() >= 3 ||
+          ornament.getPosition() === Modifier.Position.ABOVE
+        ) {
           state.top_text_line += increment;
           ornament.y_shift += yOffset;
           yOffset -= ornament.glyph.bbox.getH();
@@ -126,7 +129,7 @@ export class Ornament extends Modifier {
    * these are generally on the top of the staff.
    */
   static get ornamentNoteTransition(): string[] {
-    return ['flip', 'jazzTurn', 'smear'];
+    return ["flip", "jazzTurn", "smear"];
   }
 
   /**
@@ -134,7 +137,7 @@ export class Ornament extends Modifier {
    * any accidentals
    */
   static get ornamentAttack(): string[] {
-    return ['scoop'];
+    return ["scoop"];
   }
 
   /**
@@ -142,7 +145,16 @@ export class Ornament extends Modifier {
    * stem goes up or down.
    */
   static get ornamentAlignWithNoteHead(): string[] {
-    return ['doit', 'fall', 'fallLong', 'doitLong', 'bend', 'plungerClosed', 'plungerOpen', 'scoop'];
+    return [
+      "doit",
+      "fall",
+      "fallLong",
+      "doitLong",
+      "bend",
+      "plungerClosed",
+      "plungerOpen",
+      "scoop",
+    ];
   }
 
   /**
@@ -150,12 +162,12 @@ export class Ornament extends Modifier {
    * note and overlapping the next beat/measure..
    */
   static get ornamentRelease(): string[] {
-    return ['doit', 'fall', 'fallLong', 'doitLong', 'jazzTurn', 'smear', 'flip'];
+    return ["doit", "fall", "fallLong", "doitLong", "jazzTurn", "smear", "flip"];
   }
 
   /** ornamentArticulation goes above/below the note based on space availablity */
   static get ornamentArticulation(): string[] {
-    return ['bend', 'plungerClosed', 'plungerOpen'];
+    return ["bend", "plungerClosed", "plungerOpen"];
   }
 
   /**
@@ -165,7 +177,7 @@ export class Ornament extends Modifier {
   getMetrics(): OrnamentMetrics {
     const ornamentMetrics = Tables.currentMusicFont().getMetrics().ornament;
 
-    if (!ornamentMetrics) throw new RuntimeError('BadMetrics', `ornament missing`);
+    if (!ornamentMetrics) throw new RuntimeError("BadMetrics", `ornament missing`);
     return ornamentMetrics[this.ornament.code];
   }
 
@@ -204,7 +216,7 @@ export class Ornament extends Modifier {
     this.ornamentAlignWithNoteHead = Ornament.ornamentAlignWithNoteHead.indexOf(this.type) >= 0;
 
     if (!this.ornament) {
-      throw new RuntimeError('ArgumentError', `Ornament not found: '${this.type}'`);
+      throw new RuntimeError("ArgumentError", `Ornament not found: '${this.type}'`);
     }
 
     this.x_shift = metrics ? metrics.xOffset : 0;
@@ -258,7 +270,7 @@ export class Ornament extends Modifier {
     const stave = note.checkStave();
 
     this.applyStyle();
-    ctx.openGroup('ornament', this.getAttribute('id'));
+    ctx.openGroup("ornament", this.getAttribute("id"));
 
     // Get stem extents
     const stemExtents = note.checkStem().getExtents();
@@ -309,7 +321,8 @@ export class Ornament extends Modifier {
         delayXShift += this.glyph.getMetrics().width / 2;
         const tickables = note.getVoice().getTickables();
         const index = tickables.indexOf(note);
-        const nextContext = index + 1 < tickables.length ? tickables[index + 1].checkTickContext() : undefined;
+        const nextContext =
+          index + 1 < tickables.length ? tickables[index + 1].checkTickContext() : undefined;
         if (nextContext) {
           delayXShift += (nextContext.getX() - startX) * 0.5;
         } else {
@@ -320,7 +333,7 @@ export class Ornament extends Modifier {
       glyphX += delayXShift;
     }
 
-    L('Rendering ornament: ', this.ornament, glyphX, glyphY);
+    L("Rendering ornament: ", this.ornament, glyphX, glyphY);
 
     if (this.accidentalLower) {
       this.accidentalLower.render(ctx, glyphX, glyphY);

@@ -4,15 +4,15 @@
 // `StemmableNote` is an abstract interface for notes with optional stems.
 // Examples of stemmable notes are `StaveNote` and `TabNote`
 
-import type { GlyphProps } from './glyph';
-import { Glyph } from './glyph';
-import type { NoteStruct } from './note';
-import { Note } from './note';
-import type { StemOptions } from './stem';
-import { Stem } from './stem';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import type { GlyphProps } from "./glyph";
+import { Glyph } from "./glyph";
+import type { NoteStruct } from "./note";
+import { Note } from "./note";
+import type { StemOptions } from "./stem";
+import { Stem } from "./stem";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export abstract class StemmableNote extends Note {
   static get CATEGORY(): string {
@@ -36,7 +36,7 @@ export abstract class StemmableNote extends Note {
 
   checkStem(): Stem {
     if (!this.stem) {
-      throw new RuntimeError('NoStem', 'No stem attached to instance');
+      throw new RuntimeError("NoStem", "No stem attached to instance");
     }
     return this.stem;
   }
@@ -54,14 +54,17 @@ export abstract class StemmableNote extends Note {
     return this;
   }
 
-  buildFlag(category = 'flag'): void {
+  buildFlag(category = "flag"): void {
     const { glyphProps } = this;
 
     if (this.hasFlag()) {
       const flagCode =
-        this.getStemDirection() === Stem.DOWN ? glyphProps.code_flag_downstem : glyphProps.code_flag_upstem;
+        this.getStemDirection() === Stem.DOWN
+          ? glyphProps.code_flag_downstem
+          : glyphProps.code_flag_upstem;
 
-      if (flagCode) this.flag = new Glyph(flagCode, this.render_options.glyph_font_scale, { category });
+      if (flagCode)
+        this.flag = new Glyph(flagCode, this.render_options.glyph_font_scale, { category });
     }
   }
 
@@ -96,19 +99,19 @@ export abstract class StemmableNote extends Note {
     let length = frac.value() <= 1 ? 0 : 20;
     // if note is flagged, cannot shorten beam
     switch (this.duration) {
-      case '8':
+      case "8":
         if (this.beam == undefined) length = 35;
         break;
-      case '16':
+      case "16":
         length = this.beam == undefined ? 35 : 25;
         break;
-      case '32':
+      case "32":
         length = this.beam == undefined ? 45 : 35;
         break;
-      case '64':
+      case "64":
         length = this.beam == undefined ? 50 : 40;
         break;
-      case '128':
+      case "128":
         length = this.beam == undefined ? 55 : 45;
         break;
       default:
@@ -119,14 +122,14 @@ export abstract class StemmableNote extends Note {
 
   // Get/set the direction of the stem
   getStemDirection(): number {
-    if (!this.stem_direction) throw new RuntimeError('NoStem', 'No stem attached to this note.');
+    if (!this.stem_direction) throw new RuntimeError("NoStem", "No stem attached to this note.");
     return this.stem_direction;
   }
 
   setStemDirection(direction?: number): this {
     if (!direction) direction = Stem.UP;
     if (direction !== Stem.UP && direction !== Stem.DOWN) {
-      throw new RuntimeError('BadArgument', `Invalid stem direction: ${direction}`);
+      throw new RuntimeError("BadArgument", `Invalid stem direction: ${direction}`);
     }
 
     this.stem_direction = direction;
@@ -147,12 +150,15 @@ export abstract class StemmableNote extends Note {
       const glyphProps = this.getBaseCustomNoteHeadGlyphProps() || this.getGlyphProps();
 
       // Get the font-specific customizations for the note heads.
-      const offsets = Tables.currentMusicFont().lookupMetric(`stem.noteHead.${glyphProps.code_head}`, {
-        offsetYBaseStemUp: 0,
-        offsetYTopStemUp: 0,
-        offsetYBaseStemDown: 0,
-        offsetYTopStemDown: 0,
-      });
+      const offsets = Tables.currentMusicFont().lookupMetric(
+        `stem.noteHead.${glyphProps.code_head}`,
+        {
+          offsetYBaseStemUp: 0,
+          offsetYTopStemUp: 0,
+          offsetYBaseStemDown: 0,
+          offsetYTopStemDown: 0,
+        },
+      );
 
       // Configure the stem to use these offsets.
       this.stem.setOptions({
@@ -197,7 +203,9 @@ export abstract class StemmableNote extends Note {
     }
 
     if (glyphProps) {
-      return this.getStemDirection() === Stem.UP ? glyphProps.stem_up_extension : glyphProps.stem_down_extension;
+      return this.getStemDirection() === Stem.UP
+        ? glyphProps.stem_up_extension
+        : glyphProps.stem_down_extension;
     }
 
     return 0;
@@ -211,7 +219,7 @@ export abstract class StemmableNote extends Note {
 
   // Get the top and bottom `y` values of the stem.
   getStemExtents(): { topY: number; baseY: number } {
-    if (!this.stem) throw new RuntimeError('NoStem', 'No stem attached to this note.');
+    if (!this.stem) throw new RuntimeError("NoStem", "No stem attached to this note.");
     return this.stem.getExtents();
   }
 
@@ -220,11 +228,11 @@ export abstract class StemmableNote extends Note {
     const stave = this.checkStave();
     if (this.hasStem()) {
       const extents = this.getStemExtents();
-      if (!extents) throw new RuntimeError('InvalidState', 'Stem does not have extents.');
+      if (!extents) throw new RuntimeError("InvalidState", "Stem does not have extents.");
 
       return Math.min(
         stave.getYForTopText(textLine),
-        extents.topY - this.render_options.annotation_spacing * (textLine + 1)
+        extents.topY - this.render_options.annotation_spacing * (textLine + 1),
       );
     } else {
       return stave.getYForTopText(textLine);
@@ -236,11 +244,11 @@ export abstract class StemmableNote extends Note {
     const stave = this.checkStave();
     if (this.hasStem()) {
       const extents = this.getStemExtents();
-      if (!extents) throw new RuntimeError('InvalidState', 'Stem does not have extents.');
+      if (!extents) throw new RuntimeError("InvalidState", "Stem does not have extents.");
 
       return Math.max(
         stave.getYForTopText(textLine),
-        extents.baseY + this.render_options.annotation_spacing * textLine
+        extents.baseY + this.render_options.annotation_spacing * textLine,
       );
     } else {
       return stave.getYForBottomText(textLine);

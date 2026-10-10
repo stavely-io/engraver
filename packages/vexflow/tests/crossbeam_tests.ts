@@ -3,10 +3,9 @@
 //
 // Formatter Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Stave } from '../src/stave';
-import { StaveNote } from '../src/stavenote';
+import { Stave } from "../src/stave";
+import { StaveNote } from "../src/stavenote";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 interface crossStaveNotes {
   notestring: string;
@@ -25,252 +24,256 @@ interface crossStaveBeamTest {
 }
 const CrossBeamTests = {
   Start(): void {
-    QUnit.module('CrossBeam');
+    QUnit.module("CrossBeam");
 
     const run = VexFlowTests.runTests;
     const crossStaveTests: crossStaveBeamTest[] = [];
     crossStaveTests.push({
-      title: 'Single clef mixed 1',
-      time: '3/4',
+      title: "Single clef mixed 1",
+      time: "3/4",
       voices: [
         {
-          notes: [{ notestring: 'g4/16, f4/16, a6/16, g6/16, b4/4/r, g6/8, g4/8 ', clef: 'treble' }],
+          notes: [
+            { notestring: "g4/16, f4/16, a6/16, g6/16, b4/4/r, g6/8, g4/8 ", clef: "treble" },
+          ],
           stavemask: [0, 0, 0, 0, 0, 0, 0],
           beammask: [1, 1, -1, -1, 0, -1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
       ],
     });
     crossStaveTests.push({
-      title: 'Single clef mixed 2',
-      time: '3/4',
+      title: "Single clef mixed 2",
+      time: "3/4",
       voices: [
         {
-          notes: [{ notestring: 'g4/16, f6/16, a4/16, g6/16, b4/4/r, g6/8, g4/8 ', clef: 'treble' }],
+          notes: [
+            { notestring: "g4/16, f6/16, a4/16, g6/16, b4/4/r, g6/8, g4/8 ", clef: "treble" },
+          ],
           stavemask: [0, 0, 0, 0, 0, 0, 0],
           beammask: [1, -1, 1, -1, 0, -1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Mixed clef voice middle',
-      time: '2/4',
+      title: "Mixed clef voice middle",
+      time: "2/4",
       voices: [
         {
-          notes: [{ notestring: 'e#5/4, b4/16/r, b4/16, d5/16., c5/32 ', clef: 'treble' }],
+          notes: [{ notestring: "e#5/4, b4/16/r, b4/16, d5/16., c5/32 ", clef: "treble" }],
           stavemask: [0, 0, 0, 0, 0],
           beammask: [0, 0, 1, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
         {
           notes: [
-            { notestring: 'C3/16, B3/16, C4/16', clef: 'bass' },
-            { notestring: 'E#4/16', clef: 'treble' },
-            { notestring: 'C4/4', clef: 'bass' },
+            { notestring: "C3/16, B3/16, C4/16", clef: "bass" },
+            { notestring: "E#4/16", clef: "treble" },
+            { notestring: "C4/4", clef: "bass" },
           ],
           stavemask: [1, 1, 1, 0, 1],
           beammask: [1, 1, 1, -1, 0],
-          clef: 'bass',
+          clef: "bass",
         },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam up1)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam up1)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 1, 1, 1, 1],
           stavemask: [0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam up2)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam up2)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, 1, 1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam up3)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam up3)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, 1, 1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam up4)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam up4)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/8, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/8, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, 1, 1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam down1)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam down1)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, -1, -1, -1, -1],
           stavemask: [0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam down2)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam down2)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, -1, -1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam down3)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam down3)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, -1, -1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam down4)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam down4)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/8, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/8, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, -1, -1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam middle1)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam middle1)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, -1, -1, 1, 1],
           stavemask: [0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam middle2)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam middle2)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/8, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/8, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
 
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam middle3)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam middle3)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/16, B4/q, A4/8, E4/8', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/16, B4/q, A4/8, E4/8", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.push({
-      title: 'Vertical alignment - cross stave (beam middle4)',
-      time: '4/4',
+      title: "Vertical alignment - cross stave (beam middle4)",
+      time: "4/4",
       voices: [
         {
           notes: [
-            { notestring: 'C#5/q, C5/8, B4/q, A4/8, E4/16', clef: 'treble' },
-            { notestring: 'C4/16, D4/8', clef: 'bass' },
+            { notestring: "C#5/q, C5/8, B4/q, A4/8, E4/16", clef: "treble" },
+            { notestring: "C4/16, D4/8", clef: "bass" },
           ],
           beammask: [0, 0, 0, -1, -1, 1, 1],
           stavemask: [0, 0, 0, 0, 0, 1, 1],
-          clef: 'treble',
+          clef: "treble",
         },
-        { notes: [{ notestring: '', clef: 'bass' }], beammask: [], stavemask: [], clef: 'bass' },
+        { notes: [{ notestring: "", clef: "bass" }], beammask: [], stavemask: [], clef: "bass" },
       ],
     });
     crossStaveTests.forEach((cst) => {
@@ -302,7 +305,7 @@ function crossClef(options: TestOptions): void {
     const voicenotes = voicedata[i].notes;
     for (let k = 0; k < voicenotes.length; ++k) {
       scoreNotes = scoreNotes.concat(
-        score.notes(voicenotes[k].notestring, { clef: voicenotes[k].clef }) as StaveNote[]
+        score.notes(voicenotes[k].notestring, { clef: voicenotes[k].clef }) as StaveNote[],
       );
     }
     const beammask: number[] = voicedata[i].beammask;

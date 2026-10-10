@@ -1,20 +1,20 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
-import { Element } from './element';
-import type { FontInfo } from './font';
-import { Modifier, ModifierPosition } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Stave } from './stave';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { TextFormatter } from './textformatter';
-import { Category, isStemmableNote, isTabNote } from './typeguard';
-import { log } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import { Modifier, ModifierPosition } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Stave } from "./stave";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { TextFormatter } from "./textformatter";
+import { Category, isStemmableNote, isTabNote } from "./typeguard";
+import { log } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Annotation.DEBUG) log('Vex.Flow.Annotation', args);
+  if (Annotation.DEBUG) log("Vex.Flow.Annotation", args);
 }
 
 export enum AnnotationHorizontalJustify {
@@ -73,7 +73,7 @@ export class Annotation extends Modifier {
   // words don't run into each other.
   static get minAnnotationPadding(): number {
     const musicFont = Tables.currentMusicFont();
-    return musicFont.lookupMetric('noteHead.minPadding');
+    return musicFont.lookupMetric("noteHead.minPadding");
   }
   /** Arrange annotations within a `ModifierContext` */
   static format(annotations: Annotation[], state: ModifierContextState): boolean {
@@ -86,7 +86,8 @@ export class Annotation extends Modifier {
       const annotation = annotations[i];
       const textFormatter = TextFormatter.create(annotation.textFont);
       // Text height is expressed in fractional stave spaces.
-      const textLines = (2 + textFormatter.getYForStringInPx(annotation.text).height) / Tables.STAVE_LINE_DISTANCE;
+      const textLines =
+        (2 + textFormatter.getYForStringInPx(annotation.text).height) / Tables.STAVE_LINE_DISTANCE;
       let verticalSpaceNeeded = textLines;
 
       const note = annotation.checkAttachedNote();
@@ -122,7 +123,7 @@ export class Annotation extends Modifier {
         }
       } else if (isStemmableNote(note)) {
         const stem = note.getStem();
-        if (stem && note.getNoteType() === 'n') {
+        if (stem && note.getNoteType() === "n") {
           stemHeight = Math.abs(stem.getHeight()) / Tables.STAVE_LINE_DISTANCE;
         }
       }
@@ -170,9 +171,12 @@ export class Annotation extends Modifier {
     }
     const rightOverlap = Math.min(
       Math.max(rightWidth - maxRightGlyphWidth, 0),
-      Math.max(rightWidth - state.right_shift, 0)
+      Math.max(rightWidth - state.right_shift, 0),
     );
-    const leftOverlap = Math.min(Math.max(leftWidth - maxLeftGlyphWidth, 0), Math.max(leftWidth - state.left_shift, 0));
+    const leftOverlap = Math.min(
+      Math.max(leftWidth - maxLeftGlyphWidth, 0),
+      Math.max(leftWidth - state.left_shift, 0),
+    );
     state.left_shift += leftOverlap;
     state.right_shift += rightOverlap;
     return true;
@@ -205,7 +209,8 @@ export class Annotation extends Modifier {
    * @param just value in `AnnotationVerticalJustify`.
    */
   setVerticalJustification(just: string | AnnotationVerticalJustify): this {
-    this.verticalJustification = typeof just === 'string' ? Annotation.VerticalJustifyString[just] : just;
+    this.verticalJustification =
+      typeof just === "string" ? Annotation.VerticalJustifyString[just] : just;
     return this;
   }
 
@@ -221,7 +226,8 @@ export class Annotation extends Modifier {
    * @param justification value in `Annotation.Justify`.
    */
   setJustification(just: string | AnnotationHorizontalJustify): this {
-    this.horizontalJustification = typeof just === 'string' ? Annotation.HorizontalJustifyString[just] : just;
+    this.horizontalJustification =
+      typeof just === "string" ? Annotation.HorizontalJustifyString[just] : just;
     return this;
   }
 
@@ -241,7 +247,7 @@ export class Annotation extends Modifier {
     // still need to save context state just before this, since we will be
     // changing ctx parameters below.
     this.applyStyle();
-    ctx.openGroup('annotation', this.getAttribute('id'));
+    ctx.openGroup("annotation", this.getAttribute("id"));
     ctx.setFont(this.textFont);
 
     const text_width = textFormatter.getWidthForTextInPx(this.text);
@@ -297,7 +303,7 @@ export class Annotation extends Modifier {
       y = extents.topY + (extents.baseY - extents.topY) / 2 + text_height / 2;
     }
 
-    L('Rendering annotation: ', this.text, x, y);
+    L("Rendering annotation: ", this.text, x, y);
     ctx.fillText(this.text, x, y);
     ctx.closeGroup();
     this.restoreStyle();

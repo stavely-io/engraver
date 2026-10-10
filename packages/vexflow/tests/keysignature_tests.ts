@@ -4,38 +4,37 @@
 // Key Signature Tests
 //
 
-import { MAJOR_KEYS, MINOR_KEYS, TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Flow } from '../src/flow';
-import { Glyph } from '../src/glyph';
-import { KeySignature } from '../src/keysignature';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
-import { BarlineType } from '../src/stavebarline';
+import { Flow } from "../src/flow";
+import { Glyph } from "../src/glyph";
+import { KeySignature } from "../src/keysignature";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { BarlineType } from "../src/stavebarline";
+import { MAJOR_KEYS, MINOR_KEYS, TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const KeySignatureTests = {
   Start(): void {
-    QUnit.module('KeySignature');
-    QUnit.test('Key Parser Test', parser);
+    QUnit.module("KeySignature");
+    QUnit.test("Key Parser Test", parser);
     const run = VexFlowTests.runTests;
-    run('Major Key Test', majorKeys);
-    run('Minor Key Test', minorKeys);
-    run('Stave Helper', staveHelper);
-    run('Cancelled key test', majorKeysCanceled);
-    run('Cancelled key (for each clef) test', keysCanceledForEachClef);
-    run('Altered key test', majorKeysAltered);
-    run('End key with clef test', endKeyWithClef);
-    run('Key Signature Change test', changeKey);
-    run('Key Signature with/without clef symbol', clefKeySignature);
+    run("Major Key Test", majorKeys);
+    run("Minor Key Test", minorKeys);
+    run("Stave Helper", staveHelper);
+    run("Cancelled key test", majorKeysCanceled);
+    run("Cancelled key (for each clef) test", keysCanceledForEachClef);
+    run("Altered key test", majorKeysAltered);
+    run("End key with clef test", endKeyWithClef);
+    run("Key Signature Change test", changeKey);
+    run("Key Signature with/without clef symbol", clefKeySignature);
   },
 };
 
 const fontWidths = () => {
   const glyphScale = 39; // default font scale
-  const sharpWidth = Glyph.getWidth('accidentalSharp', glyphScale) + 1;
-  const flatWidth = Glyph.getWidth('accidentalFlat', glyphScale) + 1;
-  const naturalWidth = Glyph.getWidth('accidentalNatural', glyphScale) + 2;
-  const clefWidth = Glyph.getWidth('gClef', glyphScale) * 2; // widest clef
+  const sharpWidth = Glyph.getWidth("accidentalSharp", glyphScale) + 1;
+  const flatWidth = Glyph.getWidth("accidentalFlat", glyphScale) + 1;
+  const naturalWidth = Glyph.getWidth("accidentalNatural", glyphScale) + 2;
+  const clefWidth = Glyph.getWidth("gClef", glyphScale) * 2; // widest clef
   return { sharpWidth, flatWidth, naturalWidth, clefWidth };
 };
 
@@ -46,26 +45,26 @@ function parser(assert: Assert): void {
     assert.throws(() => Flow.keySignature(spec), /BadKeySignature/);
   }
 
-  catchError('asdf');
-  catchError('D!');
-  catchError('E#');
-  catchError('D#');
-  catchError('#');
-  catchError('b');
-  catchError('Kb');
-  catchError('Fb');
-  catchError('Dbm');
-  catchError('B#m');
+  catchError("asdf");
+  catchError("D!");
+  catchError("E#");
+  catchError("D#");
+  catchError("#");
+  catchError("b");
+  catchError("Kb");
+  catchError("Fb");
+  catchError("Dbm");
+  catchError("B#m");
 
-  Flow.keySignature('B');
-  Flow.keySignature('C');
-  Flow.keySignature('Fm');
-  Flow.keySignature('Ab');
-  Flow.keySignature('Abm');
-  Flow.keySignature('F#');
-  Flow.keySignature('G#m');
+  Flow.keySignature("B");
+  Flow.keySignature("C");
+  Flow.keySignature("Fm");
+  Flow.keySignature("Ab");
+  Flow.keySignature("Abm");
+  Flow.keySignature("F#");
+  Flow.keySignature("G#m");
 
-  assert.ok(true, 'all pass');
+  assert.ok(true, "all pass");
 }
 
 function majorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -73,8 +72,10 @@ function majorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
   const accidentalCount = 28; // total number in all the keys
   const casePadding = 10; // hard-coded in staveModifier
   const testCases = 7; // all keys, but includes key of C
-  const sharpTestWidth = accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
-  const flatTestWidth = accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
+  const sharpTestWidth =
+    accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
+  const flatTestWidth =
+    accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
 
   const ctx = contextBuilder(options.elementId, Math.max(sharpTestWidth, flatTestWidth) + 100, 240);
   const stave1 = new Stave(10, 10, flatTestWidth);
@@ -97,7 +98,7 @@ function majorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
   stave2.setContext(ctx);
   stave2.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function majorKeysCanceled(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -109,20 +110,38 @@ function majorKeysCanceled(options: TestOptions, contextBuilder: ContextBuilder)
   const sharpTestCases = 7;
   // magic numbers are the numbers of that symbol that appear in the test case
   const sharpTestWidth =
-    28 * w.sharpWidth + 21 * w.naturalWidth + sharpPadding * sharpTestCases + Stave.defaultPadding + w.clefWidth;
+    28 * w.sharpWidth +
+    21 * w.naturalWidth +
+    sharpPadding * sharpTestCases +
+    Stave.defaultPadding +
+    w.clefWidth;
   const flatTestWidth =
-    28 * w.flatWidth + 28 * w.naturalWidth + flatPadding * flatTestCases + Stave.defaultPadding + w.clefWidth;
+    28 * w.flatWidth +
+    28 * w.naturalWidth +
+    flatPadding * flatTestCases +
+    Stave.defaultPadding +
+    w.clefWidth;
   const eFlatTestWidth =
-    28 * w.flatWidth + 32 * w.naturalWidth + flatPadding * flatTestCases + Stave.defaultPadding + w.clefWidth;
+    28 * w.flatWidth +
+    32 * w.naturalWidth +
+    flatPadding * flatTestCases +
+    Stave.defaultPadding +
+    w.clefWidth;
   const eSharpTestWidth =
-    28 * w.sharpWidth + 28 * w.naturalWidth + sharpPadding * sharpTestCases + Stave.defaultPadding + w.clefWidth;
-  const maxWidth = Math.max(Math.max(sharpTestWidth, flatTestWidth, Math.max(eSharpTestWidth, eFlatTestWidth)));
+    28 * w.sharpWidth +
+    28 * w.naturalWidth +
+    sharpPadding * sharpTestCases +
+    Stave.defaultPadding +
+    w.clefWidth;
+  const maxWidth = Math.max(
+    Math.max(sharpTestWidth, flatTestWidth, Math.max(eSharpTestWidth, eFlatTestWidth)),
+  );
   const ctx = contextBuilder(options.elementId, maxWidth + 100, 500);
   ctx.scale(scale, scale);
-  const stave1 = new Stave(10, 10, flatTestWidth).addClef('treble');
-  const stave2 = new Stave(10, 90, sharpTestWidth).addClef('treble');
-  const stave3 = new Stave(10, 170, eFlatTestWidth).addClef('treble');
-  const stave4 = new Stave(10, 250, eSharpTestWidth).addClef('treble');
+  const stave1 = new Stave(10, 10, flatTestWidth).addClef("treble");
+  const stave2 = new Stave(10, 90, sharpTestWidth).addClef("treble");
+  const stave3 = new Stave(10, 170, eFlatTestWidth).addClef("treble");
+  const stave4 = new Stave(10, 250, eSharpTestWidth).addClef("treble");
   const keys = MAJOR_KEYS;
 
   let keySig = null;
@@ -130,28 +149,28 @@ function majorKeysCanceled(options: TestOptions, contextBuilder: ContextBuilder)
   let n;
   for (i = 0; i < 8; ++i) {
     keySig = new KeySignature(keys[i]);
-    keySig.cancelKey('Cb');
+    keySig.cancelKey("Cb");
     keySig.setPadding(flatPadding);
     keySig.addToStave(stave1);
   }
 
   for (n = 8; n < keys.length; ++n) {
     keySig = new KeySignature(keys[n]);
-    keySig.cancelKey('C#');
+    keySig.cancelKey("C#");
     keySig.setPadding(sharpPadding);
     keySig.addToStave(stave2);
   }
 
   for (i = 0; i < 8; ++i) {
     keySig = new KeySignature(keys[i]);
-    keySig.cancelKey('E');
+    keySig.cancelKey("E");
     keySig.setPadding(flatPadding);
     keySig.addToStave(stave3);
   }
 
   for (n = 8; n < keys.length; ++n) {
     keySig = new KeySignature(keys[n]);
-    keySig.cancelKey('Ab');
+    keySig.cancelKey("Ab");
     keySig.setPadding(sharpPadding);
     keySig.addToStave(stave4);
   }
@@ -165,25 +184,29 @@ function majorKeysCanceled(options: TestOptions, contextBuilder: ContextBuilder)
   stave4.setContext(ctx);
   stave4.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function keysCanceledForEachClef(options: TestOptions, contextBuilder: ContextBuilder): void {
   const scale = 0.8;
   const w = fontWidths();
   const keyPadding = 10;
-  const keys = ['C#', 'Cb'];
+  const keys = ["C#", "Cb"];
   const flatsKey = [7, 14];
   const sharpsKey = [14, 7];
   const natsKey = [7, 7];
-  const max = 21 * Math.max(w.sharpWidth, w.flatWidth) * 2 + keyPadding * 6 + Stave.defaultPadding + w.clefWidth;
+  const max =
+    21 * Math.max(w.sharpWidth, w.flatWidth) * 2 +
+    keyPadding * 6 +
+    Stave.defaultPadding +
+    w.clefWidth;
   const ctx = contextBuilder(options.elementId, max + 100, 380);
   ctx.scale(scale, scale);
 
   const x = 20;
   let y = 20;
   let tx = x;
-  ['bass', 'tenor', 'soprano', 'mezzo-soprano', 'baritone-f'].forEach(function (clef) {
+  ["bass", "tenor", "soprano", "mezzo-soprano", "baritone-f"].forEach(function (clef) {
     keys.forEach((key, keyIx) => {
       const cancelKey = keys[(keyIx + 1) % 2];
       const width =
@@ -205,16 +228,16 @@ function keysCanceledForEachClef(options: TestOptions, contextBuilder: ContextBu
     y += 80;
   });
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function majorKeysAltered(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 780, 500);
   ctx.scale(0.9, 0.9);
-  const stave1 = new Stave(10, 10, 750).addClef('treble');
-  const stave2 = new Stave(10, 90, 750).addClef('treble');
-  const stave3 = new Stave(10, 170, 750).addClef('treble');
-  const stave4 = new Stave(10, 250, 750).addClef('treble');
+  const stave1 = new Stave(10, 10, 750).addClef("treble");
+  const stave2 = new Stave(10, 90, 750).addClef("treble");
+  const stave3 = new Stave(10, 170, 750).addClef("treble");
+  const stave4 = new Stave(10, 250, 750).addClef("treble");
   const keys = MAJOR_KEYS;
 
   let keySig = null;
@@ -222,28 +245,28 @@ function majorKeysAltered(options: TestOptions, contextBuilder: ContextBuilder):
   let n;
   for (i = 0; i < 8; ++i) {
     keySig = new KeySignature(keys[i]);
-    keySig.alterKey(['bs', 'bs']);
+    keySig.alterKey(["bs", "bs"]);
     keySig.setPadding(18);
     keySig.addToStave(stave1);
   }
 
   for (n = 8; n < keys.length; ++n) {
     keySig = new KeySignature(keys[n]);
-    keySig.alterKey(['+', '+', '+']);
+    keySig.alterKey(["+", "+", "+"]);
     keySig.setPadding(20);
     keySig.addToStave(stave2);
   }
 
   for (i = 0; i < 8; ++i) {
     keySig = new KeySignature(keys[i]);
-    keySig.alterKey(['n', 'bs', 'bb']);
+    keySig.alterKey(["n", "bs", "bb"]);
     keySig.setPadding(18);
     keySig.addToStave(stave3);
   }
 
   for (n = 8; n < keys.length; ++n) {
     keySig = new KeySignature(keys[n]);
-    keySig.alterKey(['++', '+', 'n', '+']);
+    keySig.alterKey(["++", "+", "n", "+"]);
     keySig.setPadding(20);
     keySig.addToStave(stave4);
   }
@@ -257,7 +280,7 @@ function majorKeysAltered(options: TestOptions, contextBuilder: ContextBuilder):
   stave4.setContext(ctx);
   stave4.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function minorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -265,8 +288,10 @@ function minorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
   const w = fontWidths();
   const casePadding = 10; // hard-coded in staveModifier
   const testCases = 7; // all keys, but includes key of C
-  const sharpTestWidth = accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
-  const flatTestWidth = accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
+  const sharpTestWidth =
+    accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
+  const flatTestWidth =
+    accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
 
   const ctx = contextBuilder(options.elementId, Math.max(sharpTestWidth, flatTestWidth) + 100, 240);
   const stave1 = new Stave(10, 10, flatTestWidth);
@@ -289,7 +314,7 @@ function minorKeys(options: TestOptions, contextBuilder: ContextBuilder): void {
   stave2.setContext(ctx);
   stave2.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function endKeyWithClef(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -297,19 +322,19 @@ function endKeyWithClef(options: TestOptions, contextBuilder: ContextBuilder): v
   ctx.scale(0.9, 0.9);
   const stave1 = new Stave(10, 10, 350);
   stave1
-    .setKeySignature('G')
+    .setKeySignature("G")
     .setBegBarType(BarlineType.REPEAT_BEGIN)
     .setEndBarType(BarlineType.REPEAT_END)
-    .setClef('treble')
-    .addTimeSignature('4/4')
-    .setEndClef('bass')
-    .setEndKeySignature('Cb');
+    .setClef("treble")
+    .addTimeSignature("4/4")
+    .setEndClef("bass")
+    .setEndKeySignature("Cb");
   const stave2 = new Stave(10, 90, 350);
-  stave2.setKeySignature('Cb').setClef('bass').setEndClef('treble').setEndKeySignature('G');
+  stave2.setKeySignature("Cb").setClef("bass").setEndClef("treble").setEndKeySignature("G");
 
   stave1.setContext(ctx).draw();
   stave2.setContext(ctx).draw();
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -317,8 +342,10 @@ function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void
   const accidentalCount = 28; // total number in all the keys
   const casePadding = 10; // hard-coded in staveModifier
   const testCases = 7; // all keys, but includes key of C
-  const sharpTestWidth = accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
-  const flatTestWidth = accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
+  const sharpTestWidth =
+    accidentalCount * w.sharpWidth + casePadding * testCases + Stave.defaultPadding;
+  const flatTestWidth =
+    accidentalCount * w.flatWidth + casePadding * testCases + Stave.defaultPadding;
 
   const ctx = contextBuilder(options.elementId, Math.max(sharpTestWidth, flatTestWidth) + 100, 240);
   const stave1 = new Stave(10, 10, flatTestWidth);
@@ -338,65 +365,69 @@ function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void
   stave2.setContext(ctx);
   stave2.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function changeKey(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 900);
 
   // The previous code was buggy: f.Stave(10, 10, 800), even though Factory.Stave() only accepts 1 argument.
-  const stave = f.Stave({ x: 10, y: 10, width: 800 }).addClef('treble').addTimeSignature('C|');
+  const stave = f.Stave({ x: 10, y: 10, width: 800 }).addClef("treble").addTimeSignature("C|");
 
   const voice = f
     .Voice()
     .setStrict(false)
     .addTickables([
-      f.KeySigNote({ key: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1' }),
+      f.KeySigNote({ key: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'D', cancelKey: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1' }),
+      f.KeySigNote({ key: "D", cancelKey: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1' }),
+      f.KeySigNote({ key: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'D', alterKey: ['b', 'n'] }), // TODO: alterKey needs to be a string[]
-      f.StaveNote({ keys: ['c/4'], duration: '1' }),
+      f.KeySigNote({ key: "D", alterKey: ["b", "n"] }), // TODO: alterKey needs to be a string[]
+      f.StaveNote({ keys: ["c/4"], duration: "1" }),
     ]);
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function clefKeySignature(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 900);
-  const stave = f.Stave({ x: 10, y: 10, width: 800 }).addClef('bass').addTimeSignature('C|').setClefLines('bass');
+  const stave = f
+    .Stave({ x: 10, y: 10, width: 800 })
+    .addClef("bass")
+    .addTimeSignature("C|")
+    .setClefLines("bass");
 
   const voice = f
     .Voice()
     .setStrict(false)
     .addTickables([
-      f.KeySigNote({ key: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1', clef: 'bass' }),
+      f.KeySigNote({ key: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1", clef: "bass" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'D', cancelKey: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1', clef: 'bass'  }),
+      f.KeySigNote({ key: "D", cancelKey: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1", clef: "bass" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'Bb' }),
-      f.StaveNote({ keys: ['c/4'], duration: '1', clef: 'bass'  }),
+      f.KeySigNote({ key: "Bb" }),
+      f.StaveNote({ keys: ["c/4"], duration: "1", clef: "bass" }),
       f.BarNote(),
-      f.KeySigNote({ key: 'D', alterKey: ['b', 'n'] }),
-      f.StaveNote({ keys: ['c/4'], duration: '1', clef: 'bass'  }),
+      f.KeySigNote({ key: "D", alterKey: ["b", "n"] }),
+      f.StaveNote({ keys: ["c/4"], duration: "1", clef: "bass" }),
     ]);
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 VexFlowTests.register(KeySignatureTests);

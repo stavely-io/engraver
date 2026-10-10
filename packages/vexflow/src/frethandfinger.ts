@@ -3,16 +3,16 @@
 // Author Larry Kuhns 2013
 // Class to draws string numbers into the notation.
 
-import type { Builder } from './easyscore';
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Modifier, ModifierPosition } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { TextFormatter } from './textformatter';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import type { Builder } from "./easyscore";
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Modifier, ModifierPosition } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { TextFormatter } from "./textformatter";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export class FretHandFinger extends Modifier {
   static get CATEGORY(): string {
@@ -115,11 +115,15 @@ export class FretHandFinger extends Modifier {
     return true;
   }
 
-  static easyScoreHook({ fingerings }: { fingerings?: string } = {}, note: StemmableNote, builder: Builder): void {
+  static easyScoreHook(
+    { fingerings }: { fingerings?: string } = {},
+    note: StemmableNote,
+    builder: Builder,
+  ): void {
     fingerings
-      ?.split(',')
+      ?.split(",")
       .map((fingeringString: string) => {
-        const split = fingeringString.trim().split('.');
+        const split = fingeringString.trim().split(".");
         const params: { number: string; position?: string } = { number: split[0] };
         if (split[1]) params.position = split[1];
         return builder.getFactory().Fingering(params);
@@ -188,12 +192,12 @@ export class FretHandFinger extends Modifier {
         dot_x += 1;
         break;
       default:
-        throw new RuntimeError('InvalidPosition', `The position ${this.position} does not exist`);
+        throw new RuntimeError("InvalidPosition", `The position ${this.position} does not exist`);
     }
 
     ctx.save();
     ctx.setFont(this.textFont);
-    ctx.fillText('' + this.finger, dot_x, dot_y);
+    ctx.fillText("" + this.finger, dot_x, dot_y);
     ctx.restore();
   }
 }

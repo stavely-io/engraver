@@ -6,8 +6,8 @@
 /** `RuntimeError` will be thrown by VexFlow classes in case of error. */
 export class RuntimeError extends Error {
   code: string;
-  constructor(code: string, message: string = '') {
-    super('[RuntimeError] ' + code + ': ' + message);
+  constructor(code: string, message: string = "") {
+    super("[RuntimeError] " + code + ": " + message);
     this.code = code;
   }
 }
@@ -22,7 +22,7 @@ export function globalObject(): typeof globalThis & any {
  * Check that `x` is of type `T` and not `undefined`.
  * If `x` is `undefined`, throw a RuntimeError with the optionally provided error code and message.
  */
-export function defined<T>(x?: T, code: string = 'undefined', message: string = ''): T {
+export function defined<T>(x?: T, code: string = "undefined", message: string = ""): T {
   if (x === undefined) {
     throw new RuntimeError(code, message);
   }
@@ -33,16 +33,16 @@ export function defined<T>(x?: T, code: string = 'undefined', message: string = 
 // eslint-disable-next-line
 export function log(block: string, ...args: any[]): void {
   if (!args) return;
-  const line = Array.prototype.slice.call(args).join(' ');
-  globalObject().console.log(block + ': ' + line);
+  const line = Array.prototype.slice.call(args).join(" ");
+  globalObject().console.log(block + ": " + line);
 }
 
 /** Dump warning to console. */
 // eslint-disable-next-line
 export function warn(...args: any[]): void {
-  const line = args.join(' ');
+  const line = args.join(" ");
   const err = new Error();
-  globalObject().console.log('Warning: ', line, err.stack);
+  globalObject().console.log("Warning: ", line, err.stack);
 }
 
 /** Round number to nearest fractional value (`.5`, `.25`, etc.) */

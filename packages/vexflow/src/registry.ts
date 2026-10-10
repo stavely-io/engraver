@@ -17,8 +17,8 @@
 // the registry. This allows fast look up of elements by attributes like id, type,
 // and class.
 
-import type { Element } from './element';
-import { RuntimeError } from './util';
+import type { Element } from "./element";
+import { RuntimeError } from "./util";
 
 // Indexes are represented as maps of maps of maps. This allows
 // for both multi-labeling (e.g., an element can have multiple classes)
@@ -84,7 +84,7 @@ export class Registry {
       delete this.index[name][oldValue][id];
     }
     if (value && elem) {
-      this.setIndexValue(name, value, elem.getAttribute('id'), elem);
+      this.setIndexValue(name, value, elem.getAttribute("id"), elem);
     }
   }
 
@@ -96,15 +96,15 @@ export class Registry {
    * @returns this
    */
   register(elem: Element, id?: string): this {
-    id = id || elem.getAttribute('id');
+    id = id || elem.getAttribute("id");
     if (!id) {
       throw new RuntimeError("Can't add element without `id` attribute to registry");
     }
 
     // Manually add id to index, then update other indexes.
-    elem.setAttribute('id', id);
-    this.setIndexValue('id', id, id, elem);
-    this.updateIndex({ id, name: 'type', value: elem.getAttribute('type'), oldValue: undefined });
+    elem.setAttribute("id", id);
+    this.setIndexValue("id", id, id, elem);
+    this.updateIndex({ id, name: "type", value: elem.getAttribute("type"), oldValue: undefined });
     elem.onRegister(this);
     return this;
   }
@@ -126,17 +126,17 @@ export class Registry {
   }
 
   getElementsByType(type: string): Element[] {
-    return this.getElementsByAttribute('type', type);
+    return this.getElementsByAttribute("type", type);
   }
 
   getElementsByClass(className: string): Element[] {
-    return this.getElementsByAttribute('class', className);
+    return this.getElementsByAttribute("class", className);
   }
 
   // This is called by the element when an attribute value changes. If an indexed
   // attribute changes, then update the local index.
   onUpdate(info: RegistryUpdate): this {
-    const allowedNames = ['id', 'type', 'class'];
+    const allowedNames = ["id", "type", "class"];
     if (allowedNames.includes(info.name)) {
       this.updateIndex(info);
     }

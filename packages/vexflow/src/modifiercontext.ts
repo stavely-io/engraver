@@ -10,27 +10,27 @@
 //
 // see https://github.com/0xfe/vexflow/wiki/How-Formatting-Works
 
-import { Accidental } from './accidental';
-import { Annotation } from './annotation';
-import { Articulation } from './articulation';
-import { Bend } from './bend';
-import { ChordSymbol } from './chordsymbol';
-import { Dot } from './dot';
-import { FretHandFinger } from './frethandfinger';
-import { GraceNoteGroup } from './gracenotegroup';
-import type { Modifier } from './modifier';
-import type { Note } from './note';
-import { NoteSubGroup } from './notesubgroup';
-import { Ornament } from './ornament';
-import { Parenthesis } from './parenthesis';
-import { StaveNote } from './stavenote';
-import { StringNumber } from './stringnumber';
-import { Stroke } from './strokes';
-import type { TabNote } from './tabnote';
-import type { Tickable } from './tickable';
-import { Category } from './typeguard';
-import { log, RuntimeError } from './util';
-import { Vibrato } from './vibrato';
+import { Accidental } from "./accidental";
+import { Annotation } from "./annotation";
+import { Articulation } from "./articulation";
+import { Bend } from "./bend";
+import { ChordSymbol } from "./chordsymbol";
+import { Dot } from "./dot";
+import { FretHandFinger } from "./frethandfinger";
+import { GraceNoteGroup } from "./gracenotegroup";
+import type { Modifier } from "./modifier";
+import type { Note } from "./note";
+import { NoteSubGroup } from "./notesubgroup";
+import { Ornament } from "./ornament";
+import { Parenthesis } from "./parenthesis";
+import { StaveNote } from "./stavenote";
+import { StringNumber } from "./stringnumber";
+import { Stroke } from "./strokes";
+import type { TabNote } from "./tabnote";
+import type { Tickable } from "./tickable";
+import { Category } from "./typeguard";
+import { log, RuntimeError } from "./util";
+import { Vibrato } from "./vibrato";
 
 export interface ModifierContextState {
   right_shift: number;
@@ -49,7 +49,7 @@ export type ModifierContextMember = Tickable | Modifier | StaveNote | TabNote;
 // To enable logging for this class. Set `Vex.Flow.ModifierContext.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (ModifierContext.DEBUG) log('Vex.Flow.ModifierContext', args);
+  if (ModifierContext.DEBUG) log("Vex.Flow.ModifierContext", args);
 }
 
 export class ModifierContext {
@@ -75,7 +75,7 @@ export class ModifierContext {
   protected spacing: number = 0;
 
   addModifier(member: ModifierContextMember): this {
-    L('addModifier is deprecated, use addMember instead.');
+    L("addModifier is deprecated, use addMember instead.");
     return this.addMember(member);
   }
 
@@ -100,7 +100,7 @@ export class ModifierContext {
    * @deprecated
    */
   getModifiers(category: string): ModifierContextMember[] {
-    L('getModifiers is deprecated, use getMembers instead.');
+    L("getModifiers is deprecated, use getMembers instead.");
     return this.getMembers(category);
   }
 
@@ -129,7 +129,7 @@ export class ModifierContext {
 
   getMetrics(): ModifierContextMetrics {
     if (!this.formatted) {
-      throw new RuntimeError('UnformattedMember', 'Unformatted member has no metrics.');
+      throw new RuntimeError("UnformattedMember", "Unformatted member has no metrics.");
     }
 
     return {
@@ -140,7 +140,7 @@ export class ModifierContext {
 
   preFormat(): void {
     if (this.preFormatted) return;
-    L('Preformatting ModifierContext');
+    L("Preformatting ModifierContext");
 
     const state = this.state;
     const members = this.members;
@@ -169,7 +169,7 @@ export class ModifierContext {
 
   postFormat(): void {
     if (this.postFormatted) return;
-    L('Postformatting ModifierContext');
+    L("Postformatting ModifierContext");
 
     // If post-formatting is required for an element, add more lines below.
     StaveNote.postFormat(this.getMembers(Category.StaveNote) as Note[]);

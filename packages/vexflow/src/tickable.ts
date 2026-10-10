@@ -1,17 +1,17 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Element } from './element';
-import { Fraction } from './fraction';
-import type { Modifier } from './modifier';
-import type { ModifierContext } from './modifiercontext';
-import type { Stave } from './stave';
-import { Tables } from './tables';
-import type { TickContext } from './tickcontext';
-import type { Tuplet } from './tuplet';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
-import type { Voice } from './voice';
+import { Element } from "./element";
+import { Fraction } from "./fraction";
+import type { Modifier } from "./modifier";
+import type { ModifierContext } from "./modifiercontext";
+import type { Stave } from "./stave";
+import { Tables } from "./tables";
+import type { TickContext } from "./tickcontext";
+import type { Tuplet } from "./tuplet";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
+import type { Voice } from "./voice";
 
 /** Formatter metrics interface */
 export interface FormatterMetrics {
@@ -89,7 +89,7 @@ export abstract class Tickable extends Element {
 
       // The simplified rational duration of this tick as a string. It can be
       // used as an index to a map or hashtable.
-      duration: '',
+      duration: "",
 
       // The number of formatting iterations undergone.
       iterations: 0,
@@ -133,7 +133,7 @@ export abstract class Tickable extends Element {
   /** Get width of note. Used by the formatter for positioning. */
   getWidth(): number {
     if (!this._preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call GetWidth on an unformatted note.");
+      throw new RuntimeError("UnformattedNote", "Can't call GetWidth on an unformatted note.");
     }
 
     return this.width + (this.modifierContext ? this.modifierContext.getWidth() : 0);
@@ -192,7 +192,7 @@ export abstract class Tickable extends Element {
    * This allows formatters and preFormatter to associate them with the right modifierContexts.
    */
   getVoice(): Voice {
-    return defined(this.voice, 'NoVoice', 'Tickable has no voice.');
+    return defined(this.voice, "NoVoice", "Tickable has no voice.");
   }
 
   /** Set the associated voice. */
@@ -274,7 +274,7 @@ export abstract class Tickable extends Element {
   }
 
   removeAccidentals(): this {
-    this.modifiers = this.modifiers.filter((m) => m.getAttributes().type !== 'Accidental');
+    this.modifiers = this.modifiers.filter((m) => m.getAttributes().type !== "Accidental");
     return this;
   }
 
@@ -300,8 +300,8 @@ export abstract class Tickable extends Element {
     this._preFormatted = false;
   }
 
-  checkTickContext(message = 'Tickable has no tick context.'): TickContext {
-    return defined(this.tickContext, 'NoTickContext', message);
+  checkTickContext(message = "Tickable has no tick context."): TickContext {
+    return defined(this.tickContext, "NoTickContext", message);
   }
 
   /** Preformat the Tickable. */
@@ -387,7 +387,11 @@ export abstract class Tickable extends Element {
 
   /** Check and get `ModifierContext`. */
   checkModifierContext(): ModifierContext {
-    return defined(this.modifierContext, 'NoModifierContext', 'No modifier context attached to this tickable.');
+    return defined(
+      this.modifierContext,
+      "NoModifierContext",
+      "No modifier context attached to this tickable.",
+    );
   }
 
   /** Get the target stave. */

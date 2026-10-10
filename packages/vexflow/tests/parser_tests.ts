@@ -3,17 +3,16 @@
 //
 // Parser Tests
 
-import { VexFlowTests } from './vexflow_test_helpers';
-
-import { Grammar, Parser, Result, RuleFunction } from '../src/parser';
+import { Grammar, Parser, Result, RuleFunction } from "../src/parser";
+import { VexFlowTests } from "./vexflow_test_helpers";
 
 const ParserTests = {
   Start(): void {
-    QUnit.module('Parser');
-    QUnit.test('Basic', basic);
-    QUnit.test('Advanced', advanced);
-    QUnit.test('Mixed', mixed);
-    QUnit.test('Micro Score', microscore);
+    QUnit.module("Parser");
+    QUnit.test("Basic", basic);
+    QUnit.test("Advanced", advanced);
+    QUnit.test("Mixed", mixed);
+    QUnit.test("Micro Score", microscore);
   },
 };
 
@@ -45,22 +44,22 @@ class TestGrammar implements Grammar {
     return { expect: [this.EXCLAIM], maybe: true };
   }
   LBRACE() {
-    return { token: '[{]' };
+    return { token: "[{]" };
   }
   RBRACE() {
-    return { token: '[}]' };
+    return { token: "[}]" };
   }
   WORD() {
-    return { token: '[a-zA-Z]+' };
+    return { token: "[a-zA-Z]+" };
   }
   COMMA() {
-    return { token: '[,]' };
+    return { token: "[,]" };
   }
   EXCLAIM() {
-    return { token: '[!]' };
+    return { token: "[!]" };
   }
   EOL() {
-    return { token: '$' };
+    return { token: "$" };
   }
 }
 
@@ -79,14 +78,16 @@ class MicroScoreGrammar {
   ITEM = () => ({ expect: [this.PIANO_KEY_NUMBER, this.CHORD], or: true });
   MAYBE_MORE_ITEMS = () => ({ expect: [this.ITEM], zeroOrMore: true });
   PIANO_KEY_NUMBER = () => ({ expect: [this.NUM], oneOrMore: true });
-  CHORD = () => ({ expect: [this.LEFT_BRACKET, this.PIANO_KEY_NUMBER, this.MORE_CHORD_PARTS, this.RIGHT_BRACKET] });
+  CHORD = () => ({
+    expect: [this.LEFT_BRACKET, this.PIANO_KEY_NUMBER, this.MORE_CHORD_PARTS, this.RIGHT_BRACKET],
+  });
   MORE_CHORD_PARTS = () => ({ expect: [this.PERIOD, this.PIANO_KEY_NUMBER], oneOrMore: true });
-  NUM = () => ({ token: '\\d+' });
-  WHITESPACE = () => ({ token: '\\s+' });
-  PERIOD = () => ({ token: '\\.' });
-  LEFT_BRACKET = () => ({ token: '\\[' });
-  RIGHT_BRACKET = () => ({ token: '\\]' });
-  EOL = () => ({ token: '$' });
+  NUM = () => ({ token: "\\d+" });
+  WHITESPACE = () => ({ token: "\\s+" });
+  PERIOD = () => ({ token: "\\." });
+  LEFT_BRACKET = () => ({ token: "\\[" });
+  RIGHT_BRACKET = () => ({ token: "\\]" });
+  EOL = () => ({ token: "$" });
 }
 
 /**
@@ -103,14 +104,14 @@ function basic(assert: Assert): void {
   const parser = new Parser(grammar);
 
   // Each of these strings will parse correctly.
-  const mustPass = ['first, second', 'first,second', 'first', 'first,second, third'];
+  const mustPass = ["first, second", "first,second", "first", "first,second, third"];
   mustPass.forEach((line) => assert.equal(parser.parse(line).success, true, line));
 
-  fails(assert, parser.parse(''), 0);
-  fails(assert, parser.parse('first second'), 6);
-  fails(assert, parser.parse('first,,'), 5);
-  fails(assert, parser.parse('first,'), 5);
-  fails(assert, parser.parse(',,'), 0);
+  fails(assert, parser.parse(""), 0);
+  fails(assert, parser.parse("first second"), 6);
+  fails(assert, parser.parse("first,,"), 5);
+  fails(assert, parser.parse("first,"), 5);
+  fails(assert, parser.parse(",,"), 0);
 }
 
 function advanced(assert: Assert): void {
@@ -118,13 +119,19 @@ function advanced(assert: Assert): void {
   grammar.expect = [grammar.BIGLINE, grammar.EOL];
   const parser = new Parser(grammar);
 
-  const mustPass = ['{first}', '{first!}', '{first,second}', '{first,second!}', '{first,second,third!}'];
+  const mustPass = [
+    "{first}",
+    "{first!}",
+    "{first,second}",
+    "{first,second!}",
+    "{first,second,third!}",
+  ];
   mustPass.forEach((line) => assert.equal(parser.parse(line).success, true, line));
 
-  fails(assert, parser.parse('{first,second,third,}'), 19);
-  fails(assert, parser.parse('first,second,third'), 0);
-  fails(assert, parser.parse('{first,second,third'), 19);
-  fails(assert, parser.parse('{!}'), 1);
+  fails(assert, parser.parse("{first,second,third,}"), 19);
+  fails(assert, parser.parse("first,second,third"), 0);
+  fails(assert, parser.parse("{first,second,third"), 19);
+  fails(assert, parser.parse("{!}"), 1);
 }
 
 function mixed(assert: Assert): void {
@@ -132,10 +139,10 @@ function mixed(assert: Assert): void {
   grammar.expect = [grammar.BIGORLITTLE, grammar.EOL];
   const parser = new Parser(grammar);
 
-  const mustPass = ['{first,second,third!}', 'first, second'];
+  const mustPass = ["{first,second,third!}", "first, second"];
   mustPass.forEach((line) => assert.equal(parser.parse(line).success, true, line));
 
-  fails(assert, parser.parse('first second'), 6);
+  fails(assert, parser.parse("first second"), 6);
 }
 
 function microscore(assert: Assert): void {
@@ -143,9 +150,9 @@ function microscore(assert: Assert): void {
   const parser = new Parser(grammar);
 
   const mustPass = [
-    '40 42 44 45 47 49 51 52', // Individual Notes: C Major Scale
-    '[40.44.47] [45.49.52] [47.51.54] [49.52.56]', // Chord Progression: C-major F-major G-major A-minor
-    '40 [40.44.47] 45 47 [44.47.51]', // Mixed Notes and Chords: C4 [Cmajor] F4 G4 [Eminor]
+    "40 42 44 45 47 49 51 52", // Individual Notes: C Major Scale
+    "[40.44.47] [45.49.52] [47.51.54] [49.52.56]", // Chord Progression: C-major F-major G-major A-minor
+    "40 [40.44.47] 45 47 [44.47.51]", // Mixed Notes and Chords: C4 [Cmajor] F4 G4 [Eminor]
   ];
 
   mustPass.forEach((line) => {
@@ -154,9 +161,9 @@ function microscore(assert: Assert): void {
     assert.equal(result.matches?.length, 3, line);
   });
 
-  fails(assert, parser.parse('40 42 44 45 47 49 5A 52'), 19);
-  fails(assert, parser.parse('40.44.47] [45.49.52] [47.51.54] [49.52.56]'), 2);
-  fails(assert, parser.parse('40 [40] 45 47 [44.47.51]'), 3); // A chord with a single note is not allowed.
+  fails(assert, parser.parse("40 42 44 45 47 49 5A 52"), 19);
+  fails(assert, parser.parse("40.44.47] [45.49.52] [47.51.54] [49.52.56]"), 2);
+  fails(assert, parser.parse("40 [40] 45 47 [44.47.51]"), 3); // A chord with a single note is not allowed.
 }
 
 VexFlowTests.register(ParserTests);

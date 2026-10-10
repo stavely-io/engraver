@@ -1,14 +1,14 @@
 export const SansFont = {
   smufl: false,
-  name: 'SANS',
+  name: "SANS",
   spacing: 50,
-  Description: 'Built-in sans-serif font',
+  Description: "Built-in sans-serif font",
   bold: true,
   italic: true,
   monospaced: false,
   serifs: false,
   glyphs: {
-    '0': {
+    "0": {
       x_min: 85,
       x_max: 1041,
       y_min: -25,
@@ -17,7 +17,7 @@ export const SansFont = {
       leftSideBearing: 85,
       advanceWidth: 1139,
     },
-    '1': {
+    "1": {
       x_min: 223,
       x_max: 763,
       y_min: 0,
@@ -26,7 +26,7 @@ export const SansFont = {
       leftSideBearing: 223,
       advanceWidth: 1139,
     },
-    '2': {
+    "2": {
       x_min: 61.840001123045234,
       x_max: 1031,
       y_min: 0,
@@ -35,7 +35,7 @@ export const SansFont = {
       leftSideBearing: 61,
       advanceWidth: 1139,
     },
-    '3': {
+    "3": {
       x_min: 86,
       x_max: 1046,
       y_min: -26,
@@ -44,7 +44,7 @@ export const SansFont = {
       leftSideBearing: 86,
       advanceWidth: 1139,
     },
-    '4': {
+    "4": {
       x_min: 26,
       x_max: 1040,
       y_min: 0,
@@ -53,7 +53,7 @@ export const SansFont = {
       leftSideBearing: 26,
       advanceWidth: 1139,
     },
-    '5': {
+    "5": {
       x_min: 85,
       x_max: 1057,
       y_min: -25,
@@ -62,7 +62,7 @@ export const SansFont = {
       leftSideBearing: 85,
       advanceWidth: 1139,
     },
-    '6': {
+    "6": {
       x_min: 77,
       x_max: 1045,
       y_min: -25,
@@ -71,7 +71,7 @@ export const SansFont = {
       leftSideBearing: 77,
       advanceWidth: 1139,
     },
-    '7': {
+    "7": {
       x_min: 97,
       x_max: 1046,
       y_min: 0,
@@ -80,7 +80,7 @@ export const SansFont = {
       leftSideBearing: 97,
       advanceWidth: 1139,
     },
-    '8': {
+    "8": {
       x_min: 83,
       x_max: 1049,
       y_min: -25,
@@ -89,7 +89,7 @@ export const SansFont = {
       leftSideBearing: 83,
       advanceWidth: 1139,
     },
-    '9': {
+    "9": {
       x_min: 85,
       x_max: 1049,
       y_min: -25,
@@ -98,7 +98,7 @@ export const SansFont = {
       leftSideBearing: 85,
       advanceWidth: 1139,
     },
-    ' ': {
+    " ": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -107,7 +107,7 @@ export const SansFont = {
       leftSideBearing: 0,
       advanceWidth: 569,
     },
-    '!': {
+    "!": {
       x_min: 176,
       x_max: 399,
       y_min: 0,
@@ -125,7 +125,7 @@ export const SansFont = {
       leftSideBearing: 94,
       advanceWidth: 727,
     },
-    '#': {
+    "#": {
       x_min: 21,
       x_max: 1113,
       y_min: -25,
@@ -143,7 +143,7 @@ export const SansFont = {
       leftSideBearing: 73,
       advanceWidth: 1139,
     },
-    '%': {
+    "%": {
       x_min: 119,
       x_max: 1695,
       y_min: -54,
@@ -152,7 +152,7 @@ export const SansFont = {
       leftSideBearing: 119,
       advanceWidth: 1821,
     },
-    '&': {
+    "&": {
       x_min: 88,
       x_max: 1319,
       y_min: -34,
@@ -170,7 +170,7 @@ export const SansFont = {
       leftSideBearing: 90,
       advanceWidth: 391,
     },
-    '(': {
+    "(": {
       x_min: 124,
       x_max: 608,
       y_min: -431,
@@ -179,7 +179,7 @@ export const SansFont = {
       leftSideBearing: 124,
       advanceWidth: 682,
     },
-    ')': {
+    ")": {
       x_min: 124,
       x_max: 608,
       y_min: -431,
@@ -188,7 +188,7 @@ export const SansFont = {
       leftSideBearing: 124,
       advanceWidth: 682,
     },
-    '*': {
+    "*": {
       x_min: 64,
       x_max: 725,
       y_min: 867,
@@ -197,7 +197,7 @@ export const SansFont = {
       leftSideBearing: 64,
       advanceWidth: 797,
     },
-    '+': {
+    "+": {
       x_min: 114,
       x_max: 1082,
       y_min: 237,
@@ -206,7 +206,7 @@ export const SansFont = {
       leftSideBearing: 114,
       advanceWidth: 1196,
     },
-    ',': {
+    ",": {
       x_min: 170,
       x_max: 387,
       y_min: -290,
@@ -215,7 +215,7 @@ export const SansFont = {
       leftSideBearing: 170,
       advanceWidth: 569,
     },
-    '-': {
+    "-": {
       x_min: 65,
       x_max: 618,
       y_min: 440,
@@ -224,7 +224,7 @@ export const SansFont = {
       leftSideBearing: 65,
       advanceWidth: 682,
     },
-    '.': {
+    ".": {
       x_min: 186,
       x_max: 391,
       y_min: 0,
@@ -233,7 +233,7 @@ export const SansFont = {
       leftSideBearing: 186,
       advanceWidth: 569,
     },
-    '/': {
+    "/": {
       x_min: 0,
       x_max: 569,
       y_min: -25,
@@ -242,7 +242,7 @@ export const SansFont = {
       leftSideBearing: 0,
       advanceWidth: 569,
     },
-    ':': {
+    ":": {
       x_min: 185,
       x_max: 390,
       y_min: 0,
@@ -251,7 +251,7 @@ export const SansFont = {
       leftSideBearing: 185,
       advanceWidth: 569,
     },
-    ';': {
+    ";": {
       x_min: 170,
       x_max: 387,
       y_min: -290,
@@ -260,7 +260,7 @@ export const SansFont = {
       leftSideBearing: 170,
       advanceWidth: 569,
     },
-    '<': {
+    "<": {
       x_min: 112,
       x_max: 1083,
       y_min: 226,
@@ -269,7 +269,7 @@ export const SansFont = {
       leftSideBearing: 112,
       advanceWidth: 1196,
     },
-    '=': {
+    "=": {
       x_min: 114,
       x_max: 1082,
       y_min: 417,
@@ -278,7 +278,7 @@ export const SansFont = {
       leftSideBearing: 114,
       advanceWidth: 1196,
     },
-    '>': {
+    ">": {
       x_min: 112,
       x_max: 1083,
       y_min: 226,
@@ -287,7 +287,7 @@ export const SansFont = {
       leftSideBearing: 112,
       advanceWidth: 1196,
     },
-    '?': {
+    "?": {
       x_min: 90,
       x_max: 1036,
       y_min: 0,
@@ -296,7 +296,7 @@ export const SansFont = {
       leftSideBearing: 90,
       advanceWidth: 1139,
     },
-    '@': {
+    "@": {
       x_min: 111,
       x_max: 2005,
       y_min: -431,
@@ -539,7 +539,7 @@ export const SansFont = {
       leftSideBearing: 41,
       advanceWidth: 1251,
     },
-    '[': {
+    "[": {
       x_min: 139,
       x_max: 536,
       y_min: -407,
@@ -548,7 +548,7 @@ export const SansFont = {
       leftSideBearing: 139,
       advanceWidth: 569,
     },
-    '\\': {
+    "\\": {
       x_min: 0,
       x_max: 569,
       y_min: -25,
@@ -557,7 +557,7 @@ export const SansFont = {
       leftSideBearing: 0,
       advanceWidth: 569,
     },
-    ']': {
+    "]": {
       x_min: 39,
       x_max: 436,
       y_min: -407,
@@ -566,7 +566,7 @@ export const SansFont = {
       leftSideBearing: 39,
       advanceWidth: 569,
     },
-    '^': {
+    "^": {
       x_min: 54,
       x_max: 907,
       y_min: 690,
@@ -584,7 +584,7 @@ export const SansFont = {
       leftSideBearing: -31,
       advanceWidth: 1139,
     },
-    '`': {
+    "`": {
       x_min: 89,
       x_max: 465,
       y_min: 1194,
@@ -827,7 +827,7 @@ export const SansFont = {
       leftSideBearing: 40,
       advanceWidth: 1024,
     },
-    '{': {
+    "{": {
       x_min: 57,
       x_max: 636,
       y_min: -431,
@@ -836,7 +836,7 @@ export const SansFont = {
       leftSideBearing: 57,
       advanceWidth: 684,
     },
-    '|': {
+    "|": {
       x_min: 188,
       x_max: 345,
       y_min: -431,
@@ -845,7 +845,7 @@ export const SansFont = {
       leftSideBearing: 188,
       advanceWidth: 532,
     },
-    '}': {
+    "}": {
       x_min: 47,
       x_max: 626,
       y_min: -431,
@@ -854,7 +854,7 @@ export const SansFont = {
       leftSideBearing: 47,
       advanceWidth: 684,
     },
-    '~': {
+    "~": {
       x_min: 87,
       x_max: 1110,
       y_min: 557,
@@ -864,7 +864,7 @@ export const SansFont = {
       advanceWidth: 1196,
     },
   },
-  fontFamily: 'sans-serif',
+  fontFamily: "sans-serif",
   resolution: 2048,
-  generatedOn: '2020-10-18T18:48:11.823Z',
+  generatedOn: "2020-10-18T18:48:11.823Z",
 };

@@ -1,13 +1,13 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Element } from './element';
-import type { FontInfo } from './font';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import { TextFormatter } from './textformatter';
-import { Category, isTabNote } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import { TextFormatter } from "./textformatter";
+import { Category, isTabNote } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface BendPhrase {
   x?: number;
@@ -111,11 +111,11 @@ export class Bend extends Modifier {
     this.text = text;
     this.x_shift = 0;
     this.release = release;
-    this.tap = '';
+    this.tap = "";
     this.resetFont();
     this.render_options = {
       line_width: 1.5,
-      line_style: '#777777',
+      line_style: "#777777",
       bend_width: 8,
       release_width: 8,
     };
@@ -125,7 +125,7 @@ export class Bend extends Modifier {
     } else {
       // Backward compatibility
       this.phrase = [{ type: Bend.UP, text: this.text }];
-      if (this.release) this.phrase.push({ type: Bend.DOWN, text: '' });
+      if (this.release) this.phrase.push({ type: Bend.DOWN, text: "" });
     }
 
     this.updateWidth();
@@ -166,7 +166,9 @@ export class Bend extends Modifier {
         totalWidth += bend.width;
       } else {
         const additional_width =
-          bend.type === Bend.UP ? this.render_options.bend_width : this.render_options.release_width;
+          bend.type === Bend.UP
+            ? this.render_options.bend_width
+            : this.render_options.release_width;
 
         bend.width = Math.max(additional_width, measureText(bend.text)) + 3;
         bend.draw_width = bend.width / 2;
@@ -290,7 +292,7 @@ export class Bend extends Modifier {
     }
 
     if (!last_bend || last_bend.x == undefined) {
-      throw new RuntimeError('NoLastBendForBend', 'Internal error.');
+      throw new RuntimeError("NoLastBendForBend", "Internal error.");
     }
 
     // Final arrowhead and text

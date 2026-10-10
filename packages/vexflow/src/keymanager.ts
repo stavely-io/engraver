@@ -4,9 +4,9 @@
 //
 // This class implements diatonic key management.
 
-import type { KeyParts} from './music';
-import { Music } from './music';
-import { RuntimeError } from './util';
+import type { KeyParts } from "./music";
+import { Music } from "./music";
+import { RuntimeError } from "./util";
 
 export class KeyManager {
   protected music: Music;
@@ -42,12 +42,12 @@ export class KeyManager {
 
     const is_supported_type = Music.scaleTypes[this.keyParts.type];
     if (!is_supported_type) {
-      throw new RuntimeError('BadArguments', `Unsupported key type: ${this.key}`);
+      throw new RuntimeError("BadArguments", `Unsupported key type: ${this.key}`);
     }
 
     this.scale = this.music.getScaleTones(
       this.music.getNoteValue(this.keyString),
-      Music.scaleTypes[this.keyParts.type]
+      Music.scaleTypes[this.keyParts.type],
     );
 
     this.scaleMap = {};

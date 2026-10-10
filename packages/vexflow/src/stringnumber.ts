@@ -4,17 +4,17 @@
 // This file implements the `StringNumber` class which renders string
 // number annotations beside notes.
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Modifier, ModifierPosition } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import { Renderer } from './renderer';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category, isStaveNote, isStemmableNote } from './typeguard';
-import { RuntimeError } from './util';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Modifier, ModifierPosition } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import { Renderer } from "./renderer";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category, isStaveNote, isStemmableNote } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface StringNumberMetrics {
   verticalPadding: number;
@@ -72,7 +72,7 @@ export class StringNumber extends Modifier {
       const note = num.getNote();
       const pos = num.getPosition();
       if (!isStaveNote(note)) {
-        throw new RuntimeError('NoStaveNote');
+        throw new RuntimeError("NoStaveNote");
       }
       const index = num.checkIndex();
       const props = note.getKeyProps()[index];
@@ -92,7 +92,10 @@ export class StringNumber extends Modifier {
       if (note !== prev_note) {
         for (let n = 0; n < note.keys.length; ++n) {
           if (pos === Modifier.Position.LEFT) {
-            extraXSpaceForDisplacedNotehead = Math.max(note.getLeftDisplacedHeadPx(), extraXSpaceForDisplacedNotehead);
+            extraXSpaceForDisplacedNotehead = Math.max(
+              note.getLeftDisplacedHeadPx(),
+              extraXSpaceForDisplacedNotehead,
+            );
           }
           if (right_shift === 0) {
             shift_right = Math.max(note.getRightDisplacedHeadPx(), shift_right);
@@ -241,7 +244,10 @@ export class StringNumber extends Modifier {
           if (note.hasStem() && stemDirection == Stem.UP) {
             dot_y = stem_ext.topY + StringNumber.metrics.stemPadding;
           }
-          dot_y -= this.radius + StringNumber.metrics.verticalPadding + this.text_line * Tables.STAVE_LINE_DISTANCE;
+          dot_y -=
+            this.radius +
+            StringNumber.metrics.verticalPadding +
+            this.text_line * Tables.STAVE_LINE_DISTANCE;
         }
         break;
       case Modifier.Position.BELOW:
@@ -251,7 +257,10 @@ export class StringNumber extends Modifier {
           if (note.hasStem() && stemDirection == Stem.DOWN) {
             dot_y = stem_ext.topY - StringNumber.metrics.stemPadding;
           }
-          dot_y += this.radius + StringNumber.metrics.verticalPadding + this.text_line * Tables.STAVE_LINE_DISTANCE;
+          dot_y +=
+            this.radius +
+            StringNumber.metrics.verticalPadding +
+            this.text_line * Tables.STAVE_LINE_DISTANCE;
         }
         break;
       case Modifier.Position.LEFT:
@@ -261,7 +270,7 @@ export class StringNumber extends Modifier {
         dot_x += this.radius / 2 + StringNumber.metrics.rightPadding;
         break;
       default:
-        throw new RuntimeError('InvalidPosition', `The position ${this.position} is invalid`);
+        throw new RuntimeError("InvalidPosition", `The position ${this.position} is invalid`);
     }
 
     ctx.save();
@@ -273,14 +282,14 @@ export class StringNumber extends Modifier {
     }
     ctx.setFont(this.textFont);
     const x = dot_x - ctx.measureText(this.string_number).width / 2;
-    ctx.fillText('' + this.string_number, x, dot_y + 4.5);
+    ctx.fillText("" + this.string_number, x, dot_y + 4.5);
 
     const lastNote = this.last_note;
     if (isStemmableNote(lastNote)) {
       // Only StemmableNote objects have getStemX().
       const end = lastNote.getStemX() - note.getX() + 5;
-      ctx.setStrokeStyle('#000000');
-      ctx.setLineCap('round');
+      ctx.setStrokeStyle("#000000");
+      ctx.setLineCap("round");
       ctx.setLineWidth(0.6);
       if (this.dashed) {
         Renderer.drawDashedLine(ctx, dot_x + 10, dot_y, dot_x + end, dot_y, [3, 3]);

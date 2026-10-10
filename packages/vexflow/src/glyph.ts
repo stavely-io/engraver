@@ -1,15 +1,15 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { BoundingBox } from './boundingbox';
-import { BoundingBoxComputation } from './boundingboxcomputation';
-import { Element } from './element';
-import type { Font, FontGlyph } from './font';
-import type { RenderContext } from './rendercontext';
-import type { Stave } from './stave';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
+import { BoundingBox } from "./boundingbox";
+import { BoundingBoxComputation } from "./boundingboxcomputation";
+import { Element } from "./element";
+import type { Font, FontGlyph } from "./font";
+import type { RenderContext } from "./rendercontext";
+import type { Stave } from "./stave";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
 
 export interface GlyphProps {
   code_head: string;
@@ -71,11 +71,11 @@ class GlyphCacheEntry {
       this.metrics.outline,
       this.metrics.scale,
       this.metrics.x_shift,
-      this.metrics.y_shift
+      this.metrics.y_shift,
     );
 
     if (category) {
-      this.point = Glyph.lookupFontMetric(this.metrics.font, category, code, 'point', -1);
+      this.point = Glyph.lookupFontMetric(this.metrics.font, category, code, "point", -1);
     }
   }
 }
@@ -103,7 +103,12 @@ class GlyphOutline {
   private i: number = 0;
   private precision = 1;
 
-  constructor(private outline: number[], private originX: number, private originY: number, private scale: number) {
+  constructor(
+    private outline: number[],
+    private originX: number,
+    private originY: number,
+    private scale: number,
+  ) {
     // Automatically assign private properties: this.outline, this.originX, this.originY, and this.scale.
     this.precision = Math.pow(10, Tables.RENDER_PRECISION_PLACES);
   }
@@ -115,34 +120,40 @@ class GlyphOutline {
     return Math.round((this.outline[this.i++] * this.precision) / this.precision);
   }
   nextX(): number {
-    return Math.round((this.originX + this.outline[this.i++] * this.scale) * this.precision) / this.precision;
+    return (
+      Math.round((this.originX + this.outline[this.i++] * this.scale) * this.precision) /
+      this.precision
+    );
   }
   nextY(): number {
-    return Math.round((this.originY - this.outline[this.i++] * this.scale) * this.precision) / this.precision;
+    return (
+      Math.round((this.originY - this.outline[this.i++] * this.scale) * this.precision) /
+      this.precision
+    );
   }
 
   static parse(str: string): number[] {
     const result: number[] = [];
-    const parts = str.split(' ');
+    const parts = str.split(" ");
     let i = 0;
     while (i < parts.length) {
       switch (parts[i++]) {
-        case 'm':
+        case "m":
           result.push(OutlineCode.MOVE, parseInt(parts[i++]), parseInt(parts[i++]));
           break;
-        case 'l':
+        case "l":
           result.push(OutlineCode.LINE, parseInt(parts[i++]), parseInt(parts[i++]));
           break;
-        case 'q':
+        case "q":
           result.push(
             OutlineCode.QUADRATIC,
             parseInt(parts[i++]),
             parseInt(parts[i++]),
             parseInt(parts[i++]),
-            parseInt(parts[i++])
+            parseInt(parts[i++]),
           );
           break;
-        case 'b':
+        case "b":
           result.push(
             OutlineCode.BEZIER,
             parseInt(parts[i++]),
@@ -150,7 +161,7 @@ class GlyphOutline {
             parseInt(parts[i++]),
             parseInt(parts[i++]),
             parseInt(parts[i++]),
-            parseInt(parts[i++])
+            parseInt(parts[i++]),
           );
           break;
       }
@@ -172,7 +183,7 @@ export class Glyph extends Element {
   // The current cache key for GlyphCache above.
   // Computed when Flow.setMusicFont(...) is called.
   // It is set to a comma separated list of font names.
-  public static CURRENT_CACHE_KEY: string = '';
+  public static CURRENT_CACHE_KEY: string = "";
 
   // Used by the GlyphCache above.
   // Set when Flow.setMusicFont(...) is called.
@@ -188,7 +199,13 @@ export class Glyph extends Element {
    * @param key
    * @param defaultValue
    */
-  static lookupFontMetric(font: Font, category: string, code: string, key: string, defaultValue: number): number {
+  static lookupFontMetric(
+    font: Font,
+    category: string,
+    code: string,
+    key: string,
+    defaultValue: number,
+  ): number {
     let value = font.lookupMetric(`glyphs.${category}.${code}.${key}`, undefined);
     if (value === undefined) {
       // The first lookup failed, so we omit .${code} and try again (with a defaultValue this time).
@@ -198,7 +215,7 @@ export class Glyph extends Element {
   }
 
   static lookupGlyph(fontStack: Font[], code: string): { font: Font; glyph: FontGlyph } {
-    defined(fontStack, 'BadFontStack', 'Font stack is misconfigured');
+    defined(fontStack, "BadFontStack", "Font stack is misconfigured");
 
     let glyph: FontGlyph;
     let font: Font;
@@ -208,21 +225,21 @@ export class Glyph extends Element {
       if (glyph) return { glyph, font };
     }
 
-    throw new RuntimeError('BadGlyph', `Glyph ${code} does not exist in font.`);
+    throw new RuntimeError("BadGlyph", `Glyph ${code} does not exist in font.`);
   }
 
   static loadMetrics(fontStack: Font[], code: string, category?: string): GlyphMetrics {
     const { glyph, font } = Glyph.lookupGlyph(fontStack, code);
 
-    if (!glyph.o) throw new RuntimeError('BadGlyph', `Glyph ${code} has no outline defined.`);
+    if (!glyph.o) throw new RuntimeError("BadGlyph", `Glyph ${code} has no outline defined.`);
 
     let x_shift = 0;
     let y_shift = 0;
     let scale = 1;
     if (category && font) {
-      x_shift = Glyph.lookupFontMetric(font, category, code, 'shiftX', 0);
-      y_shift = Glyph.lookupFontMetric(font, category, code, 'shiftY', 0);
-      scale = Glyph.lookupFontMetric(font, category, code, 'scale', 1);
+      x_shift = Glyph.lookupFontMetric(font, category, code, "shiftX", 0);
+      y_shift = Glyph.lookupFontMetric(font, category, code, "shiftY", 0);
+      scale = Glyph.lookupFontMetric(font, category, code, "scale", 1);
     }
 
     const x_min = glyph.x_min;
@@ -264,7 +281,7 @@ export class Glyph extends Element {
     y_pos: number,
     point: number,
     code: string,
-    options?: { category?: string; scale?: number }
+    options?: { category?: string; scale?: number },
   ): GlyphMetrics {
     const data = Glyph.cache.lookup(code, options?.category);
     const metrics = data.metrics;
@@ -273,19 +290,26 @@ export class Glyph extends Element {
     }
 
     const customScale = options?.scale ?? 1;
-    const scale = ((point * 72.0) / (metrics.font.getResolution() * 100.0)) * metrics.scale * customScale;
+    const scale =
+      ((point * 72.0) / (metrics.font.getResolution() * 100.0)) * metrics.scale * customScale;
 
     Glyph.renderOutline(
       ctx,
       metrics.outline,
       scale,
       x_pos + metrics.x_shift * customScale,
-      y_pos + metrics.y_shift * customScale
+      y_pos + metrics.y_shift * customScale,
     );
     return metrics;
   }
 
-  static renderOutline(ctx: RenderContext, outline: number[], scale: number, x_pos: number, y_pos: number): void {
+  static renderOutline(
+    ctx: RenderContext,
+    outline: number[],
+    scale: number,
+    x_pos: number,
+    y_pos: number,
+  ): void {
     const go = new GlyphOutline(outline, x_pos, y_pos, scale);
 
     ctx.beginPath();
@@ -313,7 +337,12 @@ export class Glyph extends Element {
     ctx.fill();
   }
 
-  static getOutlineBoundingBox(outline: number[], scale: number, x_pos: number, y_pos: number): BoundingBox {
+  static getOutlineBoundingBox(
+    outline: number[],
+    scale: number,
+    x_pos: number,
+    y_pos: number,
+  ): BoundingBox {
     const go = new GlyphOutline(outline, x_pos, y_pos, scale);
     const bboxComp = new BoundingBoxComputation();
 
@@ -460,12 +489,12 @@ export class Glyph extends Element {
       data.bbox.getX() * this.scale,
       data.bbox.getY() * this.scale,
       data.bbox.getW() * this.scale,
-      data.bbox.getH() * this.scale
+      data.bbox.getH() * this.scale,
     );
   }
 
   checkMetrics(): GlyphMetrics {
-    return defined(this.metrics, 'BadGlyph', `Glyph ${this.code} is not initialized.`);
+    return defined(this.metrics, "BadGlyph", `Glyph ${this.code} is not initialized.`);
   }
 
   getMetrics(): GlyphMetrics {
@@ -519,7 +548,7 @@ export class Glyph extends Element {
   }
 
   checkStave(): Stave {
-    return defined(this.stave, 'NoStave', 'No stave attached to instance.');
+    return defined(this.stave, "NoStave", "No stave attached to instance.");
   }
 
   renderToStave(x: number): void {

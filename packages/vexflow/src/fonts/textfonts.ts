@@ -1,13 +1,13 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Font } from '../font';
-import { TextFormatter } from '../textformatter';
-import { PetalumaScriptFont } from './petalumascript_glyphs';
-import { RobotoSlabFont } from './robotoslab_glyphs';
-import { SansFontBold } from './sans_bold_text_metrics';
-import { SansFont } from './sans_text_metrics';
-import { SerifFont } from './serif_text_metrics';
+import { Font } from "../font";
+import { TextFormatter } from "../textformatter";
+import { PetalumaScriptFont } from "./petalumascript_glyphs";
+import { RobotoSlabFont } from "./robotoslab_glyphs";
+import { SansFontBold } from "./sans_bold_text_metrics";
+import { SansFont } from "./sans_text_metrics";
+import { SerifFont } from "./serif_text_metrics";
 
 export function loadTextFonts() {
   // Sans-serif fallback font, very close to Arial
@@ -17,7 +17,7 @@ export function loadTextFonts() {
     Font.load(fontFamily, fontData);
     // Usually @ is the tallest and widest character, although not the
     // highest since it starts below the baseline.
-    const maxSizeGlyph = '@';
+    const maxSizeGlyph = "@";
     TextFormatter.registerInfo({
       family: fontFamily,
       resolution,
@@ -29,7 +29,7 @@ export function loadTextFonts() {
       superscriptOffset: 0.66,
       subscriptOffset: 0.66,
       serifs: false,
-      description: 'Generic SANS font',
+      description: "Generic SANS font",
     });
   }
   // Sans-serif fallback font, very close to Arial
@@ -39,7 +39,7 @@ export function loadTextFonts() {
     Font.load(fontFamily, fontData);
     // Usually @ is the tallest and widest character, although not the
     // highest since it starts below the baseline.
-    const maxSizeGlyph = '@';
+    const maxSizeGlyph = "@";
     TextFormatter.registerInfo({
       family: fontFamily,
       resolution,
@@ -51,7 +51,7 @@ export function loadTextFonts() {
       superscriptOffset: 0.66,
       subscriptOffset: 0.66,
       serifs: false,
-      description: 'Generic SANS font',
+      description: "Generic SANS font",
     });
   }
   // Serif fallback font, very close to Times
@@ -61,7 +61,7 @@ export function loadTextFonts() {
     Font.load(fontFamily, fontData);
     // M is wider, but H is taller. :-)
     // Lowercase b is also taller in this font.
-    const maxSizeGlyph = '@';
+    const maxSizeGlyph = "@";
     TextFormatter.registerInfo({
       family: fontFamily,
       resolution,
@@ -73,7 +73,7 @@ export function loadTextFonts() {
       superscriptOffset: 0.66,
       subscriptOffset: 0.66,
       serifs: true,
-      description: 'Generic SERIF font',
+      description: "Generic SERIF font",
     });
   }
   // Roboto Slab
@@ -83,7 +83,7 @@ export function loadTextFonts() {
     Font.load(fontFamily, fontData);
     // Previously we used 'H', but it isn't actually the tallest or the widest.
     // Interestingly, the lowercase 'b' is the tallest glyph.
-    const maxSizeGlyph = 'b';
+    const maxSizeGlyph = "b";
     TextFormatter.registerInfo({
       family: fontFamily,
       resolution,
@@ -95,7 +95,7 @@ export function loadTextFonts() {
       superscriptOffset: 0.66,
       subscriptOffset: 0.66,
       serifs: true,
-      description: 'Text font to pair with the Bravura / Gonville music fonts.',
+      description: "Text font to pair with the Bravura / Gonville music fonts.",
     });
   }
 
@@ -106,7 +106,7 @@ export function loadTextFonts() {
     Font.load(fontFamily, fontData);
     // M is wider, but H is taller. :-)
     // Lowercase b is also taller in this font.
-    const maxSizeGlyph = 'b';
+    const maxSizeGlyph = "b";
     TextFormatter.registerInfo({
       family: fontFamily,
       resolution,
@@ -118,7 +118,7 @@ export function loadTextFonts() {
       superscriptOffset: 0.66,
       subscriptOffset: 0.66,
       serifs: false,
-      description: 'Text font to pair with the Petaluma music font.',
+      description: "Text font to pair with the Petaluma music font.",
     });
   }
 }

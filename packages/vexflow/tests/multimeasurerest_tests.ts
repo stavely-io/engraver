@@ -3,18 +3,17 @@
 //
 // MultiMeasureRest Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Flow } from '../src/flow';
-import { Font } from '../src/font';
-import { MultimeasureRestRenderOptions } from '../src/multimeasurerest';
+import { Flow } from "../src/flow";
+import { Font } from "../src/font";
+import { MultimeasureRestRenderOptions } from "../src/multimeasurerest";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const MultiMeasureRestTests = {
   Start(): void {
-    QUnit.module('MultiMeasureRest');
+    QUnit.module("MultiMeasureRest");
     const run = VexFlowTests.runTests;
-    run('Simple Test', simple);
-    run('Stave with modifiers Test', staveWithModifiers);
+    run("Simple Test", simple);
+    run("Stave with modifiers Test", staveWithModifiers);
   },
 };
 
@@ -48,7 +47,10 @@ function simple(options: TestOptions): void {
     [{}, { number_of_measures: 11, use_symbols: true, line: 3, number_line: 2 }],
     [line_spacing_15px, { number_of_measures: 12 }],
     [line_spacing_15px, { number_of_measures: 9, use_symbols: true }],
-    [line_spacing_15px, { number_of_measures: 12, spacing_between_lines_px: 15, number_glyph_point: 40 * 1.5 }],
+    [
+      line_spacing_15px,
+      { number_of_measures: 12, spacing_between_lines_px: 15, number_glyph_point: 40 * 1.5 },
+    ],
     [
       line_spacing_15px,
       {
@@ -93,15 +95,15 @@ function simple(options: TestOptions): void {
   const xs = mmRests[0].getXs();
   // eslint-disable-next-line
   const strY = mmRests[0].getStave()!.getYForLine(-0.5);
-  const str = 'TACET';
+  const str = "TACET";
   const context = f.getContext();
   context.save();
-  context.setFont(Font.SERIF, 16, 'bold');
+  context.setFont(Font.SERIF, 16, "bold");
   const metrics = context.measureText(str);
   context.fillText(str, xs.left + (xs.right - xs.left) * 0.5 - metrics.width * 0.5, strY);
   context.restore();
 
-  options.assert.ok(true, 'Simple Test');
+  options.assert.ok(true, "Simple Test");
 }
 
 function staveWithModifiers(options: TestOptions): void {
@@ -112,15 +114,21 @@ function staveWithModifiers(options: TestOptions): void {
 
   // eslint-disable-next-line
   const params: [any, MultimeasureRestRenderOptions][] = [
-    [{ clef: 'treble', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', keySig: 'G', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', timeSig: '4/4', keySig: 'G', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', endClef: 'bass', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', endKeySig: 'F', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', endTimeSig: '2/4', params: { width: 150 } }, { number_of_measures: 5 }],
-    [{ clef: 'treble', endClef: 'bass', endTimeSig: '2/4', params: { width: 150 } }, { number_of_measures: 5 }],
+    [{ clef: "treble", params: { width: 150 } }, { number_of_measures: 5 }],
+    [{ clef: "treble", keySig: "G", params: { width: 150 } }, { number_of_measures: 5 }],
     [
-      { clef: 'treble', endClef: 'bass', endTimeSig: '2/4', params: { width: 150 } },
+      { clef: "treble", timeSig: "4/4", keySig: "G", params: { width: 150 } },
+      { number_of_measures: 5 },
+    ],
+    [{ clef: "treble", endClef: "bass", params: { width: 150 } }, { number_of_measures: 5 }],
+    [{ clef: "treble", endKeySig: "F", params: { width: 150 } }, { number_of_measures: 5 }],
+    [{ clef: "treble", endTimeSig: "2/4", params: { width: 150 } }, { number_of_measures: 5 }],
+    [
+      { clef: "treble", endClef: "bass", endTimeSig: "2/4", params: { width: 150 } },
+      { number_of_measures: 5 },
+    ],
+    [
+      { clef: "treble", endClef: "bass", endTimeSig: "2/4", params: { width: 150 } },
       { number_of_measures: 5, use_symbols: true },
     ],
   ];
@@ -163,7 +171,7 @@ function staveWithModifiers(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Stave with modifiers Test');
+  options.assert.ok(true, "Stave with modifiers Test");
 }
 
 VexFlowTests.register(MultiMeasureRestTests);

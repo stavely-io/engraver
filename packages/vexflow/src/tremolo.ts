@@ -2,13 +2,13 @@
 // Author: Mike Corrigan <corrigan@gmail.com>
 // MIT License
 
-import { Glyph } from './glyph';
-import { GraceNote } from './gracenote';
-import { Modifier } from './modifier';
-import { Note } from './note';
-import { Stem } from './stem';
-import { Tables } from './tables';
-import { Category, isGraceNote } from './typeguard';
+import { Glyph } from "./glyph";
+import { GraceNote } from "./gracenote";
+import { Modifier } from "./modifier";
+import { Note } from "./note";
+import { Stem } from "./stem";
+import { Tables } from "./tables";
+import { Category, isGraceNote } from "./typeguard";
 
 /** Tremolo implements tremolo notation. */
 export class Tremolo extends Modifier {
@@ -31,7 +31,7 @@ export class Tremolo extends Modifier {
 
     this.num = num;
     this.position = Modifier.Position.CENTER;
-    this.code = 'tremolo1';
+    this.code = "tremolo1";
     // big strokes scales initialised to 1 (no scale)
     this.y_spacing_scale = 1;
     this.extra_stroke_scale = 1;
@@ -50,7 +50,7 @@ export class Tremolo extends Modifier {
 
     const gn = isGraceNote(note);
     const scale = gn ? GraceNote.SCALE : 1;
-    const category = `tremolo.${gn ? 'grace' : 'default'}`;
+    const category = `tremolo.${gn ? "grace" : "default"}`;
 
     const musicFont = Tables.currentMusicFont();
     let y_spacing = musicFont.lookupMetric(`${category}.spacing`) * stemDirection;
@@ -65,11 +65,17 @@ export class Tremolo extends Modifier {
       y += musicFont.lookupMetric(`${category}.offsetYStemUp`) * scale;
     }
 
-    const fontScale = musicFont.lookupMetric(`${category}.point`) ?? Note.getPoint(gn ? 'grace' : 'default');
+    const fontScale =
+      musicFont.lookupMetric(`${category}.point`) ?? Note.getPoint(gn ? "grace" : "default");
 
-    x += musicFont.lookupMetric(`${category}.offsetXStem${stemDirection === Stem.UP ? 'Up' : 'Down'}`);
+    x += musicFont.lookupMetric(
+      `${category}.offsetXStem${stemDirection === Stem.UP ? "Up" : "Down"}`,
+    );
     for (let i = 0; i < this.num; ++i) {
-      Glyph.renderGlyph(ctx, x, y, fontScale, this.code, { category, scale: this.extra_stroke_scale });
+      Glyph.renderGlyph(ctx, x, y, fontScale, this.code, {
+        category,
+        scale: this.extra_stroke_scale,
+      });
       y += y_spacing;
     }
   }

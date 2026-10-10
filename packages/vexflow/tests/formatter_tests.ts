@@ -3,59 +3,70 @@
 //
 // Formatter Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Accidental } from '../src/accidental';
-import { Annotation, AnnotationVerticalJustify } from '../src/annotation';
-import { Articulation } from '../src/articulation';
-import { Beam } from '../src/beam';
-import { Bend } from '../src/bend';
-import { Dot } from '../src/dot';
-import { Flow } from '../src/flow';
-import { Font, FontGlyph, FontWeight } from '../src/font';
-import { Formatter } from '../src/formatter';
-import { FretHandFinger } from '../src/frethandfinger';
-import { ModifierPosition } from '../src/modifier';
-import { Note } from '../src/note';
-import { Registry } from '../src/registry';
-import { Stave } from '../src/stave';
-import { StaveConnector } from '../src/staveconnector';
-import { StaveNote } from '../src/stavenote';
-import { Stem } from '../src/stem';
-import { StemmableNote } from '../src/stemmablenote';
-import { StringNumber } from '../src/stringnumber';
-import { System } from '../src/system';
-import { Tables } from '../src/tables';
-import { Tuplet } from '../src/tuplet';
-import { Voice, VoiceTime } from '../src/voice';
-import { MockTickable } from './mocks';
+import { Accidental } from "../src/accidental";
+import { Annotation, AnnotationVerticalJustify } from "../src/annotation";
+import { Articulation } from "../src/articulation";
+import { Beam } from "../src/beam";
+import { Bend } from "../src/bend";
+import { Dot } from "../src/dot";
+import { Flow } from "../src/flow";
+import { Font, FontGlyph, FontWeight } from "../src/font";
+import { Formatter } from "../src/formatter";
+import { FretHandFinger } from "../src/frethandfinger";
+import { ModifierPosition } from "../src/modifier";
+import { Note } from "../src/note";
+import { Registry } from "../src/registry";
+import { Stave } from "../src/stave";
+import { StaveConnector } from "../src/staveconnector";
+import { StaveNote } from "../src/stavenote";
+import { Stem } from "../src/stem";
+import { StemmableNote } from "../src/stemmablenote";
+import { StringNumber } from "../src/stringnumber";
+import { System } from "../src/system";
+import { Tables } from "../src/tables";
+import { Tuplet } from "../src/tuplet";
+import { Voice, VoiceTime } from "../src/voice";
+import { MockTickable } from "./mocks";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const FormatterTests = {
   Start(): void {
-    QUnit.module('Formatter');
-    QUnit.test('TickContext Building', buildTickContexts);
+    QUnit.module("Formatter");
+    QUnit.test("TickContext Building", buildTickContexts);
 
     const run = VexFlowTests.runTests;
-    run('Penultimate Note Padding', penultimateNote);
-    run('Whitespace and justify', rightJustify);
-    run('Notehead padding', noteHeadPadding);
-    run('Justification and alignment with accidentals', accidentalJustification);
-    run('Long measure taking full space', longMeasureProblems);
-    run('Vertical alignment - few unaligned beats', unalignedNoteDurations1);
-    run('Vertical alignment - many unaligned beats', unalignedNoteDurations2, { globalSoftmax: false });
-    run('Vertical alignment - many unaligned beats (global softmax)', unalignedNoteDurations2, { globalSoftmax: true });
-    run('Vertical alignment - many mixed elements', alignedMixedElements, { globalSoftmax: true });
-    run('StaveNote - Justification', justifyStaveNotes);
-    run('Notes with Tab', notesWithTab);
-    run('Multiple Staves - Justified', multiStaves, { debug: true });
-    run('Softmax', softMax);
-    run('Mixtime', mixTime);
-    run('Tight', tightNotes1);
-    run('Tight 2', tightNotes2);
-    run('Annotations', annotations);
-    run('Proportional Formatting - No Tuning', proportional, { debug: true, iterations: 0 });
-    run('Proportional Formatting - No Justification', proportional, { justify: false, debug: true, iterations: 0 });
-    run('Proportional Formatting (20 iterations)', proportional, { debug: true, iterations: 20, alpha: 0.5 });
+    run("Penultimate Note Padding", penultimateNote);
+    run("Whitespace and justify", rightJustify);
+    run("Notehead padding", noteHeadPadding);
+    run("Justification and alignment with accidentals", accidentalJustification);
+    run("Long measure taking full space", longMeasureProblems);
+    run("Vertical alignment - few unaligned beats", unalignedNoteDurations1);
+    run("Vertical alignment - many unaligned beats", unalignedNoteDurations2, {
+      globalSoftmax: false,
+    });
+    run("Vertical alignment - many unaligned beats (global softmax)", unalignedNoteDurations2, {
+      globalSoftmax: true,
+    });
+    run("Vertical alignment - many mixed elements", alignedMixedElements, { globalSoftmax: true });
+    run("StaveNote - Justification", justifyStaveNotes);
+    run("Notes with Tab", notesWithTab);
+    run("Multiple Staves - Justified", multiStaves, { debug: true });
+    run("Softmax", softMax);
+    run("Mixtime", mixTime);
+    run("Tight", tightNotes1);
+    run("Tight 2", tightNotes2);
+    run("Annotations", annotations);
+    run("Proportional Formatting - No Tuning", proportional, { debug: true, iterations: 0 });
+    run("Proportional Formatting - No Justification", proportional, {
+      justify: false,
+      debug: true,
+      iterations: 0,
+    });
+    run("Proportional Formatting (20 iterations)", proportional, {
+      debug: true,
+      iterations: 20,
+      alpha: 0.5,
+    });
   },
 };
 
@@ -102,21 +113,36 @@ function buildTickContexts(assert: Assert): void {
   const formatter = new Formatter();
   const tContexts = formatter.createTickContexts([voice1, voice2]);
 
-  assert.equal(tContexts.list.length, 4, 'Voices should have four tick contexts');
+  assert.equal(tContexts.list.length, 4, "Voices should have four tick contexts");
 
-  assert.throws(() => formatter.getMinTotalWidth(), /NoMinTotalWidth/, 'Expected to throw exception');
+  assert.throws(
+    () => formatter.getMinTotalWidth(),
+    /NoMinTotalWidth/,
+    "Expected to throw exception",
+  );
 
-  assert.ok(formatter.preCalculateMinTotalWidth([voice1, voice2]), 'Successfully runs preCalculateMinTotalWidth');
-  assert.equal(formatter.getMinTotalWidth(), 88, 'Get minimum total width without passing voices');
+  assert.ok(
+    formatter.preCalculateMinTotalWidth([voice1, voice2]),
+    "Successfully runs preCalculateMinTotalWidth",
+  );
+  assert.equal(formatter.getMinTotalWidth(), 88, "Get minimum total width without passing voices");
 
   formatter.preFormat();
 
-  assert.equal(formatter.getMinTotalWidth(), 88, 'Minimum total width');
-  assert.equal(tickables1[0].getX(), tickables2[0].getX(), 'First notes of both voices have the same X');
-  assert.equal(tickables1[2].getX(), tickables2[2].getX(), 'Last notes of both voices have the same X');
+  assert.equal(formatter.getMinTotalWidth(), 88, "Minimum total width");
+  assert.equal(
+    tickables1[0].getX(),
+    tickables2[0].getX(),
+    "First notes of both voices have the same X",
+  );
+  assert.equal(
+    tickables1[2].getX(),
+    tickables2[2].getX(),
+    "Last notes of both voices have the same X",
+  );
   assert.ok(
     tickables1[1].getX() < tickables2[1].getX(),
-    'Second note of voice 2 is to the right of the second note of voice 1'
+    "Second note of voice 2 is to the right of the second note of voice 1",
   );
 }
 
@@ -127,11 +153,18 @@ function rightJustify(options: TestOptions): void {
     let i = 0;
     for (i = 0; i < n; ++i) {
       const dd = i === n - 1 ? duration2 : duration;
-      tickar.push(new StaveNote({ keys: ['f/4'], duration: dd }));
+      tickar.push(new StaveNote({ keys: ["f/4"], duration: dd }));
     }
     return new Voice(time).addTickables(tickar);
   };
-  const renderTest = (time: VoiceTime, n: number, duration: string, duration2: string, x: number, width: number) => {
+  const renderTest = (
+    time: VoiceTime,
+    n: number,
+    duration: string,
+    duration2: string,
+    x: number,
+    width: number,
+  ) => {
     const formatter = f.Formatter();
 
     const stave = f.Stave({ x, y: 20, width });
@@ -142,10 +175,10 @@ function rightJustify(options: TestOptions): void {
     stave.draw();
     voice.draw(f.getContext(), stave);
   };
-  renderTest({ num_beats: 4, beat_value: 4, resolution: 4 * 4096 }, 3, '4', '2', 10, 300);
-  renderTest({ num_beats: 4, beat_value: 4, resolution: 4 * 4096 }, 1, 'w', 'w', 310, 300);
-  renderTest({ num_beats: 3, beat_value: 4, resolution: 4 * 4096 }, 3, '4', '4', 610, 300);
-  renderTest({ num_beats: 3, beat_value: 4, resolution: 4 * 4096 }, 6, '8', '8', 910, 300);
+  renderTest({ num_beats: 4, beat_value: 4, resolution: 4 * 4096 }, 3, "4", "2", 10, 300);
+  renderTest({ num_beats: 4, beat_value: 4, resolution: 4 * 4096 }, 1, "w", "w", 310, 300);
+  renderTest({ num_beats: 3, beat_value: 4, resolution: 4 * 4096 }, 3, "4", "4", 610, 300);
+  renderTest({ num_beats: 3, beat_value: 4, resolution: 4 * 4096 }, 6, "8", "8", 910, 300);
   options.assert.ok(true);
 }
 
@@ -168,23 +201,23 @@ function penultimateNote(options: TestOptions): void {
     });
     notes = [];
     voices = [];
-    note = score.notes('C4/8/r', { clef: 'bass' })[0];
+    note = score.notes("C4/8/r", { clef: "bass" })[0];
     notes.push(note);
-    note = score.notes('A3/8', { stem: 'up', clef: 'bass' })[0];
+    note = score.notes("A3/8", { stem: "up", clef: "bass" })[0];
     notes.push(note);
-    note = score.notes('C4/4', { stem: 'up', clef: 'bass' })[0];
+    note = score.notes("C4/4", { stem: "up", clef: "bass" })[0];
     notes.push(note);
     voices.push(score.voice(notes).setMode(2));
     notes = [];
-    note = score.notes('( F3 A3 )/4', { stem: 'down', clef: 'bass' })[0];
+    note = score.notes("( F3 A3 )/4", { stem: "down", clef: "bass" })[0];
     notes.push(note);
-    note = score.notes('B4/4/r', {})[0];
+    note = score.notes("B4/4/r", {})[0];
     notes.push(note);
     voices.push(score.voice(notes).setMode(2));
     notes = [];
     stave = system.addStave({ voices: voices });
-    stave.addClef('bass');
-    stave.addTimeSignature('2/4');
+    stave.addClef("bass");
+    stave.addTimeSignature("2/4");
     voices = [];
     f.draw();
     f.getContext().fillText(`softmax: ${softmax.toString()}`, staffWidth + 20, y + 50);
@@ -203,12 +236,12 @@ function noteHeadPadding(options: TestOptions): void {
   Registry.enableDefaultRegistry(registry);
   const f = VexFlowTests.makeFactory(options, 600, 300);
   const score = f.EasyScore();
-  score.set({ time: '9/8' });
+  score.set({ time: "9/8" });
 
-  const notes1 = score.notes('(d5 f5)/8,(c5 e5)/8,(d5 f5)/8,(c5 e5)/2.');
+  const notes1 = score.notes("(d5 f5)/8,(c5 e5)/8,(d5 f5)/8,(c5 e5)/2.");
   const beams = [new Beam(notes1.slice(0, 3), true)];
   const voice1 = new Voice().setMode(Voice.Mode.SOFT);
-  const notes2 = score.notes('(g4 an4)/2.,(g4 a4)/4.', { clef: 'treble' });
+  const notes2 = score.notes("(g4 an4)/2.,(g4 a4)/4.", { clef: "treble" });
   const voice2 = new Voice().setMode(Voice.Mode.SOFT);
   voice2.addTickables(notes2);
   voice1.addTickables(notes1);
@@ -233,14 +266,14 @@ function longMeasureProblems(options: TestOptions): void {
   Registry.enableDefaultRegistry(registry);
   const f = VexFlowTests.makeFactory(options, 1500, 300);
   const score = f.EasyScore();
-  score.set({ time: '4/4' });
+  score.set({ time: "4/4" });
   const notes1 = score.notes(
-    'b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/2,b4/8,b4/8'
+    "b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/8,b4/8,b4/4,b4/4,b4/2,b4/2,b4/4,b4/2,b4/8,b4/8",
   );
   const voice1 = new Voice().setMode(Voice.Mode.SOFT);
   const notes2 = score.notes(
-    'd3/4,(ab3 f4)/2,d3/4,ab3/4,d3/2,ab3/4,d3/4,ab3/2,d3/4,ab3/4,d3/2,ab3/4,d3/4,ab3/2,d3/4,ab3/4,d3/2,ab3/4,d4/4,d4/2,d4/4',
-    { clef: 'bass' }
+    "d3/4,(ab3 f4)/2,d3/4,ab3/4,d3/2,ab3/4,d3/4,ab3/2,d3/4,ab3/4,d3/2,ab3/4,d3/4,ab3/2,d3/4,ab3/4,d3/2,ab3/4,d4/4,d4/2,d4/4",
+    { clef: "bass" },
   );
   const voice2 = new Voice().setMode(Voice.Mode.SOFT);
   voice2.addTickables(notes2);
@@ -261,11 +294,11 @@ function accidentalJustification(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 600, 300);
   const score = f.EasyScore();
 
-  const notes11 = score.notes('a4/2, a4/4, a4/8, ab4/16, an4/16');
-  const voice11 = score.voice(notes11, { time: '4/4' });
+  const notes11 = score.notes("a4/2, a4/4, a4/8, ab4/16, an4/16");
+  const voice11 = score.voice(notes11, { time: "4/4" });
 
-  const notes21 = score.notes('c4/2, d4/8, d4/8, e4/8, e4/8');
-  const voice21 = score.voice(notes21, { time: '4/4' });
+  const notes21 = score.notes("c4/2, d4/8, d4/8, e4/8, e4/8");
+  const voice21 = score.voice(notes21, { time: "4/4" });
 
   let beams = Beam.generateBeams(notes11.slice(2));
   beams = beams.concat(beams, Beam.generateBeams(notes21.slice(1, 3)));
@@ -290,20 +323,20 @@ function unalignedNoteDurations1(options: TestOptions): void {
   const score = f.EasyScore();
 
   const notes11 = [
-    new StaveNote({ keys: ['a/4'], duration: '8' }),
-    new StaveNote({ keys: ['b/4'], duration: '4' }),
-    new StaveNote({ keys: ['b/4'], duration: '8' }),
+    new StaveNote({ keys: ["a/4"], duration: "8" }),
+    new StaveNote({ keys: ["b/4"], duration: "4" }),
+    new StaveNote({ keys: ["b/4"], duration: "8" }),
   ];
   const notes21 = [
-    new StaveNote({ keys: ['a/4'], duration: '16' }),
-    new StaveNote({ keys: ['b/4.'], duration: '4' }),
-    new StaveNote({ keys: ['a/4'], duration: '8d' }),
+    new StaveNote({ keys: ["a/4"], duration: "16" }),
+    new StaveNote({ keys: ["b/4."], duration: "4" }),
+    new StaveNote({ keys: ["a/4"], duration: "8d" }),
   ];
   Dot.buildAndAttach([notes21[2]], { all: true });
 
   const ctx = f.getContext();
-  const voice11 = score.voice(notes11, { time: '2/4' }).setMode(Voice.Mode.SOFT);
-  const voice21 = score.voice(notes21, { time: '2/4' }).setMode(Voice.Mode.SOFT);
+  const voice11 = score.voice(notes11, { time: "2/4" }).setMode(Voice.Mode.SOFT);
+  const voice21 = score.voice(notes21, { time: "2/4" }).setMode(Voice.Mode.SOFT);
   const beams21 = Beam.generateBeams(notes21);
   const beams11 = Beam.generateBeams(notes11);
   const formatter = new Formatter();
@@ -327,29 +360,29 @@ function unalignedNoteDurations1(options: TestOptions): void {
 
 function unalignedNoteDurations2(options: TestOptions): void {
   const notes1 = [
-    new StaveNote({ keys: ['b/4'], duration: '8r' }),
-    new StaveNote({ keys: ['g/4'], duration: '16' }),
-    new StaveNote({ keys: ['c/5'], duration: '16' }),
-    new StaveNote({ keys: ['e/5'], duration: '16' }),
-    new StaveNote({ keys: ['g/4'], duration: '16' }),
-    new StaveNote({ keys: ['c/5'], duration: '16' }),
-    new StaveNote({ keys: ['e/5'], duration: '16' }),
-    new StaveNote({ keys: ['b/4'], duration: '8r' }),
-    new StaveNote({ keys: ['g/4'], duration: '16' }),
-    new StaveNote({ keys: ['c/5'], duration: '16' }),
-    new StaveNote({ keys: ['e/5'], duration: '16' }),
-    new StaveNote({ keys: ['g/4'], duration: '16' }),
-    new StaveNote({ keys: ['c/5'], duration: '16' }),
-    new StaveNote({ keys: ['e/5'], duration: '16' }),
+    new StaveNote({ keys: ["b/4"], duration: "8r" }),
+    new StaveNote({ keys: ["g/4"], duration: "16" }),
+    new StaveNote({ keys: ["c/5"], duration: "16" }),
+    new StaveNote({ keys: ["e/5"], duration: "16" }),
+    new StaveNote({ keys: ["g/4"], duration: "16" }),
+    new StaveNote({ keys: ["c/5"], duration: "16" }),
+    new StaveNote({ keys: ["e/5"], duration: "16" }),
+    new StaveNote({ keys: ["b/4"], duration: "8r" }),
+    new StaveNote({ keys: ["g/4"], duration: "16" }),
+    new StaveNote({ keys: ["c/5"], duration: "16" }),
+    new StaveNote({ keys: ["e/5"], duration: "16" }),
+    new StaveNote({ keys: ["g/4"], duration: "16" }),
+    new StaveNote({ keys: ["c/5"], duration: "16" }),
+    new StaveNote({ keys: ["e/5"], duration: "16" }),
   ];
 
   const notes2 = [
-    new StaveNote({ keys: ['a/4'], duration: '16r' }),
-    new StaveNote({ keys: ['e/4.'], duration: '8d' }),
-    new StaveNote({ keys: ['e/4'], duration: '4' }),
-    new StaveNote({ keys: ['a/4'], duration: '16r' }),
-    new StaveNote({ keys: ['e/4.'], duration: '8d' }),
-    new StaveNote({ keys: ['e/4'], duration: '4' }),
+    new StaveNote({ keys: ["a/4"], duration: "16r" }),
+    new StaveNote({ keys: ["e/4."], duration: "8d" }),
+    new StaveNote({ keys: ["e/4"], duration: "4" }),
+    new StaveNote({ keys: ["a/4"], duration: "16r" }),
+    new StaveNote({ keys: ["e/4."], duration: "8d" }),
+    new StaveNote({ keys: ["e/4"], duration: "4" }),
   ];
 
   const f = VexFlowTests.makeFactory(options, 750, 280);
@@ -381,54 +414,71 @@ function alignedMixedElements(options: TestOptions): void {
   const stave = new Stave(10, 200, 400);
   const stave2 = new Stave(410, 200, 400);
   const notes = [
-    new StaveNote({ keys: ['c/5'], duration: '8' })
-      .addModifier(new Accidental('##'), 0)
-      .addModifier(new FretHandFinger('4').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new StringNumber('3').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a.').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a>').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a^').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('am').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a@u').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Annotation('yyyy').setVerticalJustification(AnnotationVerticalJustify.BOTTOM), 0)
+    new StaveNote({ keys: ["c/5"], duration: "8" })
+      .addModifier(new Accidental("##"), 0)
+      .addModifier(new FretHandFinger("4").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new StringNumber("3").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a.").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a>").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a^").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("am").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a@u").setPosition(ModifierPosition.BELOW), 0)
       .addModifier(
-        new Annotation('xxxx').setVerticalJustification(AnnotationVerticalJustify.BOTTOM).setFont('sans-serif', 20),
-        0
+        new Annotation("yyyy").setVerticalJustification(AnnotationVerticalJustify.BOTTOM),
+        0,
       )
       .addModifier(
-        new Annotation('ttt').setVerticalJustification(AnnotationVerticalJustify.BOTTOM).setFont('sans-serif', 20),
-        0
+        new Annotation("xxxx")
+          .setVerticalJustification(AnnotationVerticalJustify.BOTTOM)
+          .setFont("sans-serif", 20),
+        0,
+      )
+      .addModifier(
+        new Annotation("ttt")
+          .setVerticalJustification(AnnotationVerticalJustify.BOTTOM)
+          .setFont("sans-serif", 20),
+        0,
       ),
-    new StaveNote({ keys: ['c/5'], duration: '8', stem_direction: Stem.DOWN })
-      .addModifier(new StringNumber('3').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a.').setPosition(ModifierPosition.BELOW), 0)
-      .addModifier(new Articulation('a>').setPosition(ModifierPosition.BELOW), 0),
+    new StaveNote({ keys: ["c/5"], duration: "8", stem_direction: Stem.DOWN })
+      .addModifier(new StringNumber("3").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a.").setPosition(ModifierPosition.BELOW), 0)
+      .addModifier(new Articulation("a>").setPosition(ModifierPosition.BELOW), 0),
 
-    new StaveNote({ keys: ['c/5'], duration: '8' }),
+    new StaveNote({ keys: ["c/5"], duration: "8" }),
   ];
   const notes2 = [
-    new StaveNote({ keys: ['c/5'], duration: '8' })
-      .addModifier(new StringNumber('3').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('a.').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Annotation('yyyy').setVerticalJustification(AnnotationVerticalJustify.TOP), 0),
-    new StaveNote({ keys: ['c/5'], duration: '8', stem_direction: Stem.DOWN })
-      .addModifier(new FretHandFinger('4').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new StringNumber('3').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('a.').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('a>').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('a^').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('am').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Articulation('a@u').setPosition(ModifierPosition.ABOVE), 0)
-      .addModifier(new Annotation('yyyy').setVerticalJustification(AnnotationVerticalJustify.TOP), 0)
+    new StaveNote({ keys: ["c/5"], duration: "8" })
+      .addModifier(new StringNumber("3").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("a.").setPosition(ModifierPosition.ABOVE), 0)
       .addModifier(
-        new Annotation('xxxx').setVerticalJustification(AnnotationVerticalJustify.TOP).setFont('sans-serif', 20),
-        0
+        new Annotation("yyyy").setVerticalJustification(AnnotationVerticalJustify.TOP),
+        0,
+      ),
+    new StaveNote({ keys: ["c/5"], duration: "8", stem_direction: Stem.DOWN })
+      .addModifier(new FretHandFinger("4").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new StringNumber("3").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("a.").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("a>").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("a^").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("am").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(new Articulation("a@u").setPosition(ModifierPosition.ABOVE), 0)
+      .addModifier(
+        new Annotation("yyyy").setVerticalJustification(AnnotationVerticalJustify.TOP),
+        0,
       )
       .addModifier(
-        new Annotation('ttt').setVerticalJustification(AnnotationVerticalJustify.TOP).setFont('sans-serif', 20),
-        0
+        new Annotation("xxxx")
+          .setVerticalJustification(AnnotationVerticalJustify.TOP)
+          .setFont("sans-serif", 20),
+        0,
+      )
+      .addModifier(
+        new Annotation("ttt")
+          .setVerticalJustification(AnnotationVerticalJustify.TOP)
+          .setFont("sans-serif", 20),
+        0,
       ),
-    new StaveNote({ keys: ['c/5'], duration: '8' }),
+    new StaveNote({ keys: ["c/5"], duration: "8" }),
   ];
 
   const tuplet = new Tuplet(notes).setTupletLocation(-1);
@@ -451,16 +501,20 @@ function justifyStaveNotes(options: TestOptions): void {
 
   let y = 30;
   function justifyToWidth(width: number) {
-    f.Stave({ y: y }).addClef('treble');
+    f.Stave({ y: y }).addClef("treble");
 
     const voices = [
-      score.voice(score.notes('(cbb4 en4 a4)/2, (d4 e4 f4)/8, (d4 f4 a4)/8, (cn4 f#4 a4)/4', { stem: 'down' })),
-      score.voice(score.notes('(bb4 e#5 a5)/4, (d5 e5 f5)/2, (c##5 fb5 a5)/4', { stem: 'up' })),
+      score.voice(
+        score.notes("(cbb4 en4 a4)/2, (d4 e4 f4)/8, (d4 f4 a4)/8, (cn4 f#4 a4)/4", {
+          stem: "down",
+        }),
+      ),
+      score.voice(score.notes("(bb4 e#5 a5)/4, (d5 e5 f5)/2, (c##5 fb5 a5)/4", { stem: "up" })),
     ];
 
     f.Formatter()
       .joinVoices(voices)
-      .format(voices, width - (Stave.defaultPadding + getGlyphWidth('gClef')));
+      .format(voices, width - (Stave.defaultPadding + getGlyphWidth("gClef")));
 
     // Show the the width of notes via a horizontal line with red, green, yellow, blue, gray indicators.
     voices[0].getTickables().forEach((note) => Note.plotMetrics(ctx, note, y + 140)); // Bottom line.
@@ -482,33 +536,35 @@ function notesWithTab(options: TestOptions): void {
 
   let y = 10;
   function justifyToWidth(width: number) {
-    const stave = f.Stave({ y: y }).addClef('treble');
+    const stave = f.Stave({ y: y }).addClef("treble");
 
-    const voice = score.voice(score.notes('d#4/2, (c4 d4)/8, d4/8, (c#4 e4 a4)/4', { stem: 'up' }));
+    const voice = score.voice(score.notes("d#4/2, (c4 d4)/8, d4/8, (c#4 e4 a4)/4", { stem: "up" }));
 
     y += 100;
 
     f.TabStave({ y: y }).addTabGlyph().setNoteStartX(stave.getNoteStartX());
 
     const tabVoice = score.voice([
-      f.TabNote({ positions: [{ str: 3, fret: 6 }], duration: '2' }).addModifier(new Bend('Full'), 0),
+      f
+        .TabNote({ positions: [{ str: 3, fret: 6 }], duration: "2" })
+        .addModifier(new Bend("Full"), 0),
       f
         .TabNote({
           positions: [
             { str: 2, fret: 3 },
             { str: 3, fret: 5 },
           ],
-          duration: '8',
+          duration: "8",
         })
-        .addModifier(new Bend('Unison'), 1),
-      f.TabNote({ positions: [{ str: 3, fret: 7 }], duration: '8' }),
+        .addModifier(new Bend("Unison"), 1),
+      f.TabNote({ positions: [{ str: 3, fret: 7 }], duration: "8" }),
       f.TabNote({
         positions: [
           { str: 3, fret: 6 },
           { str: 4, fret: 7 },
           { str: 2, fret: 5 },
         ],
-        duration: '4',
+        duration: "4",
       }),
     ]);
 
@@ -532,13 +588,13 @@ function multiStaves(options: TestOptions): void {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   // Draw 3 Staves (one measure each).
-  const notes11 = score.notes('f4/4, d4/8, g4/4, eb4/8');
-  const notes21 = score.notes('d4/8, d4, d4, d4, e4, eb4');
-  const notes31 = score.notes('a5/8, a5, a5, a5, a5, a5', { stem: 'down' });
+  const notes11 = score.notes("f4/4, d4/8, g4/4, eb4/8");
+  const notes21 = score.notes("d4/8, d4, d4, d4, e4, eb4");
+  const notes31 = score.notes("a5/8, a5, a5, a5, a5, a5", { stem: "down" });
   let voices = [
-    score.voice(notes11, { time: '6/8' }),
-    score.voice(notes21, { time: '6/8' }),
-    score.voice(notes31, { time: '6/8' }),
+    score.voice(notes11, { time: "6/8" }),
+    score.voice(notes21, { time: "6/8" }),
+    score.voice(notes31, { time: "6/8" }),
   ];
 
   let formatter = f.Formatter();
@@ -554,16 +610,17 @@ function multiStaves(options: TestOptions): void {
   ];
 
   const staveYs = [20, 130, 250];
-  let staveWidth = width + getGlyphWidth('gClef') + getGlyphWidth('timeSig8') + Stave.defaultPadding;
+  let staveWidth =
+    width + getGlyphWidth("gClef") + getGlyphWidth("timeSig8") + Stave.defaultPadding;
   let staves = [
-    f.Stave({ y: staveYs[0], width: staveWidth }).addClef('treble').addTimeSignature('6/8'),
-    f.Stave({ y: staveYs[1], width: staveWidth }).addClef('treble').addTimeSignature('6/8'),
-    f.Stave({ y: staveYs[2], width: staveWidth }).addClef('bass').addTimeSignature('6/8'),
+    f.Stave({ y: staveYs[0], width: staveWidth }).addClef("treble").addTimeSignature("6/8"),
+    f.Stave({ y: staveYs[1], width: staveWidth }).addClef("treble").addTimeSignature("6/8"),
+    f.Stave({ y: staveYs[2], width: staveWidth }).addClef("bass").addTimeSignature("6/8"),
   ];
   f.StaveConnector({
     top_stave: staves[1],
     bottom_stave: staves[2],
-    type: 'brace',
+    type: "brace",
   });
   for (let i = 0; i < staves.length; ++i) {
     staves[i].setContext(ctx).draw();
@@ -575,12 +632,12 @@ function multiStaves(options: TestOptions): void {
   // Draw 3 more staves (one measure each).
   // These are adjacent to the first set of staves, representing the second measure of each stave.
   const notes12 = score.notes('ab4/4, bb4/8, (cb5 eb5)/4[stem="down"], d5/8[stem="down"]');
-  const notes22 = score.notes('(eb4 ab4)/4., (c4 eb4 ab4)/4, db5/8', { stem: 'up' });
-  const notes32 = score.notes('a5/8, a5, a5, a5, a5, a5', { stem: 'down' });
+  const notes22 = score.notes("(eb4 ab4)/4., (c4 eb4 ab4)/4, db5/8", { stem: "up" });
+  const notes32 = score.notes("a5/8, a5, a5, a5, a5, a5", { stem: "down" });
   voices = [
-    score.voice(notes12, { time: '6/8' }),
-    score.voice(notes22, { time: '6/8' }),
-    score.voice(notes32, { time: '6/8' }),
+    score.voice(notes12, { time: "6/8" }),
+    score.voice(notes22, { time: "6/8" }),
+    score.voice(notes32, { time: "6/8" }),
   ];
 
   formatter = f.Formatter();
@@ -626,19 +683,19 @@ function proportional(options: TestOptions): void {
 
   const score = f.EasyScore();
   const voices = [
-    score.notes('c5/8, c5'),
-    score.tuplet(score.notes('a4/8, a4, a4'), { notes_occupied: 2 }),
-    score.notes('c5/16, c5, c5, c5'),
-    score.tuplet(score.notes('a4/16, a4, a4, a4, a4'), { notes_occupied: 4 }),
-    score.tuplet(score.notes('a4/32, a4, a4, a4, a4, a4, a4'), { notes_occupied: 8 }),
+    score.notes("c5/8, c5"),
+    score.tuplet(score.notes("a4/8, a4, a4"), { notes_occupied: 2 }),
+    score.notes("c5/16, c5, c5, c5"),
+    score.tuplet(score.notes("a4/16, a4, a4, a4, a4"), { notes_occupied: 4 }),
+    score.tuplet(score.notes("a4/32, a4, a4, a4, a4, a4, a4"), { notes_occupied: 8 }),
   ];
 
-  const createVoice = (notes: StemmableNote[]) => score.voice(notes, { time: '1/4' });
+  const createVoice = (notes: StemmableNote[]) => score.voice(notes, { time: "1/4" });
   const createStave = (voice: Voice) =>
     system
       .addStave({ voices: [voice], debugNoteMetrics: debug })
-      .addClef('treble')
-      .addTimeSignature('1/4');
+      .addClef("treble")
+      .addTimeSignature("1/4");
 
   voices.map(createVoice).forEach(createStave);
   system.addConnector().setType(StaveConnector.type.BRACKET);
@@ -673,15 +730,15 @@ function softMax(options: TestOptions): void {
         voices: [
           score.voice(
             score
-              .notes('C#5/h, a4/q')
-              .concat(score.beam(score.notes('Abb4/8, A4/8')))
-              .concat(score.beam(score.notes('A4/16, A#4, A4, Ab4/32, A4'))),
-            { time: '5/4' }
+              .notes("C#5/h, a4/q")
+              .concat(score.beam(score.notes("Abb4/8, A4/8")))
+              .concat(score.beam(score.notes("A4/16, A#4, A4, Ab4/32, A4"))),
+            { time: "5/4" },
           ),
         ],
       })
-      .addClef('treble')
-      .addTimeSignature('5/4');
+      .addClef("treble")
+      .addTimeSignature("5/4");
 
     f.draw();
     f.getContext().fillText(`softmax: ${factor.toString()}`, textX, y + 50);
@@ -707,17 +764,25 @@ function mixTime(options: TestOptions): void {
 
   system
     .addStave({
-      voices: [score.voice(score.notes('C#5/q, B4').concat(score.beam(score.notes('A4/8, E4, C4, D4'))))],
+      voices: [
+        score.voice(score.notes("C#5/q, B4").concat(score.beam(score.notes("A4/8, E4, C4, D4")))),
+      ],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   system
     .addStave({
-      voices: [score.voice(score.notes('C#5/q, B4, B4').concat(score.tuplet(score.beam(score.notes('A4/8, E4, C4')))))],
+      voices: [
+        score.voice(
+          score
+            .notes("C#5/q, B4, B4")
+            .concat(score.tuplet(score.beam(score.notes("A4/8, E4, C4")))),
+        ),
+      ],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   f.draw();
   options.assert.ok(true);
@@ -736,20 +801,28 @@ function tightNotes1(options: TestOptions): void {
   system
     .addStave({
       voices: [
-        score.voice(score.beam(score.notes('B4/16, B4, B4, B4, B4, B4, B4, B4')).concat(score.notes('B4/q, B4'))),
+        score.voice(
+          score
+            .beam(score.notes("B4/16, B4, B4, B4, B4, B4, B4, B4"))
+            .concat(score.notes("B4/q, B4")),
+        ),
       ],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   system
     .addStave({
       voices: [
-        score.voice(score.notes('B4/q, B4').concat(score.beam(score.notes('B4/16, B4, B4, B4, B4, B4, B4, B4')))),
+        score.voice(
+          score
+            .notes("B4/q, B4")
+            .concat(score.beam(score.notes("B4/16, B4, B4, B4, B4, B4, B4, B4"))),
+        ),
       ],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   f.draw();
   options.assert.ok(true);
@@ -767,18 +840,22 @@ function tightNotes2(options: TestOptions): void {
   system
     .addStave({
       voices: [
-        score.voice(score.beam(score.notes('B4/16, B4, B4, B4, B4, B4, B4, B4')).concat(score.notes('B4/q, B4'))),
+        score.voice(
+          score
+            .beam(score.notes("B4/16, B4, B4, B4, B4, B4, B4, B4"))
+            .concat(score.notes("B4/q, B4")),
+        ),
       ],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   system
     .addStave({
-      voices: [score.voice(score.notes('B4/w'))],
+      voices: [score.voice(score.notes("B4/w"))],
     })
-    .addClef('treble')
-    .addTimeSignature('4/4');
+    .addClef("treble")
+    .addTimeSignature("4/4");
 
   f.draw();
   options.assert.ok(true);
@@ -790,33 +867,57 @@ function annotations(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, pageWidth, pageHeight);
   const context = f.getContext();
 
-  const lyrics1 = ['ipso', 'ipso-', 'ipso', 'ipso', 'ipsoz', 'ipso-', 'ipso', 'ipso', 'ipso', 'ip', 'ipso'];
-  const lyrics2 = ['ipso', 'ipso-', 'ipsoz', 'ipso', 'ipso', 'ipso-', 'ipso', 'ipso', 'ipso', 'ip', 'ipso'];
+  const lyrics1 = [
+    "ipso",
+    "ipso-",
+    "ipso",
+    "ipso",
+    "ipsoz",
+    "ipso-",
+    "ipso",
+    "ipso",
+    "ipso",
+    "ip",
+    "ipso",
+  ];
+  const lyrics2 = [
+    "ipso",
+    "ipso-",
+    "ipsoz",
+    "ipso",
+    "ipso",
+    "ipso-",
+    "ipso",
+    "ipso",
+    "ipso",
+    "ip",
+    "ipso",
+  ];
 
   const smar = [
     {
       sm: 5,
       width: 550,
       lyrics: lyrics1,
-      title: '550px,softMax:5',
+      title: "550px,softMax:5",
     },
     {
       sm: 5,
       width: 550,
       lyrics: lyrics2,
-      title: '550px,softmax:5,different word order',
+      title: "550px,softmax:5,different word order",
     },
     {
       sm: 10,
       width: 550,
       lyrics: lyrics2,
-      title: '550px,softmax:10',
+      title: "550px,softmax:10",
     },
     {
       sm: 15,
       width: 550,
       lyrics: lyrics2,
-      title: '550px,softmax:15',
+      title: "550px,softmax:15",
     },
   ];
 
@@ -825,7 +926,7 @@ function annotations(options: TestOptions): void {
   const beatsPer = 8;
   const beamGroup = 3;
 
-  const durations = ['8d', '16', '8', '8d', '16', '8', '8d', '16', '8', '4', '8'];
+  const durations = ["8d", "16", "8", "8d", "16", "8", "8d", "16", "8", "4", "8"];
   const beams: Beam[] = [];
   let y = 40;
 
@@ -837,15 +938,15 @@ function annotations(options: TestOptions): void {
     y += rowSize;
 
     durations.forEach((dd) => {
-      const note = new StaveNote({ keys: ['b/4'], duration: dd });
-      if (dd.indexOf('d') >= 0) {
+      const note = new StaveNote({ keys: ["b/4"], duration: dd });
+      if (dd.indexOf("d") >= 0) {
         Dot.buildAndAttach([note], { all: true });
       }
       if (sm.lyrics.length > iii) {
         note.addModifier(
           new Annotation(sm.lyrics[iii])
             .setVerticalJustification(Annotation.VerticalJustify.BOTTOM)
-            .setFont(Font.SERIF, 12, FontWeight.NORMAL)
+            .setFont(Font.SERIF, 12, FontWeight.NORMAL),
         );
       }
       notes.push(note);
@@ -853,7 +954,7 @@ function annotations(options: TestOptions): void {
     });
 
     notes.forEach((note) => {
-      if (note.getDuration().indexOf('d') >= 0) {
+      if (note.getDuration().indexOf("d") >= 0) {
         Dot.buildAndAttach([note], { all: true });
       }
     });
@@ -872,7 +973,9 @@ function annotations(options: TestOptions): void {
       }
     });
 
-    const voice1 = new Voice({ num_beats: beats, beat_value: beatsPer }).setMode(Voice.Mode.SOFT).addTickables(notes);
+    const voice1 = new Voice({ num_beats: beats, beat_value: beatsPer })
+      .setMode(Voice.Mode.SOFT)
+      .addTickables(notes);
 
     const fmt = new Formatter({ softmaxFactor: sm.sm, maxIterations: 2 }).joinVoices([voice1]);
     fmt.format([voice1], sm.width - 11);

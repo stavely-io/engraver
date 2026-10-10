@@ -1,7 +1,7 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { RuntimeError } from './util';
+import { RuntimeError } from "./util";
 
 export interface NoteAccidental {
   note: number;
@@ -39,7 +39,7 @@ export class Music {
 
   /** Names of root notes ('c', 'd',...) */
   static get roots(): string[] {
-    return ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
+    return ["c", "d", "e", "f", "g", "a", "b"];
   }
 
   /** Values of the root notes.*/
@@ -62,12 +62,12 @@ export class Music {
 
   /** Names of canonical notes ('c', 'c#', 'd',...). */
   static get canonical_notes(): string[] {
-    return ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b'];
+    return ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
   }
 
   /** Names of diatonic intervals ('unison', 'm2', 'M2',...). */
   static get diatonic_intervals(): string[] {
-    return ['unison', 'm2', 'M2', 'm3', 'M3', 'p4', 'dim5', 'p5', 'm6', 'M6', 'b7', 'M7', 'octave'];
+    return ["unison", "m2", "M2", "m3", "M3", "p4", "dim5", "p5", "m6", "M6", "b7", "M7", "octave"];
   }
 
   /** NoteAccidental associated to diatonic intervals. */
@@ -112,13 +112,13 @@ export class Music {
       maj3: 4,
       4: 5,
       p4: 5,
-      '#4': 6,
+      "#4": 6,
       b5: 6,
       aug4: 6,
       dim5: 6,
       5: 7,
       p5: 7,
-      '#5': 8,
+      "#5": 8,
       b6: 8,
       aug5: 8,
       6: 9,
@@ -160,7 +160,7 @@ export class Music {
 
   /** Accidentals abbreviations. */
   static get accidentals(): string[] {
-    return ['bb', 'b', 'n', '#', '##'];
+    return ["bb", "b", "n", "#", "##"];
   }
 
   /** Note values. */
@@ -168,44 +168,44 @@ export class Music {
     return {
       c: { root_index: 0, int_val: 0 },
       cn: { root_index: 0, int_val: 0 },
-      'c#': { root_index: 0, int_val: 1 },
-      'c##': { root_index: 0, int_val: 2 },
+      "c#": { root_index: 0, int_val: 1 },
+      "c##": { root_index: 0, int_val: 2 },
       cb: { root_index: 0, int_val: 11 },
       cbb: { root_index: 0, int_val: 10 },
       d: { root_index: 1, int_val: 2 },
       dn: { root_index: 1, int_val: 2 },
-      'd#': { root_index: 1, int_val: 3 },
-      'd##': { root_index: 1, int_val: 4 },
+      "d#": { root_index: 1, int_val: 3 },
+      "d##": { root_index: 1, int_val: 4 },
       db: { root_index: 1, int_val: 1 },
       dbb: { root_index: 1, int_val: 0 },
       e: { root_index: 2, int_val: 4 },
       en: { root_index: 2, int_val: 4 },
-      'e#': { root_index: 2, int_val: 5 },
-      'e##': { root_index: 2, int_val: 6 },
+      "e#": { root_index: 2, int_val: 5 },
+      "e##": { root_index: 2, int_val: 6 },
       eb: { root_index: 2, int_val: 3 },
       ebb: { root_index: 2, int_val: 2 },
       f: { root_index: 3, int_val: 5 },
       fn: { root_index: 3, int_val: 5 },
-      'f#': { root_index: 3, int_val: 6 },
-      'f##': { root_index: 3, int_val: 7 },
+      "f#": { root_index: 3, int_val: 6 },
+      "f##": { root_index: 3, int_val: 7 },
       fb: { root_index: 3, int_val: 4 },
       fbb: { root_index: 3, int_val: 3 },
       g: { root_index: 4, int_val: 7 },
       gn: { root_index: 4, int_val: 7 },
-      'g#': { root_index: 4, int_val: 8 },
-      'g##': { root_index: 4, int_val: 9 },
+      "g#": { root_index: 4, int_val: 8 },
+      "g##": { root_index: 4, int_val: 9 },
       gb: { root_index: 4, int_val: 6 },
       gbb: { root_index: 4, int_val: 5 },
       a: { root_index: 5, int_val: 9 },
       an: { root_index: 5, int_val: 9 },
-      'a#': { root_index: 5, int_val: 10 },
-      'a##': { root_index: 5, int_val: 11 },
+      "a#": { root_index: 5, int_val: 10 },
+      "a##": { root_index: 5, int_val: 11 },
       ab: { root_index: 5, int_val: 8 },
       abb: { root_index: 5, int_val: 7 },
       b: { root_index: 6, int_val: 11 },
       bn: { root_index: 6, int_val: 11 },
-      'b#': { root_index: 6, int_val: 0 },
-      'b##': { root_index: 6, int_val: 1 },
+      "b#": { root_index: 6, int_val: 0 },
+      "b##": { root_index: 6, int_val: 1 },
       bb: { root_index: 6, int_val: 10 },
       bbb: { root_index: 6, int_val: 9 },
     };
@@ -222,11 +222,11 @@ export class Music {
   /** Return root and accidental associated to a note. */
   getNoteParts(noteString: string): NoteParts {
     if (!noteString || noteString.length < 1) {
-      throw new RuntimeError('BadArguments', 'Invalid note name: ' + noteString);
+      throw new RuntimeError("BadArguments", "Invalid note name: " + noteString);
     }
 
     if (noteString.length > 3) {
-      throw new RuntimeError('BadArguments', 'Invalid note name: ' + noteString);
+      throw new RuntimeError("BadArguments", "Invalid note name: " + noteString);
     }
 
     const note = noteString.toLowerCase();
@@ -243,14 +243,14 @@ export class Music {
         accidental,
       };
     } else {
-      throw new RuntimeError('BadArguments', 'Invalid note name: ' + noteString);
+      throw new RuntimeError("BadArguments", "Invalid note name: " + noteString);
     }
   }
 
   /** Return root, accidental and type associated to a key. */
   getKeyParts(keyString: string): KeyParts {
     if (!keyString || keyString.length < 1) {
-      throw new RuntimeError('BadArguments', 'Invalid key: ' + keyString);
+      throw new RuntimeError("BadArguments", "Invalid key: " + keyString);
     }
 
     const key = keyString.toLowerCase();
@@ -265,7 +265,7 @@ export class Music {
       let type = match[3];
 
       // Unspecified type implies major
-      if (!type) type = 'M';
+      if (!type) type = "M";
 
       return {
         root,
@@ -273,7 +273,7 @@ export class Music {
         type,
       };
     } else {
-      throw new RuntimeError('BadArguments', `Invalid key: ${keyString}`);
+      throw new RuntimeError("BadArguments", `Invalid key: ${keyString}`);
     }
   }
 
@@ -281,7 +281,7 @@ export class Music {
   getNoteValue(noteString: string): number {
     const value = Music.noteValues[noteString];
     if (value === undefined) {
-      throw new RuntimeError('BadArguments', `Invalid note name: ${noteString}`);
+      throw new RuntimeError("BadArguments", `Invalid note name: ${noteString}`);
     }
     return value.int_val;
   }
@@ -290,7 +290,7 @@ export class Music {
   getIntervalValue(intervalString: string): number {
     const value = Music.intervals[intervalString];
     if (value === undefined) {
-      throw new RuntimeError('BadArguments', `Invalid interval name: ${intervalString}`);
+      throw new RuntimeError("BadArguments", `Invalid interval name: ${intervalString}`);
     }
     return value;
   }
@@ -298,7 +298,7 @@ export class Music {
   /** Canonical note name associated to a value. */
   getCanonicalNoteName(noteValue: number): string {
     if (!this.isValidNoteValue(noteValue)) {
-      throw new RuntimeError('BadArguments', `Invalid note value: ${noteValue}`);
+      throw new RuntimeError("BadArguments", `Invalid note value: ${noteValue}`);
     }
     return Music.canonical_notes[noteValue];
   }
@@ -306,7 +306,7 @@ export class Music {
   /** Interval name associated to a value. */
   getCanonicalIntervalName(intervalValue: number): string {
     if (!this.isValidIntervalValue(intervalValue)) {
-      throw new RuntimeError('BadArguments', `Invalid interval value: ${intervalValue}`);
+      throw new RuntimeError("BadArguments", `Invalid interval value: ${intervalValue}`);
     }
     return Music.diatonic_intervals[intervalValue];
   }
@@ -316,7 +316,7 @@ export class Music {
    */
   getRelativeNoteValue(noteValue: number, intervalValue: number, direction: number = 1): number {
     if (direction !== 1 && direction !== -1) {
-      throw new RuntimeError('BadArguments', `Invalid direction: ${direction}`);
+      throw new RuntimeError("BadArguments", `Invalid direction: ${direction}`);
     }
 
     let sum = (noteValue + direction * intervalValue) % Music.NUM_TONES;
@@ -341,24 +341,24 @@ export class Music {
       const reverse_interval = ((noteValue + 1 + (rootValue + 1)) % Music.NUM_TONES) * multiplier;
 
       if (Math.abs(reverse_interval) > 2) {
-        throw new RuntimeError('BadArguments', `Notes not related: ${root}, ${noteValue})`);
+        throw new RuntimeError("BadArguments", `Notes not related: ${root}, ${noteValue})`);
       } else {
         interval = reverse_interval;
       }
     }
 
     if (Math.abs(interval) > 2) {
-      throw new RuntimeError('BadArguments', `Notes not related: ${root}, ${noteValue})`);
+      throw new RuntimeError("BadArguments", `Notes not related: ${root}, ${noteValue})`);
     }
 
     let relativeNoteName = parts.root;
     if (interval > 0) {
       for (let i = 1; i <= interval; ++i) {
-        relativeNoteName += '#';
+        relativeNoteName += "#";
       }
     } else if (interval < 0) {
       for (let i = -1; i >= interval; --i) {
-        relativeNoteName += 'b';
+        relativeNoteName += "b";
       }
     }
 
@@ -392,11 +392,11 @@ export class Music {
    */
   getIntervalBetween(note1: number, note2: number, direction: number = 1): number {
     if (direction !== 1 && direction !== -1) {
-      throw new RuntimeError('BadArguments', `Invalid direction: ${direction}`);
+      throw new RuntimeError("BadArguments", `Invalid direction: ${direction}`);
     }
 
     if (!this.isValidNoteValue(note1) || !this.isValidNoteValue(note2)) {
-      throw new RuntimeError('BadArguments', `Invalid notes: ${note1}, ${note2}`);
+      throw new RuntimeError("BadArguments", `Invalid notes: ${note1}, ${note2}`);
     }
 
     let difference = direction === 1 ? note2 - note1 : note1 - note2;
@@ -414,13 +414,14 @@ export class Music {
    */
   createScaleMap(keySignature: string): Record<string, string> {
     const keySigParts = this.getKeyParts(keySignature);
-    if (!keySigParts.type) throw new RuntimeError('BadArguments', 'Unsupported key type: undefined');
+    if (!keySigParts.type)
+      throw new RuntimeError("BadArguments", "Unsupported key type: undefined");
     const scaleName = Music.scaleTypes[keySigParts.type];
 
     let keySigString = keySigParts.root;
     if (keySigParts.accidental) keySigString += keySigParts.accidental;
 
-    if (!scaleName) throw new RuntimeError('BadArguments', 'Unsupported key type: ' + keySignature);
+    if (!scaleName) throw new RuntimeError("BadArguments", "Unsupported key type: " + keySignature);
 
     const scale = this.getScaleTones(this.getNoteValue(keySigString), scaleName);
     const noteLocation = Music.root_indices[keySigParts.root];
@@ -432,7 +433,7 @@ export class Music {
       let noteName = this.getRelativeNoteName(rootName, scale[i]);
 
       if (noteName.length === 1) {
-        noteName += 'n';
+        noteName += "n";
       }
 
       scaleMap[rootName] = noteName;

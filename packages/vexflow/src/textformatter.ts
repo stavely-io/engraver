@@ -1,9 +1,9 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { FontGlyph, FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { log } from './util';
+import type { FontGlyph, FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { log } from "./util";
 
 export interface TextFormatterInfo extends Record<string, unknown> {
   family: string;
@@ -29,7 +29,7 @@ export interface yExtent {
 }
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (TextFormatter.DEBUG) log('Vex.Flow.TextFormatter', args);
+  if (TextFormatter.DEBUG) log("Vex.Flow.TextFormatter", args);
 }
 
 /**
@@ -75,7 +75,7 @@ export class TextFormatter {
    * This method will return a fallback formatter if there are no matches.
    */
   static create(requestedFont: FontInfo = {}): TextFormatter {
-    L('create: ', requestedFont);
+    L("create: ", requestedFont);
     if (!requestedFont.family) {
       requestedFont.family = Font.SANS_SERIF;
     }
@@ -124,7 +124,7 @@ export class TextFormatter {
     }
 
     const fontSize = requestedFont.size;
-    if (typeof fontSize !== 'undefined') {
+    if (typeof fontSize !== "undefined") {
       const fontSizeInPt = Font.convertSizeToPointValue(fontSize);
       formatter.setFontSize(fontSizeInPt);
     }
@@ -148,7 +148,7 @@ export class TextFormatter {
    * @param overwrite
    */
   static registerInfo(info: TextFormatterInfo, overwrite: boolean = false): void {
-    L('registerInfo: ', info, overwrite);
+    L("registerInfo: ", info, overwrite);
     const fontFamily = info.family;
     const currFontInfo = registry[fontFamily];
     if (currFontInfo === undefined || overwrite) {
@@ -157,7 +157,7 @@ export class TextFormatter {
   }
 
   /** Font family. */
-  protected family: string = '';
+  protected family: string = "";
 
   /** Specified in `pt` units. */
   protected size: number = 14;
@@ -188,10 +188,10 @@ export class TextFormatter {
   protected bold: boolean = false;
   protected superscriptOffset: number = 0;
   protected subscriptOffset: number = 0;
-  protected maxSizeGlyph: string = '@';
+  protected maxSizeGlyph: string = "@";
 
   // This is an internal key used to index the `textWidthCache`.
-  protected cacheKey: string = '';
+  protected cacheKey: string = "";
 
   /**
    * Use `TextFormatter.create(...)` to build an instance from information previously
@@ -222,7 +222,7 @@ export class TextFormatter {
 
   /** Create a hash with the current font data, so we can cache computed widths. */
   updateCacheKey(): void {
-    const family = this.family.replace(/\s+/g, '_');
+    const family = this.family.replace(/\s+/g, "_");
     const size = this.size;
     const weight = this.bold ? FontWeight.BOLD : FontWeight.NORMAL;
     const style = this.italic ? FontStyle.ITALIC : FontStyle.NORMAL;
@@ -272,10 +272,10 @@ export class TextFormatter {
     if (!metrics) {
       return rv;
     } else {
-      if (typeof metrics.y_min === 'number') {
+      if (typeof metrics.y_min === "number") {
         rv.yMin = (metrics.y_min / this.resolution) * this.fontSizeInPixels;
       }
-      if (typeof metrics.y_max === 'number') {
+      if (typeof metrics.y_max === "number") {
         rv.yMax = (metrics.y_max / this.resolution) * this.fontSizeInPixels;
       }
       rv.height = rv.yMax - rv.yMin;

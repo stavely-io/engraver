@@ -2,12 +2,12 @@
 //
 // A generic text parsing class for VexFlow.
 
-import { log, RuntimeError } from './util';
+import { log, RuntimeError } from "./util";
 
 // To enable logging for this class. Set `Vex.Flow.Parser.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]): void {
-  if (Parser.DEBUG) log('Vex.Flow.Parser', args);
+  if (Parser.DEBUG) log("Vex.Flow.Parser", args);
 }
 
 const NO_ERROR_POS = -1;
@@ -55,8 +55,8 @@ export type GroupedResults = (Result | Result[])[];
 // - string (including empty strings)
 // - null
 function flattenMatches(r: Result | Result[]): Match {
-  if ('matchedString' in r) return r.matchedString as string; // string
-  if ('results' in r) return flattenMatches(r.results as Result[]);
+  if ("matchedString" in r) return r.matchedString as string; // string
+  if ("results" in r) return flattenMatches(r.results as Result[]);
   const results = r as Result[];
   if (results.length === 1) return flattenMatches(results[0]);
   if (results.length === 0) return null;
@@ -83,7 +83,7 @@ export class Parser {
   // the EasyScore grammar in easyscore.ts.
   constructor(grammar: Grammar) {
     this.grammar = grammar;
-    this.line = '';
+    this.line = "";
     this.pos = 0;
     this.errorPos = NO_ERROR_POS;
   }
@@ -112,7 +112,9 @@ export class Parser {
   // Look for `token` in this.line[this.pos], and return success
   // if one is found. `token` is specified as a regular expression.
   matchToken(token: string, noSpace: boolean = false): Result {
-    const regexp = noSpace ? new RegExp('^((' + token + '))') : new RegExp('^((' + token + ')\\s*)');
+    const regexp = noSpace
+      ? new RegExp("^((" + token + "))")
+      : new RegExp("^((" + token + ")\\s*)");
     const workingLine = this.line.slice(this.pos);
     const result = workingLine.match(regexp);
     if (result !== null) {
@@ -210,9 +212,9 @@ export class Parser {
   // offloads to one of the above matchers and consolidates the results. It is also
   // responsible for executing any code triggered by the rule (in `rule.run`.)
   expect(ruleFunc: RuleFunction): Result {
-    L('Evaluating rule function:', ruleFunc);
+    L("Evaluating rule function:", ruleFunc);
     if (!ruleFunc) {
-      throw new RuntimeError('Invalid rule function');
+      throw new RuntimeError("Invalid rule function");
     }
     let result: Result;
 
@@ -244,7 +246,7 @@ export class Parser {
       }
     } else {
       L(rule);
-      throw new RuntimeError('Bad grammar! No `token` or `expect` property ' + rule);
+      throw new RuntimeError("Bad grammar! No `token` or `expect` property " + rule);
     }
 
     // If there's a trigger attached to this rule, then run it.

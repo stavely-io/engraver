@@ -4,10 +4,10 @@
 // Renders time signatures glyphs for staffs
 // This class is used by TimeSignature to render the associated glyphs
 
-import type { GlyphMetrics } from './glyph';
-import { Glyph } from './glyph';
-import type { TimeSignature } from './timesignature';
-import { defined } from './util';
+import type { GlyphMetrics } from "./glyph";
+import { Glyph } from "./glyph";
+import type { TimeSignature } from "./timesignature";
+import { defined } from "./util";
 
 export class TimeSignatureGlyph extends Glyph {
   timeSignature: TimeSignature;
@@ -23,7 +23,7 @@ export class TimeSignatureGlyph extends Glyph {
     botDigits: string,
     code: string,
     point: number,
-    options?: { category: string }
+    options?: { category: string },
   ) {
     super(code, point, options);
     this.timeSignature = timeSignature;
@@ -35,20 +35,20 @@ export class TimeSignatureGlyph extends Glyph {
     for (let i = 0; i < topDigits.length; ++i) {
       let timeSigType = topDigits[i];
       switch (topDigits[i]) {
-        case '-':
-          timeSigType = 'Minus';
+        case "-":
+          timeSigType = "Minus";
           break;
-        case '+':
-          timeSigType = botDigits.length > 0 ? 'PlusSmall' : 'Plus';
+        case "+":
+          timeSigType = botDigits.length > 0 ? "PlusSmall" : "Plus";
           break;
-        case '(':
-          timeSigType = botDigits.length > 0 ? 'ParensLeftSmall' : 'ParensLeft';
+        case "(":
+          timeSigType = botDigits.length > 0 ? "ParensLeftSmall" : "ParensLeft";
           break;
-        case ')':
-          timeSigType = botDigits.length > 0 ? 'ParensRightSmall' : 'ParensRight';
+        case ")":
+          timeSigType = botDigits.length > 0 ? "ParensRightSmall" : "ParensRight";
           break;
       }
-      const topGlyph = new Glyph('timeSig' + timeSigType, this.timeSignature.point);
+      const topGlyph = new Glyph("timeSig" + timeSigType, this.timeSignature.point);
 
       this.topGlyphs.push(topGlyph);
       topWidth += topGlyph.getMetrics().width ?? 0;
@@ -59,17 +59,17 @@ export class TimeSignatureGlyph extends Glyph {
     for (let i = 0; i < botDigits.length; ++i) {
       let timeSigType = botDigits[i];
       switch (botDigits[i]) {
-        case '+':
-          timeSigType = 'PlusSmall';
+        case "+":
+          timeSigType = "PlusSmall";
           break;
-        case '(':
-          timeSigType = 'ParensLeftSmall';
+        case "(":
+          timeSigType = "ParensLeftSmall";
           break;
-        case ')':
-          timeSigType = 'ParensRightSmall';
+        case ")":
+          timeSigType = "ParensRightSmall";
           break;
       }
-      const botGlyph = new Glyph('timeSig' + timeSigType, this.timeSignature.point);
+      const botGlyph = new Glyph("timeSig" + timeSigType, this.timeSignature.point);
 
       this.botGlyphs.push(botGlyph);
       botWidth += defined(botGlyph.getMetrics().width);
@@ -101,8 +101,13 @@ export class TimeSignatureGlyph extends Glyph {
 
     let start_x = x + this.topStartX;
     let y = 0;
-    if (this.botGlyphs.length > 0) y = stave.getYForLine(this.timeSignature.topLine - this.lineShift);
-    else y = (stave.getYForLine(this.timeSignature.topLine) + stave.getYForLine(this.timeSignature.bottomLine)) / 2;
+    if (this.botGlyphs.length > 0)
+      y = stave.getYForLine(this.timeSignature.topLine - this.lineShift);
+    else
+      y =
+        (stave.getYForLine(this.timeSignature.topLine) +
+          stave.getYForLine(this.timeSignature.bottomLine)) /
+        2;
     for (let i = 0; i < this.topGlyphs.length; ++i) {
       const glyph = this.topGlyphs[i];
       Glyph.renderOutline(ctx, glyph.getMetrics().outline, this.scale, start_x + this.x_shift, y);
@@ -114,7 +119,13 @@ export class TimeSignatureGlyph extends Glyph {
     for (let i = 0; i < this.botGlyphs.length; ++i) {
       const glyph = this.botGlyphs[i];
       this.timeSignature.placeGlyphOnLine(glyph, stave, this.timeSignature.getLine());
-      Glyph.renderOutline(ctx, glyph.getMetrics().outline, this.scale, start_x + glyph.getMetrics().x_shift, y);
+      Glyph.renderOutline(
+        ctx,
+        glyph.getMetrics().outline,
+        this.scale,
+        start_x + glyph.getMetrics().x_shift,
+        y,
+      );
       start_x += defined(glyph.getMetrics().width);
     }
   }

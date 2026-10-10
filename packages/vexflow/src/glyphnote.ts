@@ -2,11 +2,11 @@
 //
 // Any glyph that is set to appear on a Stave and take up musical time and graphical space.
 
-import type { BoundingBox } from './boundingbox';
-import type { Glyph } from './glyph';
-import type { NoteStruct } from './note';
-import { Note } from './note';
-import { Category } from './typeguard';
+import type { BoundingBox } from "./boundingbox";
+import type { Glyph } from "./glyph";
+import type { NoteStruct } from "./note";
+import { Note } from "./note";
+import { Category } from "./typeguard";
 
 export interface GlyphNoteOptions {
   ignoreTicks?: boolean;
@@ -71,7 +71,7 @@ export class GlyphNote extends Note {
     const ctx = stave.checkContext();
     this.setRendered();
     this.applyStyle(ctx);
-    ctx.openGroup('glyphNote', this.getAttribute('id'));
+    ctx.openGroup("glyphNote", this.getAttribute("id"));
 
     // Context is set when setStave is called on Note
     const glyph = this.glyph;
@@ -82,7 +82,9 @@ export class GlyphNote extends Note {
     glyph.setStave(stave);
     glyph.setYShift(stave.getYForLine(this.options.line) - stave.getYForGlyphs());
 
-    const x = this.isCenterAligned() ? this.getAbsoluteX() - this.getWidth() / 2 : this.getAbsoluteX();
+    const x = this.isCenterAligned()
+      ? this.getAbsoluteX() - this.getWidth() / 2
+      : this.getAbsoluteX();
     glyph.renderToStave(x);
     this.drawModifiers();
     ctx.closeGroup();

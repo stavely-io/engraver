@@ -3,16 +3,16 @@
 //
 // This class implements multiple measure rests.
 
-import { Element } from './element';
-import { Glyph } from './glyph';
-import { NoteHead } from './notehead';
-import type { RenderContext } from './rendercontext';
-import type { Stave } from './stave';
-import { StaveModifierPosition } from './stavemodifier';
-import { Tables } from './tables';
-import { TimeSignature } from './timesignature';
-import { Category, isBarline } from './typeguard';
-import { defined } from './util';
+import { Element } from "./element";
+import { Glyph } from "./glyph";
+import { NoteHead } from "./notehead";
+import type { RenderContext } from "./rendercontext";
+import type { Stave } from "./stave";
+import { StaveModifierPosition } from "./stavemodifier";
+import { Tables } from "./tables";
+import { TimeSignature } from "./timesignature";
+import { Category, isBarline } from "./typeguard";
+import { defined } from "./util";
 
 export interface MultimeasureRestRenderOptions {
   /** Extracted by Factory.MultiMeasureRest() and passed to the MultiMeasureRest constructor. */
@@ -59,7 +59,7 @@ let semibreve_rest: { glyph_font_scale: number; glyph_code: string; width: numbe
 
 function get_semibreve_rest() {
   if (!semibreve_rest) {
-    const noteHead = new NoteHead({ duration: 'w', note_type: 'r' });
+    const noteHead = new NoteHead({ duration: "w", note_type: "r" });
     semibreve_rest = {
       glyph_font_scale: noteHead.render_options.glyph_font_scale,
       glyph_code: noteHead.glyph_code,
@@ -96,17 +96,17 @@ export class MultiMeasureRest extends Element {
     this.number_of_measures = number_of_measures;
 
     // Keep track of whether these four options were provided.
-    this.hasPaddingLeft = typeof options.padding_left === 'number';
-    this.hasPaddingRight = typeof options.padding_right === 'number';
-    this.hasLineThickness = typeof options.line_thickness === 'number';
-    this.hasSymbolSpacing = typeof options.symbol_spacing === 'number';
+    this.hasPaddingLeft = typeof options.padding_left === "number";
+    this.hasPaddingRight = typeof options.padding_right === "number";
+    this.hasLineThickness = typeof options.line_thickness === "number";
+    this.hasSymbolSpacing = typeof options.symbol_spacing === "number";
 
     const musicFont = Tables.currentMusicFont();
     this.render_options = {
       use_symbols: false,
       show_number: true,
       number_line: -0.5,
-      number_glyph_point: musicFont.lookupMetric('digits.point') ?? Tables.NOTATION_FONT_SCALE, // same as TimeSignature.
+      number_glyph_point: musicFont.lookupMetric("digits.point") ?? Tables.NOTATION_FONT_SCALE, // same as TimeSignature.
       line: 2,
       spacing_between_lines_px: Tables.STAVE_LINE_DISTANCE, // same as Stave.
       serif_thickness: 2,
@@ -118,7 +118,7 @@ export class MultiMeasureRest extends Element {
       ...options,
     };
 
-    const fontLineShift = musicFont.lookupMetric('digits.shiftLine', 0);
+    const fontLineShift = musicFont.lookupMetric("digits.shiftLine", 0);
     this.render_options.number_line += fontLineShift;
   }
 
@@ -136,10 +136,16 @@ export class MultiMeasureRest extends Element {
   }
 
   checkStave(): Stave {
-    return defined(this.stave, 'NoStave', 'No stave attached to instance.');
+    return defined(this.stave, "NoStave", "No stave attached to instance.");
   }
 
-  drawLine(stave: Stave, ctx: RenderContext, left: number, right: number, spacingBetweenLines: number): void {
+  drawLine(
+    stave: Stave,
+    ctx: RenderContext,
+    left: number,
+    right: number,
+    spacingBetweenLines: number,
+  ): void {
     const options = this.render_options;
 
     const y = stave.getYForLine(options.line);
@@ -178,7 +184,13 @@ export class MultiMeasureRest extends Element {
     ctx.fill();
   }
 
-  drawSymbols(stave: Stave, ctx: RenderContext, left: number, right: number, spacingBetweenLines: number): void {
+  drawSymbols(
+    stave: Stave,
+    ctx: RenderContext,
+    left: number,
+    right: number,
+    spacingBetweenLines: number,
+  ): void {
     const n4 = Math.floor(this.number_of_measures / 4);
     const n = this.number_of_measures % 4;
     const n2 = Math.floor(n / 2);
@@ -206,7 +218,11 @@ export class MultiMeasureRest extends Element {
     /* 10: normal spacingBetweenLines */
     const spacing = this.hasSymbolSpacing ? options.symbol_spacing : 10;
 
-    const width = n4 * glyphs[2].width + n2 * glyphs[2].width + n1 * glyphs[1].width + (n4 + n2 + n1 - 1) * spacing;
+    const width =
+      n4 * glyphs[2].width +
+      n2 * glyphs[2].width +
+      n1 * glyphs[1].width +
+      (n4 + n2 + n1 - 1) * spacing;
     let x = left + (right - left) * 0.5 - width * 0.5;
     const line = options.line;
     const yTop = stave.getYForLine(line - 1);
@@ -214,7 +230,7 @@ export class MultiMeasureRest extends Element {
     const yBottom = stave.getYForLine(line + 1);
 
     ctx.save();
-    ctx.setStrokeStyle('none');
+    ctx.setStrokeStyle("none");
     ctx.setLineWidth(0);
 
     for (let i = 0; i < n4; ++i) {
@@ -271,7 +287,7 @@ export class MultiMeasureRest extends Element {
     }
 
     if (options.show_number) {
-      const timeSpec = '/' + this.number_of_measures;
+      const timeSpec = "/" + this.number_of_measures;
       const timeSig = new TimeSignature(timeSpec, 0, false);
       timeSig.point = options.number_glyph_point;
       timeSig.setTimeSig(timeSpec);

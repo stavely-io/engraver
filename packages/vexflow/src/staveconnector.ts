@@ -1,19 +1,31 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Element } from './element';
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Glyph } from './glyph';
-import type { RenderContext } from './rendercontext';
-import type { Stave } from './stave';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Glyph } from "./glyph";
+import type { RenderContext } from "./rendercontext";
+import type { Stave } from "./stave";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
-function drawBoldDoubleLine(ctx: RenderContext, type: number, topX: number, topY: number, botY: number) {
-  if (type !== StaveConnector.type.BOLD_DOUBLE_LEFT && type !== StaveConnector.type.BOLD_DOUBLE_RIGHT) {
-    throw new RuntimeError('InvalidConnector', 'A REPEAT_BEGIN or REPEAT_END type must be provided.');
+function drawBoldDoubleLine(
+  ctx: RenderContext,
+  type: number,
+  topX: number,
+  topY: number,
+  botY: number,
+) {
+  if (
+    type !== StaveConnector.type.BOLD_DOUBLE_LEFT &&
+    type !== StaveConnector.type.BOLD_DOUBLE_RIGHT
+  ) {
+    throw new RuntimeError(
+      "InvalidConnector",
+      "A REPEAT_BEGIN or REPEAT_END type must be provided.",
+    );
   }
 
   let x_shift = 3;
@@ -35,16 +47,16 @@ function drawBoldDoubleLine(ctx: RenderContext, type: number, topX: number, topY
  * see {@link StaveConnector.type} & {@link StaveConnector.typeString}
  */
 export type StaveConnectorType =
-  | 'singleRight'
-  | 'singleLeft'
-  | 'single'
-  | 'double'
-  | 'brace'
-  | 'bracket'
-  | 'boldDoubleLeft'
-  | 'boldDoubleRight'
-  | 'thinDouble'
-  | 'none'
+  | "singleRight"
+  | "singleLeft"
+  | "single"
+  | "double"
+  | "brace"
+  | "bracket"
+  | "boldDoubleLeft"
+  | "boldDoubleRight"
+  | "thinDouble"
+  | "none"
   | 0
   | 1
   | 2
@@ -99,7 +111,10 @@ export class StaveConnector extends Element {
    * * "thinDouble"
    * * "none"
    */
-  static readonly typeString: Record<Exclude<StaveConnectorType, number>, Exclude<StaveConnectorType, string>> = {
+  static readonly typeString: Record<
+    Exclude<StaveConnectorType, number>,
+    Exclude<StaveConnectorType, string>
+  > = {
     singleRight: StaveConnector.type.SINGLE_RIGHT,
     singleLeft: StaveConnector.type.SINGLE_LEFT,
     single: StaveConnector.type.SINGLE,
@@ -118,7 +133,7 @@ export class StaveConnector extends Element {
     options: { shift_x: number; shift_y: number };
   }[];
 
-  protected type: typeof StaveConnector['type'][keyof typeof StaveConnector['type']];
+  protected type: (typeof StaveConnector)["type"][keyof (typeof StaveConnector)["type"]];
 
   readonly top_stave: Stave;
   readonly bottom_stave: Stave;
@@ -147,7 +162,7 @@ export class StaveConnector extends Element {
    * @param type see {@link StaveConnector.type} & {@link StaveConnector.typeString}
    */
   setType(type: StaveConnectorType): this {
-    const newType = typeof type === 'string' ? StaveConnector.typeString[type] : type;
+    const newType = typeof type === "string" ? StaveConnector.typeString[type] : type;
 
     // Be certain that the type is a valid type:
     if (Object.values(StaveConnector.type).includes(newType)) {
@@ -179,8 +194,8 @@ export class StaveConnector extends Element {
   }
 
   setXShift(x_shift: number): this {
-    if (typeof x_shift !== 'number') {
-      throw new RuntimeError('InvalidType', 'x_shift must be a Number');
+    if (typeof x_shift !== "number") {
+      throw new RuntimeError("InvalidType", "x_shift must be a Number");
     }
 
     this.x_shift = x_shift;
@@ -265,8 +280,8 @@ export class StaveConnector extends Element {
         topY -= 6;
         botY += 6;
         attachment_height = botY - topY;
-        Glyph.renderGlyph(ctx, topX - 5, topY, 40, 'bracketTop');
-        Glyph.renderGlyph(ctx, topX - 5, botY, 40, 'bracketBottom');
+        Glyph.renderGlyph(ctx, topX - 5, topY, 40, "bracketTop");
+        Glyph.renderGlyph(ctx, topX - 5, botY, 40, "bracketBottom");
         topX -= this.width + 2;
         break;
       case StaveConnector.type.BOLD_DOUBLE_LEFT:
@@ -282,7 +297,10 @@ export class StaveConnector extends Element {
       case StaveConnector.type.NONE:
         break;
       default:
-        throw new RuntimeError('InvalidType', `The provided StaveConnector.type (${this.type}) is invalid.`);
+        throw new RuntimeError(
+          "InvalidType",
+          `The provided StaveConnector.type (${this.type}) is invalid.`,
+        );
     }
 
     if (
@@ -306,11 +324,13 @@ export class StaveConnector extends Element {
     // Add stave connector text
     for (let i = 0; i < this.texts.length; i++) {
       const text = this.texts[i];
-      const text_width = ctx.measureText('' + text.content).width;
+      const text_width = ctx.measureText("" + text.content).width;
       const x = this.top_stave.getX() - text_width - 24 + text.options.shift_x;
-      const y = (this.top_stave.getYForLine(0) + this.bottom_stave.getBottomLineY()) / 2 + text.options.shift_y;
+      const y =
+        (this.top_stave.getYForLine(0) + this.bottom_stave.getBottomLineY()) / 2 +
+        text.options.shift_y;
 
-      ctx.fillText('' + text.content, x, y + 4);
+      ctx.fillText("" + text.content, x, y + 4);
     }
     ctx.restore();
   }

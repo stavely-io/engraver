@@ -3,14 +3,14 @@
 //
 // TextBracket Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TextBracketTests = {
   Start(): void {
-    QUnit.module('TextBracket');
+    QUnit.module("TextBracket");
     const run = VexFlowTests.runTests;
-    run('Simple TextBracket', simple0);
-    run('TextBracket Styles', simple1);
+    run("Simple TextBracket", simple0);
+    run("TextBracket Styles", simple1);
   },
 };
 
@@ -19,26 +19,26 @@ function simple0(options: TestOptions): void {
   const stave = f.Stave();
   const score = f.EasyScore();
 
-  const notes = score.notes('c4/4, c4, c4, c4, c4', { stem: 'up' });
-  const voice = score.voice(notes, { time: '5/4' });
+  const notes = score.notes("c4/4, c4, c4, c4, c4", { stem: "up" });
+  const voice = score.voice(notes, { time: "5/4" });
 
   f.TextBracket({
     from: notes[0],
     to: notes[4],
-    text: '15',
+    text: "15",
     options: {
-      superscript: 'va',
-      position: 'top',
+      superscript: "va",
+      position: "top",
     },
   });
 
   f.TextBracket({
     from: notes[0],
     to: notes[4],
-    text: '8',
+    text: "8",
     options: {
-      superscript: 'vb',
-      position: 'bottom',
+      superscript: "vb",
+      position: "bottom",
       line: 3,
     },
   });
@@ -55,28 +55,28 @@ function simple1(options: TestOptions): void {
   const stave = f.Stave();
   const score = f.EasyScore();
 
-  const notes = score.notes('c4/4, c4, c4, c4, c4', { stem: 'up' });
-  const voice = score.voice(notes, { time: '5/4' });
+  const notes = score.notes("c4/4, c4, c4, c4, c4", { stem: "up" });
+  const voice = score.voice(notes, { time: "5/4" });
 
   const topOctaves = [
     f.TextBracket({
       from: notes[0],
       to: notes[1],
-      text: 'Cool notes',
+      text: "Cool notes",
       options: {
-        superscript: '',
-        position: 'top',
+        superscript: "",
+        position: "top",
       },
     }),
     f.TextBracket({
       from: notes[2],
       to: notes[4],
-      text: 'Testing',
+      text: "Testing",
       options: {
-        position: 'top',
-        superscript: 'superscript',
+        position: "top",
+        superscript: "superscript",
         // weight & style below can be left undefined. They will fall back to the default defined in textbracket.ts.
-        font: { family: 'Arial', size: 15, weight: 'normal', style: 'normal' },
+        font: { family: "Arial", size: 15, weight: "normal", style: "normal" },
       },
     }),
   ];
@@ -85,10 +85,10 @@ function simple1(options: TestOptions): void {
     f.TextBracket({
       from: notes[0],
       to: notes[1],
-      text: '8',
+      text: "8",
       options: {
-        superscript: 'vb',
-        position: 'bottom',
+        superscript: "vb",
+        position: "bottom",
         line: 3,
         font: { size: 30 },
       },
@@ -96,10 +96,10 @@ function simple1(options: TestOptions): void {
     f.TextBracket({
       from: notes[2],
       to: notes[4],
-      text: 'Not cool notes',
+      text: "Not cool notes",
       options: {
-        superscript: ' super uncool',
-        position: 'bottom',
+        superscript: " super uncool",
+        position: "bottom",
         line: 4,
       },
     }),

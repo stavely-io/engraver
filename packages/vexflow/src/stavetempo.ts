@@ -1,14 +1,14 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Radosaw Eichler 2012
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Glyph } from './glyph';
-import type { Stave } from './stave';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
-import { Tables } from './tables';
-import { TextFormatter } from './textformatter';
-import { Category } from './typeguard';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Glyph } from "./glyph";
+import type { Stave } from "./stave";
+import { StaveModifier, StaveModifierPosition } from "./stavemodifier";
+import { Tables } from "./tables";
+import { TextFormatter } from "./textformatter";
+import { Category } from "./typeguard";
 
 export interface StaveTempoOptions {
   bpm?: number;
@@ -85,14 +85,14 @@ export class StaveTempo extends StaveModifier {
 
     if (duration && bpm) {
       // Override the weight and style.
-      const noteTextFont = { ...this.textFont, weight: 'normal', style: 'normal' };
+      const noteTextFont = { ...this.textFont, weight: "normal", style: "normal" };
       ctx.setFont(noteTextFont);
       const noteTextFormatter = TextFormatter.create(noteTextFont);
 
       if (name) {
-        x += noteTextFormatter.getWidthForTextInPx('|');
-        ctx.fillText('(', x, y);
-        x += noteTextFormatter.getWidthForTextInPx('(');
+        x += noteTextFormatter.getWidthForTextInPx("|");
+        ctx.fillText("(", x, y);
+        x += noteTextFormatter.getWidthForTextInPx("(");
       }
 
       const glyphProps = Tables.getGlyphProps(duration);
@@ -113,10 +113,19 @@ export class StaveTempo extends StaveModifier {
         ctx.fillRect(x - scale, y_top, scale, stem_height);
 
         if (glyphProps.code && glyphProps.code_flag_upstem) {
-          const flagMetrics = Glyph.renderGlyph(ctx, x, y_top, options.glyph_font_scale, glyphProps.code_flag_upstem, {
-            category: 'flag.staveTempo',
-          });
-          x += (flagMetrics.width * Tables.NOTATION_FONT_SCALE) / flagMetrics.font.getData().resolution;
+          const flagMetrics = Glyph.renderGlyph(
+            ctx,
+            x,
+            y_top,
+            options.glyph_font_scale,
+            glyphProps.code_flag_upstem,
+            {
+              category: "flag.staveTempo",
+            },
+          );
+          x +=
+            (flagMetrics.width * Tables.NOTATION_FONT_SCALE) /
+            flagMetrics.font.getData().resolution;
         }
       }
 
@@ -127,7 +136,7 @@ export class StaveTempo extends StaveModifier {
         ctx.arc(x, y + 2 * scale, 2 * scale, 0, Math.PI * 2, false);
         ctx.fill();
       }
-      ctx.fillText(' = ' + bpm + (name ? ')' : ''), x + 3 * scale, y);
+      ctx.fillText(" = " + bpm + (name ? ")" : ""), x + 3 * scale, y);
     }
 
     ctx.restore();

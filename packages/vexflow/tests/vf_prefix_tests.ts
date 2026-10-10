@@ -5,8 +5,6 @@
 //
 // VexFlow classes are available under the global Vex.Flow.* namespace.
 
-import { VexFlowTests } from './vexflow_test_helpers';
-
 import {
   Accidental,
   Annotation,
@@ -85,7 +83,8 @@ import {
   VibratoBracket,
   Voice,
   Volta,
-} from '../src/index';
+} from "../src/index";
+import { VexFlowTests } from "./vexflow_test_helpers";
 
 // Tell TypeScript that we want very flexible typing,
 // so we can use the Vex.Flow.* API in unusual ways without warnings.
@@ -94,9 +93,9 @@ declare let Vex: Record<string, any> & { Flow: typeof Flow & Record<string, any>
 
 const VFPrefixTests = {
   Start(): void {
-    QUnit.module('VF.* API');
-    QUnit.test('VF.* API', VF_Prefix);
-    QUnit.test('VF Alias', VF_Alias);
+    QUnit.module("VF.* API");
+    QUnit.test("VF.* API", VF_Prefix);
+    QUnit.test("VF Alias", VF_Alias);
   },
 };
 
@@ -125,7 +124,7 @@ function VF_Prefix(assert: Assert): void {
   assert.equal(Flow.RESOLUTION, VF.RESOLUTION);
   assert.equal(Font, VF.Font);
   assert.equal(Formatter, VF.Formatter);
-  assert.propEqual(new Formatter(), new VF.Formatter(), 'new Formatter()');
+  assert.propEqual(new Formatter(), new VF.Formatter(), "new Formatter()");
   assert.equal(Fraction, VF.Fraction);
   assert.equal(FretHandFinger, VF.FretHandFinger);
   assert.equal(GhostNote, VF.GhostNote);
@@ -209,8 +208,8 @@ function VF_Alias(assert: Assert): void {
   const vibrato = new VFVibrato();
   assert.ok(vibrato);
 
-  const acc1 = new VFAccidental('##');
-  const acc2 = new Accidental('##');
+  const acc1 = new VFAccidental("##");
+  const acc2 = new Accidental("##");
   assert.equal(acc1.type, acc2.type);
 }
 

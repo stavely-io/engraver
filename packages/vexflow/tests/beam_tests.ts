@@ -5,8 +5,6 @@
 
 // TODO: Factory.Beam()'s 'notes' argument is a StemmableNote[], but we only have access to Tickable[].
 
-import { concat, TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
 import {
   AnnotationVerticalJustify,
   Beam,
@@ -19,34 +17,35 @@ import {
   StemmableNote,
   TabNoteStruct,
   Voice,
-} from '../src/index';
+} from "../src/index";
+import { concat, TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const BeamTests = {
   Start(): void {
-    QUnit.module('Beam');
+    QUnit.module("Beam");
     const run = VexFlowTests.runTests;
-    run('Simple Beam', simple);
-    run('Multi Beam', multi);
-    run('Sixteenth Beam', sixteenth);
-    run('Slopey Beam', slopey);
-    run('Auto-stemmed Beam', autoStem);
-    run('Mixed Beam 1', mixed);
-    run('Mixed Beam 2', mixed2);
-    run('Dotted Beam', dotted);
-    run('Partial Beam', partial);
-    run('Close Trade-offs Beam', tradeoffs);
-    run('Insane Beam', insane);
-    run('Lengthy Beam', lenghty);
-    run('Outlier Beam', outlier);
-    run('Break Secondary Beams', breakSecondaryBeams);
-    run('Partial Beam Direction', partialBeamDirection);
-    run('TabNote Beams Up', tabBeamsUp);
-    run('TabNote Beams Down', tabBeamsDown);
-    run('TabNote Auto Create Beams', autoTabBeams);
-    run('TabNote Beams Auto Stem', tabBeamsAutoStem);
-    run('Complex Beams with Annotations', complexWithAnnotation);
-    run('Complex Beams with Articulations', complexWithArticulation);
-    run('Complex Beams with Articulations two Staves', complexWithArticulation2);
+    run("Simple Beam", simple);
+    run("Multi Beam", multi);
+    run("Sixteenth Beam", sixteenth);
+    run("Slopey Beam", slopey);
+    run("Auto-stemmed Beam", autoStem);
+    run("Mixed Beam 1", mixed);
+    run("Mixed Beam 2", mixed2);
+    run("Dotted Beam", dotted);
+    run("Partial Beam", partial);
+    run("Close Trade-offs Beam", tradeoffs);
+    run("Insane Beam", insane);
+    run("Lengthy Beam", lenghty);
+    run("Outlier Beam", outlier);
+    run("Break Secondary Beams", breakSecondaryBeams);
+    run("Partial Beam Direction", partialBeamDirection);
+    run("TabNote Beams Up", tabBeamsUp);
+    run("TabNote Beams Down", tabBeamsDown);
+    run("TabNote Auto Create Beams", autoTabBeams);
+    run("TabNote Beams Auto Stem", tabBeamsAutoStem);
+    run("Complex Beams with Annotations", complexWithAnnotation);
+    run("Complex Beams with Articulations", complexWithArticulation);
+    run("Complex Beams with Articulations two Staves", complexWithArticulation2);
   },
 };
 
@@ -60,17 +59,17 @@ function simple(options: TestOptions): void {
 
   const voice = score.voice(
     [
-      notes('(cb4 e#4 a4)/2'),
-      beam(notes('(cb4 e#4 a4)/8, (d4 f4 a4), (ebb4 g##4 b4), (f4 a4 c5)', { stem: 'up' })),
+      notes("(cb4 e#4 a4)/2"),
+      beam(notes("(cb4 e#4 a4)/8, (d4 f4 a4), (ebb4 g##4 b4), (f4 a4 c5)", { stem: "up" })),
     ].reduce(concat),
-    { time: '2/2' }
+    { time: "2/2" },
   );
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'Simple Test');
+  options.assert.ok(true, "Simple Test");
 }
 
 function multi(options: TestOptions): void {
@@ -84,12 +83,16 @@ function multi(options: TestOptions): void {
 
   const voices = [
     voice(
-      [beam(notes('f5/8, e5, d5, c5', { stem: 'up' })), beam(notes('c5, d5, e5, f5', { stem: 'up' }))].reduce(concat)
+      [
+        beam(notes("f5/8, e5, d5, c5", { stem: "up" })),
+        beam(notes("c5, d5, e5, f5", { stem: "up" })),
+      ].reduce(concat),
     ),
     voice(
-      [beam(notes('f4/8, e4, d4, c4', { stem: 'down' })), beam(notes('c4/8, d4, e4, f4', { stem: 'down' }))].reduce(
-        concat
-      )
+      [
+        beam(notes("f4/8, e4, d4, c4", { stem: "down" })),
+        beam(notes("c4/8, d4, e4, f4", { stem: "down" })),
+      ].reduce(concat),
     ),
   ];
 
@@ -97,7 +100,7 @@ function multi(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Multi Test');
+  options.assert.ok(true, "Multi Test");
 }
 
 function sixteenth(options: TestOptions): void {
@@ -112,17 +115,17 @@ function sixteenth(options: TestOptions): void {
   const voices = [
     voice(
       [
-        beam(notes('f5/16, f5, d5, c5', { stem: 'up' })),
-        beam(notes('c5/16, d5, f5, e5', { stem: 'up' })),
-        notes('f5/2', { stem: 'up' }),
-      ].reduce(concat)
+        beam(notes("f5/16, f5, d5, c5", { stem: "up" })),
+        beam(notes("c5/16, d5, f5, e5", { stem: "up" })),
+        notes("f5/2", { stem: "up" }),
+      ].reduce(concat),
     ),
     voice(
       [
-        beam(notes('f4/16, e4/16, d4/16, c4/16', { stem: 'down' })),
-        beam(notes('c4/16, d4/16, f4/16, e4/16', { stem: 'down' })),
-        notes('f4/2', { stem: 'down' }),
-      ].reduce(concat)
+        beam(notes("f4/16, e4/16, d4/16, c4/16", { stem: "down" })),
+        beam(notes("c4/16, d4/16, f4/16, e4/16", { stem: "down" })),
+        notes("f4/2", { stem: "down" }),
+      ].reduce(concat),
     ),
   ];
 
@@ -130,7 +133,7 @@ function sixteenth(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Sixteenth Test');
+  options.assert.ok(true, "Sixteenth Test");
 }
 
 function breakSecondaryBeams(options: TestOptions): void {
@@ -145,19 +148,21 @@ function breakSecondaryBeams(options: TestOptions): void {
   const voices = [
     voice(
       [
-        beam(notes('f5/16., f5/32, c5/16., d5/32, c5/16., d5/32', { stem: 'up' }), { secondaryBeamBreaks: [1, 3] }),
-        beam(notes('f5/16, e5, e5, e5, e5, e5', { stem: 'up' }), { secondaryBeamBreaks: [2] }),
+        beam(notes("f5/16., f5/32, c5/16., d5/32, c5/16., d5/32", { stem: "up" }), {
+          secondaryBeamBreaks: [1, 3],
+        }),
+        beam(notes("f5/16, e5, e5, e5, e5, e5", { stem: "up" }), { secondaryBeamBreaks: [2] }),
       ].reduce(concat),
-      { time: '3/4' }
+      { time: "3/4" },
     ),
     voice(
       [
-        beam(notes('f4/32, d4, e4, c4, d4, c4, f4, d4, e4, c4, c4, d4', { stem: 'down' }), {
+        beam(notes("f4/32, d4, e4, c4, d4, c4, f4, d4, e4, c4, c4, d4", { stem: "down" }), {
           secondaryBeamBreaks: [3, 7],
         }),
-        beam(notes('d4/16, f4, d4, e4, e4, e4', { stem: 'down' }), { secondaryBeamBreaks: [3] }),
+        beam(notes("d4/16, f4, d4, e4, e4, e4", { stem: "down" }), { secondaryBeamBreaks: [3] }),
       ].reduce(concat),
-      { time: '3/4' }
+      { time: "3/4" },
     ),
   ];
 
@@ -165,7 +170,7 @@ function breakSecondaryBeams(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Breaking Secondary Beams Test');
+  options.assert.ok(true, "Breaking Secondary Beams Test");
 }
 
 function partialBeamDirection(options: TestOptions): void {
@@ -181,13 +186,17 @@ function partialBeamDirection(options: TestOptions): void {
     voice(
       [
         // Default beaming:
-        beam(notes('f4/8, f4/16, f4/8, f4/16', { stem: 'up' })),
+        beam(notes("f4/8, f4/16, f4/8, f4/16", { stem: "up" })),
         // Force first 16th beam right
-        beam(notes('f4/8, f4/16, f4/8, f4/16', { stem: 'up' }), { partialBeamDirections: { '1': 'R' } }),
+        beam(notes("f4/8, f4/16, f4/8, f4/16", { stem: "up" }), {
+          partialBeamDirections: { "1": "R" },
+        }),
         // Force first 16th beam left
-        beam(notes('f4/8, f4/16, f4/8, f4/16', { stem: 'up' }), { partialBeamDirections: { '1': 'L' } }),
+        beam(notes("f4/8, f4/16, f4/8, f4/16", { stem: "up" }), {
+          partialBeamDirections: { "1": "L" },
+        }),
       ].reduce(concat),
-      { time: '9/8' }
+      { time: "9/8" },
     ),
   ];
 
@@ -195,7 +204,7 @@ function partialBeamDirection(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Partial beam direction test');
+  options.assert.ok(true, "Partial beam direction test");
 }
 
 function slopey(options: TestOptions): void {
@@ -207,16 +216,16 @@ function slopey(options: TestOptions): void {
   const notes = score.notes.bind(score);
   const voice = score.voice(
     [
-      beam(notes('c4/8, f4/8, d5/8, g5/8', { stem: 'up' })),
-      beam(notes('d6/8, f5/8, d4/8, g3/8', { stem: 'up' })),
-    ].reduce(concat)
+      beam(notes("c4/8, f4/8, d5/8, g5/8", { stem: "up" })),
+      beam(notes("d6/8, f5/8, d4/8, g3/8", { stem: "up" })),
+    ].reduce(concat),
   );
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'Slopey Test');
+  options.assert.ok(true, "Slopey Test");
 }
 
 function autoStem(options: TestOptions): void {
@@ -224,9 +233,12 @@ function autoStem(options: TestOptions): void {
   const stave = f.Stave({ y: 20 });
   const score = f.EasyScore();
 
-  const voice = score.voice(score.notes('a4/8, b4/8, g4/8, c5/8, f4/8, d5/8, e4/8, e5/8, b4/8, b4/8, g4/8, d5/8'), {
-    time: '6/4',
-  });
+  const voice = score.voice(
+    score.notes("a4/8, b4/8, g4/8, c5/8, f4/8, d5/8, e4/8, e5/8, b4/8, b4/8, g4/8, d5/8"),
+    {
+      time: "6/4",
+    },
+  );
 
   const notes = voice.getTickables() as StemmableNote[];
 
@@ -253,7 +265,7 @@ function autoStem(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'AutoStem Beam Test');
+  options.assert.ok(true, "AutoStem Beam Test");
 }
 
 function mixed(options: TestOptions): void {
@@ -262,30 +274,38 @@ function mixed(options: TestOptions): void {
   const score = f.EasyScore();
 
   const voice1 = score.voice(
-    score.notes('f5/8, d5/16, c5/16, c5/16, d5/16, e5/8, f5/8, d5/16, c5/16, c5/16, d5/16, e5/8', { stem: 'up' })
+    score.notes("f5/8, d5/16, c5/16, c5/16, d5/16, e5/8, f5/8, d5/16, c5/16, c5/16, d5/16, e5/8", {
+      stem: "up",
+    }),
   );
 
   const voice2 = score.voice(
-    score.notes('f4/16, e4/8, d4/16, c4/16, d4/8, f4/16, f4/16, e4/8, d4/16, c4/16, d4/8, f4/16', { stem: 'down' })
+    score.notes("f4/16, e4/8, d4/16, c4/16, d4/8, f4/16, f4/16, e4/8, d4/16, c4/16, d4/8, f4/16", {
+      stem: "down",
+    }),
   );
 
   [
     [0, 4],
     [4, 8],
     [8, 12],
-  ].forEach((range) => f.Beam({ notes: voice1.getTickables().slice(range[0], range[1]) as StemmableNote[] }));
+  ].forEach((range) =>
+    f.Beam({ notes: voice1.getTickables().slice(range[0], range[1]) as StemmableNote[] }),
+  );
 
   [
     [0, 4],
     [4, 8],
     [8, 12],
-  ].forEach((range) => f.Beam({ notes: voice2.getTickables().slice(range[0], range[1]) as StemmableNote[] }));
+  ].forEach((range) =>
+    f.Beam({ notes: voice2.getTickables().slice(range[0], range[1]) as StemmableNote[] }),
+  );
 
   f.Formatter().joinVoices([voice1, voice2]).formatToStave([voice1, voice2], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'Multi Test');
+  options.assert.ok(true, "Multi Test");
 }
 
 function mixed2(options: TestOptions): void {
@@ -294,17 +314,23 @@ function mixed2(options: TestOptions): void {
   const score = f.EasyScore();
 
   const voice = score.voice(
-    score.notes('f5/32, d5/16, c5/32, c5/64, d5/128, e5/8, f5/16, d5/32, c5/64, c5/32, d5/16, e5/128', {
-      stem: 'up',
-    }),
-    { time: '31/64' }
+    score.notes(
+      "f5/32, d5/16, c5/32, c5/64, d5/128, e5/8, f5/16, d5/32, c5/64, c5/32, d5/16, e5/128",
+      {
+        stem: "up",
+      },
+    ),
+    { time: "31/64" },
   );
 
   const voice2 = score.voice(
-    score.notes('f4/32, d4/16, c4/32, c4/64, d4/128, e4/8, f4/16, d4/32, c4/64, c4/32, d4/16, e4/128', {
-      stem: 'down',
-    }),
-    { time: '31/64' }
+    score.notes(
+      "f4/32, d4/16, c4/32, c4/64, d4/128, e4/8, f4/16, d4/32, c4/64, c4/32, d4/16, e4/128",
+      {
+        stem: "down",
+      },
+    ),
+    { time: "31/64" },
   );
 
   f.Beam({ notes: voice.getTickables().slice(0, 12) as StemmableNote[] });
@@ -314,7 +340,7 @@ function mixed2(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Multi Test');
+  options.assert.ok(true, "Multi Test");
 }
 
 function dotted(options: TestOptions): void {
@@ -323,8 +349,10 @@ function dotted(options: TestOptions): void {
   const score = f.EasyScore();
 
   const voice = score.voice(
-    score.notes('d4/8, b3/8., a3/16, a3/8, b3/8., c4/16, d4/8, b3/8, a3/8., a3/16, b3/8., c4/16', { stem: 'up' }),
-    { time: '6/4' }
+    score.notes("d4/8, b3/8., a3/16, a3/8, b3/8., c4/16, d4/8, b3/8, a3/8., a3/16, b3/8., c4/16", {
+      stem: "up",
+    }),
+    { time: "6/4" },
   );
 
   const notes = voice.getTickables() as StemmableNote[];
@@ -336,7 +364,7 @@ function dotted(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Dotted Test');
+  options.assert.ok(true, "Dotted Test");
 }
 
 function partial(options: TestOptions): void {
@@ -346,9 +374,9 @@ function partial(options: TestOptions): void {
 
   const voice = score.voice(
     score.notes(
-      'd4/8, b3/32, c4/16., d4/16., e4/8, c4/64, c4/32, a3/8., b3/32., c4/8, e4/64, b3/16., b3/64, f4/8, e4/8, g4/64, e4/8'
+      "d4/8, b3/32, c4/16., d4/16., e4/8, c4/64, c4/32, a3/8., b3/32., c4/8, e4/64, b3/16., b3/64, f4/8, e4/8, g4/64, e4/8",
     ),
-    { time: '89/64' }
+    { time: "89/64" },
   );
 
   const notes = voice.getTickables() as StemmableNote[];
@@ -361,7 +389,7 @@ function partial(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Partial Test');
+  options.assert.ok(true, "Partial Test");
 }
 
 function tradeoffs(options: TestOptions): void {
@@ -369,7 +397,9 @@ function tradeoffs(options: TestOptions): void {
   const stave = f.Stave();
   const score = f.EasyScore();
 
-  const voice = score.voice(score.notes('a4/8, b4/8, c4/8, d4/8, g4/8, a4/8, b4/8, c4/8', { stem: 'up' }));
+  const voice = score.voice(
+    score.notes("a4/8, b4/8, c4/8, d4/8, g4/8, a4/8, b4/8, c4/8", { stem: "up" }),
+  );
 
   const notes = voice.getTickables() as StemmableNote[];
   f.Beam({ notes: notes.slice(0, 4) });
@@ -379,7 +409,7 @@ function tradeoffs(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Close Trade-offs Test');
+  options.assert.ok(true, "Close Trade-offs Test");
 }
 
 function insane(options: TestOptions): void {
@@ -388,7 +418,10 @@ function insane(options: TestOptions): void {
   const score = f.EasyScore();
 
   const voice = score.voice(
-    score.notes('g4/8, g5/8, c4/8, b5/8, g4/8[stem="down"], a5[stem="down"], b4[stem="down"], c4/8', { stem: 'up' })
+    score.notes(
+      'g4/8, g5/8, c4/8, b5/8, g4/8[stem="down"], a5[stem="down"], b4[stem="down"], c4/8',
+      { stem: "up" },
+    ),
   );
 
   const notes = voice.getTickables() as StemmableNote[];
@@ -399,7 +432,7 @@ function insane(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Insane Test');
+  options.assert.ok(true, "Insane Test");
 }
 
 function lenghty(options: TestOptions): void {
@@ -407,13 +440,15 @@ function lenghty(options: TestOptions): void {
   const stave = f.Stave({ y: 20 });
   const score = f.EasyScore();
 
-  const voice = score.voice(score.beam(score.notes('g4/8, g4, g4, a4', { stem: 'up' })), { time: '2/4' });
+  const voice = score.voice(score.beam(score.notes("g4/8, g4, g4, a4", { stem: "up" })), {
+    time: "2/4",
+  });
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);
 
   f.draw();
 
-  options.assert.ok(true, 'Lengthy Test');
+  options.assert.ok(true, "Lengthy Test");
 }
 
 function outlier(options: TestOptions): void {
@@ -426,8 +461,8 @@ function outlier(options: TestOptions): void {
       [
         'g4/8[stem="up"],   f4[stem="up"],   d5[stem="up"],   e4[stem="up"]',
         'd5/8[stem="down"], d5[stem="down"], c5[stem="down"], d5[stem="down"]',
-      ].join()
-    )
+      ].join(),
+    ),
   );
 
   const notes = voice.getTickables() as StemmableNote[];
@@ -438,7 +473,7 @@ function outlier(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Outlier Test');
+  options.assert.ok(true, "Outlier Test");
 }
 
 function tabBeamsUp(options: TestOptions): void {
@@ -451,54 +486,54 @@ function tabBeamsUp(options: TestOptions): void {
         { str: 3, fret: 6 },
         { str: 4, fret: 25 },
       ],
-      duration: '4',
+      duration: "4",
     },
     {
       positions: [
         { str: 2, fret: 10 },
         { str: 5, fret: 12 },
       ],
-      duration: '8',
+      duration: "8",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '32',
+      duration: "32",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '64',
+      duration: "64",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '128',
+      duration: "128",
     },
-    { positions: [{ str: 3, fret: 6 }], duration: '8' },
-    { positions: [{ str: 3, fret: 6 }], duration: '8' },
-    { positions: [{ str: 3, fret: 6 }], duration: '8' },
-    { positions: [{ str: 3, fret: 6 }], duration: '8' },
+    { positions: [{ str: 3, fret: 6 }], duration: "8" },
+    { positions: [{ str: 3, fret: 6 }], duration: "8" },
+    { positions: [{ str: 3, fret: 6 }], duration: "8" },
+    { positions: [{ str: 3, fret: 6 }], duration: "8" },
   ];
 
   const notes = specs.map((struct) => {
@@ -517,7 +552,7 @@ function tabBeamsUp(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'All objects have been drawn');
+  options.assert.ok(true, "All objects have been drawn");
 }
 
 function tabBeamsDown(options: TestOptions): void {
@@ -531,7 +566,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 3, fret: 6 },
         { str: 4, fret: 25 },
       ],
-      duration: '4',
+      duration: "4",
     },
     {
       stem_direction: -1,
@@ -539,7 +574,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 2, fret: 10 },
         { str: 5, fret: 12 },
       ],
-      duration: '8dd',
+      duration: "8dd",
     },
     {
       stem_direction: -1,
@@ -547,7 +582,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
     },
     {
       stem_direction: -1,
@@ -555,7 +590,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
     },
     {
       stem_direction: -1,
@@ -563,7 +598,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '32',
+      duration: "32",
     },
     {
       stem_direction: -1,
@@ -571,7 +606,7 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '64',
+      duration: "64",
     },
     {
       stem_direction: -1,
@@ -579,15 +614,15 @@ function tabBeamsDown(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '128',
+      duration: "128",
     },
-    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 7, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 7, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 10, fret: 6 }], duration: '8' },
-    { stem_direction: -1, positions: [{ str: 10, fret: 6 }], duration: '8' },
+    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 1, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 7, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 7, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 10, fret: 6 }], duration: "8" },
+    { stem_direction: -1, positions: [{ str: 10, fret: 6 }], duration: "8" },
   ];
 
   const notes = specs.map((struct) => {
@@ -611,7 +646,7 @@ function tabBeamsDown(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'All objects have been drawn');
+  options.assert.ok(true, "All objects have been drawn");
 }
 
 function autoTabBeams(options: TestOptions): void {
@@ -624,37 +659,37 @@ function autoTabBeams(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
     },
     {
       positions: [
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
     },
-    { positions: [{ str: 1, fret: 6 }], duration: '32' },
-    { positions: [{ str: 1, fret: 6 }], duration: '32' },
-    { positions: [{ str: 1, fret: 6 }], duration: '32' },
-    { positions: [{ str: 6, fret: 6 }], duration: '32' },
-    { positions: [{ str: 6, fret: 6 }], duration: '16' },
-    { positions: [{ str: 6, fret: 6 }], duration: '16' },
-    { positions: [{ str: 6, fret: 6 }], duration: '16' },
-    { positions: [{ str: 6, fret: 6 }], duration: '16' },
+    { positions: [{ str: 1, fret: 6 }], duration: "32" },
+    { positions: [{ str: 1, fret: 6 }], duration: "32" },
+    { positions: [{ str: 1, fret: 6 }], duration: "32" },
+    { positions: [{ str: 6, fret: 6 }], duration: "32" },
+    { positions: [{ str: 6, fret: 6 }], duration: "16" },
+    { positions: [{ str: 6, fret: 6 }], duration: "16" },
+    { positions: [{ str: 6, fret: 6 }], duration: "16" },
+    { positions: [{ str: 6, fret: 6 }], duration: "16" },
   ];
 
   const notes = specs.map((struct) => {
@@ -673,7 +708,7 @@ function autoTabBeams(options: TestOptions): void {
 
   beams.forEach((beam) => beam.setContext(f.getContext()).draw());
 
-  options.assert.ok(true, 'All objects have been drawn');
+  options.assert.ok(true, "All objects have been drawn");
 }
 
 // This tests makes sure the auto_stem functionality is works.
@@ -688,7 +723,7 @@ function tabBeamsAutoStem(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
       stem_direction: -1,
     },
     {
@@ -696,7 +731,7 @@ function tabBeamsAutoStem(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '8',
+      duration: "8",
       stem_direction: 1,
     },
     {
@@ -704,7 +739,7 @@ function tabBeamsAutoStem(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
       stem_direction: -1,
     },
     {
@@ -712,17 +747,17 @@ function tabBeamsAutoStem(options: TestOptions): void {
         { str: 1, fret: 6 },
         { str: 4, fret: 5 },
       ],
-      duration: '16',
+      duration: "16",
       stem_direction: 1,
     },
-    { positions: [{ str: 1, fret: 6 }], duration: '32', stem_direction: 1 },
-    { positions: [{ str: 1, fret: 6 }], duration: '32', stem_direction: -1 },
-    { positions: [{ str: 1, fret: 6 }], duration: '32', stem_direction: -1 },
-    { positions: [{ str: 6, fret: 6 }], duration: '32', stem_direction: -1 },
-    { positions: [{ str: 6, fret: 6 }], duration: '16', stem_direction: 1 },
-    { positions: [{ str: 6, fret: 6 }], duration: '16', stem_direction: 1 },
-    { positions: [{ str: 6, fret: 6 }], duration: '16', stem_direction: 1 },
-    { positions: [{ str: 6, fret: 6 }], duration: '16', stem_direction: -1 },
+    { positions: [{ str: 1, fret: 6 }], duration: "32", stem_direction: 1 },
+    { positions: [{ str: 1, fret: 6 }], duration: "32", stem_direction: -1 },
+    { positions: [{ str: 1, fret: 6 }], duration: "32", stem_direction: -1 },
+    { positions: [{ str: 6, fret: 6 }], duration: "32", stem_direction: -1 },
+    { positions: [{ str: 6, fret: 6 }], duration: "16", stem_direction: 1 },
+    { positions: [{ str: 6, fret: 6 }], duration: "16", stem_direction: 1 },
+    { positions: [{ str: 6, fret: 6 }], duration: "16", stem_direction: 1 },
+    { positions: [{ str: 6, fret: 6 }], duration: "16", stem_direction: -1 },
   ];
 
   const notes = specs.map((struct) => {
@@ -743,7 +778,7 @@ function tabBeamsAutoStem(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'All objects have been drawn');
+  options.assert.ok(true, "All objects have been drawn");
 }
 
 function complexWithAnnotation(options: TestOptions): void {
@@ -751,23 +786,23 @@ function complexWithAnnotation(options: TestOptions): void {
   const stave = factory.Stave({ y: 40 });
 
   const s1: StaveNoteStruct[] = [
-    { keys: ['e/4'], duration: '128', stem_direction: 1 },
-    { keys: ['d/4'], duration: '16', stem_direction: 1 },
-    { keys: ['e/4'], duration: '8', stem_direction: 1 },
-    { keys: ['c/4', 'g/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
+    { keys: ["e/4"], duration: "128", stem_direction: 1 },
+    { keys: ["d/4"], duration: "16", stem_direction: 1 },
+    { keys: ["e/4"], duration: "8", stem_direction: 1 },
+    { keys: ["c/4", "g/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
   ];
 
   const s2: StaveNoteStruct[] = [
-    { keys: ['e/5'], duration: '128', stem_direction: -1 },
-    { keys: ['d/5'], duration: '16', stem_direction: -1 },
-    { keys: ['e/5'], duration: '8', stem_direction: -1 },
-    { keys: ['c/5', 'g/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
+    { keys: ["e/5"], duration: "128", stem_direction: -1 },
+    { keys: ["d/5"], duration: "16", stem_direction: -1 },
+    { keys: ["e/5"], duration: "8", stem_direction: -1 },
+    { keys: ["c/5", "g/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
   ];
 
   const font = {
@@ -780,13 +815,19 @@ function complexWithAnnotation(options: TestOptions): void {
   const notes1 = s1.map((struct) =>
     factory
       .StaveNote(struct) //
-      .addModifier(factory.Annotation({ text: '1', vJustify: AnnotationVerticalJustify.TOP, font }), 0)
+      .addModifier(
+        factory.Annotation({ text: "1", vJustify: AnnotationVerticalJustify.TOP, font }),
+        0,
+      ),
   );
 
   const notes2 = s2.map((struct) =>
     factory
       .StaveNote(struct) //
-      .addModifier(factory.Annotation({ text: '3', vJustify: AnnotationVerticalJustify.BOTTOM, font }), 0)
+      .addModifier(
+        factory.Annotation({ text: "3", vJustify: AnnotationVerticalJustify.BOTTOM, font }),
+        0,
+      ),
   );
 
   factory.Beam({ notes: notes1 });
@@ -798,7 +839,7 @@ function complexWithAnnotation(options: TestOptions): void {
 
   factory.draw();
 
-  options.assert.ok(true, 'Complex beam annotations');
+  options.assert.ok(true, "Complex beam annotations");
 }
 
 function complexWithArticulation(options: TestOptions): void {
@@ -806,30 +847,30 @@ function complexWithArticulation(options: TestOptions): void {
   const stave = f.Stave({ y: 40 });
 
   const s1: StaveNoteStruct[] = [
-    { keys: ['e/4'], duration: '128', stem_direction: 1 },
-    { keys: ['d/4'], duration: '16', stem_direction: 1 },
-    { keys: ['e/4'], duration: '8', stem_direction: 1 },
-    { keys: ['c/4', 'g/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
+    { keys: ["e/4"], duration: "128", stem_direction: 1 },
+    { keys: ["d/4"], duration: "16", stem_direction: 1 },
+    { keys: ["e/4"], duration: "8", stem_direction: 1 },
+    { keys: ["c/4", "g/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
   ];
 
   const s2: StaveNoteStruct[] = [
-    { keys: ['e/5'], duration: '128', stem_direction: -1 },
-    { keys: ['d/5'], duration: '16', stem_direction: -1 },
-    { keys: ['e/5'], duration: '8', stem_direction: -1 },
-    { keys: ['c/5', 'g/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
+    { keys: ["e/5"], duration: "128", stem_direction: -1 },
+    { keys: ["d/5"], duration: "16", stem_direction: -1 },
+    { keys: ["e/5"], duration: "8", stem_direction: -1 },
+    { keys: ["c/5", "g/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
   ];
 
   const notes1 = s1.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'am', position: 'above' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "am", position: "above" }), 0),
   );
   const notes2 = s2.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'a>', position: 'below' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "a>", position: "below" }), 0),
   );
 
   f.Beam({ notes: notes1 });
@@ -841,7 +882,7 @@ function complexWithArticulation(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Complex beam articulations');
+  options.assert.ok(true, "Complex beam articulations");
 }
 
 function complexWithArticulation2(options: TestOptions): void {
@@ -849,37 +890,37 @@ function complexWithArticulation2(options: TestOptions): void {
   const system = f.System();
 
   const s1: StaveNoteStruct[] = [
-    { keys: ['e/4'], duration: '128', stem_direction: 1 },
-    { keys: ['d/4'], duration: '16', stem_direction: 1 },
-    { keys: ['e/4'], duration: '8', stem_direction: 1 },
-    { keys: ['c/4', 'g/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
-    { keys: ['c/4'], duration: '32', stem_direction: 1 },
+    { keys: ["e/4"], duration: "128", stem_direction: 1 },
+    { keys: ["d/4"], duration: "16", stem_direction: 1 },
+    { keys: ["e/4"], duration: "8", stem_direction: 1 },
+    { keys: ["c/4", "g/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
+    { keys: ["c/4"], duration: "32", stem_direction: 1 },
   ];
 
   const s2: StaveNoteStruct[] = [
-    { keys: ['e/5'], duration: '128', stem_direction: -1 },
-    { keys: ['d/5'], duration: '16', stem_direction: -1 },
-    { keys: ['e/5'], duration: '8', stem_direction: -1 },
-    { keys: ['c/5', 'g/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
-    { keys: ['c/5'], duration: '32', stem_direction: -1 },
+    { keys: ["e/5"], duration: "128", stem_direction: -1 },
+    { keys: ["d/5"], duration: "16", stem_direction: -1 },
+    { keys: ["e/5"], duration: "8", stem_direction: -1 },
+    { keys: ["c/5", "g/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
+    { keys: ["c/5"], duration: "32", stem_direction: -1 },
   ];
 
   const notes1 = s1.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'am', position: 'above' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "am", position: "above" }), 0),
   );
   const notes2 = s2.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'a>', position: 'below' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "a>", position: "below" }), 0),
   );
 
   const notes3 = s1.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'am', position: 'above' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "am", position: "above" }), 0),
   );
   const notes4 = s2.map((struct) =>
-    f.StaveNote(struct).addModifier(f.Articulation({ type: 'a>', position: 'below' }), 0)
+    f.StaveNote(struct).addModifier(f.Articulation({ type: "a>", position: "below" }), 0),
   );
 
   f.Beam({ notes: notes1 });
@@ -895,7 +936,7 @@ function complexWithArticulation2(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Complex beam articulations two staves');
+  options.assert.ok(true, "Complex beam articulations two staves");
 }
 
 VexFlowTests.register(BeamTests);

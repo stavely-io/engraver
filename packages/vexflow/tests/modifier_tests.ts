@@ -3,21 +3,20 @@
 //
 // ModifierContext Tests
 
-import { VexFlowTests } from './vexflow_test_helpers';
-
-import { Modifier, ModifierContext } from '../src/index';
+import { Modifier, ModifierContext } from "../src/index";
+import { VexFlowTests } from "./vexflow_test_helpers";
 
 const ModifierContextTests = {
   Start(): void {
-    QUnit.module('ModifierContext');
-    QUnit.test('Modifier Width Test', width);
-    QUnit.test('Modifier Management', management);
+    QUnit.module("ModifierContext");
+    QUnit.test("Modifier Width Test", width);
+    QUnit.test("Modifier Management", management);
   },
 };
 
 function width(assert: Assert): void {
   const mc = new ModifierContext();
-  assert.equal(mc.getWidth(), 0, 'New modifier context has no width');
+  assert.equal(mc.getWidth(), 0, "New modifier context has no width");
 }
 
 function management(assert: Assert): void {
@@ -29,7 +28,7 @@ function management(assert: Assert): void {
   mc.addMember(modifier2);
 
   const modifiers = mc.getMembers(Modifier.CATEGORY);
-  assert.equal(modifiers.length, 2, 'Added two modifiers');
+  assert.equal(modifiers.length, 2, "Added two modifiers");
 }
 
 VexFlowTests.register(ModifierContextTests);

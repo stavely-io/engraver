@@ -2,13 +2,13 @@
 // @author Mohit Cheppudira
 // MIT License
 
-import type { BoundingBox } from './boundingbox';
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Registry } from './registry';
-import type { RenderContext } from './rendercontext';
-import { Category } from './typeguard';
-import { defined, prefix } from './util';
+import type { BoundingBox } from "./boundingbox";
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Registry } from "./registry";
+import type { RenderContext } from "./rendercontext";
+import { Category } from "./typeguard";
+import { defined, prefix } from "./util";
 
 /** Element attributes. */
 export interface ElementAttributes {
@@ -107,7 +107,7 @@ export abstract class Element {
     this.attrs = {
       id: Element.newID(),
       type: this.getCategory(),
-      class: '',
+      class: "",
     };
 
     this.rendered = false;
@@ -176,7 +176,7 @@ export abstract class Element {
   /** Apply the element style to `context`. */
   applyStyle(
     context: RenderContext | undefined = this.context,
-    style: ElementStyle | undefined = this.getStyle()
+    style: ElementStyle | undefined = this.getStyle(),
   ): this {
     if (!style) return this;
     if (!context) return this;
@@ -193,7 +193,7 @@ export abstract class Element {
   /** Restore the style of `context`. */
   restoreStyle(
     context: RenderContext | undefined = this.context,
-    style: ElementStyle | undefined = this.getStyle()
+    style: ElementStyle | undefined = this.getStyle(),
   ): this {
     if (!style) return this;
     if (!context) return this;
@@ -219,7 +219,7 @@ export abstract class Element {
   /** Check if it has a class label (An element can have multiple class labels).  */
   hasClass(className: string): boolean {
     if (!this.attrs.class) return false;
-    return this.attrs.class?.split(' ').indexOf(className) != -1;
+    return this.attrs.class?.split(" ").indexOf(className) != -1;
   }
 
   /** Add a class label (An element can have multiple class labels).  */
@@ -229,7 +229,7 @@ export abstract class Element {
     else this.attrs.class = `${this.attrs.class} ${className}`;
     this.registry?.onUpdate({
       id: this.attrs.id,
-      name: 'class',
+      name: "class",
       value: className,
       oldValue: undefined,
     });
@@ -239,14 +239,14 @@ export abstract class Element {
   /** Remove a class label (An element can have multiple class labels).  */
   removeClass(className: string): this {
     if (!this.hasClass(className)) return this;
-    const arr = this.attrs.class?.split(' ');
+    const arr = this.attrs.class?.split(" ");
     if (arr) {
       arr.splice(arr.indexOf(className));
-      this.attrs.class = arr.join(' ');
+      this.attrs.class = arr.join(" ");
     }
     this.registry?.onUpdate({
       id: this.attrs.id,
-      name: 'class',
+      name: "class",
       value: undefined,
       oldValue: className,
     });
@@ -282,7 +282,7 @@ export abstract class Element {
   }
 
   /** Return associated SVGElement. */
-  getSVGElement(suffix: string = ''): SVGElement | undefined {
+  getSVGElement(suffix: string = ""): SVGElement | undefined {
     const id = prefix(this.attrs.id + suffix);
     const element = document.getElementById(id);
     if (element) return element as unknown as SVGElement;
@@ -316,7 +316,7 @@ export abstract class Element {
 
   /** Validate and return the rendering context. */
   checkContext(): RenderContext {
-    return defined(this.context, 'NoContext', 'No rendering context attached to instance.');
+    return defined(this.context, "NoContext", "No rendering context attached to instance.");
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -350,14 +350,20 @@ export abstract class Element {
    * If no arguments are provided, then the font is set to the default font.
    * Each Element subclass may specify its own default by overriding the static `TEXT_FONT` property.
    */
-  setFont(font?: string | FontInfo, size?: string | number, weight?: string | number, style?: string): this {
+  setFont(
+    font?: string | FontInfo,
+    size?: string | number,
+    weight?: string | number,
+    style?: string,
+  ): this {
     // Allow subclasses to override `TEXT_FONT`.
     const defaultTextFont: Required<FontInfo> = (<typeof Element>this.constructor).TEXT_FONT;
 
-    const fontIsObject = typeof font === 'object';
-    const fontIsString = typeof font === 'string';
+    const fontIsObject = typeof font === "object";
+    const fontIsString = typeof font === "string";
     const fontIsUndefined = font === undefined;
-    const sizeWeightStyleAreUndefined = size === undefined && weight === undefined && style === undefined;
+    const sizeWeightStyleAreUndefined =
+      size === undefined && weight === undefined && style === undefined;
 
     if (fontIsObject) {
       // `font` is case 1) a FontInfo object
@@ -380,7 +386,7 @@ export abstract class Element {
         font ?? defaultTextFont.family,
         size ?? defaultTextFont.size,
         weight ?? defaultTextFont.weight,
-        style ?? defaultTextFont.style
+        style ?? defaultTextFont.style,
       );
     }
     return this;
@@ -447,7 +453,7 @@ export abstract class Element {
    */
   get fontSize(): string {
     let size = this.fontInfo.size;
-    if (typeof size === 'number') {
+    if (typeof size === "number") {
       size = `${size}pt`;
     }
     return size;
@@ -484,7 +490,7 @@ export abstract class Element {
    * As in CSS, font-weight is always returned as a string, even if it was set as a number.
    */
   get fontWeight(): string {
-    return this.fontInfo.weight + '';
+    return this.fontInfo.weight + "";
   }
 
   set fontWeight(weight: string | number) {

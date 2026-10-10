@@ -5,12 +5,12 @@
 // See tables.js for the internal time signatures
 // representation
 
-import { Glyph } from './glyph';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
-import { Tables } from './tables';
-import { TimeSignatureGlyph } from './timesigglyph';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
+import { Glyph } from "./glyph";
+import { StaveModifier, StaveModifierPosition } from "./stavemodifier";
+import { Tables } from "./tables";
+import { TimeSignatureGlyph } from "./timesigglyph";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
 
 export interface TimeSignatureInfo {
   glyph: Glyph;
@@ -19,19 +19,22 @@ export interface TimeSignatureInfo {
 }
 
 const assertIsValidTimeSig = (timeSpec: string) => {
-  const numbers = timeSpec.split('/');
+  const numbers = timeSpec.split("/");
 
-  if (numbers.length !== 2 && numbers[0] !== '+' && numbers[0] !== '-') {
+  if (numbers.length !== 2 && numbers[0] !== "+" && numbers[0] !== "-") {
     throw new RuntimeError(
-      'BadTimeSignature',
-      `Invalid time spec: ${timeSpec}. Must be in the form "<numerator>/<denominator>"`
+      "BadTimeSignature",
+      `Invalid time spec: ${timeSpec}. Must be in the form "<numerator>/<denominator>"`,
     );
   }
 
   numbers.forEach((number) => {
     // Characters consisting in number 0..9, '+', '-', '(' or ')'
     if (/^[0-9+\-()]+$/.test(number) == false) {
-      throw new RuntimeError('BadTimeSignature', `Invalid time spec: ${timeSpec}. Must contain valid signatures.`);
+      throw new RuntimeError(
+        "BadTimeSignature",
+        `Invalid time spec: ${timeSpec}. Must contain valid signatures.`,
+      );
     }
   });
 };
@@ -49,11 +52,11 @@ export class TimeSignature extends StaveModifier {
   static get glyphs(): Record<string, { code: string; line: number }> {
     return {
       C: {
-        code: 'timeSigCommon',
+        code: "timeSigCommon",
         line: 2,
       },
-      'C|': {
-        code: 'timeSigCutCommon',
+      "C|": {
+        code: "timeSigCutCommon",
         line: 2,
       },
     };
@@ -63,13 +66,13 @@ export class TimeSignature extends StaveModifier {
   bottomLine: number; // bottomLine and topLine are used to calculate the position of the
   topLine: number; // top row of digits in a numeric TimeSignature.
 
-  protected timeSpec: string = '4/4';
+  protected timeSpec: string = "4/4";
   protected line: number = 0;
   protected glyph!: Glyph;
   protected is_numeric: boolean = true;
   protected validate_args: boolean;
 
-  constructor(timeSpec: string = '4/4', customPadding = 15, validate_args = true) {
+  constructor(timeSpec: string = "4/4", customPadding = 15, validate_args = true) {
     super();
     this.validate_args = validate_args;
 
@@ -77,9 +80,9 @@ export class TimeSignature extends StaveModifier {
 
     // point must be defined before parsing spec.
     const musicFont = Tables.currentMusicFont();
-    this.point = musicFont.lookupMetric('digits.point') || Tables.NOTATION_FONT_SCALE;
+    this.point = musicFont.lookupMetric("digits.point") || Tables.NOTATION_FONT_SCALE;
 
-    const fontLineShift = musicFont.lookupMetric('digits.shiftLine', 0);
+    const fontLineShift = musicFont.lookupMetric("digits.shiftLine", 0);
     this.topLine = 2 + fontLineShift;
     this.bottomLine = 4 + fontLineShift;
     this.setPosition(StaveModifierPosition.BEGIN);
@@ -93,7 +96,7 @@ export class TimeSignature extends StaveModifier {
    * TimeSignatureGlyph object).
    */
   parseTimeSpec(timeSpec: string): TimeSignatureInfo {
-    if (timeSpec === 'C' || timeSpec === 'C|') {
+    if (timeSpec === "C" || timeSpec === "C|") {
       const { line, code } = TimeSignature.glyphs[timeSpec];
       return {
         line,
@@ -106,12 +109,12 @@ export class TimeSignature extends StaveModifier {
       assertIsValidTimeSig(timeSpec);
     }
 
-    const parts = timeSpec.split('/');
+    const parts = timeSpec.split("/");
 
     return {
       line: 0,
       num: true,
-      glyph: this.makeTimeSignatureGlyph(parts[0] ?? '', parts[1] ?? ''),
+      glyph: this.makeTimeSignatureGlyph(parts[0] ?? "", parts[1] ?? ""),
     };
   }
 
@@ -121,7 +124,7 @@ export class TimeSignature extends StaveModifier {
    */
   makeTimeSignatureGlyph(topDigits: string, botDigits: string): TimeSignatureGlyph {
     // note that 'code' is ignored by TimeSignatureGlyph when rendering.
-    return new TimeSignatureGlyph(this, topDigits, botDigits, 'timeSig0', this.point);
+    return new TimeSignatureGlyph(this, topDigits, botDigits, "timeSig0", this.point);
   }
 
   /**
@@ -213,7 +216,7 @@ export class TimeSignature extends StaveModifier {
     this.setRendered();
 
     this.applyStyle(ctx);
-    ctx.openGroup('timesignature', this.getAttribute('id'));
+    ctx.openGroup("timesignature", this.getAttribute("id"));
     this.glyph.setStave(stave);
     this.glyph.setContext(ctx);
     this.placeGlyphOnLine(this.glyph, stave, this.line);

@@ -3,23 +3,22 @@
 //
 // TickContext Tests
 
-import { VexFlowTests } from './vexflow_test_helpers';
-
-import { Flow } from '../src/flow';
-import { TickContext } from '../src/tickcontext';
-import { MockTickable } from './mocks';
+import { Flow } from "../src/flow";
+import { TickContext } from "../src/tickcontext";
+import { MockTickable } from "./mocks";
+import { VexFlowTests } from "./vexflow_test_helpers";
 
 const TickContextTests = {
   Start(): void {
-    QUnit.module('TickContext');
-    QUnit.test('Current Tick Test', currentTick);
-    QUnit.test('Tracking Test', tracking);
+    QUnit.module("TickContext");
+    QUnit.test("Current Tick Test", currentTick);
+    QUnit.test("Tracking Test", tracking);
   },
 };
 
 function currentTick(assert: Assert): void {
   const tc = new TickContext();
-  assert.equal(tc.getCurrentTick().value(), 0, 'New tick context has no ticks');
+  assert.equal(tc.getCurrentTick().value(), 0, "New tick context has no ticks");
 }
 
 function tracking(assert: Assert): void {

@@ -1,11 +1,11 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { ChordSymbolGlyphMetrics } from '../chordsymbol';
-import type { FontMetrics } from '../font';
-import { Font } from '../font';
-import { CommonMetrics } from './common_metrics';
-import { PetalumaFont } from './petaluma_glyphs';
+import type { ChordSymbolGlyphMetrics } from "../chordsymbol";
+import type { FontMetrics } from "../font";
+import { Font } from "../font";
+import { CommonMetrics } from "./common_metrics";
+import { PetalumaFont } from "./petaluma_glyphs";
 
 const petalumaChordMetrics: Record<string, ChordSymbolGlyphMetrics> = {
   csymDiminished: {
@@ -86,5 +86,5 @@ export function loadPetaluma() {
   if (chordMetrics) {
     chordMetrics.glyphs = petalumaChordMetrics;
   }
-  Font.load('Petaluma', PetalumaFont, metrics);
+  Font.load("Petaluma", PetalumaFont, metrics);
 }

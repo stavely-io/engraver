@@ -1,13 +1,13 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Taehoon Moon 2014
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import type { Stave } from './stave';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
-import { TextJustification, TextNote } from './textnote';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import type { Stave } from "./stave";
+import { StaveModifier, StaveModifierPosition } from "./stavemodifier";
+import { TextJustification, TextNote } from "./textnote";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export class StaveText extends StaveModifier {
   static get CATEGORY(): string {
@@ -34,7 +34,7 @@ export class StaveText extends StaveModifier {
   constructor(
     text: string,
     position: number,
-    options: { shift_x?: number; shift_y?: number; justification?: number } = {}
+    options: { shift_x?: number; shift_y?: number; justification?: number } = {},
   ) {
     super();
 
@@ -78,7 +78,7 @@ export class StaveText extends StaveModifier {
     ctx.save();
     ctx.setLineWidth(2);
     ctx.setFont(this.textFont);
-    const text_width = ctx.measureText('' + this.text).width;
+    const text_width = ctx.measureText("" + this.text).width;
 
     let x;
     let y;
@@ -108,10 +108,10 @@ export class StaveText extends StaveModifier {
         }
         break;
       default:
-        throw new RuntimeError('InvalidPosition', 'Value Must be in Modifier.Position.');
+        throw new RuntimeError("InvalidPosition", "Value Must be in Modifier.Position.");
     }
 
-    ctx.fillText('' + this.text, x, y + 4);
+    ctx.fillText("" + this.text, x, y + 4);
     ctx.restore();
     return this;
   }

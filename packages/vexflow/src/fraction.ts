@@ -4,8 +4,8 @@
 // Author: Joshua Koo / @zz85
 // Author: @incompleteopus
 
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 /** Fraction represents a rational number. */
 export class Fraction {
@@ -23,8 +23,8 @@ export class Fraction {
    * Note: GCD(0, 0) => 0 and GCD(0, n) => n.
    */
   static GCD(a: number, b: number): number {
-    if (typeof a !== 'number' || Number.isNaN(a) || typeof b !== 'number' || Number.isNaN(b)) {
-      throw new RuntimeError('BadArgument', `Invalid numbers: ${a}, ${b}`);
+    if (typeof a !== "number" || Number.isNaN(a) || typeof b !== "number" || Number.isNaN(b)) {
+      throw new RuntimeError("BadArgument", `Invalid numbers: ${a}, ${b}`);
     }
 
     let t;
@@ -165,7 +165,7 @@ export class Fraction {
 
   /** Copy value of another fraction. */
   copy(other: Fraction | number): this {
-    if (typeof other === 'number') {
+    if (typeof other === "number") {
       return this.set(other, 1);
     } else {
       return this.set(other.numerator, other.denominator);
@@ -201,7 +201,7 @@ export class Fraction {
 
   /** Return string representation in mixed form. */
   toMixedString(): string {
-    let s = '';
+    let s = "";
     const q = this.quotient();
     const f = Fraction.__staticFractionTmp.copy(this);
 
@@ -216,7 +216,7 @@ export class Fraction {
         s += ` ${f.toSimplifiedString()}`;
       }
     } else if (f.numerator === 0) {
-      s = '0';
+      s = "0";
     } else {
       s = f.toSimplifiedString();
     }
@@ -226,7 +226,7 @@ export class Fraction {
 
   /** Parse a fraction string. */
   parse(str: string): this {
-    const i = str.split('/');
+    const i = str.split("/");
     const n = parseInt(i[0], 10);
     const d = i[1] ? parseInt(i[1], 10) : 1;
 
@@ -236,7 +236,7 @@ export class Fraction {
 
 /** Helper function to extract the numerator and denominator from another fraction. */
 function getNumeratorAndDenominator(n: Fraction | number, d: number = 1): [number, number] {
-  if (typeof n === 'number') {
+  if (typeof n === "number") {
     // Both params are numbers, so we return them as [numerator, denominator].
     return [n, d];
   } else {

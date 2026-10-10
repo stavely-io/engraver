@@ -1,12 +1,12 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Larry Kuhns 2011
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import type { Stave } from './stave';
-import { StaveModifier } from './stavemodifier';
-import { TextFormatter } from './textformatter';
-import { Category } from './typeguard';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import type { Stave } from "./stave";
+import { StaveModifier } from "./stavemodifier";
+import { TextFormatter } from "./textformatter";
+import { Category } from "./typeguard";
 
 export class StaveSection extends StaveModifier {
   static get CATEGORY(): string {

@@ -8,8 +8,8 @@
 // To add a new music engraving font named XXX, make a copy of this file and name it vexflow-font-xxx.ts.
 // Then you will need to import the xxx_glyphs.ts and xxx_metrics.ts files.
 
-import { BravuraFont } from '../src/fonts/bravura_glyphs';
-import { CommonMetrics } from '../src/fonts/common_metrics';
+import { BravuraFont } from "../src/fonts/bravura_glyphs";
+import { CommonMetrics } from "../src/fonts/common_metrics";
 
 export const Font = {
   data: BravuraFont,

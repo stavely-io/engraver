@@ -1,92 +1,92 @@
-import { version } from '../package.json';
-import { Accidental } from './accidental';
-import { Annotation, AnnotationHorizontalJustify, AnnotationVerticalJustify } from './annotation';
-import { Articulation } from './articulation';
-import { BarNote } from './barnote';
-import { Beam } from './beam';
-import { Bend } from './bend';
-import { BoundingBox } from './boundingbox';
-import { BoundingBoxComputation } from './boundingboxcomputation';
-import { CanvasContext } from './canvascontext';
+import { version } from "../package.json";
+import { Accidental } from "./accidental";
+import { Annotation, AnnotationHorizontalJustify, AnnotationVerticalJustify } from "./annotation";
+import { Articulation } from "./articulation";
+import { BarNote } from "./barnote";
+import { Beam } from "./beam";
+import { Bend } from "./bend";
+import { BoundingBox } from "./boundingbox";
+import { BoundingBoxComputation } from "./boundingboxcomputation";
+import { CanvasContext } from "./canvascontext";
 import {
   ChordSymbol,
   ChordSymbolHorizontalJustify,
   ChordSymbolVerticalJustify,
   SymbolModifiers,
   SymbolTypes,
-} from './chordsymbol';
-import { Clef } from './clef';
-import { ClefNote } from './clefnote';
-import { Crescendo } from './crescendo';
-import { Curve, CurvePosition } from './curve';
-import { Dot } from './dot';
-import { EasyScore } from './easyscore';
-import { Element } from './element';
-import { Factory } from './factory';
-import type { FontModule} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Formatter } from './formatter';
-import { Fraction } from './fraction';
-import { FretHandFinger } from './frethandfinger';
-import { GhostNote } from './ghostnote';
-import { Glyph } from './glyph';
-import { GlyphNote } from './glyphnote';
-import { GraceNote } from './gracenote';
-import { GraceNoteGroup } from './gracenotegroup';
-import { GraceTabNote } from './gracetabnote';
-import { KeyManager } from './keymanager';
-import { KeySignature } from './keysignature';
-import { KeySigNote } from './keysignote';
-import { Modifier, ModifierPosition } from './modifier';
-import { ModifierContext } from './modifiercontext';
-import { MultiMeasureRest } from './multimeasurerest';
-import { Music } from './music';
-import { Note } from './note';
-import { NoteHead } from './notehead';
-import { NoteSubGroup } from './notesubgroup';
-import { Ornament } from './ornament';
-import { Parenthesis } from './parenthesis';
-import { Parser } from './parser';
-import { PedalMarking } from './pedalmarking';
-import { Registry } from './registry';
-import { RenderContext } from './rendercontext';
-import { Renderer, RendererBackends, RendererLineEndType } from './renderer';
-import { RepeatNote } from './repeatnote';
-import { Stave } from './stave';
-import { Barline, BarlineType } from './stavebarline';
-import { StaveConnector } from './staveconnector';
-import { StaveHairpin } from './stavehairpin';
-import { StaveLine } from './staveline';
-import { StaveModifier, StaveModifierPosition } from './stavemodifier';
-import { StaveNote } from './stavenote';
-import { Repetition } from './staverepetition';
-import { StaveTempo } from './stavetempo';
-import { StaveText } from './stavetext';
-import { StaveTie } from './stavetie';
-import { Volta, VoltaType } from './stavevolta';
-import { Stem } from './stem';
-import { StringNumber } from './stringnumber';
-import { Stroke } from './strokes';
-import { SVGContext } from './svgcontext';
-import { System } from './system';
-import { Tables } from './tables';
-import { TabNote } from './tabnote';
-import { TabSlide } from './tabslide';
-import { TabStave } from './tabstave';
-import { TabTie } from './tabtie';
-import { TextBracket, TextBracketPosition } from './textbracket';
-import { TextDynamics } from './textdynamics';
-import { TextFormatter } from './textformatter';
-import { TextJustification, TextNote } from './textnote';
-import { TickContext } from './tickcontext';
-import { TimeSignature } from './timesignature';
-import { TimeSigNote } from './timesignote';
-import { Tremolo } from './tremolo';
-import { Tuning } from './tuning';
-import { Tuplet } from './tuplet';
-import { Vibrato } from './vibrato';
-import { VibratoBracket } from './vibratobracket';
-import { Voice, VoiceMode } from './voice';
+} from "./chordsymbol";
+import { Clef } from "./clef";
+import { ClefNote } from "./clefnote";
+import { Crescendo } from "./crescendo";
+import { Curve, CurvePosition } from "./curve";
+import { Dot } from "./dot";
+import { EasyScore } from "./easyscore";
+import { Element } from "./element";
+import { Factory } from "./factory";
+import type { FontModule } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Formatter } from "./formatter";
+import { Fraction } from "./fraction";
+import { FretHandFinger } from "./frethandfinger";
+import { GhostNote } from "./ghostnote";
+import { Glyph } from "./glyph";
+import { GlyphNote } from "./glyphnote";
+import { GraceNote } from "./gracenote";
+import { GraceNoteGroup } from "./gracenotegroup";
+import { GraceTabNote } from "./gracetabnote";
+import { KeyManager } from "./keymanager";
+import { KeySignature } from "./keysignature";
+import { KeySigNote } from "./keysignote";
+import { Modifier, ModifierPosition } from "./modifier";
+import { ModifierContext } from "./modifiercontext";
+import { MultiMeasureRest } from "./multimeasurerest";
+import { Music } from "./music";
+import { Note } from "./note";
+import { NoteHead } from "./notehead";
+import { NoteSubGroup } from "./notesubgroup";
+import { Ornament } from "./ornament";
+import { Parenthesis } from "./parenthesis";
+import { Parser } from "./parser";
+import { PedalMarking } from "./pedalmarking";
+import { Registry } from "./registry";
+import { RenderContext } from "./rendercontext";
+import { Renderer, RendererBackends, RendererLineEndType } from "./renderer";
+import { RepeatNote } from "./repeatnote";
+import { Stave } from "./stave";
+import { Barline, BarlineType } from "./stavebarline";
+import { StaveConnector } from "./staveconnector";
+import { StaveHairpin } from "./stavehairpin";
+import { StaveLine } from "./staveline";
+import { StaveModifier, StaveModifierPosition } from "./stavemodifier";
+import { StaveNote } from "./stavenote";
+import { Repetition } from "./staverepetition";
+import { StaveTempo } from "./stavetempo";
+import { StaveText } from "./stavetext";
+import { StaveTie } from "./stavetie";
+import { Volta, VoltaType } from "./stavevolta";
+import { Stem } from "./stem";
+import { StringNumber } from "./stringnumber";
+import { Stroke } from "./strokes";
+import { SVGContext } from "./svgcontext";
+import { System } from "./system";
+import { Tables } from "./tables";
+import { TabNote } from "./tabnote";
+import { TabSlide } from "./tabslide";
+import { TabStave } from "./tabstave";
+import { TabTie } from "./tabtie";
+import { TextBracket, TextBracketPosition } from "./textbracket";
+import { TextDynamics } from "./textdynamics";
+import { TextFormatter } from "./textformatter";
+import { TextJustification, TextNote } from "./textnote";
+import { TickContext } from "./tickcontext";
+import { TimeSignature } from "./timesignature";
+import { TimeSigNote } from "./timesignote";
+import { Tremolo } from "./tremolo";
+import { Tuning } from "./tuning";
+import { Tuplet } from "./tuplet";
+import { Vibrato } from "./vibrato";
+import { VibratoBracket } from "./vibratobracket";
+import { Voice, VoiceMode } from "./voice";
 
 export class Flow {
   static get BUILD() {
@@ -229,7 +229,7 @@ export class Flow {
     const fonts = fontNames.map((fontName) => Font.load(fontName));
     Tables.MUSIC_FONT_STACK = fonts;
     Glyph.MUSIC_FONT_STACK = fonts.slice();
-    Glyph.CURRENT_CACHE_KEY = fontNames.join(',');
+    Glyph.CURRENT_CACHE_KEY = fontNames.join(",");
     return fonts;
   }
 
@@ -237,7 +237,10 @@ export class Flow {
    * Used with vexflow-core which supports dynamic font loading.
    */
   // eslint-disable-next-line
-  static async fetchMusicFont(fontName: string, fontModuleOrPath?: string | FontModule): Promise<void> {
+  static async fetchMusicFont(
+    fontName: string,
+    fontModuleOrPath?: string | FontModule,
+  ): Promise<void> {
     // The default implementation does nothing.
     // See vexflow-core.ts for the implementation that vexflow-core.js uses.
   }
@@ -318,7 +321,10 @@ export class Flow {
   static get TIME4_4(): { num_beats: number; beat_value: number; resolution: number } {
     return Tables.TIME4_4;
   }
-  static get accidentalMap(): Record<string, { code: string; parenRightPaddingAdjustment: number }> {
+  static get accidentalMap(): Record<
+    string,
+    { code: string; parenRightPaddingAdjustment: number }
+  > {
     return Tables.accidentalMap;
   }
   static get unicode(): Record<string, string> {

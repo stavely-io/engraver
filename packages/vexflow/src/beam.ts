@@ -1,18 +1,18 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Element } from './element';
-import { Fraction } from './fraction';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import type { Tuplet} from './tuplet';
-import { TupletLocation } from './tuplet';
-import { Category, isStaveNote, isTabNote } from './typeguard';
-import { RuntimeError } from './util';
-import type { Voice } from './voice';
+import { Element } from "./element";
+import { Fraction } from "./fraction";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import type { Tuplet } from "./tuplet";
+import { TupletLocation } from "./tuplet";
+import { Category, isStaveNote, isTabNote } from "./typeguard";
+import { RuntimeError } from "./util";
+import type { Voice } from "./voice";
 
 function calculateStemDirection(notes: StemmableNote[]) {
   let lineSum = 0;
@@ -38,9 +38,9 @@ function getStemSlope(firstNote: StemmableNote, lastNote: StemmableNote) {
   return (lastStemTipY - firstStemTipY) / (lastStemX - firstStemX);
 }
 
-export const BEAM_LEFT = 'L';
-export const BEAM_RIGHT = 'R';
-export const BEAM_BOTH = 'B';
+export const BEAM_LEFT = "L";
+export const BEAM_RIGHT = "R";
+export const BEAM_BOTH = "B";
 
 export type PartialBeamDirection = typeof BEAM_LEFT | typeof BEAM_RIGHT | typeof BEAM_BOTH;
 
@@ -97,30 +97,30 @@ export class Beam extends Element {
    * Currently this is fairly naive.
    */
   static getDefaultBeamGroups(time_sig: string): Fraction[] {
-    if (!time_sig || time_sig === 'c') {
-      time_sig = '4/4';
+    if (!time_sig || time_sig === "c") {
+      time_sig = "4/4";
     }
 
     const defaults: { [key: string]: [string] } = {
-      '1/2': ['1/2'],
-      '2/2': ['1/2'],
-      '3/2': ['1/2'],
-      '4/2': ['1/2'],
+      "1/2": ["1/2"],
+      "2/2": ["1/2"],
+      "3/2": ["1/2"],
+      "4/2": ["1/2"],
 
-      '1/4': ['1/4'],
-      '2/4': ['1/4'],
-      '3/4': ['1/4'],
-      '4/4': ['1/4'],
+      "1/4": ["1/4"],
+      "2/4": ["1/4"],
+      "3/4": ["1/4"],
+      "4/4": ["1/4"],
 
-      '1/8': ['1/8'],
-      '2/8': ['2/8'],
-      '3/8': ['3/8'],
-      '4/8': ['2/8'],
+      "1/8": ["1/8"],
+      "2/8": ["2/8"],
+      "3/8": ["3/8"],
+      "4/8": ["2/8"],
 
-      '1/16': ['1/16'],
-      '2/16': ['2/16'],
-      '3/16': ['3/16'],
-      '4/16': ['2/16'],
+      "1/16": ["1/16"],
+      "2/16": ["2/16"],
+      "3/16": ["3/16"],
+      "4/16": ["2/16"],
     };
 
     const groups: string[] = defaults[time_sig];
@@ -128,8 +128,8 @@ export class Beam extends Element {
     if (groups === undefined) {
       // If no beam groups found, naively determine
       // the beam groupings from the time signature
-      const beatTotal = parseInt(time_sig.split('/')[0], 10);
-      const beatValue = parseInt(time_sig.split('/')[1], 10);
+      const beatTotal = parseInt(time_sig.split("/")[0], 10);
+      const beatValue = parseInt(time_sig.split("/")[1], 10);
 
       const tripleMeter = beatTotal % 3 === 0;
 
@@ -195,7 +195,7 @@ export class Beam extends Element {
       beam_rests?: boolean;
       groups?: Fraction[];
       stem_direction?: number;
-    } = {}
+    } = {},
   ): Beam[] {
     if (!config.groups || !config.groups.length) {
       config.groups = [new Fraction(2, 8)];
@@ -204,7 +204,10 @@ export class Beam extends Element {
     // Convert beam groups to tick amounts
     const tickGroups = config.groups.map((group) => {
       if (!group.multiply) {
-        throw new RuntimeError('InvalidBeamGroups', 'The beam groups must be an array of Vex.Flow.Fractions');
+        throw new RuntimeError(
+          "InvalidBeamGroups",
+          "The beam groups must be an array of Vex.Flow.Fractions",
+        );
       }
       return group.clone().multiply(Tables.RESOLUTION, 1);
     });
@@ -284,7 +287,7 @@ export class Beam extends Element {
         if (group.length > 1) {
           let beamable = true;
           group.forEach((note) => {
-            if (note.getIntrinsicTicks() >= Tables.durationToTicks('4')) {
+            if (note.getIntrinsicTicks() >= Tables.durationToTicks("4")) {
               beamable = false;
             }
           });
@@ -317,7 +320,11 @@ export class Beam extends Element {
           const isUnbeamableDuration = parseInt(note.getDuration(), 10) < 8;
 
           // Determine if the group should be broken at this note
-          const shouldBreak = breaksOnEachRest || breaksOnFirstOrLastRest || breakOnStemChange || isUnbeamableDuration;
+          const shouldBreak =
+            breaksOnEachRest ||
+            breaksOnFirstOrLastRest ||
+            breakOnStemChange ||
+            isUnbeamableDuration;
 
           if (shouldBreak) {
             // Add current group
@@ -431,7 +438,9 @@ export class Beam extends Element {
     allTuplets.forEach((tuplet) => {
       // Set the tuplet location based on the stem direction
       const direction =
-        (tuplet.notes[0] as StemmableNote).stem_direction === Stem.DOWN ? TupletLocation.BOTTOM : TupletLocation.TOP;
+        (tuplet.notes[0] as StemmableNote).stem_direction === Stem.DOWN
+          ? TupletLocation.BOTTOM
+          : TupletLocation.TOP;
       tuplet.setTupletLocation(direction);
 
       // If any of the notes in the tuplet are not beamed, draw a bracket.
@@ -453,18 +462,21 @@ export class Beam extends Element {
     super();
 
     if (!notes || notes.length === 0) {
-      throw new RuntimeError('BadArguments', 'No notes provided for beam.');
+      throw new RuntimeError("BadArguments", "No notes provided for beam.");
     }
 
     if (notes.length === 1) {
-      throw new RuntimeError('BadArguments', 'Too few notes for beam.');
+      throw new RuntimeError("BadArguments", "Too few notes for beam.");
     }
 
     // Validate beam line, direction and ticks.
     this.ticks = notes[0].getIntrinsicTicks();
 
-    if (this.ticks >= Tables.durationToTicks('4')) {
-      throw new RuntimeError('BadArguments', 'Beams can only be applied to notes shorter than a quarter note.');
+    if (this.ticks >= Tables.durationToTicks("4")) {
+      throw new RuntimeError(
+        "BadArguments",
+        "Beams can only be applied to notes shorter than a quarter note.",
+      );
     }
 
     let i; // shared iterator
@@ -588,7 +600,12 @@ export class Beam extends Element {
         const note = notes[i];
         if (note.hasStem() || note.isRest()) {
           const adjustedStemTipY =
-            this.getSlopeY(note.getStemX(), firstNote.getStemX(), firstNote.getStemExtents().topY, slope) + yShiftTemp;
+            this.getSlopeY(
+              note.getStemX(),
+              firstNote.getStemX(),
+              firstNote.getStemExtents().topY,
+              slope,
+            ) + yShiftTemp;
 
           const stemTipY = note.getStemExtents().topY;
           // beam needs to be shifted up to accommodate note
@@ -650,7 +667,10 @@ export class Beam extends Element {
         currentExtreme = stemTipY;
         extremeY = Math.max(...note.getYs());
         extremeBeamCount = note.getBeamCount();
-      } else if (stem_direction === Stem.UP && (currentExtreme === 0 || currentExtreme > stemTipY)) {
+      } else if (
+        stem_direction === Stem.UP &&
+        (currentExtreme === 0 || currentExtreme > stemTipY)
+      ) {
         currentExtreme = stemTipY;
         extremeY = Math.min(...note.getYs());
         extremeBeamCount = note.getBeamCount();
@@ -728,7 +748,9 @@ export class Beam extends Element {
         const beamedStemTipY = this.getSlopeY(stemX, firstStemX, firstStemTipY, slope) + y_shift;
         const preBeamExtension = stem.getExtension();
         const beamExtension =
-          note.getStemDirection() === Stem.UP ? stemTipY - beamedStemTipY : beamedStemTipY - stemTipY;
+          note.getStemDirection() === Stem.UP
+            ? stemTipY - beamedStemTipY
+            : beamedStemTipY - stemTipY;
         // Determine necessary extension for cross-stave notes in the beam group
         let crossStemExtension = 0;
         if (note.getStemDirection() !== this.stem_direction) {
@@ -762,9 +784,9 @@ export class Beam extends Element {
     prev_tick: number,
     tick: number,
     next_tick: number,
-    noteIndex: number
+    noteIndex: number,
   ): PartialBeamDirection {
-    if (duration === '4') {
+    if (duration === "4") {
       return BEAM_LEFT;
     }
 
@@ -813,7 +835,10 @@ export class Beam extends Element {
 
         // If the secondary breaks were auto-configured in the render options,
         //  handle that as well.
-        if (this.render_options.secondary_break_ticks && tick_tally >= this.render_options.secondary_break_ticks) {
+        if (
+          this.render_options.secondary_break_ticks &&
+          tick_tally >= this.render_options.secondary_break_ticks
+        ) {
           tick_tally = 0;
           should_break = true;
         }
@@ -828,7 +853,8 @@ export class Beam extends Element {
       const next_note = this.notes[i + 1];
       const next_note_gets_beam = next_note && next_note.getIntrinsicTicks() < tick_of_duration;
       const prev_note_gets_beam = prev_note && prev_note.getIntrinsicTicks() < tick_of_duration;
-      const beam_alone = prev_note && next_note && note_gets_beam && !prev_note_gets_beam && !next_note_gets_beam;
+      const beam_alone =
+        prev_note && next_note && note_gets_beam && !prev_note_gets_beam && !next_note_gets_beam;
       // const beam_alone = note_gets_beam && !prev_note_gets_beam && !next_note_gets_beam;
       if (note_gets_beam) {
         // This note gets a beam at the current level
@@ -857,7 +883,13 @@ export class Beam extends Element {
             const prev_tick = prev_note.getIntrinsicTicks();
             const next_tick = next_note.getIntrinsicTicks();
             const tick = note.getIntrinsicTicks();
-            const beam_direction = this.lookupBeamDirection(duration, prev_tick, tick, next_tick, i);
+            const beam_direction = this.lookupBeamDirection(
+              duration,
+              prev_tick,
+              tick,
+              next_tick,
+              i,
+            );
 
             if ([BEAM_LEFT, BEAM_BOTH].includes(beam_direction)) {
               current_beam.end = current_beam.start - partial_beam_length;
@@ -914,7 +946,7 @@ export class Beam extends Element {
 
   // Render the beam lines
   protected drawBeamLines(ctx: RenderContext): void {
-    const valid_beam_durations = ['4', '8', '16', '32', '64'];
+    const valid_beam_durations = ["4", "8", "16", "32", "64"];
 
     const firstNote = this.notes[0];
     let beamY = this.getBeamYToDraw();
@@ -943,7 +975,7 @@ export class Beam extends Element {
           ctx.closePath();
           ctx.fill();
         } else {
-          throw new RuntimeError('NoLastBeamX', 'lastBeamX undefined.');
+          throw new RuntimeError("NoLastBeamX", "lastBeamX undefined.");
         }
       }
 
@@ -987,7 +1019,7 @@ export class Beam extends Element {
 
     this.drawStems(ctx);
     this.applyStyle();
-    ctx.openGroup('beam', this.getAttribute('id'));
+    ctx.openGroup("beam", this.getAttribute("id"));
     this.drawBeamLines(ctx);
     ctx.closeGroup();
     this.restoreStyle();

@@ -3,16 +3,15 @@
 //
 // TabStave Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { ContextBuilder } from '../src/renderer';
-import { TabStave } from '../src/tabstave';
+import { ContextBuilder } from "../src/renderer";
+import { TabStave } from "../src/tabstave";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TabStaveTests = {
   Start(): void {
-    QUnit.module('TabStave');
+    QUnit.module("TabStave");
     const run = VexFlowTests.runTests;
-    run('TabStave Draw Test', draw);
+    run("TabStave Draw Test", draw);
   },
 };
 
@@ -23,12 +22,12 @@ function draw(options: TestOptions, contextBuilder: ContextBuilder): void {
   stave.setContext(ctx);
   stave.draw();
 
-  options.assert.equal(stave.getYForNote(0), 127, 'getYForNote(0)');
-  options.assert.equal(stave.getYForLine(5), 127, 'getYForLine(5)');
-  options.assert.equal(stave.getYForLine(0), 62, 'getYForLine(0) - Top Line');
-  options.assert.equal(stave.getYForLine(4), 114, 'getYForLine(4) - Bottom Line');
+  options.assert.equal(stave.getYForNote(0), 127, "getYForNote(0)");
+  options.assert.equal(stave.getYForLine(5), 127, "getYForLine(5)");
+  options.assert.equal(stave.getYForLine(0), 62, "getYForLine(0) - Top Line");
+  options.assert.equal(stave.getYForLine(4), 114, "getYForLine(4) - Bottom Line");
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 VexFlowTests.register(TabStaveTests);

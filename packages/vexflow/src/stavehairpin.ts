@@ -6,12 +6,12 @@
 // This class implements hairpins between notes.
 // Hairpins can be either crescendo or decrescendo.
 
-import { Element } from './element';
-import { Modifier } from './modifier';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import { Modifier } from "./modifier";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface StaveHairpinRenderOptions {
   right_shift_ticks?: number;
@@ -63,12 +63,15 @@ export class StaveHairpin extends Element {
     notes: Record<string, Note>,
     type: number,
     position: number,
-    options: StaveHairpinRenderOptions
+    options: StaveHairpinRenderOptions,
   ): void {
     const ppt = formatter.pixelsPerTick;
 
     if (ppt == null) {
-      throw new RuntimeError('BadArguments', 'A valid Formatter must be provide to draw offsets by ticks.');
+      throw new RuntimeError(
+        "BadArguments",
+        "A valid Formatter must be provide to draw offsets by ticks.",
+      );
     }
 
     const l_shift_px = ppt * (options.left_shift_ticks ?? 0);
@@ -88,7 +91,7 @@ export class StaveHairpin extends Element {
         first_note: notes.first_note,
         last_note: notes.last_note,
       },
-      type
+      type,
     )
       .setContext(ctx)
       .setRenderOptions(hairpin_options)
@@ -150,7 +153,10 @@ export class StaveHairpin extends Element {
    */
   setNotes(notes: Record<string, Note>): this {
     if (!notes.first_note && !notes.last_note) {
-      throw new RuntimeError('BadArguments', 'Hairpin needs to have either first_note or last_note set.');
+      throw new RuntimeError(
+        "BadArguments",
+        "Hairpin needs to have either first_note or last_note set.",
+      );
     }
 
     this.notes = notes;
@@ -206,7 +212,7 @@ export class StaveHairpin extends Element {
 
     const firstNote = this.first_note;
     const lastNote = this.last_note;
-    if (!firstNote || !lastNote) throw new RuntimeError('NoNote', 'Notes required to draw');
+    if (!firstNote || !lastNote) throw new RuntimeError("NoNote", "Notes required to draw");
 
     const start = firstNote.getModifierStartXY(this.position, 0);
     const end = lastNote.getModifierStartXY(this.position, 0);

@@ -1,11 +1,11 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Element } from './element';
-import type { ModifierContext } from './modifiercontext';
-import type { Note } from './note';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
+import { Element } from "./element";
+import type { ModifierContext } from "./modifiercontext";
+import type { Note } from "./note";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
 
 export enum ModifierPosition {
   CENTER = 0,
@@ -98,7 +98,7 @@ export class Modifier extends Element {
 
   /** Get attached note (`StaveNote`, `TabNote`, etc.) */
   getNote(): Note {
-    return defined(this.note, 'NoNote', 'Modifier has no note.');
+    return defined(this.note, "NoNote", "Modifier has no note.");
   }
 
   /**
@@ -107,8 +107,8 @@ export class Modifier extends Element {
    */
   checkAttachedNote(): Note {
     const category = this.getCategory();
-    defined(this.index, 'NoIndex', `Can't draw ${category} without an index.`);
-    return defined(this.note, 'NoNote', `Can't draw ${category} without a note.`);
+    defined(this.index, "NoIndex", `Can't draw ${category} without an index.`);
+    return defined(this.note, "NoNote", `Can't draw ${category} without a note.`);
   }
 
   /**
@@ -127,7 +127,7 @@ export class Modifier extends Element {
 
   /** Check and get note index, which is a specific note in a chord. */
   checkIndex(): number {
-    return defined(this.index, 'NoIndex', 'Modifier has an invalid index.');
+    return defined(this.index, "NoIndex", "Modifier has an invalid index.");
   }
 
   /** Set note index, which is a specific note in a chord. */
@@ -143,7 +143,7 @@ export class Modifier extends Element {
 
   /** Check and get `ModifierContext`. */
   checkModifierContext(): ModifierContext {
-    return defined(this.modifierContext, 'NoModifierContext', 'Modifier Context Required');
+    return defined(this.modifierContext, "NoModifierContext", "Modifier Context Required");
   }
 
   /** Every modifier must be part of a `ModifierContext`. */
@@ -162,7 +162,7 @@ export class Modifier extends Element {
    * @param position CENTER | LEFT | RIGHT | ABOVE | BELOW
    */
   setPosition(position: string | number): this {
-    this.position = typeof position === 'string' ? Modifier.PositionString[position] : position;
+    this.position = typeof position === "string" ? Modifier.PositionString[position] : position;
     this.reset();
     return this;
   }
@@ -211,7 +211,7 @@ export class Modifier extends Element {
   /** Render the modifier onto the canvas. */
   draw(): void {
     this.checkContext();
-    throw new RuntimeError('NotImplemented', 'draw() not implemented for this modifier.');
+    throw new RuntimeError("NotImplemented", "draw() not implemented for this modifier.");
   }
 
   // aligns sub notes of NoteSubGroup (or GraceNoteGroup) to the main note with correct x-offset
@@ -221,7 +221,10 @@ export class Modifier extends Element {
     const metrics = tickContext.getMetrics();
     const stave = note.getStave();
     const subNoteXOffset =
-      tickContext.getX() - metrics.modLeftPx - metrics.modRightPx + this.getSpacingFromNextModifier();
+      tickContext.getX() -
+      metrics.modLeftPx -
+      metrics.modRightPx +
+      this.getSpacingFromNextModifier();
 
     subNotes.forEach((subNote) => {
       const subTickContext = subNote.getTickContext();

@@ -5,25 +5,25 @@
 // This file implements `GraceNoteGroup` which is used to format and
 // render grace notes.
 
-import { Beam } from './beam';
-import { Formatter } from './formatter';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { StaveNote } from './stavenote';
-import { StaveTie } from './stavetie';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { TabTie } from './tabtie';
-import { Category, isStaveNote } from './typeguard';
-import { log } from './util';
-import { Voice } from './voice';
+import { Beam } from "./beam";
+import { Formatter } from "./formatter";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { StaveNote } from "./stavenote";
+import { StaveTie } from "./stavetie";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { TabTie } from "./tabtie";
+import { Category, isStaveNote } from "./typeguard";
+import { log } from "./util";
+import { Voice } from "./voice";
 
 // To enable logging for this class. Set `GraceNoteGroup.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any) {
-  if (GraceNoteGroup.DEBUG) log('Vex.Flow.GraceNoteGroup', args);
+  if (GraceNoteGroup.DEBUG) log("Vex.Flow.GraceNoteGroup", args);
 }
 
 /** GraceNoteGroup is used to format and render grace notes. */
@@ -86,7 +86,7 @@ export class GraceNoteGroup extends Modifier {
       const gracenote_group = group_list[i].gracenote_group;
       formatWidth = gracenote_group.getWidth() + group_list[i].spacing;
       gracenote_group.setSpacingFromNextModifier(
-        group_shift - Math.min(formatWidth, group_shift) + StaveNote.minNoteheadPadding
+        group_shift - Math.min(formatWidth, group_shift) + StaveNote.minNoteheadPadding,
       );
     }
 
@@ -165,7 +165,7 @@ export class GraceNoteGroup extends Modifier {
     const note = this.checkAttachedNote();
     this.setRendered();
 
-    L('Drawing grace note group for:', note);
+    L("Drawing grace note group for:", note);
 
     this.alignSubNotesWithNote(this.getGraceNotes(), note); // Modifier function
 

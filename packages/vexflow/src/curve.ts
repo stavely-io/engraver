@@ -3,10 +3,10 @@
 //
 // This class implements curves (for slurs)
 
-import { Element } from './element';
-import type { Note } from './note';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import type { Note } from "./note";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface CurveOptions {
   /** Two control points for the bezier curves. */
@@ -73,7 +73,7 @@ export class Curve extends Element {
 
   setNotes(from: Note, to: Note): this {
     if (!from && !to) {
-      throw new RuntimeError('BadArguments', 'Curve needs to have either `from` or `to` set.');
+      throw new RuntimeError("BadArguments", "Curve needs to have either `from` or `to` set.");
     }
 
     this.from = from;
@@ -88,7 +88,13 @@ export class Curve extends Element {
     return !this.from || !this.to;
   }
 
-  renderCurve(params: { last_y: number; last_x: number; first_y: number; first_x: number; direction: number }): void {
+  renderCurve(params: {
+    last_y: number;
+    last_x: number;
+    first_y: number;
+    first_x: number;
+    direction: number;
+  }): void {
     const ctx = this.checkContext();
 
     const x_shift = this.render_options.x_shift;
@@ -114,7 +120,7 @@ export class Curve extends Element {
       last_x - cp_spacing + cp1x,
       last_y + cp1y * params.direction,
       last_x,
-      last_y
+      last_y,
     );
     ctx.bezierCurveTo(
       last_x - cp_spacing + cp1x,
@@ -122,7 +128,7 @@ export class Curve extends Element {
       first_x + cp_spacing + cp0x,
       first_y + (cp0y + thickness) * params.direction,
       first_x,
-      first_y
+      first_y,
     );
     ctx.stroke();
     ctx.closePath();
@@ -141,24 +147,24 @@ export class Curve extends Element {
     let last_y;
     let stem_direction = 0;
 
-    let metric = 'baseY';
-    let end_metric = 'baseY';
+    let metric = "baseY";
+    let end_metric = "baseY";
 
     function getPosition(position: string | number) {
-      return typeof position === 'string' ? Curve.PositionString[position] : position;
+      return typeof position === "string" ? Curve.PositionString[position] : position;
     }
     const position = getPosition(this.render_options.position);
     const position_end = getPosition(this.render_options.position_end);
 
     if (position === CurvePosition.NEAR_TOP) {
-      metric = 'topY';
-      end_metric = 'topY';
+      metric = "topY";
+      end_metric = "topY";
     }
 
     if (position_end === CurvePosition.NEAR_HEAD) {
-      end_metric = 'baseY';
+      end_metric = "baseY";
     } else if (position_end === CurvePosition.NEAR_TOP) {
-      end_metric = 'topY';
+      end_metric = "topY";
     }
 
     if (first_note) {

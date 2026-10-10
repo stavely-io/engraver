@@ -2,14 +2,14 @@
 //
 // ## Description
 
-import type { ModifierContext } from './modifiercontext';
-import type { NoteStruct } from './note';
-import type { Stave } from './stave';
-import { StemmableNote } from './stemmablenote';
-import { Category, isAnnotation } from './typeguard';
-import { RuntimeError } from './util';
+import type { ModifierContext } from "./modifiercontext";
+import type { NoteStruct } from "./note";
+import type { Stave } from "./stave";
+import { StemmableNote } from "./stemmablenote";
+import { Category, isAnnotation } from "./typeguard";
+import { RuntimeError } from "./util";
 
-const ERROR_MSG = 'Ghost note must have valid initialization data to identify duration.';
+const ERROR_MSG = "Ghost note must have valid initialization data to identify duration.";
 
 export class GhostNote extends StemmableNote {
   static get CATEGORY(): string {
@@ -18,17 +18,17 @@ export class GhostNote extends StemmableNote {
 
   constructor(parameter: string | NoteStruct) {
     if (!parameter) {
-      throw new RuntimeError('BadArguments', ERROR_MSG);
+      throw new RuntimeError("BadArguments", ERROR_MSG);
     }
 
     let noteStruct;
-    if (typeof parameter === 'string') {
+    if (typeof parameter === "string") {
       // Preserve backwards-compatibility
       noteStruct = { duration: parameter };
-    } else if (typeof parameter === 'object') {
+    } else if (typeof parameter === "object") {
       noteStruct = parameter;
     } else {
-      throw new RuntimeError('BadArguments', ERROR_MSG);
+      throw new RuntimeError("BadArguments", ERROR_MSG);
     }
 
     super(noteStruct);

@@ -3,23 +3,22 @@
 //
 // GlyphNote Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { ChordSymbol } from '../src/chordsymbol';
-import { Glyph } from '../src/glyph';
-import { Note } from '../src/note';
-import { Registry } from '../src/registry';
-import { StaveConnector } from '../src/staveconnector';
-import { Voice } from '../src/voice';
+import { ChordSymbol } from "../src/chordsymbol";
+import { Glyph } from "../src/glyph";
+import { Note } from "../src/note";
+import { Registry } from "../src/registry";
+import { StaveConnector } from "../src/staveconnector";
+import { Voice } from "../src/voice";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const GlyphNoteTests = {
   Start(): void {
-    QUnit.module('GlyphNote');
+    QUnit.module("GlyphNote");
     const run = VexFlowTests.runTests;
-    run('GlyphNote with ChordSymbols', chordChanges, { debug: false, noPadding: false });
-    run('GlyphNote Positioning', basic, { debug: false, noPadding: false });
-    run('GlyphNote No Stave Padding', basic, { debug: true, noPadding: true });
-    run('GlyphNote RepeatNote', repeatNote, { debug: false, noPadding: true });
+    run("GlyphNote with ChordSymbols", chordChanges, { debug: false, noPadding: false });
+    run("GlyphNote Positioning", basic, { debug: false, noPadding: false });
+    run("GlyphNote No Stave Padding", basic, { debug: true, noPadding: true });
+    run("GlyphNote RepeatNote", repeatNote, { debug: false, noPadding: true });
   },
 };
 
@@ -38,22 +37,22 @@ function chordChanges(options: TestOptions): void {
   const score = f.EasyScore();
 
   const notes = [
-    f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: 'q' }),
-    f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: 'q' }),
-    f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: 'q' }),
-    f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: 'q' }),
+    f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "q" }),
+    f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "q" }),
+    f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "q" }),
+    f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "q" }),
   ];
   const chord1 = f
     .ChordSymbol({ reportWidth: false })
-    .addText('F7')
-    .setHorizontal('left')
-    .addGlyphOrText('(#11b9)', { symbolModifier: ChordSymbol.symbolModifiers.SUPERSCRIPT });
+    .addText("F7")
+    .setHorizontal("left")
+    .addGlyphOrText("(#11b9)", { symbolModifier: ChordSymbol.symbolModifiers.SUPERSCRIPT });
   const chord2 = f
     .ChordSymbol()
-    .addText('F7')
-    .setHorizontal('left')
-    .addGlyphOrText('#11', { symbolModifier: ChordSymbol.symbolModifiers.SUPERSCRIPT })
-    .addGlyphOrText('b9', { symbolModifier: ChordSymbol.symbolModifiers.SUBSCRIPT });
+    .addText("F7")
+    .setHorizontal("left")
+    .addGlyphOrText("#11", { symbolModifier: ChordSymbol.symbolModifiers.SUPERSCRIPT })
+    .addGlyphOrText("b9", { symbolModifier: ChordSymbol.symbolModifiers.SUBSCRIPT });
 
   notes[0].addModifier(chord1, 0);
   notes[2].addModifier(chord2, 0);
@@ -79,18 +78,19 @@ function basic(options: TestOptions): void {
 
   const score = f.EasyScore();
 
-  const newVoice = (notes: Note[]) => score.voice(notes, { time: '1/4' });
+  const newVoice = (notes: Note[]) => score.voice(notes, { time: "1/4" });
 
-  const newStave = (voice: Voice) => system.addStave({ voices: [voice], debugNoteMetrics: options.params.debug });
+  const newStave = (voice: Voice) =>
+    system.addStave({ voices: [voice], debugNoteMetrics: options.params.debug });
 
   const voices: Note[][] = [
-    [f.GlyphNote(new Glyph('repeat1Bar', 40), { duration: 'q' }, { line: 4 })],
-    [f.GlyphNote(new Glyph('repeat2Bars', 40), { duration: 'q', align_center: true })],
+    [f.GlyphNote(new Glyph("repeat1Bar", 40), { duration: "q" }, { line: 4 })],
+    [f.GlyphNote(new Glyph("repeat2Bars", 40), { duration: "q", align_center: true })],
     [
-      f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: '16' }),
-      f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: '16' }),
-      f.GlyphNote(new Glyph('repeat4Bars', 40), { duration: '16' }),
-      f.GlyphNote(new Glyph('repeatBarSlash', 40), { duration: '16' }),
+      f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "16" }),
+      f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "16" }),
+      f.GlyphNote(new Glyph("repeat4Bars", 40), { duration: "16" }),
+      f.GlyphNote(new Glyph("repeatBarSlash", 40), { duration: "16" }),
     ],
   ];
 
@@ -117,19 +117,19 @@ function repeatNote(options: TestOptions): void {
 
   const score = f.EasyScore();
 
-  const createVoice = (notes: Note[]) => score.voice(notes, { time: '1/4' });
+  const createVoice = (notes: Note[]) => score.voice(notes, { time: "1/4" });
   const addStaveWithVoice = (voice: Voice) =>
     system.addStave({ voices: [voice], debugNoteMetrics: options.params.debug });
 
   const voices: Note[][] = [
-    [f.RepeatNote('1')],
-    [f.RepeatNote('2')],
-    [f.RepeatNote('4')],
+    [f.RepeatNote("1")],
+    [f.RepeatNote("2")],
+    [f.RepeatNote("4")],
     [
-      f.RepeatNote('slash', { duration: '16' }),
-      f.RepeatNote('slash', { duration: '16' }),
-      f.RepeatNote('slash', { duration: '16' }),
-      f.RepeatNote('slash', { duration: '16' }),
+      f.RepeatNote("slash", { duration: "16" }),
+      f.RepeatNote("slash", { duration: "16" }),
+      f.RepeatNote("slash", { duration: "16" }),
+      f.RepeatNote("slash", { duration: "16" }),
     ],
   ];
 

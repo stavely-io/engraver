@@ -3,11 +3,11 @@
 // ## Description
 // A base class for stave modifiers (e.g. clefs, key signatures)
 
-import { Element } from './element';
-import type { Glyph } from './glyph';
-import type { Stave } from './stave';
-import { Category } from './typeguard';
-import { defined } from './util';
+import { Element } from "./element";
+import type { Glyph } from "./glyph";
+import type { Stave } from "./stave";
+import { Category } from "./typeguard";
+import { defined } from "./util";
 
 export interface LayoutMetrics {
   xMin: number;
@@ -64,7 +64,7 @@ export class StaveModifier extends Element {
   }
 
   checkStave(): Stave {
-    return defined(this.stave, 'NoStave', 'No stave attached to instance.');
+    return defined(this.stave, "NoStave", "No stave attached to instance.");
   }
 
   setStave(stave: Stave): this {

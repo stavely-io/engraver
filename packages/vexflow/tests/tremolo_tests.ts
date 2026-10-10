@@ -3,17 +3,16 @@
 //
 // Tremolo Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Barline } from '../src/stavebarline';
-import { Tremolo } from '../src/tremolo';
+import { Barline } from "../src/stavebarline";
+import { Tremolo } from "../src/tremolo";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TremoloTests = {
   Start(): void {
-    QUnit.module('Tremolo');
+    QUnit.module("Tremolo");
     const run = VexFlowTests.runTests;
-    run('Tremolo - Basic', tremoloBasic);
-    run('Tremolo - Big', tremoloBig);
+    run("Tremolo - Basic", tremoloBasic);
+    run("Tremolo - Big", tremoloBig);
   },
 };
 
@@ -24,7 +23,7 @@ function tremoloBasic(options: TestOptions): void {
   // bar 1
   const stave1 = f.Stave({ width: 250 }).setEndBarType(Barline.type.DOUBLE);
 
-  const notes1 = score.notes('e4/4, e4, e4, e4', { stem: 'up' });
+  const notes1 = score.notes("e4/4, e4, e4, e4", { stem: "up" });
 
   notes1[0].addModifier(new Tremolo(3), 0);
   notes1[1].addModifier(new Tremolo(2), 0);
@@ -39,7 +38,7 @@ function tremoloBasic(options: TestOptions): void {
     .Stave({ x: stave1.getWidth() + stave1.getX(), y: stave1.getY(), width: 300 })
     .setEndBarType(Barline.type.DOUBLE);
 
-  const notes2 = score.notes('e5/4, e5, e5, e5', { stem: 'down' });
+  const notes2 = score.notes("e5/4, e5, e5, e5", { stem: "down" });
 
   notes2[1].addModifier(new Tremolo(1), 0);
   notes2[2].addModifier(new Tremolo(2), 0);
@@ -51,7 +50,7 @@ function tremoloBasic(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Tremolo - Basic');
+  options.assert.ok(true, "Tremolo - Basic");
 }
 
 function tremoloBig(options: TestOptions): void {
@@ -61,7 +60,7 @@ function tremoloBig(options: TestOptions): void {
   // bar 1
   const stave1 = f.Stave({ width: 250 }).setEndBarType(Barline.type.DOUBLE);
 
-  const notes1 = score.notes('e4/4, e4, e4, e4', { stem: 'up' });
+  const notes1 = score.notes("e4/4, e4, e4, e4", { stem: "up" });
 
   const tremolo1 = new Tremolo(3);
   tremolo1.extra_stroke_scale = 1.7;
@@ -85,7 +84,7 @@ function tremoloBig(options: TestOptions): void {
     .Stave({ x: stave1.getWidth() + stave1.getX(), y: stave1.getY(), width: 300 })
     .setEndBarType(Barline.type.DOUBLE);
 
-  const notes2 = score.notes('e5/4, e5, e5, e5', { stem: 'down' });
+  const notes2 = score.notes("e5/4, e5, e5, e5", { stem: "down" });
 
   const tremolo4 = new Tremolo(1);
   tremolo4.extra_stroke_scale = 1.7;
@@ -106,7 +105,7 @@ function tremoloBig(options: TestOptions): void {
 
   f.draw();
 
-  options.assert.ok(true, 'Tremolo - Big');
+  options.assert.ok(true, "Tremolo - Big");
 }
 
 VexFlowTests.register(TremoloTests);

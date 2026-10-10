@@ -3,30 +3,29 @@
 //
 // TabTie Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Annotation } from '../src/annotation';
-import { Flow } from '../src/flow';
-import { Formatter } from '../src/formatter';
-import { Note } from '../src/note';
-import { RenderContext } from '../src/rendercontext';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
-import { TieNotes } from '../src/stavetie';
-import { TabNote, TabNoteStruct } from '../src/tabnote';
-import { TabStave } from '../src/tabstave';
-import { TabTie } from '../src/tabtie';
-import { Voice } from '../src/voice';
+import { Annotation } from "../src/annotation";
+import { Flow } from "../src/flow";
+import { Formatter } from "../src/formatter";
+import { Note } from "../src/note";
+import { RenderContext } from "../src/rendercontext";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { TieNotes } from "../src/stavetie";
+import { TabNote, TabNoteStruct } from "../src/tabnote";
+import { TabStave } from "../src/tabstave";
+import { TabTie } from "../src/tabtie";
+import { Voice } from "../src/voice";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TabTieTests = {
   Start(): void {
-    QUnit.module('TabTie');
+    QUnit.module("TabTie");
     const run = VexFlowTests.runTests;
-    run('Simple TabTie', simple);
-    run('Hammerons', simpleHammerOn);
-    run('Pulloffs', simplePullOff);
-    run('Tapping', tap);
-    run('Continuous', continuous);
+    run("Simple TabTie", simple);
+    run("Hammerons", simpleHammerOn);
+    run("Pulloffs", simplePullOff);
+    run("Tapping", tap);
+    run("Continuous", continuous);
   },
 };
 
@@ -38,11 +37,15 @@ const tabNote = (noteStruct: TabNoteStruct) => new TabNote(noteStruct);
 /**
  * Helper function to create a RenderContext and TabStave.
  */
-function setupContext(options: TestOptions, w: number = 0, h: number = 0): { context: RenderContext; stave: TabStave } {
+function setupContext(
+  options: TestOptions,
+  w: number = 0,
+  h: number = 0,
+): { context: RenderContext; stave: TabStave } {
   // eslint-disable-next-line
   const context = options.contextBuilder!(options.elementId, w || 350, h || 160);
 
-  context.setFont('Arial', VexFlowTests.Font.size);
+  context.setFont("Arial", VexFlowTests.Font.size);
 
   const stave = new TabStave(10, 10, w || 350).addTabGlyph().setContext(context).draw();
 
@@ -52,7 +55,13 @@ function setupContext(options: TestOptions, w: number = 0, h: number = 0): { con
 /**
  * Helper function to create the TabTie between two Note objects.
  */
-function tieNotes(notes: Note[], indices: number[], stave: Stave, ctx: RenderContext, text?: string): void {
+function tieNotes(
+  notes: Note[],
+  indices: number[],
+  stave: Stave,
+  ctx: RenderContext,
+  text?: string,
+): void {
   const voice = new Voice(Flow.TIME4_4);
   voice.addTickables(notes);
 
@@ -66,7 +75,7 @@ function tieNotes(notes: Note[], indices: number[], stave: Stave, ctx: RenderCon
       first_indices: indices,
       last_indices: indices,
     },
-    text ?? 'Annotation'
+    text ?? "Annotation",
   );
 
   tie.setContext(ctx);
@@ -80,11 +89,11 @@ function simple(options: TestOptions, contextBuilder: ContextBuilder): void {
   options.contextBuilder = contextBuilder;
   const { context, stave } = setupContext(options);
 
-  const note1 = tabNote({ positions: [{ str: 4, fret: 4 }], duration: 'h' });
-  const note2 = tabNote({ positions: [{ str: 4, fret: 6 }], duration: 'h' });
+  const note1 = tabNote({ positions: [{ str: 4, fret: 4 }], duration: "h" });
+  const note2 = tabNote({ positions: [{ str: 4, fret: 6 }], duration: "h" });
   tieNotes([note1, note2], [0], stave, context);
 
-  options.assert.ok(true, 'Simple Test');
+  options.assert.ok(true, "Simple Test");
 }
 
 function simpleHammerOn(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -104,37 +113,37 @@ function multiTest(options: TestOptions, createTabTie: (notes: TieNotes) => TabT
   const { context, stave } = setupContext(options, 440, 140);
 
   const notes = [
-    tabNote({ positions: [{ str: 4, fret: 4 }], duration: '8' }),
-    tabNote({ positions: [{ str: 4, fret: 4 }], duration: '8' }),
+    tabNote({ positions: [{ str: 4, fret: 4 }], duration: "8" }),
+    tabNote({ positions: [{ str: 4, fret: 4 }], duration: "8" }),
     tabNote({
       positions: [
         { str: 4, fret: 4 },
         { str: 5, fret: 4 },
       ],
-      duration: '8',
+      duration: "8",
     }),
     tabNote({
       positions: [
         { str: 4, fret: 6 },
         { str: 5, fret: 6 },
       ],
-      duration: '8',
+      duration: "8",
     }),
-    tabNote({ positions: [{ str: 2, fret: 14 }], duration: '8' }),
-    tabNote({ positions: [{ str: 2, fret: 16 }], duration: '8' }),
+    tabNote({ positions: [{ str: 2, fret: 14 }], duration: "8" }),
+    tabNote({ positions: [{ str: 2, fret: 16 }], duration: "8" }),
     tabNote({
       positions: [
         { str: 2, fret: 14 },
         { str: 3, fret: 14 },
       ],
-      duration: '8',
+      duration: "8",
     }),
     tabNote({
       positions: [
         { str: 2, fret: 16 },
         { str: 3, fret: 16 },
       ],
-      duration: '8',
+      duration: "8",
     }),
   ];
 
@@ -151,7 +160,7 @@ function multiTest(options: TestOptions, createTabTie: (notes: TieNotes) => TabT
     .setContext(context)
     .draw();
 
-  options.assert.ok(true, 'Single note');
+  options.assert.ok(true, "Single note");
 
   createTabTie({
     first_note: notes[2],
@@ -162,7 +171,7 @@ function multiTest(options: TestOptions, createTabTie: (notes: TieNotes) => TabT
     .setContext(context)
     .draw();
 
-  options.assert.ok(true, 'Chord');
+  options.assert.ok(true, "Chord");
 
   createTabTie({
     first_note: notes[4],
@@ -173,7 +182,7 @@ function multiTest(options: TestOptions, createTabTie: (notes: TieNotes) => TabT
     .setContext(context)
     .draw();
 
-  options.assert.ok(true, 'Single note high-fret');
+  options.assert.ok(true, "Single note high-fret");
 
   createTabTie({
     first_note: notes[6],
@@ -184,18 +193,21 @@ function multiTest(options: TestOptions, createTabTie: (notes: TieNotes) => TabT
     .setContext(context)
     .draw();
 
-  options.assert.ok(true, 'Chord high-fret');
+  options.assert.ok(true, "Chord high-fret");
 }
 
 function tap(options: TestOptions, contextBuilder: ContextBuilder): void {
   options.contextBuilder = contextBuilder;
   const { context, stave } = setupContext(options);
 
-  const note1 = tabNote({ positions: [{ str: 4, fret: 12 }], duration: 'h' }).addModifier(new Annotation('T'), 0);
-  const note2 = tabNote({ positions: [{ str: 4, fret: 10 }], duration: 'h' });
-  tieNotes([note1, note2], [0], stave, context, 'P');
+  const note1 = tabNote({ positions: [{ str: 4, fret: 12 }], duration: "h" }).addModifier(
+    new Annotation("T"),
+    0,
+  );
+  const note2 = tabNote({ positions: [{ str: 4, fret: 10 }], duration: "h" });
+  tieNotes([note1, note2], [0], stave, context, "P");
 
-  options.assert.ok(true, 'Tapping Test');
+  options.assert.ok(true, "Tapping Test");
 }
 
 function continuous(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -203,9 +215,9 @@ function continuous(options: TestOptions, contextBuilder: ContextBuilder): void 
   const { context, stave } = setupContext(options, 440, 140);
 
   const notes = [
-    tabNote({ positions: [{ str: 4, fret: 4 }], duration: 'q' }),
-    tabNote({ positions: [{ str: 4, fret: 5 }], duration: 'q' }),
-    tabNote({ positions: [{ str: 4, fret: 6 }], duration: 'h' }),
+    tabNote({ positions: [{ str: 4, fret: 4 }], duration: "q" }),
+    tabNote({ positions: [{ str: 4, fret: 5 }], duration: "q" }),
+    tabNote({ positions: [{ str: 4, fret: 6 }], duration: "h" }),
   ];
 
   const voice = new Voice(Flow.TIME4_4).addTickables(notes);
@@ -229,7 +241,7 @@ function continuous(options: TestOptions, contextBuilder: ContextBuilder): void 
   })
     .setContext(context)
     .draw();
-  options.assert.ok(true, 'Continuous Hammeron');
+  options.assert.ok(true, "Continuous Hammeron");
 }
 
 VexFlowTests.register(TabTieTests);

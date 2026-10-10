@@ -3,21 +3,20 @@
 //
 // Curve Tests
 
-import { concat, TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { CurvePosition } from '../src/curve';
-import { BuilderOptions } from '../src/easyscore';
-import { Factory } from '../src/factory';
-import { StemmableNote } from '../src/stemmablenote';
+import { CurvePosition } from "../src/curve";
+import { BuilderOptions } from "../src/easyscore";
+import { Factory } from "../src/factory";
+import { StemmableNote } from "../src/stemmablenote";
+import { concat, TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const CurveTests = {
   Start(): void {
-    QUnit.module('Curve');
+    QUnit.module("Curve");
     const run = VexFlowTests.runTests;
-    run('Simple Curve', simple);
-    run('Rounded Curve', rounded);
-    run('Thick Thin Curves', thickThin);
-    run('Top Curve', top);
+    run("Simple Curve", simple);
+    run("Rounded Curve", rounded);
+    run("Thick Thin Curves", thickThin);
+    run("Top Curve", top);
   },
 };
 
@@ -32,7 +31,7 @@ type NoteParams = [string, BuilderOptions];
 function createTest(
   noteGroup1: NoteParams,
   noteGroup2: NoteParams,
-  setupCurves: (f: Factory, n: StemmableNote[]) => void
+  setupCurves: (f: Factory, n: StemmableNote[]) => void,
 ) {
   return (options: TestOptions) => {
     const factory = VexFlowTests.makeFactory(options, 350, 200);
@@ -47,17 +46,17 @@ function createTest(
 
     setupCurves(factory, staveNotes);
 
-    const voices = [score.voice(staveNotes, { time: '4/4' })];
+    const voices = [score.voice(staveNotes, { time: "4/4" })];
     factory.Formatter().joinVoices(voices).formatToStave(voices, stave);
     factory.draw();
 
-    options.assert.ok('Simple Curve');
+    options.assert.ok("Simple Curve");
   };
 }
 
 const simple = createTest(
-  ['c4/8, f5, d5, g5', { stem: 'up' }], // beamGroup1
-  ['d6/8, f5, d5, g5', { stem: 'down' }], // beamGroup2
+  ["c4/8, f5, d5, g5", { stem: "up" }], // beamGroup1
+  ["d6/8, f5, d5, g5", { stem: "down" }], // beamGroup2
   (f, notes) => {
     f.Curve({
       from: notes[0],
@@ -80,12 +79,12 @@ const simple = createTest(
         ],
       },
     });
-  }
+  },
 );
 
 const rounded = createTest(
-  ['c5/8, f4, d4, g5', { stem: 'up' }], // beamGroup1
-  ['d5/8, d6, d6, g5', { stem: 'down' }], // beamGroup2
+  ["c5/8, f4, d4, g5", { stem: "up" }], // beamGroup1
+  ["d5/8, d6, d6, g5", { stem: "down" }], // beamGroup2
   (f, notes) => {
     f.Curve({
       from: notes[0],
@@ -110,12 +109,12 @@ const rounded = createTest(
         ],
       },
     });
-  }
+  },
 );
 
 const thickThin = createTest(
-  ['c5/8, f4, d4, g5', { stem: 'up' }], // beamGroup1
-  ['d5/8, d6, d6, g5', { stem: 'down' }], // beamGroup2
+  ["c5/8, f4, d4, g5", { stem: "up" }], // beamGroup1
+  ["d5/8, d6, d6, g5", { stem: "down" }], // beamGroup2
   (f, notes) => {
     f.Curve({
       from: notes[0],
@@ -142,12 +141,12 @@ const thickThin = createTest(
         ],
       },
     });
-  }
+  },
 );
 
 const top = createTest(
-  ['c5/8, f4, d4, g5', { stem: 'up' }], // beamGroup1
-  ['d5/8, d6, d6, g5', { stem: 'down' }], // beamGroup2
+  ["c5/8, f4, d4, g5", { stem: "up" }], // beamGroup1
+  ["d5/8, d6, d6, g5", { stem: "down" }], // beamGroup2
   (f, notes) => {
     f.Curve({
       from: notes[0],
@@ -163,7 +162,7 @@ const top = createTest(
         ],
       },
     });
-  }
+  },
 );
 
 VexFlowTests.register(CurveTests);

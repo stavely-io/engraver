@@ -1,11 +1,11 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
-import type { StaveNoteStruct } from './stavenote';
-import { StaveNote } from './stavenote';
-import { Stem } from './stem';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import type { StaveNoteStruct } from "./stavenote";
+import { StaveNote } from "./stavenote";
+import { Stem } from "./stem";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface GraceNoteStruct extends StaveNoteStruct {
   slash?: boolean;
@@ -96,7 +96,9 @@ export class GraceNote extends StaveNote {
             : noteHeadBounds.y_bottom - noteStemHeight;
 
         const defaultStemExtention =
-          stem_direction === Stem.DOWN ? this.glyphProps.stem_down_extension : this.glyphProps.stem_up_extension;
+          stem_direction === Stem.DOWN
+            ? this.glyphProps.stem_down_extension
+            : this.glyphProps.stem_up_extension;
 
         let defaultOffsetY = Tables.STEM_HEIGHT;
         defaultOffsetY -= defaultOffsetY / 2.8;
@@ -145,10 +147,10 @@ export class GraceNote extends StaveNote {
   calcBeamedNotesSlashBBox(
     slashStemOffset: number,
     slashBeamOffset: number,
-    protrusions: { beam: number; stem: number }
+    protrusions: { beam: number; stem: number },
   ): Record<string, number> {
     const beam = this.beam;
-    if (!beam) throw new RuntimeError('NoBeam', "Can't calculate without a beam.");
+    if (!beam) throw new RuntimeError("NoBeam", "Can't calculate without a beam.");
 
     const beam_slope = beam.slope;
     const isBeamEndNote = beam.notes[beam.notes.length - 1] === this;

@@ -1,23 +1,23 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Beam } from './beam';
-import type { BoundingBox } from './boundingbox';
-import { Font } from './font';
-import { Fraction } from './fraction';
-import { ModifierContext } from './modifiercontext';
-import type { RenderContext } from './rendercontext';
-import { Stave } from './stave';
-import { StaveConnector } from './staveconnector';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import type { TabNote } from './tabnote';
-import type { TabStave } from './tabstave';
-import type { Tickable } from './tickable';
-import { TickContext } from './tickcontext';
-import { isNote, isStaveNote } from './typeguard';
-import { defined, log, midLine, RuntimeError, sumArray } from './util';
-import { Voice } from './voice';
+import { Beam } from "./beam";
+import type { BoundingBox } from "./boundingbox";
+import { Font } from "./font";
+import { Fraction } from "./fraction";
+import { ModifierContext } from "./modifiercontext";
+import type { RenderContext } from "./rendercontext";
+import { Stave } from "./stave";
+import { StaveConnector } from "./staveconnector";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import type { TabNote } from "./tabnote";
+import type { TabStave } from "./tabstave";
+import type { Tickable } from "./tickable";
+import { TickContext } from "./tickcontext";
+import { isNote, isStaveNote } from "./typeguard";
+import { defined, log, midLine, RuntimeError, sumArray } from "./util";
+import { Voice } from "./voice";
 
 interface Distance {
   maxNegativeShiftPx: number;
@@ -68,7 +68,7 @@ type makeContextFn<T> = (tick?: { tickID: number }) => T;
 function createContexts<T>(
   voices: Voice[],
   makeContext: makeContextFn<T>,
-  addToContext: addToContextFn<T>
+  addToContext: addToContextFn<T>,
 ): AlignmentContexts<T> {
   if (voices.length == 0)
     return {
@@ -118,7 +118,7 @@ function createContexts<T>(
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Formatter.DEBUG) log('Vex.Flow.Formatter', args);
+  if (Formatter.DEBUG) log("Vex.Flow.Formatter", args);
 }
 
 /**
@@ -133,7 +133,7 @@ function getRestLineForNextNoteGroup(
   notes: Tickable[],
   currRestLine: number,
   currNoteIndex: number,
-  compare: boolean
+  compare: boolean,
 ): number {
   // If no valid next note group, nextRestLine is same as current.
   let nextRestLine = currRestLine;
@@ -213,10 +213,10 @@ export class Formatter {
     xPos: number,
     y1: number,
     y2: number,
-    options?: { stavePadding: number }
+    options?: { stavePadding: number },
   ): void {
     options = {
-      stavePadding: Tables.currentMusicFont().lookupMetric('stave.padding'),
+      stavePadding: Tables.currentMusicFont().lookupMetric("stave.padding"),
       ...options,
     };
 
@@ -235,18 +235,18 @@ export class Formatter {
     ctx.setFont(Font.SANS_SERIF, 8);
 
     contextGaps.gaps.forEach((gap) => {
-      stroke(x + gap.x1, x + gap.x2, 'rgba(100,200,100,0.4)');
-      ctx.setFillStyle('green');
+      stroke(x + gap.x1, x + gap.x2, "rgba(100,200,100,0.4)");
+      ctx.setFillStyle("green");
       ctx.fillText(Math.round(gap.x2 - gap.x1).toString(), x + gap.x1, y2 + 12);
     });
 
-    ctx.setFillStyle('red');
+    ctx.setFillStyle("red");
     ctx.fillText(
       `Loss: ${(formatter.totalCost || 0).toFixed(2)} Shift: ${(formatter.totalShift || 0).toFixed(
-        2
+        2,
       )} Gap: ${contextGaps.total.toFixed(2)}`,
       x - 20,
-      y2 + 27
+      y2 + 27,
     );
     ctx.restore();
   }
@@ -270,16 +270,16 @@ export class Formatter {
     ctx: RenderContext,
     stave: Stave,
     notes: StemmableNote[],
-    params?: FormatParams | boolean
+    params?: FormatParams | boolean,
   ): BoundingBox | undefined {
     let options = {
       auto_beam: false,
       align_rests: false,
     };
 
-    if (typeof params === 'object') {
+    if (typeof params === "object") {
       options = { ...options, ...params };
-    } else if (typeof params === 'boolean') {
+    } else if (typeof params === "boolean") {
       options.auto_beam = params;
     }
 
@@ -322,16 +322,16 @@ export class Formatter {
     tabnotes: TabNote[],
     notes: Tickable[],
     autobeam: boolean,
-    params: FormatParams
+    params: FormatParams,
   ): void {
     let opts = {
       auto_beam: autobeam,
       align_rests: false,
     };
 
-    if (typeof params === 'object') {
+    if (typeof params === "object") {
       opts = { ...opts, ...params };
-    } else if (typeof params === 'boolean') {
+    } else if (typeof params === "boolean") {
       opts.auto_beam = params;
     }
 
@@ -365,7 +365,11 @@ export class Formatter {
    * @param alignAllNotes If `false`, only align rests that are within a group of beamed notes.
    * @param alignTuplets If `false`, ignores tuplets.
    */
-  static AlignRestsToNotes(tickables: Tickable[], alignAllNotes: boolean, alignTuplets?: boolean): void {
+  static AlignRestsToNotes(
+    tickables: Tickable[],
+    alignAllNotes: boolean,
+    alignTuplets?: boolean,
+  ): void {
     tickables.forEach((currTickable: Tickable, index: number) => {
       if (isStaveNote(currTickable) && currTickable.isRest()) {
         if (currTickable.getTuplet() && !alignTuplets) {
@@ -374,7 +378,7 @@ export class Formatter {
 
         // If activated rests not on default can be rendered as specified.
         const position = currTickable.getGlyphProps().position.toUpperCase();
-        if (position !== 'R/4' && position !== 'B/4') {
+        if (position !== "R/4" && position !== "B/4") {
           return;
         }
 
@@ -449,7 +453,7 @@ export class Formatter {
    */
   alignRests(voices: Voice[], alignAllNotes: boolean): void {
     if (!voices || !voices.length) {
-      throw new RuntimeError('BadArgument', 'No voices to format rests');
+      throw new RuntimeError("BadArgument", "No voices to format rests");
     }
 
     voices.forEach((voice) => Formatter.AlignRestsToNotes(voice.getTickables(), alignAllNotes));
@@ -476,7 +480,7 @@ export class Formatter {
    * @returns the estimated width in pixels
    */
   preCalculateMinTotalWidth(voices: Voice[]): number {
-    const unalignedPadding = Tables.currentMusicFont().lookupMetric('stave.unalignedNotePadding');
+    const unalignedPadding = Tables.currentMusicFont().lookupMetric("stave.unalignedNotePadding");
     // Calculate additional padding based on 3 methods:
     // 1) unaligned beats in voices, 2) variance of width, 3) variance of durations
     let unalignedCtxCount = 0;
@@ -490,7 +494,7 @@ export class Formatter {
 
     // Create tick contexts.
     if (!voices) {
-      throw new RuntimeError('BadArgument', "'voices' required to run preCalculateMinTotalWidth");
+      throw new RuntimeError("BadArgument", "'voices' required to run preCalculateMinTotalWidth");
     }
 
     this.createTickContexts(voices);
@@ -544,8 +548,8 @@ export class Formatter {
   getMinTotalWidth(): number {
     if (!this.hasMinTotalWidth) {
       throw new RuntimeError(
-        'NoMinTotalWidth',
-        "Call 'preCalculateMinTotalWidth' or 'preFormat' before calling 'getMinTotalWidth'"
+        "NoMinTotalWidth",
+        "Call 'preCalculateMinTotalWidth' or 'preFormat' before calling 'getMinTotalWidth'",
       );
     }
 
@@ -555,16 +559,19 @@ export class Formatter {
   /** Calculate the resolution multiplier for `voices`. */
   static getResolutionMultiplier(voices: Voice[]): number {
     if (!voices || !voices.length) {
-      throw new RuntimeError('BadArgument', 'No voices to format');
+      throw new RuntimeError("BadArgument", "No voices to format");
     }
     const totalTicks = voices[0].getTotalTicks();
     const resolutionMultiplier = voices.reduce((accumulator, voice) => {
       if (!voice.getTotalTicks().equals(totalTicks)) {
-        throw new RuntimeError('TickMismatch', 'Voices should have same total note duration in ticks.');
+        throw new RuntimeError(
+          "TickMismatch",
+          "Voices should have same total note duration in ticks.",
+        );
       }
 
       if (voice.getMode() === Voice.Mode.STRICT && !voice.isComplete()) {
-        throw new RuntimeError('IncompleteVoice', 'Voice does not have enough notes.');
+        throw new RuntimeError("IncompleteVoice", "Voice does not have enough notes.");
       }
 
       return Math.max(accumulator, Fraction.LCM(accumulator, voice.getResolutionMultiplier()));
@@ -623,9 +630,16 @@ export class Formatter {
    * total number of ticks in voices.
    */
   createTickContexts(voices: Voice[]): AlignmentContexts<TickContext> {
-    const fn: addToContextFn<TickContext> = (tickable: Tickable, context: TickContext, voiceIndex: number) =>
-      context.addTickable(tickable, voiceIndex);
-    const contexts = createContexts(voices, (tick?: { tickID: number }) => new TickContext(tick), fn);
+    const fn: addToContextFn<TickContext> = (
+      tickable: Tickable,
+      context: TickContext,
+      voiceIndex: number,
+    ) => context.addTickable(tickable, voiceIndex);
+    const contexts = createContexts(
+      voices,
+      (tick?: { tickID: number }) => new TickContext(tick),
+      fn,
+    );
     this.tickContexts = contexts;
     const contextArray = this.tickContexts.array;
 
@@ -649,11 +663,16 @@ export class Formatter {
    * that can't retrieve widths without a canvas. This method sets the `x` positions
    * of all the tickables/notes in the formatter.
    */
-  preFormat(justifyWidth = 0, renderingContext?: RenderContext, voicesParam?: Voice[], stave?: Stave): number {
+  preFormat(
+    justifyWidth = 0,
+    renderingContext?: RenderContext,
+    voicesParam?: Voice[],
+    stave?: Stave,
+  ): number {
     // Initialize context maps.
     const contexts = this.tickContexts;
     if (!contexts) {
-      throw new RuntimeError('NoTickContexts', 'preFormat requires TickContexts');
+      throw new RuntimeError("NoTickContexts", "preFormat requires TickContexts");
     }
 
     const { list: contextList, map: contextMap } = contexts;
@@ -699,7 +718,8 @@ export class Formatter {
     // Use softmax based on all notes across all staves. (options.globalSoftmax)
     const { globalSoftmax, softmaxFactor, maxIterations } = this.formatterOptions;
 
-    const exp = (tick: number) => softmaxFactor ** (contextMap[tick].getMaxTicks().value() / totalTicks);
+    const exp = (tick: number) =>
+      softmaxFactor ** (contextMap[tick].getMaxTicks().value() / totalTicks);
     const expTicksUsed = sumArray(contextList.map(exp));
 
     this.minTotalWidth = x + shift;
@@ -754,11 +774,15 @@ export class Formatter {
                 const thisTickable = voices[v];
                 const insideLeftEdge =
                   thisTickable.getX() -
-                  (thisTickable.getMetrics().modLeftPx + thisTickable.getMetrics().leftDisplacedHeadPx);
+                  (thisTickable.getMetrics().modLeftPx +
+                    thisTickable.getMetrics().leftDisplacedHeadPx);
 
                 const backMetrics = backVoices[v].getMetrics();
                 const insideRightEdge =
-                  backVoices[v].getX() + backMetrics.notePx + backMetrics.modRightPx + backMetrics.rightDisplacedHeadPx;
+                  backVoices[v].getX() +
+                  backMetrics.notePx +
+                  backMetrics.modRightPx +
+                  backMetrics.rightDisplacedHeadPx;
 
                 // Don't allow shifting if notes in the same voice can collide
                 maxNegativeShiftPx = Math.min(maxNegativeShiftPx, insideLeftEdge - insideRightEdge);
@@ -768,15 +792,16 @@ export class Formatter {
               // so that two different tick contexts don't align across staves.
               maxNegativeShiftPx = Math.min(
                 maxNegativeShiftPx,
-                context.getX() - (prevContext.getX() + adjustedJustifyWidth * 0.05)
+                context.getX() - (prevContext.getX() + adjustedJustifyWidth * 0.05),
               );
 
               // Calculate the expected distance of the current context from the last matching tickable. The
               // distance is scaled down by the softmax for the voice.
               if (globalSoftmax) {
                 const t = totalTicks;
-                expectedDistance = (softmaxFactor ** (maxTicks / t) / expTicksUsed) * adjustedJustifyWidth;
-              } else if (typeof backTickable !== 'undefined') {
+                expectedDistance =
+                  (softmaxFactor ** (maxTicks / t) / expTicksUsed) * adjustedJustifyWidth;
+              } else if (typeof backTickable !== "undefined") {
                 expectedDistance = backTickable.getVoice().softmax(maxTicks) * adjustedJustifyWidth;
               }
               return {
@@ -803,7 +828,8 @@ export class Formatter {
         if (index > 0) {
           const contextX = context.getX();
           const ideal = idealDistances[index];
-          const errorPx = defined(ideal.fromTickable).getX() + ideal.expectedDistance - (contextX + spaceAccum);
+          const errorPx =
+            defined(ideal.fromTickable).getX() + ideal.expectedDistance - (contextX + spaceAccum);
 
           let negativeShiftPx = 0;
           if (errorPx > 0) {
@@ -829,9 +855,9 @@ export class Formatter {
       lastContext.getMetrics().totalRightPx -
       firstContext.getMetrics().totalLeftPx;
     const musicFont = Tables.currentMusicFont();
-    const configMinPadding = musicFont.lookupMetric('stave.endPaddingMin');
-    const configMaxPadding = musicFont.lookupMetric('stave.endPaddingMax');
-    const leftPadding = musicFont.lookupMetric('stave.padding');
+    const configMinPadding = musicFont.lookupMetric("stave.endPaddingMin");
+    const configMaxPadding = musicFont.lookupMetric("stave.endPaddingMax");
+    const leftPadding = musicFont.lookupMetric("stave.padding");
     let targetWidth = adjustedJustifyWidth;
     const distances = calculateIdealDistances(targetWidth);
     let actualWidth = shiftToIdealDistances(distances);
@@ -864,7 +890,8 @@ export class Formatter {
         }
         const tickWidth = lastTickable.getWidth();
         lastTickablePadding =
-          voice.softmax(lastContext.getMaxTicks().value()) * curTargetWidth - (tickWidth + leftPadding);
+          voice.softmax(lastContext.getMaxTicks().value()) * curTargetWidth -
+          (tickWidth + leftPadding);
       }
       return configMaxPadding * 2 < lastTickablePadding ? lastTickablePadding : configMaxPadding;
     };
@@ -875,7 +902,10 @@ export class Formatter {
     let iterations = maxIterations;
     // Adjust justification width until the right margin is as close as possible to the calculated padding,
     // without going over
-    while ((actualWidth > maxX && iterations > 0) || (actualWidth + paddingMax < maxX && iterations > 1)) {
+    while (
+      (actualWidth > maxX && iterations > 0) ||
+      (actualWidth + paddingMax < maxX && iterations > 1)
+    ) {
       targetWidth -= actualWidth - maxX;
       paddingMax = paddingMaxCalc(targetWidth);
       paddingMin = paddingMax - (configMaxPadding - configMinPadding);
@@ -935,13 +965,15 @@ export class Formatter {
         const duration = note.getTicks().clone().simplify().toString();
         const metrics = note.getMetrics();
         const formatterMetrics = note.getFormatterMetrics();
-        const leftNoteEdge = note.getX() + metrics.notePx + metrics.modRightPx + metrics.rightDisplacedHeadPx;
+        const leftNoteEdge =
+          note.getX() + metrics.notePx + metrics.modRightPx + metrics.rightDisplacedHeadPx;
         let space = 0;
 
         if (i < notes.length - 1) {
           const rightNote = notes[i + 1];
           const rightMetrics = rightNote.getMetrics();
-          const rightNoteEdge = rightNote.getX() - rightMetrics.modLeftPx - rightMetrics.leftDisplacedHeadPx;
+          const rightNoteEdge =
+            rightNote.getX() - rightMetrics.modLeftPx - rightMetrics.leftDisplacedHeadPx;
 
           space = rightNoteEdge - leftNoteEdge;
           formatterMetrics.space.used = rightNote.getX() - note.getX();
@@ -1014,7 +1046,9 @@ export class Formatter {
 
       move(context, shift, prevContext, nextContext);
 
-      const cost = -sumArray(context.getTickables().map((t) => t.getFormatterMetrics().space.deviation));
+      const cost = -sumArray(
+        context.getTickables().map((t) => t.getFormatterMetrics().space.deviation),
+      );
 
       if (cost > 0) {
         shift = -Math.min(context.getFormatterMetrics().freedom.right, Math.abs(cost));
@@ -1098,7 +1132,7 @@ export class Formatter {
 
     // eslint-disable-next-line
     const justifyWidth = stave.getNoteEndX() - stave.getNoteStartX() - Stave.defaultPadding;
-    L('Formatting voices to width: ', justifyWidth);
+    L("Formatting voices to width: ", justifyWidth);
     return this.format(voices, justifyWidth, options);
   }
 

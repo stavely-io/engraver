@@ -2,17 +2,17 @@
 // Author: Ron B. Yeh
 // MIT License
 
-import type { Accidental } from './accidental';
-import type { Annotation } from './annotation';
-import type { Dot } from './dot';
-import type { GraceNote } from './gracenote';
-import type { GraceNoteGroup } from './gracenotegroup';
-import type { Note } from './note';
-import type { RenderContext } from './rendercontext.js';
-import type { Barline } from './stavebarline';
-import type { StaveNote } from './stavenote';
-import type { StemmableNote } from './stemmablenote';
-import type { TabNote } from './tabnote';
+import type { Accidental } from "./accidental";
+import type { Annotation } from "./annotation";
+import type { Dot } from "./dot";
+import type { GraceNote } from "./gracenote";
+import type { GraceNoteGroup } from "./gracenotegroup";
+import type { Note } from "./note";
+import type { RenderContext } from "./rendercontext.js";
+import type { Barline } from "./stavebarline";
+import type { StaveNote } from "./stavenote";
+import type { StemmableNote } from "./stemmablenote";
+import type { TabNote } from "./tabnote";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -24,9 +24,13 @@ import type { TabNote } from './tabnote';
  *        If `false`, we do not check the superclass or other ancestors.
  * @returns true if `obj` has a static `CATEGORY` property that matches `category`.
  */
-export function isCategory<T>(obj: any, category: string, checkAncestors: boolean = true): obj is T {
+export function isCategory<T>(
+  obj: any,
+  category: string,
+  checkAncestors: boolean = true,
+): obj is T {
   // obj is undefined, a number, a primitive string, or null.
-  if (typeof obj !== 'object' || obj === null) {
+  if (typeof obj !== "object" || obj === null) {
     return false;
   }
 
@@ -40,7 +44,7 @@ export function isCategory<T>(obj: any, category: string, checkAncestors: boolea
     // Walk up the prototype chain to look for a matching obj.constructor.CATEGORY.
     while (obj !== null) {
       constructorFcn = obj.constructor;
-      if ('CATEGORY' in constructorFcn && constructorFcn.CATEGORY === category) {
+      if ("CATEGORY" in constructorFcn && constructorFcn.CATEGORY === category) {
         return true;
       }
       obj = Object.getPrototypeOf(obj);
@@ -48,89 +52,94 @@ export function isCategory<T>(obj: any, category: string, checkAncestors: boolea
     return false;
   } else {
     // Do not walk up the prototype chain. Just check this particular object's static .CATEGORY string.
-    return 'CATEGORY' in constructorFcn && constructorFcn.CATEGORY === category;
+    return "CATEGORY" in constructorFcn && constructorFcn.CATEGORY === category;
   }
 }
 
-export const isAccidental = (obj: unknown): obj is Accidental => isCategory(obj, Category.Accidental);
-export const isAnnotation = (obj: unknown): obj is Annotation => isCategory(obj, Category.Annotation);
+export const isAccidental = (obj: unknown): obj is Accidental =>
+  isCategory(obj, Category.Accidental);
+export const isAnnotation = (obj: unknown): obj is Annotation =>
+  isCategory(obj, Category.Annotation);
 export const isBarline = (obj: unknown): obj is Barline => isCategory(obj, Category.Barline);
 export const isDot = (obj: unknown): obj is Dot => isCategory(obj, Category.Dot);
 export const isGraceNote = (obj: unknown): obj is GraceNote => isCategory(obj, Category.GraceNote);
-export const isGraceNoteGroup = (obj: unknown): obj is GraceNoteGroup => isCategory(obj, Category.GraceNoteGroup);
+export const isGraceNoteGroup = (obj: unknown): obj is GraceNoteGroup =>
+  isCategory(obj, Category.GraceNoteGroup);
 export const isNote = (obj: unknown): obj is Note => isCategory(obj, Category.Note);
-export const isRenderContext = (obj: unknown): obj is RenderContext => isCategory(obj, Category.RenderContext);
+export const isRenderContext = (obj: unknown): obj is RenderContext =>
+  isCategory(obj, Category.RenderContext);
 export const isStaveNote = (obj: unknown): obj is StaveNote => isCategory(obj, Category.StaveNote);
-export const isStemmableNote = (obj: unknown): obj is StemmableNote => isCategory(obj, Category.StemmableNote);
+export const isStemmableNote = (obj: unknown): obj is StemmableNote =>
+  isCategory(obj, Category.StemmableNote);
 export const isTabNote = (obj: unknown): obj is TabNote => isCategory(obj, Category.TabNote);
 
 // 'const' enums are erased by the TypeScript compiler. The string values are inlined at all the use sites.
 // See: https://www.typescriptlang.org/docs/handbook/enums.html#const-enums
 export const enum Category {
-  Accidental = 'Accidental',
-  Annotation = 'Annotation',
-  Articulation = 'Articulation',
-  Barline = 'Barline',
-  BarNote = 'BarNote',
-  Beam = 'Beam',
-  Bend = 'Bend',
-  ChordSymbol = 'ChordSymbol',
-  Clef = 'Clef',
-  ClefNote = 'ClefNote',
-  Crescendo = 'Crescendo',
-  Curve = 'Curve',
-  Dot = 'Dot',
-  Element = 'Element',
-  Fraction = 'Fraction',
-  FretHandFinger = 'FretHandFinger',
-  GhostNote = 'GhostNote',
-  Glyph = 'Glyph',
-  GlyphNote = 'GlyphNote',
-  GraceNote = 'GraceNote',
-  GraceNoteGroup = 'GraceNoteGroup',
-  GraceTabNote = 'GraceTabNote',
-  KeySignature = 'KeySignature',
-  KeySigNote = 'KeySigNote',
-  Modifier = 'Modifier',
-  MultiMeasureRest = 'MultiMeasureRest',
-  Note = 'Note',
-  NoteHead = 'NoteHead',
-  NoteSubGroup = 'NoteSubGroup',
-  Ornament = 'Ornament',
-  Parenthesis = 'Parenthesis',
-  PedalMarking = 'PedalMarking',
-  RenderContext = 'RenderContext',
-  RepeatNote = 'RepeatNote',
-  Repetition = 'Repetition',
-  Stave = 'Stave',
-  StaveConnector = 'StaveConnector',
-  StaveHairpin = 'StaveHairpin',
-  StaveLine = 'StaveLine',
-  StaveModifier = 'StaveModifier',
-  StaveNote = 'StaveNote',
-  StaveSection = 'StaveSection',
-  StaveTempo = 'StaveTempo',
-  StaveText = 'StaveText',
-  StaveTie = 'StaveTie',
-  Stem = 'Stem',
-  StemmableNote = 'StemmableNote',
-  StringNumber = 'StringNumber',
-  Stroke = 'Stroke',
-  System = 'System',
-  TabNote = 'TabNote',
-  TabSlide = 'TabSlide',
-  TabStave = 'TabStave',
-  TabTie = 'TabTie',
-  TextBracket = 'TextBracket',
-  TextDynamics = 'TextDynamics',
-  TextNote = 'TextNote',
-  Tickable = 'Tickable',
-  TimeSignature = 'TimeSignature',
-  TimeSigNote = 'TimeSigNote',
-  Tremolo = 'Tremolo',
-  Tuplet = 'Tuplet',
-  Vibrato = 'Vibrato',
-  VibratoBracket = 'VibratoBracket',
-  Voice = 'Voice',
-  Volta = 'Volta',
+  Accidental = "Accidental",
+  Annotation = "Annotation",
+  Articulation = "Articulation",
+  Barline = "Barline",
+  BarNote = "BarNote",
+  Beam = "Beam",
+  Bend = "Bend",
+  ChordSymbol = "ChordSymbol",
+  Clef = "Clef",
+  ClefNote = "ClefNote",
+  Crescendo = "Crescendo",
+  Curve = "Curve",
+  Dot = "Dot",
+  Element = "Element",
+  Fraction = "Fraction",
+  FretHandFinger = "FretHandFinger",
+  GhostNote = "GhostNote",
+  Glyph = "Glyph",
+  GlyphNote = "GlyphNote",
+  GraceNote = "GraceNote",
+  GraceNoteGroup = "GraceNoteGroup",
+  GraceTabNote = "GraceTabNote",
+  KeySignature = "KeySignature",
+  KeySigNote = "KeySigNote",
+  Modifier = "Modifier",
+  MultiMeasureRest = "MultiMeasureRest",
+  Note = "Note",
+  NoteHead = "NoteHead",
+  NoteSubGroup = "NoteSubGroup",
+  Ornament = "Ornament",
+  Parenthesis = "Parenthesis",
+  PedalMarking = "PedalMarking",
+  RenderContext = "RenderContext",
+  RepeatNote = "RepeatNote",
+  Repetition = "Repetition",
+  Stave = "Stave",
+  StaveConnector = "StaveConnector",
+  StaveHairpin = "StaveHairpin",
+  StaveLine = "StaveLine",
+  StaveModifier = "StaveModifier",
+  StaveNote = "StaveNote",
+  StaveSection = "StaveSection",
+  StaveTempo = "StaveTempo",
+  StaveText = "StaveText",
+  StaveTie = "StaveTie",
+  Stem = "Stem",
+  StemmableNote = "StemmableNote",
+  StringNumber = "StringNumber",
+  Stroke = "Stroke",
+  System = "System",
+  TabNote = "TabNote",
+  TabSlide = "TabSlide",
+  TabStave = "TabStave",
+  TabTie = "TabTie",
+  TextBracket = "TextBracket",
+  TextDynamics = "TextDynamics",
+  TextNote = "TextNote",
+  Tickable = "Tickable",
+  TimeSignature = "TimeSignature",
+  TimeSigNote = "TimeSigNote",
+  Tremolo = "Tremolo",
+  Tuplet = "Tuplet",
+  Vibrato = "Vibrato",
+  VibratoBracket = "VibratoBracket",
+  Voice = "Voice",
+  Volta = "Volta",
 }

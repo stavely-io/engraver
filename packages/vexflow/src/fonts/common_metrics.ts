@@ -19,8 +19,8 @@ export const CommonMetrics = {
       superscriptOffset: -400,
       subscriptOffset: 300,
       kerningOffset: -250,
-      lowerKerningText: ['D', 'F', 'P', 'T', 'V', 'Y'],
-      upperKerningText: ['A', 'L'],
+      lowerKerningText: ["D", "F", "P", "T", "V", "Y"],
+      upperKerningText: ["A", "L"],
       spacing: 100,
       superSubRatio: 0.66,
     },
@@ -101,13 +101,13 @@ export const CommonMetrics = {
   clef_default: {
     width: 26,
     annotations: {
-      '8va': {
+      "8va": {
         treble: {
           line: -2,
           shiftX: 12,
         },
       },
-      '8vb': {
+      "8vb": {
         treble: {
           line: 6.5,
           shiftX: 10,
@@ -123,13 +123,13 @@ export const CommonMetrics = {
   clef_small: {
     width: 20,
     annotations: {
-      '8va': {
+      "8va": {
         treble: {
           line: -0.2,
           shiftX: 8,
         },
       },
-      '8vb': {
+      "8vb": {
         treble: {
           line: 5.3,
           shiftX: 6,

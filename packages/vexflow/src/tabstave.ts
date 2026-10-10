@@ -1,8 +1,8 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 
-import type { StaveOptions } from './stave';
-import { Stave } from './stave';
-import { Category } from './typeguard';
+import type { StaveOptions } from "./stave";
+import { Stave } from "./stave";
+import { Category } from "./typeguard";
 
 export class TabStave extends Stave {
   static get CATEGORY(): string {
@@ -26,7 +26,7 @@ export class TabStave extends Stave {
 
   // Deprecated
   addTabGlyph(): this {
-    this.addClef('tab');
+    this.addClef("tab");
     return this;
   }
 }

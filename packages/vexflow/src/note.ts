@@ -1,21 +1,21 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { Beam } from './beam';
-import { Font } from './font';
-import type { Fraction } from './fraction';
-import type { GlyphProps } from './glyph';
-import type { Modifier } from './modifier';
-import type { RenderContext } from './rendercontext';
-import { drawDot } from './rendercontext';
-import type { Stave } from './stave';
-import type { Stroke } from './strokes';
-import { Tables } from './tables';
-import { Tickable } from './tickable';
-import type { TickContext } from './tickcontext';
-import { Category } from './typeguard';
-import { defined, RuntimeError } from './util';
-import type { Voice } from './voice';
+import type { Beam } from "./beam";
+import { Font } from "./font";
+import type { Fraction } from "./fraction";
+import type { GlyphProps } from "./glyph";
+import type { Modifier } from "./modifier";
+import type { RenderContext } from "./rendercontext";
+import { drawDot } from "./rendercontext";
+import type { Stave } from "./stave";
+import type { Stroke } from "./strokes";
+import { Tables } from "./tables";
+import { Tickable } from "./tickable";
+import type { TickContext } from "./tickcontext";
+import { Category } from "./typeguard";
+import { defined, RuntimeError } from "./util";
+import type { Voice } from "./voice";
 
 export interface KeyProps {
   stem_down_x_offset?: number;
@@ -101,13 +101,14 @@ export abstract class Note extends Tickable {
     const xAbs = note.getAbsoluteX();
     const xPost1 = note.getAbsoluteX() + metrics.notePx;
     const xPost2 = note.getAbsoluteX() + metrics.notePx + metrics.rightDisplacedHeadPx;
-    const xEnd = note.getAbsoluteX() + metrics.notePx + metrics.rightDisplacedHeadPx + metrics.modRightPx;
+    const xEnd =
+      note.getAbsoluteX() + metrics.notePx + metrics.rightDisplacedHeadPx + metrics.modRightPx;
     const xFreedomRight = xEnd + (note.getFormatterMetrics().freedom.right || 0);
 
     const xWidth = xEnd - xStart;
     ctx.save();
     ctx.setFont(Font.SANS_SERIF, 8);
-    ctx.fillText(Math.round(xWidth) + 'px', xStart + note.getXShift(), yPos);
+    ctx.fillText(Math.round(xWidth) + "px", xStart + note.getXShift(), yPos);
 
     const y = yPos + 7;
     function stroke(x1: number, x2: number, color: string, yy: number = y) {
@@ -120,20 +121,20 @@ export abstract class Note extends Tickable {
       ctx.stroke();
     }
 
-    stroke(xStart, xPre1, 'red');
-    stroke(xPre1, xAbs, '#999');
-    stroke(xAbs, xPost1, 'green');
-    stroke(xPost1, xPost2, '#999');
-    stroke(xPost2, xEnd, 'red');
-    stroke(xEnd, xFreedomRight, '#DD0');
-    stroke(xStart - note.getXShift(), xStart, '#BBB'); // Shift
-    drawDot(ctx, xAbs + note.getXShift(), y, 'blue');
+    stroke(xStart, xPre1, "red");
+    stroke(xPre1, xAbs, "#999");
+    stroke(xAbs, xPost1, "green");
+    stroke(xPost1, xPost2, "#999");
+    stroke(xPost2, xEnd, "red");
+    stroke(xEnd, xFreedomRight, "#DD0");
+    stroke(xStart - note.getXShift(), xStart, "#BBB"); // Shift
+    drawDot(ctx, xAbs + note.getXShift(), y, "blue");
 
     const formatterMetrics = note.getFormatterMetrics();
     if (formatterMetrics.iterations > 0) {
       const spaceDeviation = formatterMetrics.space.deviation;
-      const prefix = spaceDeviation >= 0 ? '+' : '';
-      ctx.setFillStyle('red');
+      const prefix = spaceDeviation >= 0 ? "+" : "";
+      ctx.setFillStyle("red");
       ctx.fillText(prefix + Math.round(spaceDeviation), xAbs + note.getXShift(), yPos - 10);
     }
     ctx.restore();
@@ -151,7 +152,7 @@ export abstract class Note extends Tickable {
 
     const duration = result[1];
     const dots = result[2].length;
-    const type = result[3] || 'n';
+    const type = result[3] || "n";
 
     return { duration, dots, type };
   }
@@ -172,12 +173,12 @@ export abstract class Note extends Tickable {
     // If no type specified, check duration or custom types
     const customTypes: string[] = [];
     if (!type) {
-      type = durationProps.type || 'n';
+      type = durationProps.type || "n";
 
       // If we have keys, try and check if we've got a custom glyph
       if (noteStruct.keys !== undefined) {
         noteStruct.keys.forEach((k, i) => {
-          const result = k.split('/');
+          const result = k.split("/");
           // We have a custom glyph specified after the note eg. /X2
           customTypes[i] = (result && result.length === 3 ? result[2] : type) as string;
         });
@@ -192,7 +193,7 @@ export abstract class Note extends Tickable {
 
     // Are there any dots?
     const dots = noteStruct.dots ? noteStruct.dots : durationProps.dots;
-    if (typeof dots !== 'number') {
+    if (typeof dots !== "number") {
       return undefined;
     }
 
@@ -259,13 +260,19 @@ export abstract class Note extends Tickable {
     super();
 
     if (!noteStruct) {
-      throw new RuntimeError('BadArguments', 'Note must have valid initialization data to identify duration and type.');
+      throw new RuntimeError(
+        "BadArguments",
+        "Note must have valid initialization data to identify duration and type.",
+      );
     }
 
     /** Parses `noteStruct` and get note properties. */
     const parsedNoteStruct = Note.parseNoteStruct(noteStruct);
     if (!parsedNoteStruct) {
-      throw new RuntimeError('BadArguments', `Invalid note initialization object: ${JSON.stringify(noteStruct)}`);
+      throw new RuntimeError(
+        "BadArguments",
+        `Invalid note initialization object: ${JSON.stringify(noteStruct)}`,
+      );
     }
 
     // Set note properties from parameters.
@@ -315,7 +322,7 @@ export abstract class Note extends Tickable {
       glyph_font_scale: 1,
       stroke_px: 1,
       scale: 1,
-      font: '',
+      font: "",
       y_shift: 0,
     };
   }
@@ -363,7 +370,7 @@ export abstract class Note extends Tickable {
 
   /** Check and get the target stave. */
   checkStave(): Stave {
-    return defined(this.stave, 'NoStave', 'No stave attached to instance.');
+    return defined(this.stave, "NoStave", "No stave attached to instance.");
   }
 
   /** Set the target stave. */
@@ -445,7 +452,7 @@ export abstract class Note extends Tickable {
    */
   getYs(): number[] {
     if (this.ys.length === 0) {
-      throw new RuntimeError('NoYValues', 'No Y-values calculated for this note.');
+      throw new RuntimeError("NoYValues", "No Y-values calculated for this note.");
     }
 
     return this.ys;
@@ -461,7 +468,7 @@ export abstract class Note extends Tickable {
 
   /** Return the voice that this note belongs in. */
   getVoice(): Voice {
-    if (!this.voice) throw new RuntimeError('NoVoice', 'Note has no voice.');
+    if (!this.voice) throw new RuntimeError("NoVoice", "Note has no voice.");
     return this.voice;
   }
 
@@ -516,7 +523,7 @@ export abstract class Note extends Tickable {
 
   /** Check and get the beam. */
   checkBeam(): Beam {
-    return defined(this.beam, 'NoBeam', 'No beam attached to instance');
+    return defined(this.beam, "NoBeam", "No beam attached to instance");
   }
 
   /** Check it has a beam. */
@@ -541,18 +548,21 @@ export abstract class Note extends Tickable {
    */
 
   addModifier(modifier: Modifier, index: number = 0): this {
-    const signature = 'Note.addModifier(modifier: Modifier, index: number=0)';
+    const signature = "Note.addModifier(modifier: Modifier, index: number=0)";
     // Backwards compatibility with 3.0.9.
-    if (typeof index === 'string') {
+    if (typeof index === "string") {
       index = parseInt(index);
       // eslint-disable-next-line
-      console.warn(signature + ' expected a number for `index`, but received a string.');
+      console.warn(signature + " expected a number for `index`, but received a string.");
     }
 
     // Some versions of VexFlow had the two parameters reversed.
     // Check here and throw an error if the argument types are not correct.
-    if (typeof modifier !== 'object' || typeof index !== 'number') {
-      throw new RuntimeError('WrongParams', 'Incorrect call signature. Use ' + signature + ' instead.');
+    if (typeof modifier !== "object" || typeof index !== "number") {
+      throw new RuntimeError(
+        "WrongParams",
+        "Incorrect call signature. Use " + signature + " instead.",
+      );
     }
     modifier.setNote(this);
     modifier.setIndex(index);
@@ -569,7 +579,10 @@ export abstract class Note extends Tickable {
   // eslint-disable-next-line
   getModifierStartXY(position?: number, index?: number, options?: any): { x: number; y: number } {
     if (!this.preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call GetModifierStartXY on an unformatted note");
+      throw new RuntimeError(
+        "UnformattedNote",
+        "Can't call GetModifierStartXY on an unformatted note",
+      );
     }
 
     return {
@@ -591,15 +604,15 @@ export abstract class Note extends Tickable {
   getFirstDotPx(): number {
     let px = this.getRightDisplacedHeadPx();
 
-    if (this.checkModifierContext().getMembers('Parenthesis').length !== 0)
-      px += Tables.currentMusicFont().lookupMetric('parenthesis.default.width');
+    if (this.checkModifierContext().getMembers("Parenthesis").length !== 0)
+      px += Tables.currentMusicFont().lookupMetric("parenthesis.default.width");
     return px;
   }
 
   /** Get the metrics for this note. */
   getMetrics(): NoteMetrics {
     if (!this.preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call getMetrics on an unformatted note.");
+      throw new RuntimeError("UnformattedNote", "Can't call getMetrics on an unformatted note.");
     }
 
     const modLeftPx = this.modifierContext ? this.modifierContext.getState().left_shift : 0;
@@ -640,7 +653,7 @@ export abstract class Note extends Tickable {
     // Position note to left edge of tick context.
     let x = tickContext.getX();
     if (this.stave) {
-      x += this.stave.getNoteStartX() + Tables.currentMusicFont().lookupMetric('stave.padding');
+      x += this.stave.getNoteStartX() + Tables.currentMusicFont().lookupMetric("stave.padding");
     }
     if (this.isCenterAligned()) {
       x += this.getCenterXShift();
@@ -651,17 +664,17 @@ export abstract class Note extends Tickable {
   /** Get point for notes. */
   static getPoint(size?: string): number {
     // for sizes other than 'default', note is 2/3 of the default value
-    return size == 'default' ? Tables.NOTATION_FONT_SCALE : (Tables.NOTATION_FONT_SCALE / 5) * 3;
+    return size == "default" ? Tables.NOTATION_FONT_SCALE : (Tables.NOTATION_FONT_SCALE / 5) * 3;
   }
 
   /** Get the direction of the stem. */
   getStemDirection(): number {
-    throw new RuntimeError('NoStem', 'No stem attached to this note.');
+    throw new RuntimeError("NoStem", "No stem attached to this note.");
   }
 
   /** Get the top and bottom `y` values of the stem. */
   getStemExtents(): Record<string, number> {
-    throw new RuntimeError('NoStem', 'No stem attached to this note.');
+    throw new RuntimeError("NoStem", "No stem attached to this note.");
   }
 
   /** Get the `x` coordinate to the right of the note. */

@@ -1,15 +1,15 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { ModifierContext } from './modifiercontext';
-import { Note } from './note';
-import { Barline, BarlineType } from './stavebarline';
-import { Category } from './typeguard';
-import { log } from './util';
+import type { ModifierContext } from "./modifiercontext";
+import { Note } from "./note";
+import { Barline, BarlineType } from "./stavebarline";
+import { Category } from "./typeguard";
+import { log } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (BarNote.DEBUG) log('Vex.Flow.BarNote', args);
+  if (BarNote.DEBUG) log("Vex.Flow.BarNote", args);
 }
 
 /**
@@ -33,7 +33,7 @@ export class BarNote extends Note {
   public barline!: Barline;
 
   constructor(type: string | BarlineType = BarlineType.SINGLE) {
-    super({ duration: 'b' });
+    super({ duration: "b" });
 
     this.metrics = {
       widths: {},
@@ -63,7 +63,7 @@ export class BarNote extends Note {
 
   /** Set the type of bar note. */
   setType(type: string | BarlineType): this {
-    this.type = typeof type === 'string' ? Barline.typeString[type] : type;
+    this.type = typeof type === "string" ? Barline.typeString[type] : type;
 
     // Set width to width of relevant `Barline`.
     this.setWidth(this.metrics.widths[this.type]);
@@ -86,10 +86,10 @@ export class BarNote extends Note {
   /** Render note to stave. */
   draw(): void {
     const ctx = this.checkContext();
-    L('Rendering bar line at: ', this.getAbsoluteX());
+    L("Rendering bar line at: ", this.getAbsoluteX());
     this.applyStyle(ctx);
 
-    ctx.openGroup('barnote', this.getAttribute('id'));
+    ctx.openGroup("barnote", this.getAttribute("id"));
     this.barline.setType(this.type);
     this.barline.setX(this.getAbsoluteX());
     this.barline.draw(this.checkStave());

@@ -2,70 +2,70 @@
 // @author Mohit Cheppudira
 // MIT License
 
-import { Accidental } from './accidental';
-import { Annotation, AnnotationHorizontalJustify, AnnotationVerticalJustify } from './annotation';
-import { Articulation } from './articulation';
-import { BarNote } from './barnote';
-import type { PartialBeamDirection } from './beam';
-import { Beam } from './beam';
-import { ChordSymbol } from './chordsymbol';
-import { ClefNote } from './clefnote';
-import type { CurveOptions } from './curve';
-import { Curve } from './curve';
-import type { EasyScoreOptions } from './easyscore';
-import { EasyScore } from './easyscore';
-import { Element } from './element';
-import type { FontInfo } from './font';
-import type { FormatterOptions } from './formatter';
-import { Formatter } from './formatter';
-import { FretHandFinger } from './frethandfinger';
-import { GhostNote } from './ghostnote';
-import type { Glyph } from './glyph';
-import type { GlyphNoteOptions } from './glyphnote';
-import { GlyphNote } from './glyphnote';
-import type { GraceNoteStruct } from './gracenote';
-import { GraceNote } from './gracenote';
-import { GraceNoteGroup } from './gracenotegroup';
-import { KeySigNote } from './keysignote';
-import { ModifierContext } from './modifiercontext';
-import type { MultimeasureRestRenderOptions } from './multimeasurerest';
-import { MultiMeasureRest } from './multimeasurerest';
-import type { Note, NoteStruct } from './note';
-import { NoteSubGroup } from './notesubgroup';
-import { Ornament } from './ornament';
-import { PedalMarking } from './pedalmarking';
-import type { RenderContext } from './rendercontext';
-import { Renderer } from './renderer';
-import { RepeatNote } from './repeatnote';
-import type { StaveOptions } from './stave';
-import { Stave } from './stave';
-import type { BarlineType } from './stavebarline';
-import type { StaveConnectorType } from './staveconnector';
-import { StaveConnector } from './staveconnector';
-import { StaveLine } from './staveline';
-import type { StaveNoteStruct } from './stavenote';
-import { StaveNote } from './stavenote';
-import { StaveTie } from './stavetie';
-import type { StemmableNote } from './stemmablenote';
-import { StringNumber } from './stringnumber';
-import type { SystemOptions } from './system';
-import { System } from './system';
-import type { TabNoteStruct } from './tabnote';
-import { TabNote } from './tabnote';
-import { TabStave } from './tabstave';
-import { TextBracket } from './textbracket';
-import { TextDynamics } from './textdynamics';
-import type { TextNoteStruct } from './textnote';
-import { TextNote } from './textnote';
-import { TickContext } from './tickcontext';
-import { TimeSigNote } from './timesignote';
-import type { TupletOptions } from './tuplet';
-import { Tuplet } from './tuplet';
-import { defined, log, RuntimeError } from './util';
-import { VibratoBracket } from './vibratobracket';
-import type { VoiceTime } from './voice';
-import { Voice } from './voice';
-import { isHTMLCanvas } from './web';
+import { Accidental } from "./accidental";
+import { Annotation, AnnotationHorizontalJustify, AnnotationVerticalJustify } from "./annotation";
+import { Articulation } from "./articulation";
+import { BarNote } from "./barnote";
+import type { PartialBeamDirection } from "./beam";
+import { Beam } from "./beam";
+import { ChordSymbol } from "./chordsymbol";
+import { ClefNote } from "./clefnote";
+import type { CurveOptions } from "./curve";
+import { Curve } from "./curve";
+import type { EasyScoreOptions } from "./easyscore";
+import { EasyScore } from "./easyscore";
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import type { FormatterOptions } from "./formatter";
+import { Formatter } from "./formatter";
+import { FretHandFinger } from "./frethandfinger";
+import { GhostNote } from "./ghostnote";
+import type { Glyph } from "./glyph";
+import type { GlyphNoteOptions } from "./glyphnote";
+import { GlyphNote } from "./glyphnote";
+import type { GraceNoteStruct } from "./gracenote";
+import { GraceNote } from "./gracenote";
+import { GraceNoteGroup } from "./gracenotegroup";
+import { KeySigNote } from "./keysignote";
+import { ModifierContext } from "./modifiercontext";
+import type { MultimeasureRestRenderOptions } from "./multimeasurerest";
+import { MultiMeasureRest } from "./multimeasurerest";
+import type { Note, NoteStruct } from "./note";
+import { NoteSubGroup } from "./notesubgroup";
+import { Ornament } from "./ornament";
+import { PedalMarking } from "./pedalmarking";
+import type { RenderContext } from "./rendercontext";
+import { Renderer } from "./renderer";
+import { RepeatNote } from "./repeatnote";
+import type { StaveOptions } from "./stave";
+import { Stave } from "./stave";
+import type { BarlineType } from "./stavebarline";
+import type { StaveConnectorType } from "./staveconnector";
+import { StaveConnector } from "./staveconnector";
+import { StaveLine } from "./staveline";
+import type { StaveNoteStruct } from "./stavenote";
+import { StaveNote } from "./stavenote";
+import { StaveTie } from "./stavetie";
+import type { StemmableNote } from "./stemmablenote";
+import { StringNumber } from "./stringnumber";
+import type { SystemOptions } from "./system";
+import { System } from "./system";
+import type { TabNoteStruct } from "./tabnote";
+import { TabNote } from "./tabnote";
+import { TabStave } from "./tabstave";
+import { TextBracket } from "./textbracket";
+import { TextDynamics } from "./textdynamics";
+import type { TextNoteStruct } from "./textnote";
+import { TextNote } from "./textnote";
+import { TickContext } from "./tickcontext";
+import { TimeSigNote } from "./timesignote";
+import type { TupletOptions } from "./tuplet";
+import { Tuplet } from "./tuplet";
+import { defined, log, RuntimeError } from "./util";
+import { VibratoBracket } from "./vibratobracket";
+import type { VoiceTime } from "./voice";
+import { Voice } from "./voice";
+import { isHTMLCanvas } from "./web";
 
 export interface FactoryOptions {
   stave?: {
@@ -83,7 +83,7 @@ export interface FactoryOptions {
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Factory.DEBUG) log('Vex.Flow.Factory', args);
+  if (Factory.DEBUG) log("Vex.Flow.Factory", args);
 }
 
 /**
@@ -126,16 +126,16 @@ export class Factory {
    * `const vf: Factory = new Vex.Flow.Factory({renderer: { elementId: 'boo', width: 1200, height: 600 }});`
    */
   constructor(options: FactoryOptions = {}) {
-    L('New factory: ', options);
+    L("New factory: ", options);
     this.options = {
       stave: {
         space: 10,
       },
       renderer: {
-        elementId: '',
+        elementId: "",
         width: 500,
         height: 200,
-        background: '#FFF',
+        background: "#FFF",
       },
       font: Factory.TEXT_FONT,
     };
@@ -163,9 +163,9 @@ export class Factory {
       return;
     }
 
-    if (elementId == '') {
+    if (elementId == "") {
       L(this);
-      throw new RuntimeError('renderer.elementId not set in FactoryOptions');
+      throw new RuntimeError("renderer.elementId not set in FactoryOptions");
     }
 
     let backend = this.options.renderer.backend;
@@ -288,9 +288,9 @@ export class Factory {
 
   ClefNote(params?: { type?: string; options?: { size?: string; annotation?: string } }): ClefNote {
     const p = {
-      type: 'treble',
+      type: "treble",
       options: {
-        size: 'default',
+        size: "default",
         annotation: undefined,
       },
       ...params,
@@ -305,7 +305,7 @@ export class Factory {
 
   TimeSigNote(params?: { time?: string }): TimeSigNote {
     const p = {
-      time: '4/4',
+      time: "4/4",
       ...params,
     };
 
@@ -358,7 +358,7 @@ export class Factory {
     font?: FontInfo;
   }): Annotation {
     const p = {
-      text: 'p',
+      text: "p",
       hJustify: AnnotationHorizontalJustify.CENTER,
       vJustify: AnnotationVerticalJustify.BOTTOM,
       ...params,
@@ -382,8 +382,8 @@ export class Factory {
     fontWeight?: string;
   }): ChordSymbol {
     const p = {
-      vJustify: 'top',
-      hJustify: 'center',
+      vJustify: "top",
+      hJustify: "center",
       kerning: true,
       reportWidth: true,
       ...params,
@@ -396,18 +396,23 @@ export class Factory {
     chordSymbol.setReportWidth(p.reportWidth);
     // There is a default font based on the engraving font.  Only set then
     // font if it is specific, else use the default
-    if (typeof p.fontFamily === 'string' && typeof p.fontSize === 'number') {
-      if (typeof p.fontWeight === 'string') chordSymbol.setFont(p.fontFamily, p.fontSize, p.fontWeight);
-      else chordSymbol.setFont(p.fontFamily, p.fontSize, '');
-    } else if (typeof p.fontSize === 'number') {
+    if (typeof p.fontFamily === "string" && typeof p.fontSize === "number") {
+      if (typeof p.fontWeight === "string")
+        chordSymbol.setFont(p.fontFamily, p.fontSize, p.fontWeight);
+      else chordSymbol.setFont(p.fontFamily, p.fontSize, "");
+    } else if (typeof p.fontSize === "number") {
       chordSymbol.setFontSize(p.fontSize);
     }
     chordSymbol.setContext(this.context);
     return chordSymbol;
   }
 
-  Articulation(params?: { betweenLines?: boolean; type?: string; position?: string | number }): Articulation {
-    const articulation = new Articulation(params?.type ?? 'a.');
+  Articulation(params?: {
+    betweenLines?: boolean;
+    type?: string;
+    position?: string | number;
+  }): Articulation {
+    const articulation = new Articulation(params?.type ?? "a.");
 
     if (params?.position != undefined) articulation.setPosition(params.position);
     if (params?.betweenLines != undefined) articulation.setBetweenLines(params.betweenLines);
@@ -417,12 +422,17 @@ export class Factory {
 
   Ornament(
     type: string,
-    params?: { position?: string | number; upperAccidental?: string; lowerAccidental?: string; delayed?: boolean }
+    params?: {
+      position?: string | number;
+      upperAccidental?: string;
+      lowerAccidental?: string;
+      delayed?: boolean;
+    },
   ) {
     const options = {
       type,
       position: 0,
-      accidental: '',
+      accidental: "",
       ...params,
     };
     const ornament = new Ornament(type);
@@ -433,17 +443,22 @@ export class Factory {
     if (options.lowerAccidental) {
       ornament.setLowerAccidental(options.lowerAccidental);
     }
-    if (typeof options.delayed !== 'undefined') {
+    if (typeof options.delayed !== "undefined") {
       ornament.setDelayed(options.delayed);
     }
     ornament.setContext(this.context);
     return ornament;
   }
 
-  TextDynamics(params?: { text?: string; duration?: string; dots?: number; line?: number }): TextDynamics {
+  TextDynamics(params?: {
+    text?: string;
+    duration?: string;
+    dots?: number;
+    line?: number;
+  }): TextDynamics {
     const p = {
-      text: 'p',
-      duration: 'q',
+      text: "p",
+      duration: "q",
       dots: 0,
       line: 0,
       ...params,
@@ -464,8 +479,8 @@ export class Factory {
 
   Fingering(params: { number?: string; position?: string }): FretHandFinger {
     const p = {
-      number: '0',
-      position: 'left',
+      number: "0",
+      position: "left",
       ...params,
     };
 
@@ -492,7 +507,7 @@ export class Factory {
   }
 
   MultiMeasureRest(params: MultimeasureRestRenderOptions): MultiMeasureRest {
-    const numMeasures = defined(params.number_of_measures, 'NoNumberOfMeasures');
+    const numMeasures = defined(params.number_of_measures, "NoNumberOfMeasures");
     const multiMeasureRest = new MultiMeasureRest(numMeasures, params);
     multiMeasureRest.setContext(this.context);
     this.renderQ.push(multiMeasureRest);
@@ -501,7 +516,7 @@ export class Factory {
 
   Voice(params?: { time?: VoiceTime | string }): Voice {
     const p = {
-      time: '4/4',
+      time: "4/4",
       ...params,
     };
     const voice = new Voice(p.time);
@@ -509,7 +524,11 @@ export class Factory {
     return voice;
   }
 
-  StaveConnector(params: { top_stave: Stave; bottom_stave: Stave; type: StaveConnectorType }): StaveConnector {
+  StaveConnector(params: {
+    top_stave: Stave;
+    bottom_stave: Stave;
+    type: StaveConnectorType;
+  }): StaveConnector {
     const connector = new StaveConnector(params.top_stave, params.bottom_stave);
     connector.setType(params.type).setContext(this.context);
     this.renderQ.push(connector);
@@ -574,7 +593,7 @@ export class Factory {
         first_indices: params.first_indices,
         last_indices: params.last_indices,
       },
-      params.text
+      params.text,
     );
 
     if (params.options?.direction) tie.setDirection(params.options.direction);
@@ -681,7 +700,7 @@ export class Factory {
     const p = {
       notes: [],
       options: {
-        style: 'mixed',
+        style: "mixed",
       },
       ...params,
     };

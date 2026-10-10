@@ -1,21 +1,21 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { BoundingBox } from './boundingbox';
-import type { ElementStyle } from './element';
-import { Glyph } from './glyph';
-import type { NoteStruct } from './note';
-import { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import type { Stave } from './stave';
-import { Stem } from './stem';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { defined, log } from './util';
+import { BoundingBox } from "./boundingbox";
+import type { ElementStyle } from "./element";
+import { Glyph } from "./glyph";
+import type { NoteStruct } from "./note";
+import { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import type { Stave } from "./stave";
+import { Stem } from "./stem";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { defined, log } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (NoteHead.DEBUG) log('Vex.Flow.NoteHead', args);
+  if (NoteHead.DEBUG) log("Vex.Flow.NoteHead", args);
 }
 
 export interface NoteHeadMetrics {
@@ -53,7 +53,7 @@ function drawSlashNoteHead(
   x: number,
   y: number,
   stem_direction: number,
-  staveSpace: number
+  staveSpace: number,
 ) {
   const width = Tables.SLASH_NOTEHEAD_WIDTH;
   ctx.save();
@@ -138,8 +138,8 @@ export class NoteHead extends Note {
     this.glyphProps = Tables.getGlyphProps(this.duration, this.noteType);
     defined(
       this.glyphProps,
-      'BadArguments',
-      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`
+      "BadArguments",
+      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`,
     );
 
     // Swap out the glyph with ledger lines
@@ -166,10 +166,10 @@ export class NoteHead extends Note {
 
     this.setWidth(
       this.custom_glyph &&
-        !this.glyph_code.startsWith('noteheadSlashed') &&
-        !this.glyph_code.startsWith('noteheadCircled')
+        !this.glyph_code.startsWith("noteheadSlashed") &&
+        !this.glyph_code.startsWith("noteheadCircled")
         ? Glyph.getWidth(this.glyph_code, this.render_options.glyph_font_scale)
-        : this.glyphProps.getWidth(this.render_options.glyph_font_scale)
+        : this.glyphProps.getWidth(this.render_options.glyph_font_scale),
     );
   }
   /** Get the width of the notehead. */
@@ -221,13 +221,16 @@ export class NoteHead extends Note {
     // by half the stem width in order to maintain a slight overlap with the stem
     const displacementStemAdjustment = Stem.WIDTH / 2;
     const musicFont = Tables.currentMusicFont();
-    const fontShift = musicFont.lookupMetric('notehead.shiftX', 0) * this.stem_direction;
-    const displacedFontShift = musicFont.lookupMetric('noteHead.displacedShiftX', 0) * this.stem_direction;
+    const fontShift = musicFont.lookupMetric("notehead.shiftX", 0) * this.stem_direction;
+    const displacedFontShift =
+      musicFont.lookupMetric("noteHead.displacedShiftX", 0) * this.stem_direction;
 
     return (
       x +
       fontShift +
-      (this.displaced ? (this.width - displacementStemAdjustment) * this.stem_direction + displacedFontShift : 0)
+      (this.displaced
+        ? (this.width - displacementStemAdjustment) * this.stem_direction + displacedFontShift
+        : 0)
     );
   }
 
@@ -274,7 +277,9 @@ export class NoteHead extends Note {
       head_x +=
         this.stem_direction === Stem.UP
           ? this.stem_up_x_offset +
-            (this.glyphProps.stem ? this.glyphProps.getWidth(this.render_options.glyph_font_scale) - this.width : 0)
+            (this.glyphProps.stem
+              ? this.glyphProps.getWidth(this.render_options.glyph_font_scale) - this.width
+              : 0)
           : this.stem_down_x_offset;
     }
 
@@ -286,8 +291,8 @@ export class NoteHead extends Note {
     const stem_direction = this.stem_direction;
     const glyph_font_scale = this.render_options.glyph_font_scale;
 
-    const categorySuffix = `${this.glyph_code}Stem${stem_direction === Stem.UP ? 'Up' : 'Down'}`;
-    if (this.noteType === 's') {
+    const categorySuffix = `${this.glyph_code}Stem${stem_direction === Stem.UP ? "Up" : "Down"}`;
+    if (this.noteType === "s") {
       const staveSpace = this.checkStave().getSpacingBetweenLines();
       drawSlashNoteHead(ctx, this.duration, head_x, y, stem_direction, staveSpace);
     } else {

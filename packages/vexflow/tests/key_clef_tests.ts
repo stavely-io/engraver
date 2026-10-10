@@ -4,57 +4,58 @@
 // Clef Key Signature Tests
 //
 
-import { MAJOR_KEYS, MINOR_KEYS, TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Glyph } from '../src/glyph';
-import { KeySignature } from '../src/keysignature';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
+import { Glyph } from "../src/glyph";
+import { KeySignature } from "../src/keysignature";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { MAJOR_KEYS, MINOR_KEYS, TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const ClefKeySignatureTests = {
   Start(): void {
-    QUnit.module('Clef Keys');
+    QUnit.module("Clef Keys");
     // Removed an identical 'Key Parser Test'. See keysignature_tests.ts.
     const run = VexFlowTests.runTests;
-    run('Major Key Clef Test', keys, { majorKeys: true });
-    run('Minor Key Clef Test', keys, { majorKeys: false });
-    run('Stave Helper', staveHelper);
+    run("Major Key Clef Test", keys, { majorKeys: true });
+    run("Minor Key Clef Test", keys, { majorKeys: false });
+    run("Stave Helper", staveHelper);
   },
 };
 
 const fontWidths = () => {
   const glyphScale = 39; // default font scale
-  const sharpWidth = Glyph.getWidth('accidentalSharp', glyphScale) + 1;
-  const flatWidth = Glyph.getWidth('accidentalFlat', glyphScale) + 1;
+  const sharpWidth = Glyph.getWidth("accidentalSharp", glyphScale) + 1;
+  const flatWidth = Glyph.getWidth("accidentalFlat", glyphScale) + 1;
   const ksPadding = 10; // hard-coded in keysignature.ts
-  const naturalWidth = Glyph.getWidth('accidentalNatural', glyphScale) + 2;
-  const clefWidth = Glyph.getWidth('gClef', glyphScale); // widest clef
+  const naturalWidth = Glyph.getWidth("accidentalNatural", glyphScale) + 2;
+  const clefWidth = Glyph.getWidth("gClef", glyphScale); // widest clef
   return { sharpWidth, flatWidth, naturalWidth, clefWidth, ksPadding };
 };
 
 function keys(options: TestOptions, contextBuilder: ContextBuilder): void {
   const w = fontWidths();
   const accidentalCount = 28; // total number in all the keys
-  const sharpTestWidth = accidentalCount * w.sharpWidth + w.clefWidth + Stave.defaultPadding + 6 * w.ksPadding;
-  const flatTestWidth = accidentalCount * w.flatWidth + w.clefWidth + Stave.defaultPadding + 6 * w.ksPadding;
+  const sharpTestWidth =
+    accidentalCount * w.sharpWidth + w.clefWidth + Stave.defaultPadding + 6 * w.ksPadding;
+  const flatTestWidth =
+    accidentalCount * w.flatWidth + w.clefWidth + Stave.defaultPadding + 6 * w.ksPadding;
   const clefs = [
-    'treble',
-    'soprano',
-    'mezzo-soprano',
-    'alto',
-    'tenor',
-    'baritone-f',
-    'baritone-c',
-    'bass',
-    'french',
-    'subbass',
-    'percussion',
+    "treble",
+    "soprano",
+    "mezzo-soprano",
+    "alto",
+    "tenor",
+    "baritone-f",
+    "baritone-c",
+    "bass",
+    "french",
+    "subbass",
+    "percussion",
   ];
 
   const ctx = contextBuilder(
     options.elementId,
     Math.max(sharpTestWidth, flatTestWidth) + 100,
-    20 + 80 * 2 * clefs.length
+    20 + 80 * 2 * clefs.length,
   );
   const staves = [];
   const keys = options.params.majorKeys ? MAJOR_KEYS : MINOR_KEYS;
@@ -91,14 +92,16 @@ function keys(options: TestOptions, contextBuilder: ContextBuilder): void {
     staves[i + clefs.length].setContext(ctx);
     staves[i + clefs.length].draw();
   }
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void {
   const w = fontWidths();
   const accidentalCount = 28; // total number in all the keys
-  const sharpTestWidth = accidentalCount * w.sharpWidth + w.clefWidth + Stave.defaultPadding + 7 * w.ksPadding;
-  const flatTestWidth = accidentalCount * w.flatWidth + w.clefWidth + Stave.defaultPadding + 7 * w.ksPadding;
+  const sharpTestWidth =
+    accidentalCount * w.sharpWidth + w.clefWidth + Stave.defaultPadding + 7 * w.ksPadding;
+  const flatTestWidth =
+    accidentalCount * w.flatWidth + w.clefWidth + Stave.defaultPadding + 7 * w.ksPadding;
 
   const ctx = contextBuilder(options.elementId, Math.max(sharpTestWidth, flatTestWidth) + 100, 400);
   const stave1 = new Stave(10, 10, flatTestWidth);
@@ -107,10 +110,10 @@ function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void
   const stave4 = new Stave(10, 260, sharpTestWidth);
   const keys = MAJOR_KEYS;
 
-  stave1.addClef('treble');
-  stave2.addClef('bass');
-  stave3.addClef('alto');
-  stave4.addClef('tenor');
+  stave1.addClef("treble");
+  stave2.addClef("bass");
+  stave3.addClef("alto");
+  stave4.addClef("tenor");
 
   for (let n = 0; n < 8; ++n) {
     stave1.addKeySignature(keys[n]);
@@ -131,7 +134,7 @@ function staveHelper(options: TestOptions, contextBuilder: ContextBuilder): void
   stave4.setContext(ctx);
   stave4.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 VexFlowTests.register(ClefKeySignatureTests);

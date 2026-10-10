@@ -1,27 +1,27 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { Bounds } from './boundingbox';
-import { BoundingBox } from './boundingbox';
-import { Clef } from './clef';
-import type { ElementStyle } from './element';
-import { Element } from './element';
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { KeySignature } from './keysignature';
-import { Barline, BarlineType } from './stavebarline';
-import type { StaveModifier} from './stavemodifier';
-import { StaveModifierPosition } from './stavemodifier';
-import { Repetition } from './staverepetition';
-import { StaveSection } from './stavesection';
-import type { StaveTempoOptions } from './stavetempo';
-import { StaveTempo } from './stavetempo';
-import { StaveText } from './stavetext';
-import { Volta } from './stavevolta';
-import { Tables } from './tables';
-import { TimeSignature } from './timesignature';
-import { Category, isBarline } from './typeguard';
-import { RuntimeError } from './util';
+import type { Bounds } from "./boundingbox";
+import { BoundingBox } from "./boundingbox";
+import { Clef } from "./clef";
+import type { ElementStyle } from "./element";
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { KeySignature } from "./keysignature";
+import { Barline, BarlineType } from "./stavebarline";
+import type { StaveModifier } from "./stavemodifier";
+import { StaveModifierPosition } from "./stavemodifier";
+import { Repetition } from "./staverepetition";
+import { StaveSection } from "./stavesection";
+import type { StaveTempoOptions } from "./stavetempo";
+import { StaveTempo } from "./stavetempo";
+import { StaveText } from "./stavetext";
+import { Volta } from "./stavevolta";
+import { Tables } from "./tables";
+import { TimeSignature } from "./timesignature";
+import { Category, isBarline } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export interface StaveLineConfig {
   visible?: boolean;
@@ -94,13 +94,13 @@ export class Stave extends Element {
   // drawing. Used to size staves correctly with content width.
   static get defaultPadding(): number {
     const musicFont = Tables.currentMusicFont();
-    return musicFont.lookupMetric('stave.padding') + musicFont.lookupMetric('stave.endPaddingMax');
+    return musicFont.lookupMetric("stave.padding") + musicFont.lookupMetric("stave.endPaddingMax");
   }
 
   // Right padding, used by system if startX is already determined.
   static get rightPadding(): number {
     const musicFont = Tables.currentMusicFont();
-    return musicFont.lookupMetric('stave.endPaddingMax');
+    return musicFont.lookupMetric("stave.endPaddingMax");
   }
 
   constructor(x: number, y: number, width: number, options?: StaveOptions) {
@@ -114,14 +114,14 @@ export class Stave extends Element {
     this.end_x = x + width;
     this.modifiers = []; // stave modifiers (clef, key, time, barlines, coda, segno, etc.)
     this.measure = 0;
-    this.clef = 'treble';
+    this.clef = "treble";
     this.endClef = undefined;
     this.resetFont();
 
     this.options = {
       vertical_bar_width: 10, // Width around vertical bar end-marker
       num_lines: 5,
-      fill_style: '#999999',
+      fill_style: "#999999",
       left_bar: true, // draw vertical bar on left
       right_bar: true, // draw vertical bar on right
       spacing_between_lines_px: Tables.STAVE_LINE_DISTANCE, // in pixels
@@ -133,14 +133,16 @@ export class Stave extends Element {
       ...options,
     };
     this.bounds = { x: this.x, y: this.y, w: this.width, h: 0 };
-    this.defaultLedgerLineStyle = { strokeStyle: '#444', lineWidth: 1.4 };
+    this.defaultLedgerLineStyle = { strokeStyle: "#444", lineWidth: 1.4 };
 
     this.resetLines();
 
     // beg bar
     this.addModifier(new Barline(this.options.left_bar ? BarlineType.SINGLE : BarlineType.NONE));
     // end bar
-    this.addEndModifier(new Barline(this.options.right_bar ? BarlineType.SINGLE : BarlineType.NONE));
+    this.addEndModifier(
+      new Barline(this.options.right_bar ? BarlineType.SINGLE : BarlineType.NONE),
+    );
   }
 
   /** Set default style for ledger lines. */
@@ -162,7 +164,9 @@ export class Stave extends Element {
     for (let i = 0; i < this.options.num_lines; i++) {
       this.options.line_config.push({ visible: true });
     }
-    this.height = (this.options.num_lines + this.options.space_above_staff_ln) * this.options.spacing_between_lines_px;
+    this.height =
+      (this.options.num_lines + this.options.space_above_staff_ln) *
+      this.options.spacing_between_lines_px;
     this.options.bottom_text_position = this.options.num_lines;
   }
 
@@ -282,8 +286,8 @@ export class Stave extends Element {
    * @return {Number}       The amount of pixels shifted
    */
   getModifierXShift(index: number = 0): number {
-    if (typeof index !== 'number') {
-      throw new RuntimeError('InvalidIndex', 'Must be of number type');
+    if (typeof index !== "number") {
+      throw new RuntimeError("InvalidIndex", "Must be of number type");
     }
 
     if (!this.formatted) this.format();
@@ -340,7 +344,7 @@ export class Stave extends Element {
       shift_x?: number;
       shift_y?: number;
       justification?: number;
-    } = {}
+    } = {},
   ): this {
     this.modifiers.push(new StaveText(text, position, options));
     return this;
@@ -361,7 +365,8 @@ export class Stave extends Element {
   getBottomY(): number {
     const options = this.options;
     const spacing = options.spacing_between_lines_px;
-    const score_bottom = this.getYForLine(options.num_lines) + options.space_below_staff_ln * spacing;
+    const score_bottom =
+      this.getYForLine(options.num_lines) + options.space_below_staff_ln * spacing;
 
     return score_bottom;
   }
@@ -600,7 +605,7 @@ export class Stave extends Element {
 
   // Deprecated
   addTrebleGlyph(): this {
-    this.addClef('treble');
+    this.addClef("treble");
     return this;
   }
 
@@ -622,7 +627,9 @@ export class Stave extends Element {
       return this.modifiers.filter((m: StaveModifier) => position === m.getPosition());
     } else {
       // Both position and category were provided!
-      return this.modifiers.filter((m: StaveModifier) => position === m.getPosition() && category === m.getCategory());
+      return this.modifiers.filter(
+        (m: StaveModifier) => position === m.getPosition() && category === m.getCategory(),
+      );
     }
   }
 
@@ -741,7 +748,7 @@ export class Stave extends Element {
     this.setRendered();
 
     this.applyStyle();
-    ctx.openGroup('stave', this.getAttribute('id'));
+    ctx.openGroup("stave", this.getAttribute("id"));
     if (!this.formatted) this.format();
 
     const num_lines = this.options.num_lines;
@@ -768,7 +775,7 @@ export class Stave extends Element {
     for (let i = 0; i < this.modifiers.length; i++) {
       const modifier = this.modifiers[i];
       // Only draw modifier if it has a draw function
-      if (typeof modifier.draw === 'function') {
+      if (typeof modifier.draw === "function") {
         modifier.applyStyle(ctx);
         modifier.draw(this, this.getModifierXShift(i));
         modifier.restoreStyle(ctx);
@@ -779,9 +786,9 @@ export class Stave extends Element {
     if (this.measure > 0) {
       ctx.save();
       ctx.setFont(this.textFont);
-      const textWidth = ctx.measureText('' + this.measure).width;
+      const textWidth = ctx.measureText("" + this.measure).width;
       y = this.getYForTopText(0) + 3;
-      ctx.fillText('' + this.measure, this.x - textWidth / 2, y);
+      ctx.fillText("" + this.measure, this.x - textWidth / 2, y);
       ctx.restore();
     }
     return this;
@@ -809,19 +816,22 @@ export class Stave extends Element {
   setConfigForLine(line_number: number, line_config: StaveLineConfig): this {
     if (line_number >= this.options.num_lines || line_number < 0) {
       throw new RuntimeError(
-        'StaveConfigError',
-        'The line number must be within the range of the number of lines in the Stave.'
+        "StaveConfigError",
+        "The line number must be within the range of the number of lines in the Stave.",
       );
     }
 
     if (line_config.visible === undefined) {
-      throw new RuntimeError('StaveConfigError', "The line configuration object is missing the 'visible' property.");
+      throw new RuntimeError(
+        "StaveConfigError",
+        "The line configuration object is missing the 'visible' property.",
+      );
     }
 
-    if (typeof line_config.visible !== 'boolean') {
+    if (typeof line_config.visible !== "boolean") {
       throw new RuntimeError(
-        'StaveConfigError',
-        "The line configuration objects 'visible' property must be true or false."
+        "StaveConfigError",
+        "The line configuration objects 'visible' property must be true or false.",
       );
     }
 
@@ -842,8 +852,8 @@ export class Stave extends Element {
   setConfigForLines(lines_configuration: StaveLineConfig[]): this {
     if (lines_configuration.length !== this.options.num_lines) {
       throw new RuntimeError(
-        'StaveConfigError',
-        'The length of the lines configuration array must match the number of lines in the Stave'
+        "StaveConfigError",
+        "The length of the lines configuration array must match the number of lines in the Stave",
       );
     }
 
@@ -873,7 +883,8 @@ export class Stave extends Element {
       staves.forEach((stave) => {
         const modifiers = stave.getModifiers(StaveModifierPosition.BEGIN, category);
         // Consider only the first instance
-        if (modifiers.length > 0 && modifiers[0].getX() > minStartX) minStartX = modifiers[0].getX();
+        if (modifiers.length > 0 && modifiers[0].getX() > minStartX)
+          minStartX = modifiers[0].getX();
       });
       let adjustX = 0;
       staves.forEach((stave) => {

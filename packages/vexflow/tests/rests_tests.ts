@@ -3,32 +3,31 @@
 //
 // Rests Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Beam } from '../src/beam';
-import { Dot } from '../src/dot';
-import { Flow } from '../src/flow';
-import { Formatter } from '../src/formatter';
-import { RenderContext } from '../src/rendercontext';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
-import { StaveNote, StaveNoteStruct } from '../src/stavenote';
-import { Tuplet } from '../src/tuplet';
-import { Voice } from '../src/voice';
+import { Beam } from "../src/beam";
+import { Dot } from "../src/dot";
+import { Flow } from "../src/flow";
+import { Formatter } from "../src/formatter";
+import { RenderContext } from "../src/rendercontext";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { StaveNote, StaveNoteStruct } from "../src/stavenote";
+import { Tuplet } from "../src/tuplet";
+import { Voice } from "../src/voice";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const RestsTests = {
   Start(): void {
-    QUnit.module('Rests');
+    QUnit.module("Rests");
     const run = VexFlowTests.runTests;
-    run('Outside Stave', ledgerRest);
-    run('Dotted', basic);
-    run('Auto Align - Beamed Notes Stems Up', beamsUp);
-    run('Auto Align - Beamed Notes Stems Down', beamsDown);
-    run('Auto Align - Tuplets Stems Up', tupletsUp);
-    run('Auto Align - Tuplets Stems Down', tupletsDown);
-    run('Auto Align - Single Voice (Default)', singleVoiceDefaultAlignment);
-    run('Auto Align - Single Voice (Align All)', singleVoiceAlignAll);
-    run('Auto Align - Multi Voice', multiVoice);
+    run("Outside Stave", ledgerRest);
+    run("Dotted", basic);
+    run("Auto Align - Beamed Notes Stems Up", beamsUp);
+    run("Auto Align - Beamed Notes Stems Down", beamsDown);
+    run("Auto Align - Tuplets Stems Up", tupletsUp);
+    run("Auto Align - Tuplets Stems Down", tupletsDown);
+    run("Auto Align - Single Voice (Default)", singleVoiceDefaultAlignment);
+    run("Auto Align - Single Voice (Align All)", singleVoiceAlignAll);
+    run("Auto Align - Multi Voice", multiVoice);
   },
 };
 
@@ -45,15 +44,19 @@ function setupContext(
   options: TestOptions,
   contextBuilder: ContextBuilder,
   width: number = 350,
-  height: number = 150
+  height: number = 150,
 ): { context: RenderContext; stave: Stave } {
   // context is SVGContext or CanvasRenderingContext2D (native) or CanvasContext (only if Renderer.USE_CANVAS_PROXY is true).
   const context = contextBuilder(options.elementId, width, height);
   context.scale(0.9, 0.9);
 
-  context.font = '10pt Arial';
+  context.font = "10pt Arial";
 
-  const stave = new Stave(10, 30, width).addClef('treble').addTimeSignature('4/4').setContext(context).draw();
+  const stave = new Stave(10, 30, width)
+    .addClef("treble")
+    .addTimeSignature("4/4")
+    .setContext(context)
+    .draw();
 
   return { context, stave };
 }
@@ -66,22 +69,22 @@ function basic(options: TestOptions, contextBuilder: ContextBuilder): void {
   const { context, stave } = setupContext(options, contextBuilder, 700);
 
   const notes = [
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '1/2r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: 'wr' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: 'hr' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '4r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '8r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '16r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '32r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '64r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '128r' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: '256r' }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "1/2r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "wr" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "hr" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "4r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "8r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "16r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "32r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "64r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "128r" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "256r" }),
   ];
   Dot.buildAndAttach(notes, { all: true });
 
   Formatter.FormatAndDraw(context, stave, notes);
 
-  options.assert.ok(true, 'Dotted Rest Test');
+  options.assert.ok(true, "Dotted Rest Test");
 }
 
 /**
@@ -91,16 +94,16 @@ function ledgerRest(options: TestOptions, contextBuilder: ContextBuilder): void 
   const { context, stave } = setupContext(options, contextBuilder, 700);
 
   const notes = [
-    new StaveNote({ keys: ['a/5'], stem_direction: 1, duration: 'wr' }),
-    new StaveNote({ keys: ['c/6'], stem_direction: 1, duration: 'hr' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: 'hr' }),
-    new StaveNote({ keys: ['a/3'], stem_direction: 1, duration: 'wr' }),
-    new StaveNote({ keys: ['f/3'], stem_direction: 1, duration: 'hr' }),
-    new StaveNote({ keys: ['b/4'], stem_direction: 1, duration: 'wr' }),
+    new StaveNote({ keys: ["a/5"], stem_direction: 1, duration: "wr" }),
+    new StaveNote({ keys: ["c/6"], stem_direction: 1, duration: "hr" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "hr" }),
+    new StaveNote({ keys: ["a/3"], stem_direction: 1, duration: "wr" }),
+    new StaveNote({ keys: ["f/3"], stem_direction: 1, duration: "hr" }),
+    new StaveNote({ keys: ["b/4"], stem_direction: 1, duration: "wr" }),
   ];
   Formatter.FormatAndDraw(context, stave, notes);
 
-  options.assert.ok(true, 'Leger/Ledger Rest Test');
+  options.assert.ok(true, "Leger/Ledger Rest Test");
 }
 
 // Optional: Use a helper function to make your code more concise.
@@ -113,20 +116,20 @@ function beamsUp(options: TestOptions, contextBuilder: ContextBuilder): void {
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['e/5'], stem_direction: 1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '8r' }),
-    note({ keys: ['b/5'], stem_direction: 1, duration: '8' }),
-    note({ keys: ['c/5'], stem_direction: 1, duration: '8' }),
+    note({ keys: ["e/5"], stem_direction: 1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "8r" }),
+    note({ keys: ["b/5"], stem_direction: 1, duration: "8" }),
+    note({ keys: ["c/5"], stem_direction: 1, duration: "8" }),
 
-    note({ keys: ['b/4', 'd/5', 'a/5'], stem_direction: 1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '8r' }),
-    note({ keys: ['c/4'], stem_direction: 1, duration: '8' }),
+    note({ keys: ["b/4", "d/5", "a/5"], stem_direction: 1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "8r" }),
+    note({ keys: ["c/4"], stem_direction: 1, duration: "8" }),
 
-    note({ keys: ['b/4', 'd/5', 'a/5'], stem_direction: 1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '8r' }),
-    note({ keys: ['c/4'], stem_direction: 1, duration: '8' }),
+    note({ keys: ["b/4", "d/5", "a/5"], stem_direction: 1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "8r" }),
+    note({ keys: ["c/4"], stem_direction: 1, duration: "8" }),
   ];
 
   const beam1 = new Beam(notes.slice(0, 4));
@@ -139,7 +142,7 @@ function beamsUp(options: TestOptions, contextBuilder: ContextBuilder): void {
   beam2.setContext(context).draw();
   beam3.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Beams Up Test');
+  options.assert.ok(true, "Auto Align Rests - Beams Up Test");
 }
 
 /**
@@ -149,20 +152,20 @@ function beamsDown(options: TestOptions, contextBuilder: ContextBuilder): void {
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['c/5'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["c/5"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['b/4', 'd/5', 'a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['e/4'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["b/4", "d/5", "a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["e/4"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['b/4', 'd/5', 'a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['e/4'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["b/4", "d/5", "a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["e/4"], stem_direction: -1, duration: "8" }),
   ];
 
   const beam1 = new Beam(notes.slice(0, 4));
@@ -175,7 +178,7 @@ function beamsDown(options: TestOptions, contextBuilder: ContextBuilder): void {
   beam2.setContext(context).draw();
   beam3.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Beams Down Test');
+  options.assert.ok(true, "Auto Align Rests - Beams Down Test");
 }
 
 /**
@@ -186,21 +189,21 @@ function tupletsUp(options: TestOptions, contextBuilder: ContextBuilder): void {
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4r' }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4r" }),
 
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['g/5'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['b/5'], stem_direction: 1, duration: '4' }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["g/5"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["b/5"], stem_direction: 1, duration: "4" }),
 
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['g/5'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4' }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["g/5"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4" }),
 
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4r' }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4r" }),
   ];
 
   const tuplet1 = new Tuplet(notes.slice(0, 3)).setTupletLocation(Tuplet.LOCATION_TOP);
@@ -215,7 +218,7 @@ function tupletsUp(options: TestOptions, contextBuilder: ContextBuilder): void {
   tuplet3.setContext(context).draw();
   tuplet4.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Tuplets Stem Up Test');
+  options.assert.ok(true, "Auto Align Rests - Tuplets Stem Up Test");
 }
 
 /**
@@ -226,21 +229,21 @@ function tupletsDown(options: TestOptions, contextBuilder: ContextBuilder): void
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/5'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/5"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
   ];
 
   const beam1 = new Beam(notes.slice(0, 3));
@@ -265,7 +268,7 @@ function tupletsDown(options: TestOptions, contextBuilder: ContextBuilder): void
   beam3.setContext(context).draw();
   beam4.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Tuplets Stem Down Test');
+  options.assert.ok(true, "Auto Align Rests - Tuplets Stem Down Test");
 }
 
 /**
@@ -277,25 +280,25 @@ function singleVoiceDefaultAlignment(options: TestOptions, contextBuilder: Conte
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['f/4'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['e/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["f/4"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["e/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
 
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['e/5'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["e/5"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['b/5'], stem_direction: 1, duration: '4' }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["b/5"], stem_direction: 1, duration: "4" }),
 
-    note({ keys: ['d/5'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
+    note({ keys: ["d/5"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
   ];
 
   const beam = new Beam(notes.slice(5, 9));
@@ -306,7 +309,7 @@ function singleVoiceDefaultAlignment(options: TestOptions, contextBuilder: Conte
   tuplet.setContext(context).draw();
   beam.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Default Test');
+  options.assert.ok(true, "Auto Align Rests - Default Test");
 }
 
 /**
@@ -317,25 +320,25 @@ function singleVoiceAlignAll(options: TestOptions, contextBuilder: ContextBuilde
   const { context, stave } = setupContext(options, contextBuilder, 600, 160);
 
   const notes = [
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['f/4'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['e/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["f/4"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["e/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
 
-    note({ keys: ['a/5'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '8' }),
-    note({ keys: ['e/5'], stem_direction: -1, duration: '8' }),
+    note({ keys: ["a/5"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "8" }),
+    note({ keys: ["e/5"], stem_direction: -1, duration: "8" }),
 
-    note({ keys: ['a/5'], stem_direction: 1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: 1, duration: '4r' }),
-    note({ keys: ['b/5'], stem_direction: 1, duration: '4' }),
+    note({ keys: ["a/5"], stem_direction: 1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: 1, duration: "4r" }),
+    note({ keys: ["b/5"], stem_direction: 1, duration: "4" }),
 
-    note({ keys: ['d/5'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['g/5'], stem_direction: -1, duration: '4' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
-    note({ keys: ['b/4'], stem_direction: -1, duration: '4r' }),
+    note({ keys: ["d/5"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["g/5"], stem_direction: -1, duration: "4" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
+    note({ keys: ["b/4"], stem_direction: -1, duration: "4r" }),
   ];
 
   const beam = new Beam(notes.slice(5, 9));
@@ -347,7 +350,7 @@ function singleVoiceAlignAll(options: TestOptions, contextBuilder: ContextBuilde
   tuplet.setContext(context).draw();
   beam.setContext(context).draw();
 
-  options.assert.ok(true, 'Auto Align Rests - Align All Test');
+  options.assert.ok(true, "Auto Align Rests - Align All Test");
 }
 
 /**
@@ -357,33 +360,39 @@ function singleVoiceAlignAll(options: TestOptions, contextBuilder: ContextBuilde
  */
 function multiVoice(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 600, 200);
-  const stave = new Stave(50, 10, 500).addClef('treble').setContext(ctx).addTimeSignature('4/4').draw();
+  const stave = new Stave(50, 10, 500)
+    .addClef("treble")
+    .setContext(ctx)
+    .addTimeSignature("4/4")
+    .draw();
 
   const noteOnStave = (noteStruct: StaveNoteStruct) => new StaveNote(noteStruct).setStave(stave);
 
   const notes1 = [
-    noteOnStave({ keys: ['c/4', 'e/4', 'g/4'], duration: '4' }),
-    noteOnStave({ keys: ['b/4'], duration: '4r' }),
-    noteOnStave({ keys: ['c/4', 'd/4', 'a/4'], duration: '4' }),
-    noteOnStave({ keys: ['b/4'], duration: '4r' }),
+    noteOnStave({ keys: ["c/4", "e/4", "g/4"], duration: "4" }),
+    noteOnStave({ keys: ["b/4"], duration: "4r" }),
+    noteOnStave({ keys: ["c/4", "d/4", "a/4"], duration: "4" }),
+    noteOnStave({ keys: ["b/4"], duration: "4r" }),
   ];
 
   const notes2 = [
-    noteOnStave({ keys: ['e/3'], stem_direction: -1, duration: '8' }),
-    noteOnStave({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    noteOnStave({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    noteOnStave({ keys: ['e/3'], stem_direction: -1, duration: '8' }),
-    noteOnStave({ keys: ['e/3'], stem_direction: -1, duration: '8' }),
-    noteOnStave({ keys: ['b/4'], stem_direction: -1, duration: '8r' }),
-    noteOnStave({ keys: ['e/3'], stem_direction: -1, duration: '8' }),
-    noteOnStave({ keys: ['e/3'], stem_direction: -1, duration: '8' }),
+    noteOnStave({ keys: ["e/3"], stem_direction: -1, duration: "8" }),
+    noteOnStave({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    noteOnStave({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    noteOnStave({ keys: ["e/3"], stem_direction: -1, duration: "8" }),
+    noteOnStave({ keys: ["e/3"], stem_direction: -1, duration: "8" }),
+    noteOnStave({ keys: ["b/4"], stem_direction: -1, duration: "8r" }),
+    noteOnStave({ keys: ["e/3"], stem_direction: -1, duration: "8" }),
+    noteOnStave({ keys: ["e/3"], stem_direction: -1, duration: "8" }),
   ];
 
   const voice1 = new Voice(Flow.TIME4_4).addTickables(notes1);
   const voice2 = new Voice(Flow.TIME4_4).addTickables(notes2);
 
   // Set { align_rests: true } to align rests (vertically) with nearby notes in each voice.
-  new Formatter().joinVoices([voice1, voice2]).formatToStave([voice1, voice2], stave, { align_rests: true });
+  new Formatter()
+    .joinVoices([voice1, voice2])
+    .formatToStave([voice1, voice2], stave, { align_rests: true });
 
   const beam2_1 = new Beam(notes2.slice(0, 4));
   const beam2_2 = new Beam(notes2.slice(4, 8));
@@ -395,7 +404,7 @@ function multiVoice(options: TestOptions, contextBuilder: ContextBuilder): void 
   beam2_1.setContext(ctx).draw();
   beam2_2.setContext(ctx).draw();
 
-  options.assert.ok(true, 'Strokes Test Multi Voice');
+  options.assert.ok(true, "Strokes Test Multi Voice");
 }
 
 VexFlowTests.register(RestsTests);

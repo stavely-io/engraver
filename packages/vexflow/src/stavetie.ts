@@ -3,11 +3,11 @@
 // This class implements varies types of ties between contiguous notes. The
 // ties include: regular ties, hammer ons, pull offs, and slides.
 
-import { Element } from './element';
-import type { FontInfo } from './font';
-import type { Note } from './note';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import { Element } from "./element";
+import type { FontInfo } from "./font";
+import type { Note } from "./note";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 // For backwards compatibility with 3.0.9, first_note and/or last_note can be undefined or null.
 // We prefer undefined instead of null.
@@ -85,7 +85,10 @@ export class StaveTie extends Element {
    */
   setNotes(notes: TieNotes): this {
     if (!notes.first_note && !notes.last_note) {
-      throw new RuntimeError('BadArguments', 'Tie needs to have either first_note or last_note set.');
+      throw new RuntimeError(
+        "BadArguments",
+        "Tie needs to have either first_note or last_note set.",
+      );
     }
 
     if (!notes.first_indices) {
@@ -96,7 +99,7 @@ export class StaveTie extends Element {
     }
 
     if (notes.first_indices.length !== notes.last_indices.length) {
-      throw new RuntimeError('BadArguments', 'Tied notes must have same number of indices.');
+      throw new RuntimeError("BadArguments", "Tied notes must have same number of indices.");
     }
 
     this.notes = notes;
@@ -118,7 +121,7 @@ export class StaveTie extends Element {
     first_ys: number[];
   }): void {
     if (params.first_ys.length === 0 || params.last_ys.length === 0) {
-      throw new RuntimeError('BadArguments', 'No Y-values to render');
+      throw new RuntimeError("BadArguments", "No Y-values to render");
     }
 
     const ctx = this.checkContext();
@@ -141,14 +144,14 @@ export class StaveTie extends Element {
     // eslint-disable-next-line
     const last_indices = this.notes.last_indices!;
     this.applyStyle();
-    ctx.openGroup('stavetie', this.getAttribute('id'));
+    ctx.openGroup("stavetie", this.getAttribute("id"));
     for (let i = 0; i < first_indices.length; ++i) {
       const cp_x = (params.last_x_px + last_x_shift + (params.first_x_px + first_x_shift)) / 2;
       const first_y_px = params.first_ys[first_indices[i]] + y_shift;
       const last_y_px = params.last_ys[last_indices[i]] + y_shift;
 
       if (isNaN(first_y_px) || isNaN(last_y_px)) {
-        throw new RuntimeError('BadArguments', 'Bad indices for tie rendering.');
+        throw new RuntimeError("BadArguments", "Bad indices for tie rendering.");
       }
 
       const top_cp_y = (first_y_px + last_y_px) / 2 + cp1 * params.direction;
@@ -174,7 +177,11 @@ export class StaveTie extends Element {
     if (stave) {
       ctx.save();
       ctx.setFont(this.textFont);
-      ctx.fillText(this.text, center_x + this.render_options.text_shift_x, stave.getYForTopText() - 1);
+      ctx.fillText(
+        this.text,
+        center_x + this.render_options.text_shift_x,
+        stave.getYForTopText() - 1,
+      );
       ctx.restore();
     }
   }

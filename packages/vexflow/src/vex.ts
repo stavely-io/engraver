@@ -2,8 +2,8 @@
 //
 // Utility methods used by the rest of the VexFlow codebase.
 
-import { Flow } from './flow';
-import { log, RuntimeError } from './util';
+import { Flow } from "./flow";
+import { log, RuntimeError } from "./util";
 
 export class Vex {
   static Flow = Flow;
@@ -52,15 +52,18 @@ export class Vex {
   // Get the 2D Canvas context from DOM element `canvas_sel`.
   static getCanvasContext(canvasSelector: string): RenderingContext {
     if (!canvasSelector) {
-      throw new RuntimeError('BadArgument', 'Invalid canvas selector: ' + canvasSelector);
+      throw new RuntimeError("BadArgument", "Invalid canvas selector: " + canvasSelector);
     }
 
     const canvas = document.getElementById(canvasSelector) as HTMLCanvasElement;
     if (!(canvas && canvas.getContext)) {
-      throw new RuntimeError('UnsupportedBrowserError', 'This browser does not support HTML5 Canvas');
+      throw new RuntimeError(
+        "UnsupportedBrowserError",
+        "This browser does not support HTML5 Canvas",
+      );
     }
 
-    return canvas.getContext('2d') as RenderingContext;
+    return canvas.getContext("2d") as RenderingContext;
   }
 
   /** Benchmark. Run function `f` once and report time elapsed shifted by `s` milliseconds. */
@@ -69,7 +72,7 @@ export class Vex {
     const start_time = new Date().getTime();
     f();
     const elapsed = new Date().getTime() - start_time;
-    log(s, elapsed + 'ms');
+    log(s, elapsed + "ms");
   }
 
   // Get stack trace.

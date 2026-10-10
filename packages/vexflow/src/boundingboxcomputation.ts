@@ -55,7 +55,14 @@ export class BoundingBoxComputation {
   }
 
   /** Add quadratic curve to BoundingBox. */
-  addQuadraticCurve(p0x: number, p0y: number, p1x: number, p1y: number, p2x: number, p2y: number): void {
+  addQuadraticCurve(
+    p0x: number,
+    p0y: number,
+    p1x: number,
+    p1y: number,
+    p2x: number,
+    p2y: number,
+  ): void {
     this.addPoint(p0x, p0y);
     this.addPoint(p2x, p2y);
 
@@ -91,7 +98,7 @@ export class BoundingBoxComputation {
     p2x: number,
     p2y: number,
     p3x: number,
-    p3y: number
+    p3y: number,
   ): void {
     // from http://blog.hackers-cafe.net/2009/06/how-to-calculate-bezier-curves-bounding.html
     const p0 = [p0x, p0y];

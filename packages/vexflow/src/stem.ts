@@ -4,15 +4,15 @@
 // This file implements the `Stem` object. Generally this object is handled
 // by its parent `StemmableNote`.
 
-import type { BoundingBox } from './boundingbox';
-import { Element } from './element';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { log, RuntimeError } from './util';
+import type { BoundingBox } from "./boundingbox";
+import { Element } from "./element";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { log, RuntimeError } from "./util";
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Stem.DEBUG) log('Vex.Flow.Stem', args);
+  if (Stem.DEBUG) log("Vex.Flow.Stem", args);
 }
 
 export interface StemOptions {
@@ -136,13 +136,15 @@ export class Stem extends Element {
 
   // Gets the entire height for the stem
   getHeight(): number {
-    const y_offset = this.stem_direction === Stem.UP ? this.stem_up_y_offset : this.stem_down_y_offset;
-    const unsigned_height = this.y_bottom - this.y_top + (Stem.HEIGHT - y_offset + this.stem_extension); // parentheses just for grouping.
+    const y_offset =
+      this.stem_direction === Stem.UP ? this.stem_up_y_offset : this.stem_down_y_offset;
+    const unsigned_height =
+      this.y_bottom - this.y_top + (Stem.HEIGHT - y_offset + this.stem_extension); // parentheses just for grouping.
     return unsigned_height * this.stem_direction;
   }
 
   getBoundingBox(): BoundingBox {
-    throw new RuntimeError('NotImplemented', 'getBoundingBox() not implemented.');
+    throw new RuntimeError("NotImplemented", "getBoundingBox() not implemented.");
   }
 
   // Get the y coordinates for the very base of the stem to the top of
@@ -171,7 +173,10 @@ export class Stem extends Element {
   }
 
   adjustHeightForFlag(): void {
-    this.renderHeightAdjustment = Tables.currentMusicFont().lookupMetric('stem.heightAdjustmentForFlag', -3);
+    this.renderHeightAdjustment = Tables.currentMusicFont().lookupMetric(
+      "stem.heightAdjustmentForFlag",
+      -3,
+    );
   }
 
   adjustHeightForBeam(): void {
@@ -203,15 +208,17 @@ export class Stem extends Element {
 
     const stemHeight = this.getHeight();
 
-    L('Rendering stem - ', 'Top Y: ', this.y_top, 'Bottom Y: ', this.y_bottom);
+    L("Rendering stem - ", "Top Y: ", this.y_top, "Bottom Y: ", this.y_bottom);
 
     // The offset from the stem's base which is required fo satisfy the stemlet height
-    const stemletYOffset = this.isStemlet ? stemHeight - this.stemletHeight * this.stem_direction : 0;
+    const stemletYOffset = this.isStemlet
+      ? stemHeight - this.stemletHeight * this.stem_direction
+      : 0;
 
     // Draw the stem
     ctx.save();
     this.applyStyle();
-    ctx.openGroup('stem', this.getAttribute('id'), { pointerBBox: true });
+    ctx.openGroup("stem", this.getAttribute("id"), { pointerBBox: true });
     ctx.beginPath();
     ctx.setLineWidth(Stem.WIDTH);
     ctx.moveTo(stem_x, stem_y - stemletYOffset + y_base_offset);

@@ -1,10 +1,10 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Taehoon Moon 2014
 
-import type { ModifierContext } from './modifiercontext';
-import { Note } from './note';
-import { TimeSignature } from './timesignature';
-import { Category } from './typeguard';
+import type { ModifierContext } from "./modifiercontext";
+import { Note } from "./note";
+import { TimeSignature } from "./timesignature";
+import { Category } from "./typeguard";
 
 export class TimeSigNote extends Note {
   static get CATEGORY(): string {
@@ -14,7 +14,7 @@ export class TimeSigNote extends Note {
   protected timeSig: TimeSignature;
 
   constructor(timeSpec: string, customPadding?: number) {
-    super({ duration: 'b' });
+    super({ duration: "b" });
 
     this.timeSig = new TimeSignature(timeSpec, customPadding);
     this.setWidth(this.timeSig.getGlyph().getMetrics().width);

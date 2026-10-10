@@ -3,19 +3,18 @@
 //
 // TextFormatter Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Font, FontStyle, FontWeight } from '../src/font';
-import { ContextBuilder } from '../src/renderer';
-import { TextFormatter } from '../src/textformatter';
+import { Font, FontStyle, FontWeight } from "../src/font";
+import { ContextBuilder } from "../src/renderer";
+import { TextFormatter } from "../src/textformatter";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const TextFormatterTests = {
   Start(): void {
-    QUnit.module('TextFormatter');
-    QUnit.test('Basic', basic);
+    QUnit.module("TextFormatter");
+    QUnit.test("Basic", basic);
     const run = VexFlowTests.runTextTests;
-    run('Accuracy', accuracy);
-    run('Box Text', textBoxAccuracy);
+    run("Accuracy", accuracy);
+    run("Box Text", textBoxAccuracy);
   },
 };
 
@@ -25,26 +24,37 @@ function basic(assert: Assert): void {
   assert.equal(
     registeredFamilies.length,
     5,
-    `There are five registered font families: 'Roboto Slab' & 'PetalumaScript' and default 'Serif', 'Serif-Bold' and 'Sans'`
+    `There are five registered font families: 'Roboto Slab' & 'PetalumaScript' and default 'Serif', 'Serif-Bold' and 'Sans'`,
   );
 
   // Verify the advanceWidth and other metrics by opening the font file with a glyph inspector:
   // https://fontdrop.info/
   // https://opentype.js.org/glyph-inspector.html
-  const petalumaFormatterInfo = TextFormatter.getInfo('PetalumaScript');
-  assert.equal(petalumaFormatterInfo?.glyphs?.C.advanceWidth, 623, 'PetalumaScript advanceWidth of C character is 623.');
+  const petalumaFormatterInfo = TextFormatter.getInfo("PetalumaScript");
+  assert.equal(
+    petalumaFormatterInfo?.glyphs?.C.advanceWidth,
+    623,
+    "PetalumaScript advanceWidth of C character is 623.",
+  );
 
-  const formatterForPetalumaScript = TextFormatter.create({ family: 'PetalumaScript', size: '100px' });
-  const metricsPetalumaScriptH = formatterForPetalumaScript.getGlyphMetrics('H');
+  const formatterForPetalumaScript = TextFormatter.create({
+    family: "PetalumaScript",
+    size: "100px",
+  });
+  const metricsPetalumaScriptH = formatterForPetalumaScript.getGlyphMetrics("H");
   assert.equal(metricsPetalumaScriptH.leftSideBearing, 37);
 
-  const formatterForRobotoSlab = TextFormatter.create({ family: 'Roboto Slab', size: '100px', style: 'italic' });
-  const metricsRobotoSlabH = formatterForRobotoSlab.getGlyphMetrics('H');
+  const formatterForRobotoSlab = TextFormatter.create({
+    family: "Roboto Slab",
+    size: "100px",
+    style: "italic",
+  });
+  const metricsRobotoSlabH = formatterForRobotoSlab.getGlyphMetrics("H");
   assert.equal(metricsRobotoSlabH.advanceWidth, 1578);
 
   // eslint-disable-next-line
   // @ts-ignore direct access to protected variable .cacheKey
-  assert.equal(formatterForRobotoSlab.cacheKey, 'Roboto_Slab%75%normal%normal');
+  assert.equal(formatterForRobotoSlab.cacheKey, "Roboto_Slab%75%normal%normal");
 }
 function accuracy(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 600, 500);
@@ -58,7 +68,7 @@ function accuracy(options: TestOptions, contextBuilder: ContextBuilder): void {
       style: FontStyle.NORMAL,
     },
     {
-      family: 'Roboto Slab',
+      family: "Roboto Slab",
       size: 14,
       weight: FontWeight.NORMAL,
       style: FontStyle.NORMAL,
@@ -75,20 +85,25 @@ function accuracy(options: TestOptions, contextBuilder: ContextBuilder): void {
     const font = fonts[j];
     const textFormatter = TextFormatter.create(font);
     ctx.setFont(font);
-    const texts = ['AVo(i)a', 'bghjIVex1/2', '@@@@@@@@', 'a very long String with Mixed Case Text,(0123456789)'];
+    const texts = [
+      "AVo(i)a",
+      "bghjIVex1/2",
+      "@@@@@@@@",
+      "a very long String with Mixed Case Text,(0123456789)",
+    ];
     for (let i = 0; i < texts.length; i++) {
-      ctx.setFillStyle('black');
+      ctx.setFillStyle("black");
       ctx.fillText(texts[i], startX, startY);
       startY += 5;
-      ctx.setFillStyle('#3a2');
+      ctx.setFillStyle("#3a2");
       ctx.fillRect(startX, startY, textFormatter.getWidthForTextInPx(texts[i]), 2);
-      ctx.setFillStyle('#32a');
+      ctx.setFillStyle("#32a");
       startY += 5;
       ctx.fillRect(startX, startY, ctx.measureText(texts[i]).width, 2);
       startY += lineHeight;
     }
   }
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): void {
   const ctx = contextBuilder(options.elementId, 600, 800);
@@ -104,7 +119,7 @@ function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): 
       style: FontStyle.NORMAL,
     },
     {
-      family: 'Roboto Slab',
+      family: "Roboto Slab",
       size: 14,
       weight: FontWeight.NORMAL,
       style: FontStyle.NORMAL,
@@ -116,7 +131,7 @@ function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): 
       style: FontStyle.NORMAL,
     },
   ];
-  const texts = ['AVID', 'bghjIVex1/2', '@@@@@@@@'];
+  const texts = ["AVID", "bghjIVex1/2", "@@@@@@@@"];
   for (let j = 0; j < fonts.length; ++j) {
     const font = fonts[j];
     const textFormatter = TextFormatter.create(font);
@@ -127,11 +142,11 @@ function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): 
       const height = textY.height + 2 * boxPadding;
       const headroom = -1 * textY.yMin;
       const width = textFormatter.getWidthForTextInPx(texts[i]) + 2 * boxPadding;
-      ctx.setFillStyle('black');
+      ctx.setFillStyle("black");
       ctx.fillText(texts[i], startX + boxPadding, startY - boxPadding);
       ctx.setLineWidth(boxBorder);
-      ctx.setStrokeStyle('#3a2');
-      ctx.setFillStyle('#3a2');
+      ctx.setStrokeStyle("#3a2");
+      ctx.setFillStyle("#3a2");
       ctx.beginPath();
       ctx.rect(startX, startY - height + headroom, width, height);
       ctx.stroke();
@@ -139,10 +154,10 @@ function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): 
       const measureBox = ctx.measureText(texts[i]);
       const mwidth = measureBox.width + boxBorder * 2;
       const mheight = measureBox.height + boxBorder * 2;
-      ctx.setFillStyle('black');
+      ctx.setFillStyle("black");
       ctx.fillText(texts[i], startX + boxPadding, startY - boxPadding);
-      ctx.setStrokeStyle('#32a');
-      ctx.setFillStyle('#32a');
+      ctx.setStrokeStyle("#32a");
+      ctx.setFillStyle("#32a");
       ctx.beginPath();
       ctx.rect(startX, startY - mheight, mwidth, mheight);
       ctx.stroke();
@@ -150,7 +165,7 @@ function textBoxAccuracy(options: TestOptions, contextBuilder: ContextBuilder): 
     }
     ctx.restore();
   }
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 VexFlowTests.register(TextFormatterTests);
 export { TextFormatterTests };

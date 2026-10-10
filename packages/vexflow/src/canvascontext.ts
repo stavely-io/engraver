@@ -1,12 +1,12 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { FontInfo } from './font';
-import { Font } from './font';
-import type { GroupAttributes, TextMeasure } from './rendercontext';
-import { RenderContext } from './rendercontext';
-import { globalObject, warn } from './util';
-import { isHTMLCanvas } from './web';
+import type { FontInfo } from "./font";
+import { Font } from "./font";
+import type { GroupAttributes, TextMeasure } from "./rendercontext";
+import { RenderContext } from "./rendercontext";
+import { globalObject, warn } from "./util";
+import { isHTMLCanvas } from "./web";
 
 // https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/offscreencanvas
 // https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/offscreencanvas/index.d.ts
@@ -19,7 +19,8 @@ interface OffscreenCanvas extends EventTarget {
 
 // https://html.spec.whatwg.org/multipage/canvas.html#offscreencanvasrenderingcontext2d
 interface OffscreenCanvasRenderingContext2D
-  extends CanvasState,
+  extends
+    CanvasState,
     CanvasTransform,
     CanvasCompositing,
     CanvasImageSmoothing,
@@ -73,7 +74,7 @@ export class CanvasContext extends RenderContext {
   static sanitizeCanvasDims(width: number, height: number): [number, number] {
     const limit = this.CANVAS_BROWSER_SIZE_LIMIT;
     if (Math.max(width, height) > limit) {
-      warn('Canvas dimensions exceed browser limit. Cropping to ' + limit);
+      warn("Canvas dimensions exceed browser limit. Cropping to " + limit);
       if (width > limit) {
         width = limit;
       }
@@ -188,8 +189,8 @@ export class CanvasContext extends RenderContext {
     // The canvas could be an instance of either HTMLCanvasElement or an OffscreenCanvas.
     // Only HTMLCanvasElement has a style attribute.
     if (isHTMLCanvas(canvas)) {
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
     }
 
     return this.scale(dpr, dpr);
@@ -228,7 +229,14 @@ export class CanvasContext extends RenderContext {
     return this;
   }
 
-  bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): this {
+  bezierCurveTo(
+    cp1x: number,
+    cp1y: number,
+    cp2x: number,
+    cp2y: number,
+    x: number,
+    y: number,
+  ): this {
     this.context2D.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
     return this;
   }
@@ -238,7 +246,14 @@ export class CanvasContext extends RenderContext {
     return this;
   }
 
-  arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise: boolean): this {
+  arc(
+    x: number,
+    y: number,
+    radius: number,
+    startAngle: number,
+    endAngle: number,
+    counterclockwise: boolean,
+  ): this {
     this.context2D.arc(x, y, radius, startAngle, endAngle, counterclockwise);
     return this;
   }
@@ -318,7 +333,12 @@ export class CanvasContext extends RenderContext {
    * @param weight is a string (e.g., 'bold', 'normal') or a number (100, 200, ... 900).
    * @param style is a string (e.g., 'italic', 'normal').
    */
-  setFont(f?: string | FontInfo, size?: string | number, weight?: string | number, style?: string): this {
+  setFont(
+    f?: string | FontInfo,
+    size?: string | number,
+    weight?: string | number,
+    style?: string,
+  ): this {
     const fontInfo = Font.validate(f, size, weight, style);
     this.context2D.font = Font.toCSSString(fontInfo);
     this.textHeight = Font.convertSizeToPixelValue(fontInfo.size);

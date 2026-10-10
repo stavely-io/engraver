@@ -1,14 +1,14 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Glyph } from './glyph';
-import type { NoteStruct } from './note';
-import { Note } from './note';
-import { Tables } from './tables';
-import { Category } from './typeguard';
-import { RuntimeError } from './util';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Glyph } from "./glyph";
+import type { NoteStruct } from "./note";
+import { Note } from "./note";
+import { Tables } from "./tables";
+import { Category } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export enum TextJustification {
   LEFT = 1,
@@ -50,61 +50,61 @@ export class TextNote extends Note {
   static get GLYPHS(): Record<string, { code: string }> {
     return {
       segno: {
-        code: 'segno',
+        code: "segno",
       },
       tr: {
-        code: 'ornamentTrill',
+        code: "ornamentTrill",
       },
       mordent: {
-        code: 'ornamentMordent',
+        code: "ornamentMordent",
       },
       mordent_upper: {
-        code: 'ornamentShortTrill',
+        code: "ornamentShortTrill",
       },
       mordent_lower: {
-        code: 'ornamentMordent',
+        code: "ornamentMordent",
       },
       f: {
-        code: 'dynamicForte',
+        code: "dynamicForte",
       },
       p: {
-        code: 'dynamicPiano',
+        code: "dynamicPiano",
       },
       m: {
-        code: 'dynamicMezzo',
+        code: "dynamicMezzo",
       },
       s: {
-        code: 'dynamicSforzando',
+        code: "dynamicSforzando",
       },
       z: {
-        code: 'dynamicZ',
+        code: "dynamicZ",
       },
       coda: {
-        code: 'coda',
+        code: "coda",
       },
       pedal_open: {
-        code: 'keyboardPedalPed',
+        code: "keyboardPedalPed",
       },
       pedal_close: {
-        code: 'keyboardPedalUp',
+        code: "keyboardPedalUp",
       },
       caesura_straight: {
-        code: 'caesura',
+        code: "caesura",
       },
       caesura_curved: {
-        code: 'caesuraCurved',
+        code: "caesuraCurved",
       },
       breath: {
-        code: 'breathMarkComma',
+        code: "breathMarkComma",
       },
       tick: {
-        code: 'breathMarkTick',
+        code: "breathMarkTick",
       },
       turn: {
-        code: 'ornamentTurn',
+        code: "ornamentTurn",
       },
       turn_inverted: {
-        code: 'ornamentTurnSlash',
+        code: "ornamentTurnSlash",
       },
     };
   }
@@ -120,7 +120,7 @@ export class TextNote extends Note {
   constructor(noteStruct: TextNoteStruct) {
     super(noteStruct);
 
-    this.text = noteStruct.text || '';
+    this.text = noteStruct.text || "";
     this.superscript = noteStruct.superscript;
     this.subscript = noteStruct.subscript;
     this.setFont(noteStruct.font);
@@ -134,9 +134,9 @@ export class TextNote extends Note {
     // measure the length of text is with `CanvasRenderingContext2D.measureText()`.
     if (noteStruct.glyph) {
       const struct = TextNote.GLYPHS[noteStruct.glyph];
-      if (!struct) throw new RuntimeError('Invalid glyph type: ' + noteStruct.glyph);
+      if (!struct) throw new RuntimeError("Invalid glyph type: " + noteStruct.glyph);
 
-      this.glyph = new Glyph(struct.code, Tables.NOTATION_FONT_SCALE, { category: 'textNote' });
+      this.glyph = new Glyph(struct.code, Tables.NOTATION_FONT_SCALE, { category: "textNote" });
       this.setWidth(this.glyph.getMetrics().width);
     } else {
       this.glyph = undefined;

@@ -1,12 +1,12 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { CanvasContext } from './canvascontext';
-import type { RenderContext } from './rendercontext';
-import { SVGContext } from './svgcontext';
-import { isRenderContext } from './typeguard';
-import { RuntimeError } from './util';
-import { isHTMLCanvas, isHTMLDiv } from './web';
+import { CanvasContext } from "./canvascontext";
+import type { RenderContext } from "./rendercontext";
+import { SVGContext } from "./svgcontext";
+import { isRenderContext } from "./typeguard";
+import { RuntimeError } from "./util";
+import { isHTMLCanvas, isHTMLDiv } from "./web";
 
 // A ContextBuilder is either Renderer.getSVGContext or Renderer.getCanvasContext.
 export type ContextBuilder = typeof Renderer.getSVGContext | typeof Renderer.getCanvasContext;
@@ -41,7 +41,7 @@ export class Renderer {
     backend: number,
     width: number,
     height: number,
-    background: string = '#FFF'
+    background: string = "#FFF",
   ): RenderContext {
     const renderer = new Renderer(elementId, backend);
     if (width && height) {
@@ -54,11 +54,21 @@ export class Renderer {
     return ctx;
   }
 
-  static getCanvasContext(elementId: string, width: number, height: number, background?: string): RenderContext {
+  static getCanvasContext(
+    elementId: string,
+    width: number,
+    height: number,
+    background?: string,
+  ): RenderContext {
     return Renderer.buildContext(elementId, Renderer.Backends.CANVAS, width, height, background);
   }
 
-  static getSVGContext(elementId: string, width: number, height: number, background?: string): RenderContext {
+  static getSVGContext(
+    elementId: string,
+    width: number,
+    height: number,
+    background?: string,
+  ): RenderContext {
     return Renderer.buildContext(elementId, Renderer.Backends.SVG, width, height, background);
   }
 
@@ -71,7 +81,7 @@ export class Renderer {
     fromY: number,
     toX: number,
     toY: number,
-    dashPattern: number[]
+    dashPattern: number[],
   ): void {
     context.beginPath();
 
@@ -113,22 +123,26 @@ export class Renderer {
    */
   constructor(context: RenderContext);
   constructor(canvas: string | HTMLCanvasElement | HTMLDivElement, backend: number, id?: string);
-  constructor(arg0: string | HTMLCanvasElement | HTMLDivElement | RenderContext, arg1?: number, id?: string) {
+  constructor(
+    arg0: string | HTMLCanvasElement | HTMLDivElement | RenderContext,
+    arg1?: number,
+    id?: string,
+  ) {
     if (isRenderContext(arg0)) {
       // The user has provided what looks like a RenderContext, let's just use it.
       this.ctx = arg0;
     } else {
       if (arg1 === undefined) {
         // The backend must be specified if the render context isn't directly provided.
-        throw new RuntimeError('InvalidArgument', 'Missing backend argument');
+        throw new RuntimeError("InvalidArgument", "Missing backend argument");
       }
       const backend: number = arg1;
 
       let element: HTMLElement;
-      if (typeof arg0 == 'string') {
+      if (typeof arg0 == "string") {
         const maybeElement = document.getElementById(arg0);
         if (!maybeElement) {
-          throw new RuntimeError('BadElementId', `Can't find element with ID "${maybeElement}"`);
+          throw new RuntimeError("BadElementId", `Can't find element with ID "${maybeElement}"`);
         }
         element = maybeElement;
       } else {
@@ -138,20 +152,20 @@ export class Renderer {
       // Verify backend and create context
       if (backend === Renderer.Backends.CANVAS) {
         if (!isHTMLCanvas(element)) {
-          throw new RuntimeError('BadElement', 'CANVAS context requires an HTMLCanvasElement.');
+          throw new RuntimeError("BadElement", "CANVAS context requires an HTMLCanvasElement.");
         }
-        const context = element.getContext('2d', { willReadFrequently: true });
+        const context = element.getContext("2d", { willReadFrequently: true });
         if (!context) {
-          throw new RuntimeError('BadElement', "Can't get canvas context");
+          throw new RuntimeError("BadElement", "Can't get canvas context");
         }
         this.ctx = new CanvasContext(context);
       } else if (backend === Renderer.Backends.SVG) {
         if (!isHTMLDiv(element)) {
-          throw new RuntimeError('BadElement', 'SVG context requires an HTMLDivElement.');
+          throw new RuntimeError("BadElement", "SVG context requires an HTMLDivElement.");
         }
         this.ctx = new SVGContext(element, id);
       } else {
-        throw new RuntimeError('InvalidBackend', `No support for backend: ${backend}`);
+        throw new RuntimeError("InvalidBackend", `No support for backend: ${backend}`);
       }
     }
   }

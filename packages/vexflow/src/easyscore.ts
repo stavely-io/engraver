@@ -1,27 +1,27 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import type { Accidental } from './accidental';
-import { Articulation } from './articulation';
-import type { PartialBeamDirection } from './beam';
-import { Dot } from './dot';
-import type { Factory } from './factory';
-import { FretHandFinger } from './frethandfinger';
-import { Music } from './music';
-import type { Note } from './note';
-import type { Grammar, Match, Result, Rule, RuleFunction } from './parser';
-import { Parser } from './parser';
-import type { RenderContext } from './rendercontext';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import type { TupletOptions } from './tuplet';
-import { defined, log, RuntimeError } from './util';
-import type { Voice } from './voice';
+import type { Accidental } from "./accidental";
+import { Articulation } from "./articulation";
+import type { PartialBeamDirection } from "./beam";
+import { Dot } from "./dot";
+import type { Factory } from "./factory";
+import { FretHandFinger } from "./frethandfinger";
+import { Music } from "./music";
+import type { Note } from "./note";
+import type { Grammar, Match, Result, Rule, RuleFunction } from "./parser";
+import { Parser } from "./parser";
+import type { RenderContext } from "./rendercontext";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import type { TupletOptions } from "./tuplet";
+import { defined, log, RuntimeError } from "./util";
+import type { Voice } from "./voice";
 
 // To enable logging for this class. Set `Vex.Flow.EasyScore.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]): void {
-  if (EasyScore.DEBUG) log('Vex.Flow.EasyScore', args);
+  if (EasyScore.DEBUG) log("Vex.Flow.EasyScore", args);
 }
 
 // eslint-disable-next-line
@@ -90,7 +90,11 @@ export class EasyScoreGrammar implements Grammar {
       run: (state) => {
         // eslint-disable-next-line
         const s = state!;
-        this.builder.addSingleNote(s.matches[0] as string, s.matches[1] as string, s.matches[2] as string);
+        this.builder.addSingleNote(
+          s.matches[0] as string,
+          s.matches[1] as string,
+          s.matches[2] as string,
+        );
       },
     };
   }
@@ -143,7 +147,11 @@ export class EasyScoreGrammar implements Grammar {
     return {
       expect: [this.KEY, this.EQUALS, this.VAL],
       // eslint-disable-next-line
-      run: (state) => this.builder.addNoteOption(state!.matches[0] as string, unquote(state!.matches[2] as string)),
+      run: (state) =>
+        this.builder.addNoteOption(
+          state!.matches[0] as string,
+          unquote(state!.matches[2] as string),
+        ),
     };
   }
   VAL(): Rule {
@@ -154,7 +162,7 @@ export class EasyScoreGrammar implements Grammar {
   }
 
   KEY(): Rule {
-    return { token: '[a-zA-Z][a-zA-Z0-9]*' };
+    return { token: "[a-zA-Z][a-zA-Z0-9]*" };
   }
   DVAL(): Rule {
     return { token: '["][^"]*["]' };
@@ -163,52 +171,52 @@ export class EasyScoreGrammar implements Grammar {
     return { token: "['][^']*[']" };
   }
   NOTENAME(): Rule {
-    return { token: '[a-gA-G]' };
+    return { token: "[a-gA-G]" };
   }
   OCTAVE(): Rule {
-    return { token: '[0-9]+' };
+    return { token: "[0-9]+" };
   }
   ACCIDENTALS(): Rule {
-    return { token: 'bb|b|##|#|n' };
+    return { token: "bb|b|##|#|n" };
   }
   MICROTONES(): Rule {
-    return { token: 'bbs|bss|bs|db|d|\\+\\+-|\\+-|\\+\\+|\\+|k|o' };
+    return { token: "bbs|bss|bs|db|d|\\+\\+-|\\+-|\\+\\+|\\+|k|o" };
   }
   DURATIONS(): Rule {
-    return { token: '[0-9whq]+' };
+    return { token: "[0-9whq]+" };
   }
   TYPES(): Rule {
-    return { token: '[rRsSmMhHgG]' };
+    return { token: "[rRsSmMhHgG]" };
   }
   LPAREN(): Rule {
-    return { token: '[(]' };
+    return { token: "[(]" };
   }
   RPAREN(): Rule {
-    return { token: '[)]' };
+    return { token: "[)]" };
   }
   COMMA(): Rule {
-    return { token: '[,]' };
+    return { token: "[,]" };
   }
   DOT(): Rule {
-    return { token: '[.]' };
+    return { token: "[.]" };
   }
   SLASH(): Rule {
-    return { token: '[/]' };
+    return { token: "[/]" };
   }
   MAYBESLASH(): Rule {
-    return { token: '[/]?' };
+    return { token: "[/]?" };
   }
   EQUALS(): Rule {
-    return { token: '[=]' };
+    return { token: "[=]" };
   }
   LBRACKET(): Rule {
-    return { token: '\\[' };
+    return { token: "\\[" };
   }
   RBRACKET(): Rule {
-    return { token: '\\]' };
+    return { token: "\\]" };
   }
   EOL(): Rule {
-    return { token: '$' };
+    return { token: "$" };
   }
 }
 
@@ -259,12 +267,12 @@ export class Builder {
 
   reset(options?: BuilderOptions): void {
     this.options = {
-      stem: 'auto',
-      clef: 'treble',
+      stem: "auto",
+      clef: "treble",
       ...options,
     };
     this.elements = { notes: [], accidentals: [] };
-    this.rollingDuration = '8';
+    this.rollingDuration = "8";
     this.resetPiece();
   }
 
@@ -281,32 +289,32 @@ export class Builder {
   }
 
   resetPiece(): void {
-    L('resetPiece');
+    L("resetPiece");
     this.piece = new Piece(this.rollingDuration);
   }
 
   setNoteDots(dots: Match[]): void {
-    L('setNoteDots:', dots);
+    L("setNoteDots:", dots);
     if (dots) this.piece.dots = dots.length;
   }
 
   setNoteDuration(duration?: string): void {
-    L('setNoteDuration:', duration);
+    L("setNoteDuration:", duration);
     this.rollingDuration = this.piece.duration = duration || this.rollingDuration;
   }
 
   setNoteType(type?: string): void {
-    L('setNoteType:', type);
+    L("setNoteType:", type);
     if (type) this.piece.type = type;
   }
 
   addNoteOption(key: string, value: string): void {
-    L('addNoteOption: key:', key, 'value:', value);
+    L("addNoteOption: key:", key, "value:", value);
     this.piece.options[key] = value;
   }
 
   addNote(key?: string, accid?: string | null, octave?: string): void {
-    L('addNote:', key, accid, octave);
+    L("addNote:", key, accid, octave);
     this.piece.chord.push({
       key: key as string,
       accid,
@@ -315,25 +323,25 @@ export class Builder {
   }
 
   addSingleNote(key: string, accid?: string | null, octave?: string): void {
-    L('addSingleNote:', key, accid, octave);
+    L("addSingleNote:", key, accid, octave);
     this.addNote(key, accid, octave);
   }
 
   // notes is an array with 3 entries
   addChord(notes: Match[]): void {
-    L('startChord');
-    if (typeof notes[0] !== 'object') {
+    L("startChord");
+    if (typeof notes[0] !== "object") {
       this.addSingleNote(notes[0]);
     } else {
       notes.forEach((n) => {
         if (n) this.addNote(...(n as string[])); // n => [string, string | null, string]
       });
     }
-    L('endChord');
+    L("endChord");
   }
 
   commitPiece(): void {
-    L('commitPiece');
+    L("commitPiece");
     const { factory } = this;
 
     if (!factory) return;
@@ -342,9 +350,9 @@ export class Builder {
 
     // reset() sets this.options.stem & this.options.clef but we check to make sure nothing has changed.
     // e.g., auto | up | down
-    const stem = defined(options.stem, 'BadArguments', 'options.stem is not defined').toLowerCase();
+    const stem = defined(options.stem, "BadArguments", "options.stem is not defined").toLowerCase();
     // e.g., treble | bass
-    const clef = defined(options.clef, 'BadArguments', 'options.clef is not defined').toLowerCase();
+    const clef = defined(options.clef, "BadArguments", "options.clef is not defined").toLowerCase();
 
     const { chord, duration, dots, type } = this.piece;
 
@@ -355,24 +363,24 @@ export class Builder {
     const keys = chord.map(
       (notePiece) =>
         notePiece.key +
-        (standardAccidentals.includes(notePiece.accid ?? '') ? notePiece.accid : '') +
-        '/' +
-        notePiece.octave
+        (standardAccidentals.includes(notePiece.accid ?? "") ? notePiece.accid : "") +
+        "/" +
+        notePiece.octave,
     );
-    const auto_stem = stem === 'auto'; // StaveNoteStruct expects the underscore & lowercase.
+    const auto_stem = stem === "auto"; // StaveNoteStruct expects the underscore & lowercase.
 
     // Build a GhostNote or StaveNote using the information we gathered.
     const note =
-      type?.toLowerCase() == 'g'
+      type?.toLowerCase() == "g"
         ? factory.GhostNote({ duration, dots })
         : factory.StaveNote({ keys, duration, dots, type, clef, auto_stem });
-    if (!auto_stem) note.setStemDirection(stem === 'up' ? Stem.UP : Stem.DOWN);
+    if (!auto_stem) note.setStemDirection(stem === "up" ? Stem.UP : Stem.DOWN);
 
     // Attach accidentals.
     const accidentals: (Accidental | undefined)[] = [];
     chord.forEach((notePiece: NotePiece, index: number) => {
       const accid = notePiece.accid;
-      if (typeof accid === 'string') {
+      if (typeof accid === "string") {
         const accidental = factory.Accidental({ type: accid });
         note.addModifier(accidental, index);
         accidentals.push(accidental);
@@ -412,7 +420,7 @@ export interface EasyScoreDefaults extends Record<string, any> {
  */
 function setId(options: { id?: string }, note: StemmableNote) {
   if (options.id === undefined) return;
-  note.setAttribute('id', options.id);
+  note.setAttribute("id", options.id);
 }
 
 // Used by setClass() below.
@@ -433,9 +441,9 @@ export class EasyScore {
   static DEBUG: boolean = false;
 
   defaults: EasyScoreDefaults = {
-    clef: 'treble',
-    time: '4/4',
-    stem: 'auto',
+    clef: "treble",
+    time: "4/4",
+    stem: "auto",
   };
 
   // options, factory, builder, grammar, and parser are all
@@ -498,7 +506,7 @@ export class EasyScore {
     const result = this.parser.parse(line);
     if (!result.success && this.options.throwOnError) {
       L(result);
-      throw new RuntimeError('Error parsing line: ' + line);
+      throw new RuntimeError("Error parsing line: " + line);
     }
     return result;
   }
@@ -511,7 +519,7 @@ export class EasyScore {
       partialBeamDirections?: {
         [noteIndex: number]: PartialBeamDirection;
       };
-    }
+    },
   ): StemmableNote[] {
     this.factory.Beam({ notes, options });
     return notes;
@@ -528,7 +536,10 @@ export class EasyScore {
     return this.builder.getElements().notes;
   }
 
-  voice(notes: Note[], options: { time?: string; options?: { softmaxFactor: number } } = {}): Voice {
+  voice(
+    notes: Note[],
+    options: { time?: string; options?: { softmaxFactor: number } } = {},
+  ): Voice {
     options = { time: this.defaults.time, ...options };
     return this.factory.Voice(options).addTickables(notes);
   }

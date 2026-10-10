@@ -5,33 +5,32 @@
 
 // TODO: Should we change StaveConnector.type => StaveConnectorType? We are inconsistent with this.
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Flow } from '../src/flow';
-import { Modifier } from '../src/modifier';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
-import { BarlineType } from '../src/stavebarline';
-import { StaveConnector } from '../src/staveconnector';
+import { Flow } from "../src/flow";
+import { Modifier } from "../src/modifier";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { BarlineType } from "../src/stavebarline";
+import { StaveConnector } from "../src/staveconnector";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const StaveConnectorTests = {
   Start(): void {
-    QUnit.module('StaveConnector');
+    QUnit.module("StaveConnector");
     const run = VexFlowTests.runTests;
-    run('Single Draw Test', drawSingle);
-    run('Single Draw Test, 4px Stave Line Thickness', drawSingle4pxStaveLines);
-    run('Single Both Sides Test', drawSingleBoth);
-    run('Double Draw Test', drawDouble);
-    run('Bold Double Line Left Draw Test', drawRepeatBegin);
-    run('Bold Double Line Right Draw Test', drawRepeatEnd);
-    run('Thin Double Line Right Draw Test', drawThinDouble);
-    run('Bold Double Lines Overlapping Draw Test', drawRepeatAdjacent);
-    run('Bold Double Lines Offset Draw Test', drawRepeatOffset);
-    run('Bold Double Lines Offset Draw Test 2', drawRepeatOffset2);
-    run('Brace Draw Test', drawBrace);
-    run('Brace Wide Draw Test', drawBraceWide);
-    run('Bracket Draw Test', drawBracket);
-    run('Combined Draw Test', drawCombined);
+    run("Single Draw Test", drawSingle);
+    run("Single Draw Test, 4px Stave Line Thickness", drawSingle4pxStaveLines);
+    run("Single Both Sides Test", drawSingleBoth);
+    run("Double Draw Test", drawDouble);
+    run("Bold Double Line Left Draw Test", drawRepeatBegin);
+    run("Bold Double Line Right Draw Test", drawRepeatEnd);
+    run("Thin Double Line Right Draw Test", drawThinDouble);
+    run("Bold Double Lines Overlapping Draw Test", drawRepeatAdjacent);
+    run("Bold Double Lines Offset Draw Test", drawRepeatOffset);
+    run("Bold Double Lines Offset Draw Test 2", drawRepeatOffset2);
+    run("Brace Draw Test", drawBrace);
+    run("Brace Wide Draw Test", drawBraceWide);
+    run("Bracket Draw Test", drawBracket);
+    run("Combined Draw Test", drawCombined);
   },
 };
 
@@ -48,7 +47,7 @@ function drawSingle(options: TestOptions, contextBuilder: ContextBuilder): void 
   stave2.draw();
   connector.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawSingle4pxStaveLines(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -67,7 +66,7 @@ function drawSingle4pxStaveLines(options: TestOptions, contextBuilder: ContextBu
   connector.draw();
   Flow.STAVE_LINE_THICKNESS = oldThickness;
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawSingleBoth(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -87,7 +86,7 @@ function drawSingleBoth(options: TestOptions, contextBuilder: ContextBuilder): v
   connector1.draw();
   connector2.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawDouble(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -108,7 +107,7 @@ function drawDouble(options: TestOptions, contextBuilder: ContextBuilder): void 
   connector.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawBrace(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -121,7 +120,7 @@ function drawBrace(options: TestOptions, contextBuilder: ContextBuilder): void {
   const line = new StaveConnector(stave1, stave2);
   connector.setType(StaveConnector.type.BRACE);
   connector.setContext(ctx);
-  connector.setText('Piano');
+  connector.setText("Piano");
   line.setType(StaveConnector.type.SINGLE);
   connector.setContext(ctx);
   line.setContext(ctx);
@@ -130,7 +129,7 @@ function drawBrace(options: TestOptions, contextBuilder: ContextBuilder): void {
   connector.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawBraceWide(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -151,7 +150,7 @@ function drawBraceWide(options: TestOptions, contextBuilder: ContextBuilder): vo
   connector.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawBracket(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -172,7 +171,7 @@ function drawBracket(options: TestOptions, contextBuilder: ContextBuilder): void
   connector.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawRepeatBegin(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -191,7 +190,7 @@ function drawRepeatBegin(options: TestOptions, contextBuilder: ContextBuilder): 
   stave2.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawRepeatEnd(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -210,7 +209,7 @@ function drawRepeatEnd(options: TestOptions, contextBuilder: ContextBuilder): vo
   stave2.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawThinDouble(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -229,7 +228,7 @@ function drawThinDouble(options: TestOptions, contextBuilder: ContextBuilder): v
   stave2.draw();
   line.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawRepeatAdjacent(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -273,7 +272,7 @@ function drawRepeatAdjacent(options: TestOptions, contextBuilder: ContextBuilder
   connector3.draw();
   connector4.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawRepeatOffset2(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -287,17 +286,17 @@ function drawRepeatOffset2(options: TestOptions, contextBuilder: ContextBuilder)
   stave3.setContext(ctx);
   stave4.setContext(ctx);
 
-  stave1.addClef('treble');
-  stave2.addClef('bass');
+  stave1.addClef("treble");
+  stave2.addClef("bass");
 
-  stave3.addClef('alto');
-  stave4.addClef('treble');
+  stave3.addClef("alto");
+  stave4.addClef("treble");
 
-  stave1.addTimeSignature('4/4');
-  stave2.addTimeSignature('4/4');
+  stave1.addTimeSignature("4/4");
+  stave2.addTimeSignature("4/4");
 
-  stave3.addTimeSignature('6/8');
-  stave4.addTimeSignature('6/8');
+  stave3.addTimeSignature("6/8");
+  stave4.addTimeSignature("6/8");
 
   stave1.setEndBarType(BarlineType.REPEAT_END);
   stave2.setEndBarType(BarlineType.REPEAT_END);
@@ -338,7 +337,7 @@ function drawRepeatOffset2(options: TestOptions, contextBuilder: ContextBuilder)
   connector4.draw();
   connector5.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawRepeatOffset(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -352,20 +351,20 @@ function drawRepeatOffset(options: TestOptions, contextBuilder: ContextBuilder):
   stave3.setContext(ctx);
   stave4.setContext(ctx);
 
-  stave1.addClef('bass');
-  stave2.addClef('alto');
+  stave1.addClef("bass");
+  stave2.addClef("alto");
 
-  stave3.addClef('treble');
-  stave4.addClef('tenor');
+  stave3.addClef("treble");
+  stave4.addClef("tenor");
 
-  stave3.addKeySignature('Ab');
-  stave4.addKeySignature('Ab');
+  stave3.addKeySignature("Ab");
+  stave4.addKeySignature("Ab");
 
-  stave1.addTimeSignature('4/4');
-  stave2.addTimeSignature('4/4');
+  stave1.addTimeSignature("4/4");
+  stave2.addTimeSignature("4/4");
 
-  stave3.addTimeSignature('6/8');
-  stave4.addTimeSignature('6/8');
+  stave3.addTimeSignature("6/8");
+  stave4.addTimeSignature("6/8");
 
   stave1.setEndBarType(BarlineType.REPEAT_END);
   stave2.setEndBarType(BarlineType.REPEAT_END);
@@ -406,7 +405,7 @@ function drawRepeatOffset(options: TestOptions, contextBuilder: ContextBuilder):
   connector4.draw();
   connector5.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 function drawCombined(options: TestOptions, contextBuilder: ContextBuilder): void {
@@ -418,7 +417,7 @@ function drawCombined(options: TestOptions, contextBuilder: ContextBuilder): voi
   const stave5 = new Stave(150, 370, 300);
   const stave6 = new Stave(150, 460, 300);
   const stave7 = new Stave(150, 560, 300);
-  stave1.setText('Violin', Modifier.Position.LEFT);
+  stave1.setText("Violin", Modifier.Position.LEFT);
   stave1.setContext(ctx);
   stave2.setContext(ctx);
   stave3.setContext(ctx);
@@ -436,10 +435,10 @@ function drawCombined(options: TestOptions, contextBuilder: ContextBuilder): voi
   conn_bracket.setType(StaveConnector.type.BRACKET);
   conn_brace.setType(StaveConnector.type.BRACE);
   conn_brace.setXShift(-5);
-  conn_double.setText('Piano');
-  conn_none.setText('Multiple', { shift_y: -15 });
-  conn_none.setText('Line Text', { shift_y: 15 });
-  conn_brace.setText('Harpsichord');
+  conn_double.setText("Piano");
+  conn_none.setText("Multiple", { shift_y: -15 });
+  conn_none.setText("Line Text", { shift_y: 15 });
+  conn_brace.setText("Harpsichord");
   conn_single.setContext(ctx);
   conn_double.setContext(ctx);
   conn_bracket.setContext(ctx);
@@ -458,7 +457,7 @@ function drawCombined(options: TestOptions, contextBuilder: ContextBuilder): voi
   conn_none.draw();
   conn_brace.draw();
 
-  options.assert.ok(true, 'all pass');
+  options.assert.ok(true, "all pass");
 }
 
 VexFlowTests.register(StaveConnectorTests);

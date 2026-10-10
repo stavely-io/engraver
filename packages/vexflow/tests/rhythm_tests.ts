@@ -3,26 +3,25 @@
 //
 // Rhythm Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Annotation } from '../src/annotation';
-import { Beam } from '../src/beam';
-import { Formatter } from '../src/formatter';
-import { ContextBuilder } from '../src/renderer';
-import { Stave } from '../src/stave';
-import { BarlineType } from '../src/stavebarline';
-import { StaveNote } from '../src/stavenote';
+import { Annotation } from "../src/annotation";
+import { Beam } from "../src/beam";
+import { Formatter } from "../src/formatter";
+import { ContextBuilder } from "../src/renderer";
+import { Stave } from "../src/stave";
+import { BarlineType } from "../src/stavebarline";
+import { StaveNote } from "../src/stavenote";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const RhythmTests = {
   Start(): void {
-    QUnit.module('Rhythm');
+    QUnit.module("Rhythm");
     const run = VexFlowTests.runTests;
     // TODO: Simplify test names by removing 'Rhythm Draw - '.
-    run('Rhythm Draw - slash notes', drawBasic);
-    run('Rhythm Draw - beamed slash notes', drawBeamedSlashNotes);
-    run('Rhythm Draw - beamed slash notes, some rests', drawSlashAndBeamAndRests);
-    run('Rhythm Draw - 16th note rhythm with scratches', drawSixtenthWithScratches);
-    run('Rhythm Draw - 32nd note rhythm with scratches', drawThirtySecondWithScratches);
+    run("Rhythm Draw - slash notes", drawBasic);
+    run("Rhythm Draw - beamed slash notes", drawBeamedSlashNotes);
+    run("Rhythm Draw - beamed slash notes, some rests", drawSlashAndBeamAndRests);
+    run("Rhythm Draw - 16th note rhythm with scratches", drawSixtenthWithScratches);
+    run("Rhythm Draw - 32nd note rhythm with scratches", drawThirtySecondWithScratches);
   },
 };
 
@@ -66,12 +65,12 @@ function drawBasic(options: TestOptions, contextBuilder: ContextBuilder): void {
   const staveBar1 = new Stave(10, 30, 150);
   staveBar1.setBegBarType(BarlineType.DOUBLE);
   staveBar1.setEndBarType(BarlineType.SINGLE);
-  staveBar1.addClef('treble');
-  staveBar1.addTimeSignature('4/4');
-  staveBar1.addKeySignature('C');
+  staveBar1.addClef("treble");
+  staveBar1.addTimeSignature("4/4");
+  staveBar1.addKeySignature("C");
   staveBar1.setContext(ctx).draw();
 
-  const notesBar1 = [new StaveNote({ keys: ['b/4'], duration: '1s', stem_direction: -1 })];
+  const notesBar1 = [new StaveNote({ keys: ["b/4"], duration: "1s", stem_direction: -1 })];
 
   // Helper function to justify and draw a 4/4 voice
   Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -84,8 +83,8 @@ function drawBasic(options: TestOptions, contextBuilder: ContextBuilder): void {
 
   // bar 2
   const notesBar2 = [
-    new StaveNote({ keys: ['b/4'], duration: '2s', stem_direction: -1 }),
-    new StaveNote({ keys: ['b/4'], duration: '2s', stem_direction: -1 }),
+    new StaveNote({ keys: ["b/4"], duration: "2s", stem_direction: -1 }),
+    new StaveNote({ keys: ["b/4"], duration: "2s", stem_direction: -1 }),
   ];
 
   // Helper function to justify and draw a 4/4 voice
@@ -98,23 +97,23 @@ function drawBasic(options: TestOptions, contextBuilder: ContextBuilder): void {
   // bar 3
   const notesBar3 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '4s',
+      keys: ["b/4"],
+      duration: "4s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '4s',
+      keys: ["b/4"],
+      duration: "4s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '4s',
+      keys: ["b/4"],
+      duration: "4s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '4s',
+      keys: ["b/4"],
+      duration: "4s",
       stem_direction: -1,
     }),
   ];
@@ -129,43 +128,43 @@ function drawBasic(options: TestOptions, contextBuilder: ContextBuilder): void {
   // bar 4
   const notesBar4 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
   ];
@@ -182,54 +181,54 @@ function drawBeamedSlashNotes(options: TestOptions, contextBuilder: ContextBuild
   const staveBar1 = new Stave(10, 30, 300);
   staveBar1.setBegBarType(BarlineType.DOUBLE);
   staveBar1.setEndBarType(BarlineType.SINGLE);
-  staveBar1.addClef('treble');
-  staveBar1.addTimeSignature('4/4');
-  staveBar1.addKeySignature('C');
+  staveBar1.addClef("treble");
+  staveBar1.addTimeSignature("4/4");
+  staveBar1.addKeySignature("C");
   staveBar1.setContext(ctx).draw();
 
   // bar 4
   const notesBar1_part1 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
   ];
 
   const notesBar1_part2 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
   ];
@@ -256,52 +255,55 @@ function drawSlashAndBeamAndRests(options: TestOptions, contextBuilder: ContextB
   const staveBar1 = new Stave(10, 30, 300);
   staveBar1.setBegBarType(BarlineType.DOUBLE);
   staveBar1.setEndBarType(BarlineType.SINGLE);
-  staveBar1.addClef('treble');
-  staveBar1.addTimeSignature('4/4');
-  staveBar1.addKeySignature('F');
+  staveBar1.addClef("treble");
+  staveBar1.addTimeSignature("4/4");
+  staveBar1.addKeySignature("F");
   staveBar1.setContext(ctx).draw();
 
   // bar 1
   const notesBar1_part1 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
-    new StaveNote({ keys: ['b/4'], duration: '8s', stem_direction: -1 }),
+    new StaveNote({ keys: ["b/4"], duration: "8s", stem_direction: -1 }),
   ];
 
-  notesBar1_part1[0].addModifier(new Annotation('C7').setFont('Times', VexFlowTests.Font.size + 2), 0);
+  notesBar1_part1[0].addModifier(
+    new Annotation("C7").setFont("Times", VexFlowTests.Font.size + 2),
+    0,
+  );
 
   const notesBar1_part2 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8r',
+      keys: ["b/4"],
+      duration: "8r",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8r',
+      keys: ["b/4"],
+      duration: "8r",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8r',
+      keys: ["b/4"],
+      duration: "8r",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '8s',
+      keys: ["b/4"],
+      duration: "8s",
       stem_direction: -1,
     }),
   ];
@@ -321,13 +323,13 @@ function drawSlashAndBeamAndRests(options: TestOptions, contextBuilder: ContextB
 
   const notesBar2 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '1s',
+      keys: ["b/4"],
+      duration: "1s",
       stem_direction: -1,
     }),
   ];
 
-  notesBar2[0].addModifier(new Annotation('F').setFont('Times', VexFlowTests.Font.size + 2), 0);
+  notesBar2[0].addModifier(new Annotation("F").setFont("Times", VexFlowTests.Font.size + 2), 0);
   // Helper function to justify and draw a 4/4 voice
   Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
 
@@ -341,59 +343,62 @@ function drawSixtenthWithScratches(options: TestOptions, contextBuilder: Context
   const staveBar1 = new Stave(10, 30, 300);
   staveBar1.setBegBarType(BarlineType.DOUBLE);
   staveBar1.setEndBarType(BarlineType.SINGLE);
-  staveBar1.addClef('treble');
-  staveBar1.addTimeSignature('4/4');
-  staveBar1.addKeySignature('F');
+  staveBar1.addClef("treble");
+  staveBar1.addTimeSignature("4/4");
+  staveBar1.addKeySignature("F");
   staveBar1.setContext(ctx).draw();
 
   // bar 1
   const notesBar1_part1 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16s',
+      keys: ["b/4"],
+      duration: "16s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16s',
+      keys: ["b/4"],
+      duration: "16s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16m',
+      keys: ["b/4"],
+      duration: "16m",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16s',
+      keys: ["b/4"],
+      duration: "16s",
       stem_direction: -1,
     }),
   ];
 
   const notesBar1_part2 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16m',
+      keys: ["b/4"],
+      duration: "16m",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16s',
+      keys: ["b/4"],
+      duration: "16s",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16r',
+      keys: ["b/4"],
+      duration: "16r",
       stem_direction: -1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '16s',
+      keys: ["b/4"],
+      duration: "16s",
       stem_direction: -1,
     }),
   ];
 
-  notesBar1_part1[0].addModifier(new Annotation('C7').setFont('Times', VexFlowTests.Font.size + 3), 0);
+  notesBar1_part1[0].addModifier(
+    new Annotation("C7").setFont("Times", VexFlowTests.Font.size + 3),
+    0,
+  );
 
   // create the beams for 8th notes in 2nd measure
   const beam1 = new Beam(notesBar1_part1);
@@ -416,56 +421,59 @@ function drawThirtySecondWithScratches(options: TestOptions, contextBuilder: Con
   const staveBar1 = new Stave(10, 30, 300);
   staveBar1.setBegBarType(BarlineType.DOUBLE);
   staveBar1.setEndBarType(BarlineType.SINGLE);
-  staveBar1.addClef('treble');
-  staveBar1.addTimeSignature('4/4');
-  staveBar1.addKeySignature('F');
+  staveBar1.addClef("treble");
+  staveBar1.addTimeSignature("4/4");
+  staveBar1.addKeySignature("F");
   staveBar1.setContext(ctx).draw();
 
   // bar 1
   const notesBar1_part1 = [
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32s',
+      keys: ["b/4"],
+      duration: "32s",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32s',
+      keys: ["b/4"],
+      duration: "32s",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32m',
+      keys: ["b/4"],
+      duration: "32m",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32s',
+      keys: ["b/4"],
+      duration: "32s",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32m',
+      keys: ["b/4"],
+      duration: "32m",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32s',
+      keys: ["b/4"],
+      duration: "32s",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32r',
+      keys: ["b/4"],
+      duration: "32r",
       stem_direction: 1,
     }),
     new StaveNote({
-      keys: ['b/4'],
-      duration: '32s',
+      keys: ["b/4"],
+      duration: "32s",
       stem_direction: 1,
     }),
   ];
 
-  notesBar1_part1[0].addModifier(new Annotation('C7').setFont('Times', VexFlowTests.Font.size + 3), 0);
+  notesBar1_part1[0].addModifier(
+    new Annotation("C7").setFont("Times", VexFlowTests.Font.size + 3),
+    0,
+  );
 
   // Create the beams for 8th notes in 2nd measure.
   const beam1 = new Beam(notesBar1_part1);

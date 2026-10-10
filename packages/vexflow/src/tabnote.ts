@@ -7,17 +7,17 @@
 //
 // See `tests/tabnote_tests.ts` for usage examples.
 
-import { Font } from './font';
-import type { GlyphProps } from './glyph';
-import { Glyph } from './glyph';
-import { Modifier } from './modifier';
-import type { Stave } from './stave';
-import type { StaveNoteStruct } from './stavenote';
-import { Stem } from './stem';
-import { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category, isDot } from './typeguard';
-import { defined, RuntimeError } from './util';
+import { Font } from "./font";
+import type { GlyphProps } from "./glyph";
+import { Glyph } from "./glyph";
+import { Modifier } from "./modifier";
+import type { Stave } from "./stave";
+import type { StaveNoteStruct } from "./stavenote";
+import { Stem } from "./stem";
+import { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category, isDot } from "./typeguard";
+import { defined, RuntimeError } from "./util";
 
 export interface TabNotePosition {
   // For example, on a six stringed instrument, `str` ranges from 1 to 6.
@@ -63,7 +63,12 @@ function getUnusedStringGroups(num_lines: number, strings_used: number[]) {
 // * unused_strings - An array of groups of unused strings
 // * stave - The stave to use for reference
 // * stem_direction - The direction of the stem
-function getPartialStemLines(stem_y: number, unused_strings: number[][], stave: Stave, stem_direction: number) {
+function getPartialStemLines(
+  stem_y: number,
+  unused_strings: number[][],
+  stave: Stave,
+  stem_direction: number,
+) {
   const up_stem = stem_direction !== 1;
   const down_stem = stem_direction !== -1;
 
@@ -166,8 +171,8 @@ export class TabNote extends StemmableNote {
     this.glyphProps = Tables.getGlyphProps(this.duration, this.noteType);
     defined(
       this.glyphProps,
-      'BadArguments',
-      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`
+      "BadArguments",
+      `No glyph found for duration '${this.duration}' and type '${this.noteType}'`,
     );
 
     this.buildStem();
@@ -234,7 +239,7 @@ export class TabNote extends StemmableNote {
     this.width = 0;
     for (let i = 0; i < this.positions.length; ++i) {
       let fret = this.positions[i].fret;
-      if (this.ghost) fret = '(' + fret + ')';
+      if (this.ghost) fret = "(" + fret + ")";
       const glyphProps = Tables.tabToGlyphProps(fret.toString(), this.render_options.scale);
       this.glyphPropsArr.push(glyphProps);
       this.width = Math.max(glyphProps.getWidth(), this.width);
@@ -258,8 +263,8 @@ export class TabNote extends StemmableNote {
       this.width = 0;
       for (let i = 0; i < this.glyphPropsArr.length; ++i) {
         const glyphProps = this.glyphPropsArr[i];
-        const text = '' + glyphProps.text;
-        if (text.toUpperCase() !== 'X') {
+        const text = "" + glyphProps.text;
+        if (text.toUpperCase() !== "X") {
           ctx.save();
           ctx.setFont(this.render_options.font);
           glyphProps.width = ctx.measureText(text).width;
@@ -293,11 +298,14 @@ export class TabNote extends StemmableNote {
   // `position` at a fret position `index`
   getModifierStartXY(position: number, index: number): { x: number; y: number } {
     if (!this.preFormatted) {
-      throw new RuntimeError('UnformattedNote', "Can't call GetModifierStartXY on an unformatted note");
+      throw new RuntimeError(
+        "UnformattedNote",
+        "Can't call GetModifierStartXY on an unformatted note",
+      );
     }
 
     if (this.ys.length === 0) {
-      throw new RuntimeError('NoYValues', 'No Y-Values calculated for this note.');
+      throw new RuntimeError("NoYValues", "No Y-Values calculated for this note.");
     }
 
     let x = 0;
@@ -369,9 +377,13 @@ export class TabNote extends StemmableNote {
       const flag_y =
         this.getStemDirection() === Stem.DOWN
           ? // Down stems are below the note head and have flags on the right.
-            this.getStemY() - this.checkStem().getHeight() - (this.glyphProps ? this.glyphProps.stem_down_extension : 0)
+            this.getStemY() -
+            this.checkStem().getHeight() -
+            (this.glyphProps ? this.glyphProps.stem_down_extension : 0)
           : // Up stems are above the note head and have flags on the right.
-            this.getStemY() - this.checkStem().getHeight() + (this.glyphProps ? this.glyphProps.stem_up_extension : 0);
+            this.getStemY() -
+            this.checkStem().getHeight() +
+            (this.glyphProps ? this.glyphProps.stem_up_extension : 0);
 
       // Draw the Flag
       //this.flag?.setOptions({ category: 'flag.tabStem' });
@@ -406,7 +418,12 @@ export class TabNote extends StemmableNote {
       const stringsUsed = this.positions.map((position) => Number(position.str));
 
       const unusedStrings = getUnusedStringGroups(numLines, stringsUsed);
-      const stemLines = getPartialStemLines(stemY, unusedStrings, this.checkStave(), this.getStemDirection());
+      const stemLines = getPartialStemLines(
+        stemY,
+        unusedStrings,
+        this.checkStave(),
+        this.getStemDirection(),
+      );
 
       ctx.save();
       ctx.setLineWidth(Stem.WIDTH);
@@ -445,12 +462,12 @@ export class TabNote extends StemmableNote {
           tab_x,
           y,
           this.render_options.glyph_font_scale * this.render_options.scale,
-          glyphProps.code
+          glyphProps.code,
         );
       } else {
         ctx.save();
         ctx.setFont(this.render_options.font);
-        const text = glyphProps.text ?? '';
+        const text = glyphProps.text ?? "";
         ctx.fillText(text, tab_x, y + 5 * this.render_options.scale);
         ctx.restore();
       }
@@ -462,14 +479,14 @@ export class TabNote extends StemmableNote {
     const ctx = this.checkContext();
 
     if (this.ys.length === 0) {
-      throw new RuntimeError('NoYValues', "Can't draw note without Y values.");
+      throw new RuntimeError("NoYValues", "Can't draw note without Y values.");
     }
 
     this.setRendered();
     const render_stem = this.beam == undefined && this.render_options.draw_stem;
 
     this.applyStyle();
-    ctx.openGroup('tabnote', this.getAttribute('id'), { pointerBBox: true });
+    ctx.openGroup("tabnote", this.getAttribute("id"), { pointerBBox: true });
     this.drawPositions();
     this.drawStemThrough();
 

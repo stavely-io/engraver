@@ -3,14 +3,13 @@
 //
 // BoundingBoxComputation Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { BoundingBoxComputation, Glyph, OutlineCode, RenderContext } from '../src/index';
+import { BoundingBoxComputation, Glyph, OutlineCode, RenderContext } from "../src/index";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const BoundingBoxComputationTests = {
   Start(): void {
-    QUnit.module('BoundingBoxComputation');
-    QUnit.test('Point Test', point);
+    QUnit.module("BoundingBoxComputation");
+    QUnit.test("Point Test", point);
     const run = VexFlowTests.runTests;
     quadraticParams.forEach((params, index) => {
       run(`Quadratic Test ${index}`, quadratic, params);
@@ -24,16 +23,16 @@ const BoundingBoxComputationTests = {
 function point(assert: Assert): void {
   const bboxComp = new BoundingBoxComputation();
   bboxComp.addPoint(2, 3);
-  assert.equal(bboxComp.getX1(), 2, 'Bad X1');
-  assert.equal(bboxComp.getY1(), 3, 'Bad Y1');
-  assert.equal(bboxComp.width(), 0, 'Bad width');
-  assert.equal(bboxComp.height(), 0, 'Bad height');
+  assert.equal(bboxComp.getX1(), 2, "Bad X1");
+  assert.equal(bboxComp.getY1(), 3, "Bad Y1");
+  assert.equal(bboxComp.width(), 0, "Bad width");
+  assert.equal(bboxComp.height(), 0, "Bad height");
 
   bboxComp.addPoint(-5, 7);
-  assert.equal(bboxComp.getX1(), -5, 'Bad X1');
-  assert.equal(bboxComp.getY1(), 3, 'Bad Y1');
-  assert.equal(bboxComp.width(), 7, 'Bad width');
-  assert.equal(bboxComp.height(), 4, 'Bad height');
+  assert.equal(bboxComp.getX1(), -5, "Bad X1");
+  assert.equal(bboxComp.getY1(), 3, "Bad Y1");
+  assert.equal(bboxComp.width(), 7, "Bad width");
+  assert.equal(bboxComp.height(), 4, "Bad height");
 }
 
 /**
@@ -50,14 +49,22 @@ function createContext(options: TestOptions): RenderContext {
 
   const f = VexFlowTests.makeFactory(options, w + 20, h + 20);
   const ctx = f.getContext();
-  ctx.setLineCap('square');
+  ctx.setLineCap("square");
   return ctx;
 }
 
 /**
  * Draw a rectangle on the RenderContext.
  */
-function rect(ctx: RenderContext, style: string, lineWidth: number, x: number, y: number, w: number, h: number): void {
+function rect(
+  ctx: RenderContext,
+  style: string,
+  lineWidth: number,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+): void {
   ctx.strokeStyle = style;
   ctx.setLineWidth(lineWidth);
   ctx.beginPath();
@@ -101,7 +108,7 @@ function quadratic(options: TestOptions): void {
 
   // Draw expected bounding box.
   let [bx, by, bw, bh] = box;
-  rect(ctx, '#0f0', 5, bx, by, bw, bh);
+  rect(ctx, "#0f0", 5, bx, by, bw, bh);
 
   // Compute the bounding box.
   const bboxComp = new BoundingBoxComputation();
@@ -109,21 +116,21 @@ function quadratic(options: TestOptions): void {
 
   // Draw computed bounding box.
   [bx, by, bw, bh] = [bboxComp.getX1(), bboxComp.getY1(), bboxComp.width(), bboxComp.height()];
-  rect(ctx, '#00f', 3, bx, by, bw, bh);
+  rect(ctx, "#00f", 3, bx, by, bw, bh);
 
   // Regression test for a prior bug: compute the bounding box again,
   // this time using the Glyph.getOutlineBoundingBox code path.
   const o = [OutlineCode.MOVE, x0, -y0, OutlineCode.QUADRATIC, x2, -y2, x1, -y1];
   const bbox = Glyph.getOutlineBoundingBox(o, 1, 0, 0);
-  rect(ctx, '#fa0', 1, bbox.getX(), bbox.getY(), bbox.getW(), bbox.getH());
+  rect(ctx, "#fa0", 1, bbox.getX(), bbox.getY(), bbox.getW(), bbox.getH());
 
   // Draw curve.
   ctx.setLineWidth(1);
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = "#000";
   Glyph.renderOutline(ctx, o, 1, 0, 0);
 
   // Draw control points.
-  ctx.strokeStyle = '#f00';
+  ctx.strokeStyle = "#f00";
   ctx.beginPath();
   ctx.moveTo(x0, y0);
   ctx.lineTo(x1, y1);
@@ -134,7 +141,10 @@ function quadratic(options: TestOptions): void {
   options.assert.ok(Math.abs(bboxComp.getX1() - box[0]) < 0.01, `Bad X1: ${bboxComp.getX1()}`);
   options.assert.ok(Math.abs(bboxComp.getY1() - box[1]) < 0.01, `Bad Y1: ${bboxComp.getY1()}`);
   options.assert.ok(Math.abs(bboxComp.width() - box[2]) < 0.01, `Bad width: ${bboxComp.width()}`);
-  options.assert.ok(Math.abs(bboxComp.height() - box[3]) < 0.01, `Bad height: ${bboxComp.height()}`);
+  options.assert.ok(
+    Math.abs(bboxComp.height() - box[3]) < 0.01,
+    `Bad height: ${bboxComp.height()}`,
+  );
 
   options.assert.ok(Math.abs(bbox.getX() - box[0]) < 0.01, `Bad X: ${bbox.getX()}`);
   options.assert.ok(Math.abs(bbox.getY() - box[1]) < 0.01, `Bad Y: ${bbox.getY()}`);
@@ -199,7 +209,7 @@ function cubic(options: TestOptions): void {
 
   // Draw expected bounding box.
   let [bx, by, bw, bh] = box;
-  rect(ctx, '#0f0', 5, bx, by, bw, bh);
+  rect(ctx, "#0f0", 5, bx, by, bw, bh);
 
   // Compute the bounding box.
   const bboxComp = new BoundingBoxComputation();
@@ -207,21 +217,21 @@ function cubic(options: TestOptions): void {
 
   // Draw computed bounding box.
   [bx, by, bw, bh] = [bboxComp.getX1(), bboxComp.getY1(), bboxComp.width(), bboxComp.height()];
-  rect(ctx, '#00f', 3, bx, by, bw, bh);
+  rect(ctx, "#00f", 3, bx, by, bw, bh);
 
   // Regression test for a prior bug: compute the bounding box again,
   // this time using the Glyph.getOutlineBoundingBox code path.
   const o = [OutlineCode.MOVE, x0, -y0, OutlineCode.BEZIER, x3, -y3, x1, -y1, x2, -y2];
   const bbox = Glyph.getOutlineBoundingBox(o, 1, 0, 0);
-  rect(ctx, '#fa0', 1, bbox.getX(), bbox.getY(), bbox.getW(), bbox.getH());
+  rect(ctx, "#fa0", 1, bbox.getX(), bbox.getY(), bbox.getW(), bbox.getH());
 
   // Draw curve.
   ctx.setLineWidth(1);
-  ctx.fillStyle = '#000';
+  ctx.fillStyle = "#000";
   Glyph.renderOutline(ctx, o, 1, 0, 0);
 
   // Draw control points.
-  ctx.strokeStyle = '#f00';
+  ctx.strokeStyle = "#f00";
   ctx.beginPath();
   ctx.moveTo(x0, y0);
   ctx.lineTo(x1, y1);
@@ -233,7 +243,10 @@ function cubic(options: TestOptions): void {
   options.assert.ok(Math.abs(bboxComp.getX1() - box[0]) < 0.01, `Bad X1: ${bboxComp.getX1()}`);
   options.assert.ok(Math.abs(bboxComp.getY1() - box[1]) < 0.01, `Bad Y1: ${bboxComp.getY1()}`);
   options.assert.ok(Math.abs(bboxComp.width() - box[2]) < 0.01, `Bad width: ${bboxComp.width()}`);
-  options.assert.ok(Math.abs(bboxComp.height() - box[3]) < 0.01, `Bad height: ${bboxComp.height()}`);
+  options.assert.ok(
+    Math.abs(bboxComp.height() - box[3]) < 0.01,
+    `Bad height: ${bboxComp.height()}`,
+  );
 
   options.assert.ok(Math.abs(bbox.getX() - box[0]) < 0.01, `Bad X: ${bbox.getX()}`);
   options.assert.ok(Math.abs(bbox.getY() - box[1]) < 0.01, `Bad Y: ${bbox.getY()}`);

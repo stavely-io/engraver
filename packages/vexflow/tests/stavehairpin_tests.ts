@@ -6,20 +6,19 @@
 
 // TODO: Incorrect property names in the options object: vo, left_ho, right_ho.
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { RenderContext } from '../src/rendercontext';
-import { StaveHairpin, StaveHairpinRenderOptions } from '../src/stavehairpin';
-import { StaveNote } from '../src/stavenote';
+import { RenderContext } from "../src/rendercontext";
+import { StaveHairpin, StaveHairpinRenderOptions } from "../src/stavehairpin";
+import { StaveNote } from "../src/stavenote";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const StaveHairpinTests = {
   Start(): void {
-    QUnit.module('StaveHairpin');
+    QUnit.module("StaveHairpin");
     const run = VexFlowTests.runTests;
-    run('Simple StaveHairpin', simple);
-    run('Horizontal Offset StaveHairpin', horizontal);
-    run('Vertical Offset StaveHairpin', vertical);
-    run('Height StaveHairpin', height);
+    run("Simple StaveHairpin", simple);
+    run("Horizontal Offset StaveHairpin", horizontal);
+    run("Vertical Offset StaveHairpin", vertical);
+    run("Height StaveHairpin", height);
   },
 };
 
@@ -34,7 +33,7 @@ function drawHairpin(
   ctx: RenderContext,
   type: number,
   position: number,
-  options?: StaveHairpinRenderOptions
+  options?: StaveHairpinRenderOptions,
 ) {
   const hairpin = new StaveHairpin({ first_note, last_note }, type);
   hairpin.setContext(ctx);
@@ -56,12 +55,12 @@ function createTest(drawTwoHairpins: (ctx: RenderContext, notes: StaveNote[]) =>
 
     const notes = [
       factory
-        .StaveNote({ keys: ['c/4', 'e/4', 'a/4'], stem_direction: 1, duration: '4' })
-        .addModifier(factory.Accidental({ type: 'b' }), 0)
-        .addModifier(factory.Accidental({ type: '#' }), 1),
-      factory.StaveNote({ keys: ['d/4'], stem_direction: 1, duration: '4' }),
-      factory.StaveNote({ keys: ['e/4'], stem_direction: 1, duration: '4' }),
-      factory.StaveNote({ keys: ['f/4'], stem_direction: 1, duration: '4' }),
+        .StaveNote({ keys: ["c/4", "e/4", "a/4"], stem_direction: 1, duration: "4" })
+        .addModifier(factory.Accidental({ type: "b" }), 0)
+        .addModifier(factory.Accidental({ type: "#" }), 1),
+      factory.StaveNote({ keys: ["d/4"], stem_direction: 1, duration: "4" }),
+      factory.StaveNote({ keys: ["e/4"], stem_direction: 1, duration: "4" }),
+      factory.StaveNote({ keys: ["f/4"], stem_direction: 1, duration: "4" }),
     ];
 
     const voice = factory.Voice().addTickables(notes);
@@ -71,7 +70,7 @@ function createTest(drawTwoHairpins: (ctx: RenderContext, notes: StaveNote[]) =>
 
     drawTwoHairpins(ctx, notes);
 
-    options.assert.ok(true, 'Simple Test');
+    options.assert.ok(true, "Simple Test");
   };
 }
 

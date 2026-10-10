@@ -3,29 +3,28 @@
 //
 // StaveLine Tests
 
-import { TestOptions, VexFlowTests } from './vexflow_test_helpers';
-
-import { Dot } from '../src/dot';
-import { Font, FontStyle } from '../src/font';
+import { Dot } from "../src/dot";
+import { Font, FontStyle } from "../src/font";
+import { TestOptions, VexFlowTests } from "./vexflow_test_helpers";
 
 const StaveLineTests = {
   Start(): void {
-    QUnit.module('StaveLine');
+    QUnit.module("StaveLine");
     const run = VexFlowTests.runTests;
-    run('Simple StaveLine', simple0);
-    run('StaveLine Arrow Options', simple1);
+    run("Simple StaveLine", simple0);
+    run("StaveLine Arrow Options", simple1);
   },
 };
 
 function simple0(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options);
-  const stave = f.Stave().addClef('treble');
+  const stave = f.Stave().addClef("treble");
 
   const notes = [
-    f.StaveNote({ keys: ['c/4'], duration: '4', clef: 'treble' }),
-    f.StaveNote({ keys: ['c/5'], duration: '4', clef: 'treble' }),
-    f.StaveNote({ keys: ['c/4', 'g/4', 'b/4'], duration: '4', clef: 'treble' }),
-    f.StaveNote({ keys: ['f/4', 'a/4', 'f/5'], duration: '4', clef: 'treble' }),
+    f.StaveNote({ keys: ["c/4"], duration: "4", clef: "treble" }),
+    f.StaveNote({ keys: ["c/5"], duration: "4", clef: "treble" }),
+    f.StaveNote({ keys: ["c/4", "g/4", "b/4"], duration: "4", clef: "treble" }),
+    f.StaveNote({ keys: ["f/4", "a/4", "f/5"], duration: "4", clef: "treble" }),
   ];
 
   const voice = f.Voice().addTickables(notes);
@@ -37,7 +36,7 @@ function simple0(options: TestOptions): void {
     last_indices: [0],
     options: {
       font: { family: Font.SERIF, size: 12, style: FontStyle.ITALIC },
-      text: 'gliss.',
+      text: "gliss.",
     },
   });
 
@@ -58,21 +57,25 @@ function simple0(options: TestOptions): void {
 
 function simple1(options: TestOptions): void {
   const f = VexFlowTests.makeFactory(options, 770);
-  const stave = f.Stave().addClef('treble');
+  const stave = f.Stave().addClef("treble");
 
   const notes = [
-    f.StaveNote({ keys: ['c#/5', 'd/5'], duration: '4', clef: 'treble', stem_direction: -1 }),
-    f.StaveNote({ keys: ['c/4'], duration: '4', clef: 'treble' }).addModifier(f.Accidental({ type: '#' }), 0),
-    f.StaveNote({ keys: ['c/4', 'e/4', 'g/4'], duration: '4', clef: 'treble' }),
+    f.StaveNote({ keys: ["c#/5", "d/5"], duration: "4", clef: "treble", stem_direction: -1 }),
     f
-      .StaveNote({ keys: ['f/4', 'a/4', 'c/5'], duration: '4', clef: 'treble' })
-      .addModifier(f.Accidental({ type: '#' }), 2),
-    f.StaveNote({ keys: ['c/4'], duration: '4', clef: 'treble' }).addModifier(f.Accidental({ type: '#' }), 0),
-    f.StaveNote({ keys: ['c#/5', 'd/5'], duration: '4', clef: 'treble', stem_direction: -1 }),
-    f.StaveNote({ keys: ['c/4', 'd/4', 'g/4'], duration: '4', clef: 'treble' }),
+      .StaveNote({ keys: ["c/4"], duration: "4", clef: "treble" })
+      .addModifier(f.Accidental({ type: "#" }), 0),
+    f.StaveNote({ keys: ["c/4", "e/4", "g/4"], duration: "4", clef: "treble" }),
     f
-      .StaveNote({ keys: ['f/4', 'a/4', 'c/5'], duration: '4', clef: 'treble' })
-      .addModifier(f.Accidental({ type: '#' }), 2),
+      .StaveNote({ keys: ["f/4", "a/4", "c/5"], duration: "4", clef: "treble" })
+      .addModifier(f.Accidental({ type: "#" }), 2),
+    f
+      .StaveNote({ keys: ["c/4"], duration: "4", clef: "treble" })
+      .addModifier(f.Accidental({ type: "#" }), 0),
+    f.StaveNote({ keys: ["c#/5", "d/5"], duration: "4", clef: "treble", stem_direction: -1 }),
+    f.StaveNote({ keys: ["c/4", "d/4", "g/4"], duration: "4", clef: "treble" }),
+    f
+      .StaveNote({ keys: ["f/4", "a/4", "c/5"], duration: "4", clef: "treble" })
+      .addModifier(f.Accidental({ type: "#" }), 2),
   ];
   Dot.buildAndAttach([notes[0]], { all: true });
 
@@ -83,7 +86,7 @@ function simple1(options: TestOptions): void {
     to: notes[1],
     first_indices: [0],
     last_indices: [0],
-    options: { text: 'Left' },
+    options: { text: "Left" },
   });
 
   const staveLine4 = f.StaveLine({
@@ -91,7 +94,7 @@ function simple1(options: TestOptions): void {
     to: notes[3],
     first_indices: [1],
     last_indices: [1],
-    options: { text: 'Right' },
+    options: { text: "Right" },
   });
 
   const staveLine1 = f.StaveLine({
@@ -99,7 +102,7 @@ function simple1(options: TestOptions): void {
     to: notes[5],
     first_indices: [0],
     last_indices: [0],
-    options: { text: 'Center' },
+    options: { text: "Center" },
   });
 
   const staveLine2 = f.StaveLine({
@@ -114,7 +117,7 @@ function simple1(options: TestOptions): void {
     to: notes[7],
     first_indices: [2],
     last_indices: [2],
-    options: { text: 'Top' },
+    options: { text: "Top" },
   });
 
   staveLine0.render_options.draw_end_arrow = true;
@@ -140,7 +143,7 @@ function simple1(options: TestOptions): void {
 
   staveLine3.render_options.draw_end_arrow = true;
   staveLine3.render_options.draw_start_arrow = true;
-  staveLine3.render_options.color = 'red';
+  staveLine3.render_options.color = "red";
   staveLine3.render_options.text_position_vertical = 1;
 
   f.Formatter().joinVoices([voice]).formatToStave([voice], stave);

@@ -4,15 +4,15 @@
 // This file implements the `Stroke` class which renders chord strokes
 // that can be arpeggiated, brushed, rasquedo, etc.
 
-import type { FontInfo} from './font';
-import { Font, FontStyle, FontWeight } from './font';
-import { Glyph } from './glyph';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import { Tables } from './tables';
-import { Category, isNote, isStaveNote, isTabNote } from './typeguard';
-import { RuntimeError } from './util';
+import type { FontInfo } from "./font";
+import { Font, FontStyle, FontWeight } from "./font";
+import { Glyph } from "./glyph";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import { Tables } from "./tables";
+import { Category, isNote, isStaveNote, isTabNote } from "./typeguard";
+import { RuntimeError } from "./util";
 
 export class Stroke extends Modifier {
   static get CATEGORY(): string {
@@ -56,7 +56,7 @@ export class Stroke extends Modifier {
         const { str: string } = note.getPositions()[index];
         return { line: string, shift: 0, stroke };
       } else {
-        throw new RuntimeError('Internal', 'Unexpected instance.');
+        throw new RuntimeError("Internal", "Unexpected instance.");
       }
     });
 
@@ -140,7 +140,7 @@ export class Stroke extends Modifier {
       }
     }
 
-    let arrow = '';
+    let arrow = "";
     let arrow_shift_x = 0;
     let arrow_y = 0;
     let text_shift_x = 0;
@@ -148,20 +148,20 @@ export class Stroke extends Modifier {
 
     switch (this.type) {
       case Stroke.Type.BRUSH_DOWN:
-        arrow = 'arrowheadBlackUp';
+        arrow = "arrowheadBlackUp";
         arrow_shift_x = -3;
         arrow_y = topY - line_space / 2 + 10;
         botY += line_space / 2;
         break;
       case Stroke.Type.BRUSH_UP:
-        arrow = 'arrowheadBlackDown';
+        arrow = "arrowheadBlackDown";
         arrow_shift_x = 0.5;
         arrow_y = botY + line_space / 2;
         topY -= line_space / 2;
         break;
       case Stroke.Type.ROLL_DOWN:
       case Stroke.Type.RASQUEDO_DOWN:
-        arrow = 'arrowheadBlackUp';
+        arrow = "arrowheadBlackUp";
         arrow_shift_x = -3;
         text_shift_x = this.x_shift + arrow_shift_x - 2;
         if (isStaveNote(note)) {
@@ -182,7 +182,7 @@ export class Stroke extends Modifier {
         break;
       case Stroke.Type.ROLL_UP:
       case Stroke.Type.RASQUEDO_UP:
-        arrow = 'arrowheadBlackDown';
+        arrow = "arrowheadBlackDown";
         arrow_shift_x = -4;
         text_shift_x = this.x_shift + arrow_shift_x - 1;
         if (isStaveNote(note)) {
@@ -205,23 +205,35 @@ export class Stroke extends Modifier {
         botY += line_space; // * 0.5 can lead to slight underlap instead of overlap sometimes
         break;
       default:
-        throw new RuntimeError('InvalidType', `The stroke type ${this.type} does not exist`);
+        throw new RuntimeError("InvalidType", `The stroke type ${this.type} does not exist`);
     }
 
-    let strokeLine = 'straight';
+    let strokeLine = "straight";
     // Draw the stroke
     if (this.type === Stroke.Type.BRUSH_DOWN || this.type === Stroke.Type.BRUSH_UP) {
       ctx.fillRect(x + this.x_shift, topY, 1, botY - topY);
     } else {
-      strokeLine = 'wiggly';
+      strokeLine = "wiggly";
       if (isStaveNote(note)) {
         for (let i = topY; i <= botY; i += line_space) {
-          Glyph.renderGlyph(ctx, x + this.x_shift - 4, i, this.render_options.font_scale, 'vexWiggleArpeggioUp');
+          Glyph.renderGlyph(
+            ctx,
+            x + this.x_shift - 4,
+            i,
+            this.render_options.font_scale,
+            "vexWiggleArpeggioUp",
+          );
         }
       } else {
         let i;
         for (i = topY; i <= botY; i += 10) {
-          Glyph.renderGlyph(ctx, x + this.x_shift - 4, i, this.render_options.font_scale, 'vexWiggleArpeggioUp');
+          Glyph.renderGlyph(
+            ctx,
+            x + this.x_shift - 4,
+            i,
+            this.render_options.font_scale,
+            "vexWiggleArpeggioUp",
+          );
         }
         if (this.type === Stroke.Type.RASQUEDO_DOWN) {
           text_y = i + 0.25 * line_space;
@@ -234,15 +246,22 @@ export class Stroke extends Modifier {
     }
 
     // Draw the arrow head
-    Glyph.renderGlyph(ctx, x + this.x_shift + arrow_shift_x, arrow_y, this.render_options.font_scale, arrow, {
-      category: `stroke_${strokeLine}.${arrow}`,
-    });
+    Glyph.renderGlyph(
+      ctx,
+      x + this.x_shift + arrow_shift_x,
+      arrow_y,
+      this.render_options.font_scale,
+      arrow,
+      {
+        category: `stroke_${strokeLine}.${arrow}`,
+      },
+    );
 
     // Draw the rasquedo "R"
     if (this.type === Stroke.Type.RASQUEDO_DOWN || this.type === Stroke.Type.RASQUEDO_UP) {
       ctx.save();
       ctx.setFont(this.textFont);
-      ctx.fillText('R', x + text_shift_x, text_y);
+      ctx.fillText("R", x + text_shift_x, text_y);
       ctx.restore();
     }
   }

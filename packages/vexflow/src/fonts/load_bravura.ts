@@ -11,10 +11,10 @@
 // xxx_glyphs.ts is created by tools/fonts/fontgen_smufl.js
 // xxx_metrics.ts is created by hand. You could copy bravura_metrics.ts and modify/remove/add entries where necessary.
 
-import { Font } from '../font';
-import { BravuraFont } from './bravura_glyphs';
-import { CommonMetrics } from './common_metrics';
+import { Font } from "../font";
+import { BravuraFont } from "./bravura_glyphs";
+import { CommonMetrics } from "./common_metrics";
 
 export function loadBravura() {
-  Font.load('Bravura', BravuraFont, CommonMetrics);
+  Font.load("Bravura", BravuraFont, CommonMetrics);
 }

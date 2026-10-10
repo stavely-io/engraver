@@ -4,10 +4,10 @@
 // A formatter for abstract tickable objects, such as notes, chords,
 // tabs, etc.
 
-import { Fraction } from './fraction';
-import type { NoteMetrics } from './note';
-import type { Tickable } from './tickable';
-import { RuntimeError } from './util';
+import { Fraction } from "./fraction";
+import type { NoteMetrics } from "./note";
+import type { Tickable } from "./tickable";
+import { RuntimeError } from "./util";
 
 export interface TickContextMetrics extends NoteMetrics {
   totalLeftPx: number;
@@ -208,7 +208,7 @@ export class TickContext {
 
   addTickable(tickable: Tickable, voiceIndex?: number): this {
     if (!tickable) {
-      throw new RuntimeError('BadArgument', 'Invalid tickable added.');
+      throw new RuntimeError("BadArgument", "Invalid tickable added.");
     }
 
     if (!tickable.shouldIgnoreTicks()) {
@@ -258,8 +258,14 @@ export class TickContext {
       this.modRightPx = Math.max(this.modRightPx, metrics.modRightPx);
 
       // Total shift
-      this.totalLeftPx = Math.max(this.totalLeftPx, metrics.modLeftPx + metrics.leftDisplacedHeadPx);
-      this.totalRightPx = Math.max(this.totalRightPx, metrics.modRightPx + metrics.rightDisplacedHeadPx);
+      this.totalLeftPx = Math.max(
+        this.totalLeftPx,
+        metrics.modLeftPx + metrics.leftDisplacedHeadPx,
+      );
+      this.totalRightPx = Math.max(
+        this.totalRightPx,
+        metrics.modRightPx + metrics.rightDisplacedHeadPx,
+      );
 
       // Recalculate the tick context total width
       this.width = this.notePx + this.totalLeftPx + this.totalRightPx;

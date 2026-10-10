@@ -6,12 +6,12 @@
 // type in VexFlow. This object would most likely be formatted in a Voice
 // with `TextNotes` - which are used to represent other dynamics markings.
 
-import type { NoteStruct } from './note';
-import { Note } from './note';
-import type { RenderContext } from './rendercontext';
-import { TickContext } from './tickcontext';
-import { Category } from './typeguard';
-import { log } from './util';
+import type { NoteStruct } from "./note";
+import { Note } from "./note";
+import type { RenderContext } from "./rendercontext";
+import { TickContext } from "./tickcontext";
+import { Category } from "./typeguard";
+import { log } from "./util";
 
 export interface CrescendoParams {
   reverse: boolean;
@@ -24,7 +24,7 @@ export interface CrescendoParams {
 // To enable logging for this class. Set `Vex.Flow.Crescendo.DEBUG` to `true`.
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Crescendo.DEBUG) log('Vex.Flow.Crescendo', args);
+  if (Crescendo.DEBUG) log("Vex.Flow.Crescendo", args);
 }
 
 // Private helper to draw the hairpin
@@ -121,7 +121,13 @@ export class Crescendo extends Note {
     const end_x = next_context ? next_context.getX() : stave.getX() + stave.getWidth();
     const y = stave.getYForLine(this.line + -3) + 1;
 
-    L('Drawing ', this.decrescendo ? 'decrescendo ' : 'crescendo ', this.height, 'x', begin_x - end_x);
+    L(
+      "Drawing ",
+      this.decrescendo ? "decrescendo " : "crescendo ",
+      this.height,
+      "x",
+      begin_x - end_x,
+    );
 
     renderHairpin(ctx, {
       begin_x: begin_x - this.options.extend_left,

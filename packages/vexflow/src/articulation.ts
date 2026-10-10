@@ -2,17 +2,17 @@
 // Author: Larry Kuhns.
 // MIT License
 
-import type { Builder } from './easyscore';
-import { Glyph } from './glyph';
-import { Modifier } from './modifier';
-import type { ModifierContextState } from './modifiercontext';
-import type { Note } from './note';
-import type { Stave } from './stave';
-import { Stem } from './stem';
-import type { StemmableNote } from './stemmablenote';
-import { Tables } from './tables';
-import { Category, isGraceNote, isStaveNote, isStemmableNote, isTabNote } from './typeguard';
-import { defined, log, RuntimeError } from './util';
+import type { Builder } from "./easyscore";
+import { Glyph } from "./glyph";
+import { Modifier } from "./modifier";
+import type { ModifierContextState } from "./modifiercontext";
+import type { Note } from "./note";
+import type { Stave } from "./stave";
+import { Stem } from "./stem";
+import type { StemmableNote } from "./stemmablenote";
+import { Tables } from "./tables";
+import { Category, isGraceNote, isStaveNote, isStemmableNote, isTabNote } from "./typeguard";
+import { defined, log, RuntimeError } from "./util";
 
 export interface ArticulationStruct {
   code?: string;
@@ -23,7 +23,7 @@ export interface ArticulationStruct {
 
 // eslint-disable-next-line
 function L(...args: any[]) {
-  if (Articulation.DEBUG) log('Vex.Flow.Articulation', args);
+  if (Articulation.DEBUG) log("Vex.Flow.Articulation", args);
 }
 
 const { ABOVE, BELOW } = Modifier.Position;
@@ -49,7 +49,12 @@ function getRoundingFunction(line: number, position: number): (a: number) => num
   }
 }
 
-function snapLineToStaff(canSitBetweenLines: boolean, line: number, position: number, offsetDirection: number): number {
+function snapLineToStaff(
+  canSitBetweenLines: boolean,
+  line: number,
+  position: number,
+  offsetDirection: number,
+): number {
   // Initially, snap to nearest staff line or space
   const snappedLine = roundToNearestHalf(getRoundingFunction(line, position), line);
   const canSnapToStaffSpace = canSitBetweenLines && isWithinLines(snappedLine, position);
@@ -91,7 +96,10 @@ function getTopY(note: Note, textLine: number): number {
       return note.checkStave().getYForTopText(textLine);
     }
   } else {
-    throw new RuntimeError('UnknownCategory', 'Only can get the top and bottom ys of stavenotes and tabnotes');
+    throw new RuntimeError(
+      "UnknownCategory",
+      "Only can get the top and bottom ys of stavenotes and tabnotes",
+    );
   }
 }
 
@@ -120,7 +128,10 @@ function getBottomY(note: Note, textLine: number): number {
       return note.checkStave().getYForBottomText(textLine);
     }
   } else {
-    throw new RuntimeError('UnknownCategory', 'Only can get the top and bottom ys of stavenotes and tabnotes');
+    throw new RuntimeError(
+      "UnknownCategory",
+      "Only can get the top and bottom ys of stavenotes and tabnotes",
+    );
   }
 }
 
@@ -210,7 +221,7 @@ export class Articulation extends Modifier {
     const getIncrement = (articulation: Articulation, line: number, position: number) =>
       roundToNearestHalf(
         getRoundingFunction(line, position),
-        defined(articulation.glyph.getMetrics().height) / 10 + margin
+        defined(articulation.glyph.getMetrics().height) / 10 + margin,
       );
 
     articulations.forEach((articulation) => {
@@ -265,7 +276,7 @@ export class Articulation extends Modifier {
       .reduce((maxWidth, articWidth) => Math.max(articWidth, maxWidth));
     const overlap = Math.min(
       Math.max(width - maxGlyphWidth, 0),
-      Math.max(width - (state.left_shift + state.right_shift), 0)
+      Math.max(width - (state.left_shift + state.right_shift), 0),
     );
 
     state.left_shift += overlap / 2;
@@ -273,18 +284,22 @@ export class Articulation extends Modifier {
     return true;
   }
 
-  static easyScoreHook({ articulations }: { articulations: string }, note: StemmableNote, builder: Builder): void {
+  static easyScoreHook(
+    { articulations }: { articulations: string },
+    note: StemmableNote,
+    builder: Builder,
+  ): void {
     if (!articulations) return;
 
     const articNameToCode: Record<string, string> = {
-      staccato: 'a.',
-      tenuto: 'a-',
-      accent: 'a>',
+      staccato: "a.",
+      tenuto: "a-",
+      accent: "a>",
     };
 
     articulations
-      .split(',')
-      .map((articString) => articString.trim().split('.'))
+      .split(",")
+      .map((articString) => articString.trim().split("."))
       .map(([name, position]) => {
         const artic: { type: string; position?: number } = { type: articNameToCode[name] };
         if (position) artic.position = Modifier.PositionString[position];
@@ -318,13 +333,14 @@ export class Articulation extends Modifier {
     // Use type as glyph code, if not defined as articulation code
     if (!this.articulation) {
       this.articulation = { code: this.type, between_lines: false };
-      if (this.type.endsWith('Above')) this.position = ABOVE;
-      if (this.type.endsWith('Below')) this.position = BELOW;
+      if (this.type.endsWith("Above")) this.position = ABOVE;
+      if (this.type.endsWith("Below")) this.position = BELOW;
     }
     const code =
-      (this.position === ABOVE ? this.articulation.aboveCode : this.articulation.belowCode) || this.articulation.code;
-    this.glyph = new Glyph(code ?? '', this.render_options.font_scale);
-    defined(this.glyph, 'ArgumentError', `Articulation not found: ${this.type}`);
+      (this.position === ABOVE ? this.articulation.aboveCode : this.articulation.belowCode) ||
+      this.articulation.code;
+    this.glyph = new Glyph(code ?? "", this.render_options.font_scale);
+    defined(this.glyph, "ArgumentError", `Articulation not found: ${this.type}`);
 
     this.setWidth(defined(this.glyph.getMetrics().width));
   }
@@ -355,19 +371,26 @@ export class Articulation extends Modifier {
 
     const initialOffset = getInitialOffset(note, position);
 
-    const padding = Tables.currentMusicFont().lookupMetric(`articulation.${glyph.getCode()}.padding`, 0);
+    const padding = Tables.currentMusicFont().lookupMetric(
+      `articulation.${glyph.getCode()}.padding`,
+      0,
+    );
 
     let y = (
       {
         [ABOVE]: () => {
           glyph.setOrigin(0.5, 1);
           const y = getTopY(note, textLine) - (textLine + initialOffset) * staffSpace;
-          return shouldSitOutsideStaff ? Math.min(stave.getYForTopText(Articulation.INITIAL_OFFSET), y) : y;
+          return shouldSitOutsideStaff
+            ? Math.min(stave.getYForTopText(Articulation.INITIAL_OFFSET), y)
+            : y;
         },
         [BELOW]: () => {
           glyph.setOrigin(0.5, 0);
           const y = getBottomY(note, textLine) + (textLine + initialOffset) * staffSpace;
-          return shouldSitOutsideStaff ? Math.max(stave.getYForBottomText(Articulation.INITIAL_OFFSET), y) : y;
+          return shouldSitOutsideStaff
+            ? Math.max(stave.getYForBottomText(Articulation.INITIAL_OFFSET), y)
+            : y;
         },
       } as Record<number, () => number>
     )[position]();
@@ -381,7 +404,9 @@ export class Articulation extends Modifier {
 
       if (isWithinLines(snappedLine, position)) glyph.setOrigin(0.5, 0.5);
 
-      y += Math.abs(snappedLine - articLine) * staffSpace * offsetDirection + padding * offsetDirection;
+      y +=
+        Math.abs(snappedLine - articLine) * staffSpace * offsetDirection +
+        padding * offsetDirection;
     }
 
     L(`Rendering articulation at (x: ${x}, y: ${y})`);

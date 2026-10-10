@@ -3,9 +3,8 @@
 //
 // VexFlow Test Support Library
 
-import { ContextBuilder, Factory, Flow, Font, RenderContext, Renderer } from '../src/index';
-
-import { globalObject } from '../src/util';
+import { ContextBuilder, Factory, Flow, Font, RenderContext, Renderer } from "../src/index";
+import { globalObject } from "../src/util";
 
 // eslint-disable-next-line
 declare const $: any;
@@ -37,9 +36,9 @@ if (!global.$) {
   // generate_png_images.js uses jsdom and does not include jQuery.
   global.$ = (param: HTMLElement | string) => {
     let element: HTMLElement;
-    if (typeof param !== 'string') {
+    if (typeof param !== "string") {
       element = param;
-    } else if (param.startsWith('<')) {
+    } else if (param.startsWith("<")) {
       // Extract the tag name: e.g., <div/> => div
       // Assume param.match returns something (! operator).
       // eslint-disable-next-line
@@ -94,42 +93,42 @@ export type RunOptions = {
 
 /** Allow `name` to be used inside file names. */
 function sanitizeName(name: string): string {
-  return name.replace(/[^a-zA-Z0-9]/g, '_');
+  return name.replace(/[^a-zA-Z0-9]/g, "_");
 }
 
 const CANVAS_TEST_CONFIG = {
   backend: Renderer.Backends.CANVAS,
-  tagName: 'canvas',
-  testType: 'Canvas',
-  fontStacks: ['Bravura'],
+  tagName: "canvas",
+  testType: "Canvas",
+  fontStacks: ["Bravura"],
 };
 
 const CANVAS_TEXT_CONFIG = {
   backend: Renderer.Backends.CANVAS,
-  tagName: 'canvas',
-  testType: 'Canvas',
-  fontStacks: ['Bravura'],
+  tagName: "canvas",
+  testType: "Canvas",
+  fontStacks: ["Bravura"],
 };
 
 const SVG_TEST_CONFIG = {
   backend: Renderer.Backends.SVG,
-  tagName: 'div',
-  testType: 'SVG',
-  fontStacks: ['Bravura', 'Gonville', 'Petaluma', 'Leland'],
+  tagName: "div",
+  testType: "SVG",
+  fontStacks: ["Bravura", "Gonville", "Petaluma", "Leland"],
 };
 
 const SVG_TEXT_CONFIG = {
   backend: Renderer.Backends.SVG,
-  tagName: 'div',
-  testType: 'SVG',
-  fontStacks: ['Bravura'],
+  tagName: "div",
+  testType: "SVG",
+  fontStacks: ["Bravura"],
 };
 
 const NODE_TEST_CONFIG = {
   backend: Renderer.Backends.CANVAS,
-  tagName: 'canvas',
-  testType: 'NodeCanvas',
-  fontStacks: ['Bravura', 'Gonville', 'Petaluma', 'Leland'],
+  tagName: "canvas",
+  testType: "NodeCanvas",
+  fontStacks: ["Bravura", "Gonville", "Petaluma", "Leland"],
 };
 
 interface Test {
@@ -150,8 +149,8 @@ export class VexFlowTests {
       const { location } = window;
       if (location) {
         const sps = new URLSearchParams(location.search);
-        const jobsParam = sps.get('jobs');
-        const jobParam = sps.get('job');
+        const jobsParam = sps.get("jobs");
+        const jobParam = sps.get("job");
         if (jobsParam) {
           jobs = parseInt(jobsParam, 10);
         }
@@ -186,7 +185,7 @@ export class VexFlowTests {
   static RUN_NODE_TESTS = false;
 
   // Where images are stored for NodeJS tests.
-  static NODE_IMAGEDIR: 'images';
+  static NODE_IMAGEDIR: "images";
 
   // Default font properties for tests.
   static Font = { size: 10 };
@@ -195,10 +194,10 @@ export class VexFlowTests {
    * Each font stack is a prioritized list of font names.
    */
   static FONT_STACKS: Record<string, string[]> = {
-    Bravura: ['Bravura', 'Custom'],
-    Gonville: ['Gonville', 'Bravura', 'Custom'],
-    Petaluma: ['Petaluma', 'Gonville', 'Bravura', 'Custom'],
-    Leland: ['Leland', 'Bravura', 'Custom'],
+    Bravura: ["Bravura", "Custom"],
+    Gonville: ["Gonville", "Bravura", "Custom"],
+    Petaluma: ["Petaluma", "Gonville", "Bravura", "Custom"],
+    Leland: ["Leland", "Bravura", "Custom"],
   };
 
   static set NODE_FONT_STACKS(fontStacks: string[]) {
@@ -209,7 +208,7 @@ export class VexFlowTests {
 
   /** Return a unique ID for a test. */
   static generateTestID(prefix: string): string {
-    return prefix + '_' + VexFlowTests.NEXT_TEST_ID++;
+    return prefix + "_" + VexFlowTests.NEXT_TEST_ID++;
   }
 
   /**
@@ -238,12 +237,17 @@ export class VexFlowTests {
    * @param testTitle
    * @param tagName
    */
-  static createTest(elementId: string, testTitle: string, tagName: string, titleId: string = ''): HTMLElement {
+  static createTest(
+    elementId: string,
+    testTitle: string,
+    tagName: string,
+    titleId: string = "",
+  ): HTMLElement {
     const anchorTestTitle = `<a href="#${titleId}">${testTitle}</a>`;
-    const title = $('<div/>').addClass('name').attr('id', titleId).html(anchorTestTitle).get(0);
-    const vexOutput = $(`<${tagName}/>`).addClass('vex-tabdiv').attr('id', elementId).get(0);
-    const container = $('<div/>').addClass('testcanvas').append(title, vexOutput).get(0);
-    $('#qunit-tests').append(container);
+    const title = $("<div/>").addClass("name").attr("id", titleId).html(anchorTestTitle).get(0);
+    const vexOutput = $(`<${tagName}/>`).addClass("vex-tabdiv").attr("id", elementId).get(0);
+    const container = $("<div/>").addClass("testcanvas").append(title, vexOutput).get(0);
+    $("#qunit-tests").append(container);
     return vexOutput;
   }
 
@@ -303,22 +307,31 @@ export class VexFlowTests {
       // output image file name, which allows visual diffs against
       // the previous release: version 3.0.9. In the future, if we decide
       // to test all fonts by default, we can remove this check.
-      const onlyBravura = NODE_TEST_CONFIG.fontStacks.length === 1 && fontName === 'Bravura';
-      const fontInfo = onlyBravura ? '' : `.${fontName}`;
+      const onlyBravura = NODE_TEST_CONFIG.fontStacks.length === 1 && fontName === "Bravura";
+      const fontInfo = onlyBravura ? "" : `.${fontName}`;
       const fileName = `${VexFlowTests.NODE_IMAGEDIR}/${moduleName}.${testName}${fontInfo}.png`;
 
-      const imageData = (element as HTMLCanvasElement).toDataURL().split(';base64,').pop();
-      const imageBuffer = Buffer.from(imageData as string, 'base64');
+      const imageData = (element as HTMLCanvasElement).toDataURL().split(";base64,").pop();
+      const imageBuffer = Buffer.from(imageData as string, "base64");
 
-      VexFlowTests.shims.fs.writeFileSync(fileName, imageBuffer, { encoding: 'base64' });
+      VexFlowTests.shims.fs.writeFileSync(fileName, imageBuffer, { encoding: "base64" });
     }
   }
 
   /** Run QUnit.test(...) for each font. */
   // eslint-disable-next-line
-  static runWithParams({ fontStacks, testFunc, name, params, backend, tagName, testType, helper }: any): void {
+  static runWithParams({
+    fontStacks,
+    testFunc,
+    name,
+    params,
+    backend,
+    tagName,
+    testType,
+    helper,
+  }: any): void {
     if (name === undefined) {
-      throw new Error('Test name is undefined.');
+      throw new Error("Test name is undefined.");
     }
     const testTypeLowerCase = testType.toLowerCase();
     fontStacks.forEach((fontStackName: string) => {
@@ -326,15 +339,15 @@ export class VexFlowTests {
         useTempFontStack(fontStackName);
         const elementId = VexFlowTests.generateTestID(`${testTypeLowerCase}_` + fontStackName);
         const moduleName = assert.test.module.name;
-        const title = moduleName + ' › ' + name + ` › ${testType} + ${fontStackName}`;
+        const title = moduleName + " › " + name + ` › ${testType} + ${fontStackName}`;
 
         // Add an element id for the title div, so that we can scroll directly to a test case.
         // Add a fragment identifier to the url (e.g., #Stave.Multiple_Stave_Barline_Test.Bravura)
         // This titleId will match the name of the PNGs generated by visual regression tests
         // (without the _Current.png or _Reference.png).
-        let prefix = '';
-        if (testTypeLowerCase === 'canvas') {
-          prefix = testTypeLowerCase + '_';
+        let prefix = "";
+        if (testTypeLowerCase === "canvas") {
+          prefix = testTypeLowerCase + "_";
         } else {
           // DO NOT ADD A PREFIX TO SVG TESTS
           // The canvas prefix above is for making sure our element ids are unique,
@@ -346,7 +359,9 @@ export class VexFlowTests {
         const element = VexFlowTests.createTest(elementId, title, tagName, titleId);
         const options: TestOptions = { elementId, params, assert, backend };
         const isSVG = backend === Renderer.Backends.SVG;
-        const contextBuilder: ContextBuilder = isSVG ? Renderer.getSVGContext : Renderer.getCanvasContext;
+        const contextBuilder: ContextBuilder = isSVG
+          ? Renderer.getSVGContext
+          : Renderer.getCanvasContext;
         testFunc(options, contextBuilder);
         restoreOriginalFontStack();
         if (helper) helper(fontStackName, element);
@@ -375,15 +390,15 @@ export class VexFlowTests {
       ctx.lineTo(x + 10, lastY - 4);
       ctx.stroke();
 
-      ctx.setFillStyle('black');
+      ctx.setFillStyle("black");
       ctx.fillText(text, x + 15, lastY);
       lastY += spacing;
     }
 
-    legend('green', 'Note + Flag');
-    legend('red', 'Modifiers');
-    legend('#999', 'Displaced Head');
-    legend('#DDD', 'Formatter Shift');
+    legend("green", "Note + Flag");
+    legend("red", "Modifiers");
+    legend("#999", "Displaced Head");
+    legend("#DDD", "Formatter Shift");
 
     ctx.restore();
   }
@@ -398,38 +413,38 @@ export const concat = (a: any[], b: any[]): any[] => a.concat(b);
 /** Used in KeySignature and ClefKeySignature Tests. */
 export const MAJOR_KEYS = [
   //
-  'C',
-  'F',
-  'Bb',
-  'Eb',
-  'Ab',
-  'Db',
-  'Gb',
-  'Cb',
-  'G',
-  'D',
-  'A',
-  'E',
-  'B',
-  'F#',
-  'C#',
+  "C",
+  "F",
+  "Bb",
+  "Eb",
+  "Ab",
+  "Db",
+  "Gb",
+  "Cb",
+  "G",
+  "D",
+  "A",
+  "E",
+  "B",
+  "F#",
+  "C#",
 ];
 export const MINOR_KEYS = [
-  'Am',
-  'Dm',
-  'Gm',
-  'Cm',
-  'Fm',
-  'Bbm',
-  'Ebm',
-  'Abm',
-  'Em',
-  'Bm',
-  'F#m',
-  'C#m',
-  'G#m',
-  'D#m',
-  'A#m',
+  "Am",
+  "Dm",
+  "Gm",
+  "Cm",
+  "Fm",
+  "Bbm",
+  "Ebm",
+  "Abm",
+  "Em",
+  "Bm",
+  "F#m",
+  "C#m",
+  "G#m",
+  "D#m",
+  "A#m",
 ];
 
 // VexFlow classes can be accessed via Vex.Flow.* or by directly importing a library class.

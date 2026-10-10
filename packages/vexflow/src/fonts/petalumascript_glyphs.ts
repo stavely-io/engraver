@@ -1,7 +1,7 @@
 export const PetalumaScriptFont = {
   spacing: 50,
   glyphs: {
-    ' ': {
+    " ": {
       x_min: 0,
       x_max: 250,
       y_min: 0,
@@ -10,7 +10,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 0,
       advanceWidth: 250,
     },
-    '0': {
+    "0": {
       x_min: 33,
       x_max: 534,
       y_min: -13,
@@ -19,7 +19,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 33,
       advanceWidth: 570,
     },
-    '1': {
+    "1": {
       x_min: 48,
       x_max: 235,
       y_min: -17,
@@ -28,7 +28,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 48,
       advanceWidth: 286,
     },
-    '2': {
+    "2": {
       x_min: 56,
       x_max: 571,
       y_min: -19,
@@ -37,7 +37,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 56,
       advanceWidth: 626,
     },
-    '3': {
+    "3": {
       x_min: 50,
       x_max: 528,
       y_min: -7,
@@ -46,7 +46,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 50,
       advanceWidth: 589,
     },
-    '4': {
+    "4": {
       x_min: 38,
       x_max: 564,
       y_min: -13,
@@ -55,7 +55,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 38,
       advanceWidth: 614,
     },
-    '5': {
+    "5": {
       x_min: 42,
       x_max: 601,
       y_min: -34,
@@ -64,7 +64,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 42,
       advanceWidth: 648,
     },
-    '6': {
+    "6": {
       x_min: 47,
       x_max: 606,
       y_min: -16,
@@ -73,7 +73,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 47,
       advanceWidth: 667,
     },
-    '7': {
+    "7": {
       x_min: 47,
       x_max: 567,
       y_min: 5,
@@ -82,7 +82,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 0,
       advanceWidth: 615,
     },
-    '8': {
+    "8": {
       x_min: 40,
       x_max: 541,
       y_min: -15,
@@ -91,7 +91,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 40,
       advanceWidth: 585,
     },
-    '9': {
+    "9": {
       x_min: 40,
       x_max: 537,
       y_min: -52,
@@ -100,7 +100,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 40,
       advanceWidth: 592,
     },
-    '!': {
+    "!": {
       x_min: 49,
       x_max: 180,
       y_min: -7,
@@ -118,7 +118,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 39,
       advanceWidth: 353,
     },
-    '#': {
+    "#": {
       x_min: 33,
       x_max: 599,
       y_min: -8,
@@ -136,7 +136,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 53,
       advanceWidth: 560,
     },
-    '%': {
+    "%": {
       x_min: 35,
       x_max: 656,
       y_min: -128,
@@ -145,7 +145,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 35,
       advanceWidth: 711,
     },
-    '&': {
+    "&": {
       x_min: 53,
       x_max: 441,
       y_min: -3,
@@ -163,7 +163,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 43,
       advanceWidth: 217,
     },
-    '(': {
+    "(": {
       x_min: 41,
       x_max: 311,
       y_min: -36,
@@ -172,7 +172,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 41,
       advanceWidth: 308,
     },
-    ')': {
+    ")": {
       x_min: -8,
       x_max: 257,
       y_min: -21,
@@ -181,7 +181,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: -8,
       advanceWidth: 280,
     },
-    '*': {
+    "*": {
       x_min: 59,
       x_max: 539,
       y_min: 175,
@@ -190,7 +190,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 59,
       advanceWidth: 601,
     },
-    '+': {
+    "+": {
       x_min: 33,
       x_max: 361,
       y_min: 180,
@@ -199,7 +199,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 33,
       advanceWidth: 400,
     },
-    ',': {
+    ",": {
       x_min: 15,
       x_max: 176,
       y_min: -129,
@@ -208,7 +208,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 15,
       advanceWidth: 205,
     },
-    '-': {
+    "-": {
       x_min: 40,
       x_max: 380,
       y_min: 317,
@@ -217,7 +217,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 40,
       advanceWidth: 422,
     },
-    '.': {
+    ".": {
       x_min: 48,
       x_max: 185,
       y_min: -56,
@@ -226,7 +226,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 48,
       advanceWidth: 227,
     },
-    '/': {
+    "/": {
       x_min: -58,
       x_max: 654,
       y_min: -122,
@@ -235,7 +235,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: -58,
       advanceWidth: 626,
     },
-    ':': {
+    ":": {
       x_min: 65,
       x_max: 225,
       y_min: 97,
@@ -244,7 +244,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 65,
       advanceWidth: 302,
     },
-    ';': {
+    ";": {
       x_min: 13,
       x_max: 295,
       y_min: -139,
@@ -253,7 +253,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 13,
       advanceWidth: 334,
     },
-    '<': {
+    "<": {
       x_min: 28,
       x_max: 438,
       y_min: -1,
@@ -262,7 +262,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 28,
       advanceWidth: 475,
     },
-    '=': {
+    "=": {
       x_min: 40,
       x_max: 383,
       y_min: 199.9598640852289,
@@ -271,7 +271,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 40,
       advanceWidth: 422,
     },
-    '>': {
+    ">": {
       x_min: 35,
       x_max: 421,
       y_min: 28,
@@ -280,7 +280,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 35,
       advanceWidth: 466,
     },
-    '?': {
+    "?": {
       x_min: 45,
       x_max: 548,
       y_min: -17,
@@ -289,7 +289,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 45,
       advanceWidth: 592,
     },
-    '@': {
+    "@": {
       x_min: 51,
       x_max: 730,
       y_min: -78,
@@ -532,7 +532,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 42,
       advanceWidth: 629,
     },
-    '[': {
+    "[": {
       x_min: 46,
       x_max: 346,
       y_min: -150,
@@ -541,7 +541,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 46,
       advanceWidth: 291,
     },
-    '\\': {
+    "\\": {
       x_min: 20,
       x_max: 616,
       y_min: -100,
@@ -550,7 +550,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 20,
       advanceWidth: 645,
     },
-    ']': {
+    "]": {
       x_min: -76,
       x_max: 226,
       y_min: -150,
@@ -559,7 +559,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: -76,
       advanceWidth: 297,
     },
-    '^': {
+    "^": {
       x_min: 43,
       x_max: 437,
       y_min: 517,
@@ -577,7 +577,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 29,
       advanceWidth: 598,
     },
-    '`': {
+    "`": {
       x_min: 54,
       x_max: 321,
       y_min: 540,
@@ -820,7 +820,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 27,
       advanceWidth: 494,
     },
-    '{': {
+    "{": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -829,7 +829,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 0,
       advanceWidth: 308,
     },
-    '|': {
+    "|": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -838,7 +838,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 0,
       advanceWidth: 308,
     },
-    '}': {
+    "}": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -847,7 +847,7 @@ export const PetalumaScriptFont = {
       leftSideBearing: 0,
       advanceWidth: 308,
     },
-    '~': {
+    "~": {
       x_min: 0,
       x_max: 0,
       y_min: 0,
@@ -857,7 +857,7 @@ export const PetalumaScriptFont = {
       advanceWidth: 308,
     },
   },
-  fontFamily: 'PetalumaScript',
+  fontFamily: "PetalumaScript",
   resolution: 1000,
-  generatedOn: '2020-06-14T18:33:25.407Z',
+  generatedOn: "2020-06-14T18:33:25.407Z",
 };

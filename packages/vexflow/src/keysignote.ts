@@ -1,10 +1,10 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // Author Mark Meeus 2019
 
-import { KeySignature } from './keysignature';
-import type { ModifierContext } from './modifiercontext';
-import { Note } from './note';
-import { Category } from './typeguard';
+import { KeySignature } from "./keysignature";
+import type { ModifierContext } from "./modifiercontext";
+import { Note } from "./note";
+import { Category } from "./typeguard";
 
 export class KeySigNote extends Note {
   static get CATEGORY(): string {
@@ -14,7 +14,7 @@ export class KeySigNote extends Note {
   protected keySignature: KeySignature;
 
   constructor(keySpec: string, cancelKeySpec?: string, alterKeySpec?: string[]) {
-    super({ duration: 'b' });
+    super({ duration: "b" });
 
     this.keySignature = new KeySignature(keySpec, cancelKeySpec, alterKeySpec);
 

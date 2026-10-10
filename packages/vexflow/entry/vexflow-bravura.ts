@@ -4,20 +4,20 @@
 // vexflow-bravura.ts is the entry point for vexflow-bravura.js.
 // This version bundles the Bravura music engraving font.
 
-import { Flow } from '../src/flow';
-import { loadBravura } from '../src/fonts/load_bravura';
-import { loadCustom } from '../src/fonts/load_custom';
-import { loadTextFonts } from '../src/fonts/textfonts';
+import { Flow } from "../src/flow";
+import { loadBravura } from "../src/fonts/load_bravura";
+import { loadCustom } from "../src/fonts/load_custom";
+import { loadTextFonts } from "../src/fonts/textfonts";
 
 loadBravura();
 loadCustom();
-Flow.setMusicFont('Bravura', 'Custom');
+Flow.setMusicFont("Bravura", "Custom");
 loadTextFonts();
 
 // Re-export all exports from index.ts.
-export * from '../src/index';
+export * from "../src/index";
 // Also collect all exports into a default export for CJS projects.
-export * as default from '../src/index';
+export * as default from "../src/index";
 
 // ADD_MUSIC_FONT
 // To make a vexflow-xxx.js build that ONLY loads your new music font, copy this file and name it vexflow-xxx.ts.

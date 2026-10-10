@@ -1,8 +1,8 @@
 // [VexFlow](https://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 // MIT License
 
-import { Tables } from './tables';
-import { RuntimeError } from './util';
+import { Tables } from "./tables";
+import { RuntimeError } from "./util";
 
 /** `Tuning` implements varies types of tunings for tablature. */
 export class Tuning {
@@ -10,14 +10,14 @@ export class Tuning {
 
   static get names(): Record<string, string> {
     return {
-      standard: 'E/5,B/4,G/4,D/4,A/3,E/3',
-      dagdad: 'D/5,A/4,G/4,D/4,A/3,D/3',
-      dropd: 'E/5,B/4,G/4,D/4,A/3,D/3',
-      eb: 'Eb/5,Bb/4,Gb/4,Db/4,Ab/3,Db/3',
-      standardBanjo: 'D/5,B/4,G/4,D/4,G/5',
-      doubleCBanjo: 'D/5,C/5,G/4,C/4,G/5',
-      doubleDBanjo: 'E/5,D/5,A/4,D/4,A/5',
-      sawmillBanjo: 'D/5,C/5,G/4,D/4,G/5',
+      standard: "E/5,B/4,G/4,D/4,A/3,E/3",
+      dagdad: "D/5,A/4,G/4,D/4,A/3,D/3",
+      dropd: "E/5,B/4,G/4,D/4,A/3,D/3",
+      eb: "Eb/5,Bb/4,Gb/4,Db/4,Ab/3,Db/3",
+      standardBanjo: "D/5,B/4,G/4,D/4,G/5",
+      doubleCBanjo: "D/5,C/5,G/4,C/4,G/5",
+      doubleDBanjo: "E/5,D/5,A/4,D/4,A/5",
+      sawmillBanjo: "D/5,C/5,G/4,D/4,G/5",
     };
   }
 
@@ -25,7 +25,7 @@ export class Tuning {
    * Constructor.
    * @param tuningString tuning name (eg. 'dagdad') or comma separated note strings
    */
-  constructor(tuningString = 'E/5,B/4,G/4,D/4,A/3,E/3,B/2,E/2') {
+  constructor(tuningString = "E/5,B/4,G/4,D/4,A/3,E/3,B/2,E/2") {
     // Default to standard tuning.
     this.setTuning(tuningString);
   }
@@ -48,7 +48,7 @@ export class Tuning {
 
     const keys = tuningString.split(/\s*,\s*/);
     if (keys.length === 0) {
-      throw new RuntimeError('BadArguments', `Invalid tuning string: ${tuningString}`);
+      throw new RuntimeError("BadArguments", `Invalid tuning string: ${tuningString}`);
     }
 
     for (let i = 0; i < keys.length; ++i) {
@@ -61,8 +61,8 @@ export class Tuning {
     const s = Number(stringNum);
     if (s < 1 || s > this.tuningValues.length) {
       throw new RuntimeError(
-        'BadArguments',
-        `String number must be between 1 and ${this.tuningValues.length}:${stringNum}`
+        "BadArguments",
+        `String number must be between 1 and ${this.tuningValues.length}:${stringNum}`,
       );
     }
 
@@ -75,7 +75,7 @@ export class Tuning {
     const f = Number(fretNum);
 
     if (f < 0) {
-      throw new RuntimeError('BadArguments', `Fret number must be 0 or higher: ${fretNum}`);
+      throw new RuntimeError("BadArguments", `Fret number must be 0 or higher: ${fretNum}`);
     }
 
     return stringValue + f;
