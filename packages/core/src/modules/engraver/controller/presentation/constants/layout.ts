@@ -1,5 +1,5 @@
 import { DIATONIC_PITCH_RANGE } from "@/modules/musical-core/constants/pitch";
-import { Vex } from "@stavely-io/vexflow";
+import { Vex } from "@engraver/vexflow";
 
 export const VEXFLOW_MEASURE_LINE_GAP = Vex.Flow.STAVE_LINE_DISTANCE;
 

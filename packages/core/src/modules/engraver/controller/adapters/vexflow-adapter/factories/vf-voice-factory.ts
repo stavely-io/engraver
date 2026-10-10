@@ -3,7 +3,7 @@ import { EngraverChord } from "../../../../model/elements/events/engraver-chord"
 import { VFChordFactory } from "./core/vf-chord-factory";
 import { VFRestFactory } from "./core/vf-rest-factory";
 import { EngraverVoice } from "@/modules/engraver/model/containers/engraver-voice";
-import { StaveNote, Voice } from "@stavely-io/vexflow";
+import { StaveNote, Voice } from "@engraver/vexflow";
 
 export class VFVoiceFactory {
   public static create(engraverVoice: EngraverVoice, measureActiveVoiceCount: number): Voice {

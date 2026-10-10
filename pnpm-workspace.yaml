@@ -6,7 +6,6 @@ packages:
 catalogMode: prefer
 
 catalog:
-  "@stavely-io/vexflow": ^5.0.2
   "@types/node": ^24
   publint: ^0.3.25
   smplr: ^1.1.0

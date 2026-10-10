@@ -1,7 +1,7 @@
 import type { Color } from "../../../view/types/colors.types";
 import type { VFScoreData } from "../types/vf-data";
 import { EngraverVFRenderer } from "./abstract/engraver-renderer";
-import { StaveNote, Voice } from "@stavely-io/vexflow";
+import { StaveNote, Voice } from "@engraver/vexflow";
 
 export class EngraverScoreRenderer extends EngraverVFRenderer {
   private static readonly VF_SCORE_ID = "engraver-score";

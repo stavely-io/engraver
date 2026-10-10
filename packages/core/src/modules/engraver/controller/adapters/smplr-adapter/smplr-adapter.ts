@@ -7,7 +7,7 @@ import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 import type { SmplrNote, SmplrScoreData } from "@/modules/player/smplr/types/smplr";
-import { Fraction } from "@stavely-io/vexflow";
+import { Fraction } from "@engraver/vexflow";
 
 export class SmplrAdapter implements EngraverOneWayAdapter<EngraverScore, SmplrScoreData> {
   public adapt(input: EngraverScore): SmplrScoreData {

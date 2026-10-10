@@ -2,7 +2,7 @@ import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../intera
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 import type { Color } from "@/modules/engraver/view/types/colors.types";
 import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
-import { StaveNote } from "@stavely-io/vexflow";
+import { StaveNote } from "@engraver/vexflow";
 
 export class TickablePainter {
   public static paint(vfScoreData: VFScoreCoreData, map: EngraverPlayableSelectableColorMap): void {

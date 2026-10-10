@@ -1,5 +1,5 @@
 import type { Args } from "../../../../model/types/misc.types";
-import { RenderContext, Renderer } from "@stavely-io/vexflow";
+import { RenderContext, Renderer } from "@engraver/vexflow";
 
 export abstract class EngraverVFRenderer {
   protected _context?: RenderContext;

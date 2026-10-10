@@ -3,7 +3,7 @@ import type { EngraverStaveModifiers } from "../../../model/core/types/engraver-
 import { EngraverScore } from "../../../model/score/engraver-score";
 import { VFVoiceFactory } from "../../adapters/vexflow-adapter/factories/vf-voice-factory";
 import { SystemVerticalDivider } from "../../adapters/vexflow-adapter/formatters/system-divider";
-import { Formatter, RenderContext, Stave, Voice } from "@stavely-io/vexflow";
+import { Formatter, RenderContext, Stave, Voice } from "@engraver/vexflow";
 
 export class EngraverLayoutCalculator {
   public static calculateRawMeasureWidths(

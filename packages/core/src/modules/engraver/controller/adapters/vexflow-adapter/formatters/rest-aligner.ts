@@ -2,7 +2,7 @@ import { EngraverScoreRenderer } from "../../../rendering/renderers/engraver-sco
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 import { VFStaveNoteType } from "../types/vexflow-adapter.types";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
-import { StaveNote, Voice } from "@stavely-io/vexflow";
+import { StaveNote, Voice } from "@engraver/vexflow";
 
 export class RestAligner {
   private static readonly REST_KEY = 3;

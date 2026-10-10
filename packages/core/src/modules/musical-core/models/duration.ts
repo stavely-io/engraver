@@ -8,7 +8,7 @@ import {
   QUARTER_NOTE_BEATS,
   WHOLE_NOTE_BEATS,
 } from "@/modules/musical-core/constants/time";
-import { Fraction } from "@stavely-io/vexflow";
+import { Fraction } from "@engraver/vexflow";
 
 export class Duration {
   constructor(

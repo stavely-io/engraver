@@ -4,7 +4,7 @@ import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
 import type { EngraverSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
-import { StaveNote } from "@stavely-io/vexflow";
+import { StaveNote } from "@engraver/vexflow";
 
 export class EngraverOverlayMapper {
   private static readonly VF_NOTEHEAD_CLASS = ".vf-notehead";

@@ -24,7 +24,7 @@ import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Rest } from "@/modules/musical-core/models/rest";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
-import { Fraction } from "@stavely-io/vexflow";
+import { Fraction } from "@engraver/vexflow";
 
 export class EngraverMeasureInitError extends Error {
   constructor(message: string) {

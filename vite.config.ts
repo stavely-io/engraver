@@ -7,8 +7,8 @@ export default defineConfig({
       customGroups: [
         // Node.js builtins
         { groupName: "node", elementNamePattern: ["^node:"] },
-        // Packages starting with @stavely-io or other org packages
-        { groupName: "stavely", elementNamePattern: ["^@stavely-io"] },
+        // Workspace packages (@engraver/*)
+        { groupName: "engraver", elementNamePattern: ["^@engraver/"] },
         // Other external packages
         { groupName: "other-external", elementNamePattern: ["^\\w"] },
         // Internal aliases (like "@/...")
@@ -18,7 +18,7 @@ export default defineConfig({
         // Relative imports
         { groupName: "relative", elementNamePattern: ["^\\."] },
       ],
-      groups: ["node", "stavely", "other-external", "internal-alias", "side-effect", "relative"],
+      groups: ["node", "engraver", "other-external", "internal-alias", "side-effect", "relative"],
     },
   },
   staged: {

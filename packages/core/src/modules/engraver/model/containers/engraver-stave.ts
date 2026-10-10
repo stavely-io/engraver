@@ -19,7 +19,7 @@ import { Tie } from "@/modules/musical-core/models/tie";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
-import { Fraction } from "@stavely-io/vexflow";
+import { Fraction } from "@engraver/vexflow";
 
 export class EngraverStaveInitError extends Error {
   constructor(message: string) {

@@ -9,7 +9,7 @@ import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-
 import { Duration } from "@/modules/musical-core/models/duration";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { ClefType } from "@/modules/musical-core/types/clef.types";
-import { Dot, StaveNote } from "@stavely-io/vexflow";
+import { Dot, StaveNote } from "@engraver/vexflow";
 
 export class VFRestFactory {
   public static create(

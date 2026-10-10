@@ -21,7 +21,7 @@ import {
   StaveNote,
   Voice,
   VoiceMode,
-} from "@stavely-io/vexflow";
+} from "@engraver/vexflow";
 
 export class VFGhostTickableFactory {
   private static readonly VF_DEFAULT_LINE_COUNT = 5;

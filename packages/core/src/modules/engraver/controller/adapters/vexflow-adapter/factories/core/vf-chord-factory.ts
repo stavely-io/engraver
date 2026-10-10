@@ -3,7 +3,7 @@ import { VFStaveNoteType } from "../../types/vexflow-adapter.types";
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Accidental, Dot, StaveNote, Stem } from "@stavely-io/vexflow";
+import { Accidental, Dot, StaveNote, Stem } from "@engraver/vexflow";
 
 type StemDirection = typeof Stem.UP;
 

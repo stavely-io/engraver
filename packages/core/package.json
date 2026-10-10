@@ -10,7 +10,7 @@
   "contributors": [
     "Jakub Ciszewski jciszewski123@gmail.com",
     "Jakub Kotara jakub.kotara14@gmail.com",
-    "Marek Małek malekmarek56@gmail.com"
+    "Marek Ma\u0142ek malekmarek56@gmail.com"
   ],
   "repository": {
     "type": "git",
@@ -36,11 +36,11 @@
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
-    "@stavely-io/vexflow": "catalog:",
     "smplr": "catalog:",
     "zustand": "catalog:"
   },
   "devDependencies": {
+    "@engraver/vexflow": "workspace:*",
     "@types/node": "^26.1.1",
     "bumpp": "^11.1.0",
     "typescript": "catalog:",

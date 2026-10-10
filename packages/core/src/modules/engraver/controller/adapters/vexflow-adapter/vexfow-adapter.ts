@@ -24,7 +24,7 @@ import type {
   SystemLayout,
   VexflowAdapterContext,
 } from "./types/vexflow-adapter.types";
-import { Stave } from "@stavely-io/vexflow";
+import { Stave } from "@engraver/vexflow";
 
 export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFScoreData> {
   public adapt(

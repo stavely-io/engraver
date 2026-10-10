@@ -4,7 +4,7 @@ import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver
 import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { Fraction } from "@stavely-io/vexflow";
+import { Fraction } from "@engraver/vexflow";
 
 export class BlockedManager {
   constructor(private readonly context: EngraverActionExecutorContext) {}
