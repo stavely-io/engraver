@@ -1,9 +1,18 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "lib": ["DOM", "es2023"],
+    "moduleDetection": "force",
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "strict": true,
+    "noUnusedLocals": true,
     "noEmit": true,
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
   }
 }

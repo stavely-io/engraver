@@ -94,11 +94,11 @@ export class EngraverScore implements EngraverBlockable {
 
       const leftTickable =
         scoreData.staveData[leftNoteStaveIndex][leftNoteMeasureIndex][leftNoteVoiceIndex][
-          leftNoteTickableIndex
+        leftNoteTickableIndex
         ];
       const rightTickable =
         scoreData.staveData[rightNoteStaveIndex][rightNoteMeasureIndex][rightNoteVoiceIndex][
-          rightNoteTickableIndex
+        rightNoteTickableIndex
         ];
 
       if (!(leftTickable instanceof Chord)) {
