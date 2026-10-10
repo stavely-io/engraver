@@ -7,6 +7,8 @@ catalogMode: prefer
 
 catalog:
   "@types/node": ^24
+  "@vitest/browser-playwright": 5.0.1
+  playwright: ^1.64.0
   publint: ^0.3.25
   smplr: ^1.1.0
   typescript: ^7.0.2

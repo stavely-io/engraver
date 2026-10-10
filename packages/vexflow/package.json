@@ -24,6 +24,8 @@
     "check": "vp check"
   },
   "devDependencies": {
+    "@vitest/browser-playwright": "catalog:",
+    "playwright": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   }

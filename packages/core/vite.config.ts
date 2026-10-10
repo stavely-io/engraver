@@ -5,4 +5,7 @@ export default defineConfig({
     dts: {},
     exports: true,
   },
+  test: {
+    passWithNoTests: true,
+  }
 });

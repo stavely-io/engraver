@@ -47,6 +47,10 @@ export default defineConfig({
       },
     ],
   },
+  test: {
+    // Run each package with its own test config (e.g. vexflow's browser mode).
+    projects: ["packages/*"],
+  },
   run: {
     cache: true,
   },
