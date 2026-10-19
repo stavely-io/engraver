@@ -6,20 +6,54 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": "./entry/vexflow.ts",
-    "./bravura": "./entry/vexflow-bravura.ts",
-    "./gonville": "./entry/vexflow-gonville.ts",
-    "./leland": "./entry/vexflow-leland.ts",
-    "./petaluma": "./entry/vexflow-petaluma.ts",
-    "./core": "./entry/vexflow-core.ts",
-    "./font/bravura": "./entry/vexflow-font-bravura.ts",
-    "./font/gonville": "./entry/vexflow-font-gonville.ts",
-    "./font/leland": "./entry/vexflow-font-leland.ts",
-    "./font/petaluma": "./entry/vexflow-font-petaluma.ts",
-    "./font/custom": "./entry/vexflow-font-custom.ts",
+    ".": {
+      "typings": "./dist/types/entry/vexflow.d.ts",
+      "default": "./entry/vexflow.ts"
+    },
+    "./bravura": {
+      "typings": "./dist/types/entry/vexflow-bravura.d.ts",
+      "default": "./entry/vexflow-bravura.ts"
+    },
+    "./gonville": {
+      "typings": "./dist/types/entry/vexflow-gonville.d.ts",
+      "default": "./entry/vexflow-gonville.ts"
+    },
+    "./leland": {
+      "typings": "./dist/types/entry/vexflow-leland.d.ts",
+      "default": "./entry/vexflow-leland.ts"
+    },
+    "./petaluma": {
+      "typings": "./dist/types/entry/vexflow-petaluma.d.ts",
+      "default": "./entry/vexflow-petaluma.ts"
+    },
+    "./core": {
+      "typings": "./dist/types/entry/vexflow-core.d.ts",
+      "default": "./entry/vexflow-core.ts"
+    },
+    "./font/bravura": {
+      "typings": "./dist/types/entry/vexflow-font-bravura.d.ts",
+      "default": "./entry/vexflow-font-bravura.ts"
+    },
+    "./font/gonville": {
+      "typings": "./dist/types/entry/vexflow-font-gonville.d.ts",
+      "default": "./entry/vexflow-font-gonville.ts"
+    },
+    "./font/leland": {
+      "typings": "./dist/types/entry/vexflow-font-leland.d.ts",
+      "default": "./entry/vexflow-font-leland.ts"
+    },
+    "./font/petaluma": {
+      "typings": "./dist/types/entry/vexflow-font-petaluma.d.ts",
+      "default": "./entry/vexflow-font-petaluma.ts"
+    },
+    "./font/custom": {
+      "typings": "./dist/types/entry/vexflow-font-custom.d.ts",
+      "default": "./entry/vexflow-font-custom.ts"
+    },
     "./package.json": "./package.json"
   },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
     "test": "vp test",
     "check": "vp check"
   },

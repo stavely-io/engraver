@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@engraver/core",
   "version": "0.0.0",
   "description": "Core package for Engraver",
   "homepage": "https://github.com/stavely-io/engraver#readme",
@@ -21,8 +21,9 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./package.json": "./package.json"
+    ".": "./dist/index.js",
+    "./package.json": "./package.json",
+    "./icons/*": "./dist/icons/*"
   },
   "publishConfig": {
     "access": "public"
