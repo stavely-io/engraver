@@ -7,7 +7,13 @@ export default defineConfig({
     exports: true,
     // Inline @engraver/core's SVG icons as strings, so consumers need no SVG loader
     loader: { ".svg": "text" },
-    deps: { alwaysBundle: [/^@engraver\/core\/icons\//] },
+    deps: {
+      // tsdown <0.23 compatibility: resolve external dependency subpaths.
+      // Remove to preserve subpath imports as written (the new default).
+      // https://tsdown.dev/options/dependencies#deps-resolvedepsubpath
+      resolveDepSubpath: true,
+      alwaysBundle: [/^@engraver\/core\/icons\//],
+    },
   },
   test: {
     passWithNoTests: true,

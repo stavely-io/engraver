@@ -32,22 +32,23 @@
     "publint": "publint"
   },
   "dependencies": {
-    "@engraver/core": "workspace:*",
     "clsx": "^2.1.1",
     "lucide-react": "^0.545.0",
+    "react": "catalog:",
     "standardized-audio-context": "^25.3.77",
+    "tailwind": "catalog:",
     "tailwind-merge": "^3.3.1",
     "zustand": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "@types/react": "^19.2.18",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
     "bumpp": "^11.1.0",
-    "react": "^19.2.8",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   },
   "peerDependencies": {
-    "react": ">=19"
+    "react": ">=19",
+    "@engraver/core": "workspace:*"
   }
 }

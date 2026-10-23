@@ -1,5 +1,5 @@
-import { Duration } from "@/modules/musical-core/models/duration";
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
+import type { Duration } from "@/modules/musical-core/models/duration";
+import type { KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
@@ -11,9 +11,9 @@ import type {
   EngraverTickableCoordinates,
 } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
 import { EngraverInputMode } from "../../../view/types/engraver-mode.types";
-import { EngraverChord } from "../../elements/events/engraver-chord";
-import { EngraverNote } from "../../elements/events/engraver-note";
-import { EngraverRest } from "../../elements/events/engraver-rest";
+import type { EngraverChord } from "../../elements/events/engraver-chord";
+import type { EngraverNote } from "../../elements/events/engraver-note";
+import type { EngraverRest } from "../../elements/events/engraver-rest";
 
 export type EngraverTickable = EngraverChord | EngraverRest;
 

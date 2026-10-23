@@ -6,22 +6,31 @@ packages:
 catalogMode: prefer
 
 catalog:
-  "@types/node": ^24
-  "@vitest/browser-playwright": 5.0.1
+  "@vitest/browser-playwright": 5.0.3
   opentype.js: ^1.3.4
   playwright: ^1.64.0
   publint: ^0.3.25
+  react: ^19.3.1
   smplr: ^1.1.0
   typescript: ^7.0.2
-  vite: npm:@voidzero-dev/vite-plus-core@1.0.0
-  vite-plus: 1.0.0
+  "@types/react": "^19.3.0"
+  "@types/node": "^24.19.2"
+  vite: npm:@voidzero-dev/vite-plus-core@1.1.0
+  vite-plus: 1.1.0
   zustand: ^5.0.15
+  vitest: 5.0.3
+  '@tailwindcss/vite': ^4.3.3
+  tailwindcss: ^4.3.3
 overrides:
   vite@*: "catalog:"
+  vitest@*: "catalog:"
 peerDependencyRules:
   allowAny:
     - vite
+    - vitest
   allowedVersions:
     vite: "*"
+    vitest: "*"
 allowBuilds:
+  core-js: false
   lefthook: true
