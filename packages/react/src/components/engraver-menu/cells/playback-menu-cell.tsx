@@ -14,12 +14,12 @@ export const PlaybackMenuCell: FC = () => {
   if (!isPlayable) return null;
 
   return (
-    <EngraverMenuCell className="border-r-0 border-l" data-testid="playback-controls">
+    <EngraverMenuCell className="engraver-menu-cell--trailing" data-testid="playback-controls">
       <EngraverMenuButton onClick={playback.rewind}>
-        <SkipBack className="size-[24px]" />
+        <SkipBack />
       </EngraverMenuButton>
       <EngraverMenuButton onClick={playback.toggle}>
-        <Play className="size-[24px]" />
+        <Play />
       </EngraverMenuButton>
     </EngraverMenuCell>
   );

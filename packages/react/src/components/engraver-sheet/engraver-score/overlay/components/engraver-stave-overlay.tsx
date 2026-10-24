@@ -23,7 +23,7 @@ const EngraverStaveOverlay: FC<EngraverStaveOverlayProps> = ({ staveIndex }) => 
     <StaveContext.Provider value={{ staveIndex }}>
       <div
         data-testid="engraver-stave-overlay"
-        className={clsx(`absolute flex flex-row`, !isEditable && "pointer-events-none")}
+        className={clsx("engraver-stave-overlay", !isEditable && "engraver-stave-overlay--inert")}
         style={{ width: `${systemWidth}px`, top: `${topPitchRangeStaveOffset}px` }}
       >
         {Array.from({ length: measureWidths.length }).map((_, index) => (

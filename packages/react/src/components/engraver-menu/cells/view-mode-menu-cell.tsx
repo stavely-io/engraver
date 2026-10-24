@@ -13,7 +13,7 @@ export const ViewModeMenuCell: FC = () => {
   return (
     <EngraverMenuCell data-testid="view-mode-operator">
       <EngraverMenuButton onClick={toggle.viewMode}>
-        {isEditable ? <Pencil className="size-[24px]" /> : <MousePointer className="size-[24px]" />}
+        {isEditable ? <Pencil /> : <MousePointer />}
       </EngraverMenuButton>
     </EngraverMenuCell>
   );

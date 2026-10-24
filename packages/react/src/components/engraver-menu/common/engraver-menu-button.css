@@ -1,0 +1,34 @@
+@layer engraver {
+  .engraver-menu-button {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: var(--engraver-button-size);
+    height: var(--engraver-button-size);
+    border-radius: var(--engraver-radius);
+    color: var(--engraver-foreground);
+  }
+
+  .engraver-menu-button:hover {
+    background: var(--engraver-hover-background);
+  }
+
+  .engraver-menu-button:active {
+    background: var(--engraver-active-background);
+  }
+
+  .engraver-menu-button[aria-pressed="true"] {
+    background: var(--engraver-selected-background);
+    color: var(--engraver-selected-foreground);
+  }
+
+  .engraver-menu-button[aria-pressed="true"]:active {
+    background: var(--engraver-selected-active-background);
+  }
+
+  .engraver-menu-button svg {
+    width: var(--engraver-icon-size);
+    height: var(--engraver-icon-size);
+  }
+}

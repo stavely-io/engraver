@@ -1,0 +1,17 @@
+@layer engraver {
+  .engraver-menu-row,
+  .engraver-menu-row__lines {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .engraver-menu-row__line {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .engraver-menu-row--reverse .engraver-menu-row__line {
+    flex-direction: row-reverse;
+  }
+}
