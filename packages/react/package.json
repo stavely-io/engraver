@@ -36,8 +36,8 @@
     "lucide-react": "^0.545.0",
     "react": "catalog:",
     "standardized-audio-context": "^25.3.77",
-    "tailwindcss": "catalog:",
     "tailwind-merge": "^3.3.1",
+    "tailwindcss": "catalog:",
     "zustand": "catalog:"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "vite-plus": "catalog:"
   },
   "peerDependencies": {
-    "react": ">=19",
-    "@engraver/core": "workspace:*"
+    "@engraver/core": "workspace:*",
+    "react": ">=19"
   }
 }

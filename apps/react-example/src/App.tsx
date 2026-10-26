@@ -1,5 +1,14 @@
+import {
+  BaseDuration,
+  CLEF_DATA,
+  ClefType,
+  KEY_SIGNATURES,
+  TimeSignature,
+  type EngraverConfig,
+  type EngraverMenuConfig,
+  type EngraverScoreConfig,
+} from "@engraver/core";
 import { Engraver } from "@engraver/react";
-import { BaseDuration, CLEF_DATA, ClefType, KEY_SIGNATURES, TimeSignature, type EngraverConfig, type EngraverMenuConfig, type EngraverScoreConfig } from "@engraver/core";
 
 const ENGRAVER_SCORE_CONFIG: EngraverScoreConfig = {
   allowChordInput: false,
@@ -35,9 +44,11 @@ const ENGRAVER_CONFIG: EngraverConfig = {
 };
 
 function App() {
-  return (<div className='relative flex h-full min-h-full w-full flex-col gap-y-6'>
-    <Engraver config={ENGRAVER_CONFIG} />
-  </div>)
+  return (
+    <div className="relative flex h-full min-h-full w-full flex-col gap-y-6">
+      <Engraver config={ENGRAVER_CONFIG} />
+    </div>
+  );
 }
 
 export default App;

@@ -7,8 +7,5 @@
     "rootDir": ".",
     "outDir": "dist/types"
   },
-  "include": [
-    "entry",
-    "src"
-  ]
+  "include": ["entry", "src"]
 }
