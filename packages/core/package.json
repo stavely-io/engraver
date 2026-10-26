@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@engraver/vexflow": "workspace:*",
-    "@types/node": "^26.1.1",
+    "@types/node": "catalog:",
     "bumpp": "^11.1.0",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
