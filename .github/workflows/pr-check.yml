@@ -19,7 +19,7 @@ jobs:
         run: vp run @engraver/vexflow#build
 
       - name: Pack @engraver/core
-        run: vp -C packages/vexflow pack
+        run: vp -C packages/core pack
 
       - name: Pack @engraver/react
         run: vp -C packages/react pack
