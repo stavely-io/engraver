@@ -15,6 +15,15 @@ jobs:
       - name: Setup vite-plus
         uses: voidzero-dev/setup-vp@v1.22.0
 
+      - name: Build @engraver/vexflow
+        run: vp run @engraver/vexflow#build
+
+      - name: Pack @engraver/core
+        run: vp -C packages/vexflow pack
+
+      - name: Pack @engraver/react
+        run: vp -C packages/react pack
+
       - name: Install Playwright Chromium
         run: vp dlx playwright install chromium --with-deps
 
