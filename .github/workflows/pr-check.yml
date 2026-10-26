@@ -1,0 +1,28 @@
+name: "PR Check"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup vite-plus
+        uses: voidzero-dev/setup-vp@v1.22.0
+
+      - name: Install Playwright Browsers
+        run: vp dlx playwright install --with-deps
+
+      - name: Run vp check
+        run: vp check
+
+      - name: Run publint
+        run: vp run -r publint
+
+      - name: Run tests
+        run: vp run -r test
