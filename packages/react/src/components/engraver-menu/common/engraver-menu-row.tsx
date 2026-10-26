@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
   type FC,
   type HTMLAttributes,
@@ -9,8 +10,8 @@ import {
   useState,
 } from "react";
 
-import { cn } from "../../../utils/style";
 import { Separator } from "../../common/separator";
+import "./engraver-menu-row.css";
 
 interface EngraverMenuRowProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
@@ -63,7 +64,7 @@ export const EngraverMenuRow: FC<EngraverMenuRowProps> = ({ children, className,
   }, [computeRows]);
 
   return (
-    <div {...props} className={cn("flex w-full flex-col", className)}>
+    <div {...props} className={clsx("engraver-menu-row", className)}>
       {childWidths.length < childrenArray.length ? (
         <div style={{ position: "absolute", visibility: "hidden", pointerEvents: "none" }}>
           {childrenArray.map((child, i) => (
@@ -82,15 +83,15 @@ export const EngraverMenuRow: FC<EngraverMenuRowProps> = ({ children, className,
           ))}
         </div>
       ) : (
-        <div ref={containerRef} className="flex w-full flex-col">
+        <div ref={containerRef} className="engraver-menu-row__lines">
           {rows.map((row, i) => (
-            <div key={i} className={cn("flex flex-row flex-wrap", className)}>
+            <div key={i} className="engraver-menu-row__line">
               {row.map((child, idx) => (
                 <div key={idx} style={{ display: "inline-block" }}>
                   {child}
                 </div>
               ))}
-              {i < rows.length - 1 && <Separator className="bg-muted-foreground" />}
+              {i < rows.length - 1 && <Separator />}
             </div>
           ))}
         </div>

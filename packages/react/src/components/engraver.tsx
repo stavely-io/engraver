@@ -7,6 +7,7 @@ import { EngraverProvider } from "../context/engraver-provider";
 import { PlayerProvider } from "../context/player-provider";
 import { EngraverMenu } from "./engraver-menu/engraver-menu";
 import { EngraverSheet } from "./engraver-sheet/engraver-sheet";
+import "./engraver.css";
 
 interface EngraverProps {
   config: EngraverConfig;
@@ -19,7 +20,7 @@ const Engraver: FC<EngraverProps> = ({ config, theme }) => {
   return (
     <PlayerProvider>
       <EngraverProvider config={config} theme={theme} engraverWrapperRef={engraverWrapperRef}>
-        <section ref={engraverWrapperRef} tabIndex={-1} className="flex w-full flex-col gap-y-3">
+        <section ref={engraverWrapperRef} tabIndex={-1} className="engraver">
           <EngraverMenu isDisabled={config.engraverUIConfig?.isMenuDisabled} />
           <EngraverSheet isDisabled={config.engraverUIConfig?.isSheetDisabled} />
         </section>

@@ -1,6 +1,7 @@
+import clsx from "clsx";
 import type { FC, HTMLAttributes } from "react";
 
-import { cn } from "../../utils/style";
+import "./create-svg-icon.css";
 
 export type SvgIconProps = HTMLAttributes<HTMLSpanElement>;
 
@@ -11,7 +12,7 @@ export function createSvgIcon(svg: string, displayName: string): FC<SvgIconProps
   const SvgIcon: FC<SvgIconProps> = ({ className, ...props }) => (
     <span
       aria-hidden
-      className={cn("inline-flex shrink-0", className)}
+      className={clsx("engraver-icon", className)}
       dangerouslySetInnerHTML={{ __html: svg }}
       {...props}
     />

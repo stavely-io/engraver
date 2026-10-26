@@ -1,0 +1,15 @@
+@layer engraver {
+  .engraver-score {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+  }
+
+  .engraver-score__canvas {
+    width: 100%;
+    height: 100%;
+    background: inherit;
+  }
+}

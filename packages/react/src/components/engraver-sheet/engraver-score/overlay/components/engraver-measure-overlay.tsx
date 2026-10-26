@@ -41,7 +41,10 @@ const MeasureOverlay: FC<MeasureOverlayProps> = ({ localMeasureIndex, globalMeas
     <MeasureContext.Provider value={{ localMeasureIndex, globalMeasureIndex }}>
       <div
         data-testid="engraver-measure-overlay"
-        className={clsx("absolute flex", !isEditable && "pointer-events-none")}
+        className={clsx(
+          "engraver-measure-overlay",
+          !isEditable && "engraver-measure-overlay--inert",
+        )}
         style={{
           width: `${measureWidths[localMeasureIndex]}px`,
           left: `${measureLeftX}px`,

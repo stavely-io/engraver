@@ -12,6 +12,7 @@ import { TupletTieMenuCell } from "./cells/tuplet-tie-menu-cell";
 import { ViewModeMenuCell } from "./cells/view-mode-menu-cell";
 import { VoiceInputMenuCell } from "./cells/voice-input-menu-cell";
 import { EngraverMenuRow } from "./common/engraver-menu-row";
+import "./engraver-menu.css";
 
 const UPPER_ROW_MENU_CELLS: FC[] = [PlaybackMenuCell];
 
@@ -33,14 +34,14 @@ export const EngraverMenu: FC<EngraverMenuProps> = ({ isDisabled }) => {
   const { isPlayable } = useEngraverMenuState();
 
   return (
-    <div className="border-muted-foreground bg-background relative flex flex-col overflow-hidden rounded-lg border">
+    <div className="engraver-menu">
       {isDisabled && <DisabledOverlay />}
-      <EngraverMenuRow className="flex-row-reverse">
+      <EngraverMenuRow className="engraver-menu-row--reverse">
         {UPPER_ROW_MENU_CELLS.map((MenuCell, index) => (
           <MenuCell key={index} />
         ))}
       </EngraverMenuRow>
-      {isPlayable && <Separator className="bg-muted-foreground" />}
+      {isPlayable && <Separator />}
       <EngraverMenuRow>
         {LOWER_ROW_MENU_CELLS.map((MenuCell, index) => (
           <MenuCell key={index} />
