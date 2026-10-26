@@ -15,8 +15,8 @@ jobs:
       - name: Setup vite-plus
         uses: voidzero-dev/setup-vp@v1.22.0
 
-      - name: Install Playwright Browsers
-        run: vp dlx playwright install --with-deps
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
 
       - name: Run vp check
         run: vp check
