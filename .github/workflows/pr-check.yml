@@ -12,6 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: Check commit names
+        uses: commit-check/commit-check-action@v2
+
       - name: Setup vite-plus
         uses: voidzero-dev/setup-vp@v1.22.0
 
