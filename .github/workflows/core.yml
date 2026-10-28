@@ -1,0 +1,19 @@
+name: "Check core"
+
+on:
+  workflow_call:
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup-env
+
+      - uses: ./.github/actions/build
+
+      - uses: ./.github/actions/run-checks
+        with:
+          directory: packages/core
+          publint: "true"

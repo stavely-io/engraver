@@ -6,32 +6,73 @@ on:
       - main
 
 jobs:
-  check:
+  changes:
     runs-on: ubuntu-latest
+    outputs:
+      vexflow: ${{ steps.filter.outputs.vexflow }}
+      core: ${{ steps.filter.outputs.core }}
+      react: ${{ steps.filter.outputs.react }}
+      react-example: ${{ steps.filter.outputs.react-example }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Setup vite-plus
-        uses: voidzero-dev/setup-vp@v1.22.0
+      - name: Filter paths
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            shared: &shared
+              - ".github/**"
+              - "package.json"
+              - "pnpm-lock.yaml"
+              - "pnpm-workspace.yaml"
+              - "tsconfig.json"
+              - "vite.config.ts"
+            vexflow:
+              - *shared
+              - "packages/vexflow/**"
+            core:
+              - *shared
+              - "packages/core/**"
+              - "packages/vexflow/**"
+            react:
+              - *shared
+              - "packages/react/**"
+              - "packages/core/**"
+              - "packages/vexflow/**"
+            react-example:
+              - *shared
+              - "apps/react-example/**"
+              - "packages/react/**"
+              - "packages/core/**"
+              - "packages/vexflow/**"
 
-      - name: Build @engraver/vexflow
-        run: vp run @engraver/vexflow#build
+  vexflow:
+    needs: changes
+    if: needs.changes.outputs.vexflow == 'true'
+    uses: ./.github/workflows/vexflow.yml
 
-      - name: Pack @engraver/core
-        run: vp -C packages/core pack
+  core:
+    needs: changes
+    if: needs.changes.outputs.core == 'true'
+    uses: ./.github/workflows/core.yml
 
-      - name: Pack @engraver/react
-        run: vp -C packages/react pack
+  react:
+    needs: changes
+    if: needs.changes.outputs.react == 'true'
+    uses: ./.github/workflows/react.yml
 
-      - name: Install Playwright Chromium
-        run: vp dlx playwright install chromium --with-deps
+  react-example:
+    needs: changes
+    if: needs.changes.outputs.react-example == 'true'
+    uses: ./.github/workflows/react-example.yml
 
-      - name: Run vp check
-        run: vp check
-
-      - name: Run publint
-        run: vp run -r publint
-
-      - name: Run tests
-        run: vp run -r test
+  gate:
+    if: always()
+    needs: [changes, vexflow, core, react, react-example]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any job failed or was cancelled
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1

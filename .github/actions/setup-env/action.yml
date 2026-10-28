@@ -1,0 +1,20 @@
+name: Setup environment
+description: Sets up the environment. Sets up vite-plus, installs dependencies.
+
+inputs:
+  playwright-browsers:
+    description: "Playwright browsers to install, ex.: 'chromium firefox webkit'"
+    required: false
+    default: ""
+
+runs:
+  using: composite
+  steps:
+
+    - name: Setup vite-plus
+      uses: voidzero-dev/setup-vp@v1.22.0
+
+    - name: Install Playwright Chromium
+      if: ${{ inputs.playwright-browsers != '' }}
+      shell: bash
+      run: vp dlx playwright install ${{ inputs.playwright-browsers }} --with-deps

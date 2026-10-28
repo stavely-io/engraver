@@ -1,0 +1,19 @@
+name: "Check react-example"
+
+on:
+  workflow_call:
+
+jobs:
+  react-example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: ./.github/actions/setup-env
+
+      - uses: ./.github/actions/build
+
+      - uses: ./.github/actions/run-checks
+        with:
+          directory: apps/react-example
+          test: "false"
