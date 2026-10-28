@@ -28,7 +28,7 @@ export default defineConfig({
     },
   },
   staged: {
-    "*.{js,ts,tsx,vue,svelte}": "vp check --fix",
+    "*": "vp check --fix",
   },
   lint: {
     // Defaults plus "import" (needed for import/no-cycle in the vexflow override)
