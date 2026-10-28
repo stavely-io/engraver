@@ -7,13 +7,17 @@ jobs:
   react-example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout code
+        uses: actions/checkout@v7
 
-      - uses: ./.github/actions/setup-env
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
 
-      - uses: ./.github/actions/build
+      - name: Build
+        uses: ./.github/actions/build
 
-      - uses: ./.github/actions/run-checks
+      - name: Run Checks
+        uses: ./.github/actions/run-checks
         with:
           directory: apps/react-example
           test: "false"
