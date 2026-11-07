@@ -285,6 +285,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@engraver/vexflow':
+        specifier: workspace:*
+        version: link:../vexflow
       smplr:
         specifier: 'catalog:'
         version: 1.1.0
@@ -292,9 +295,6 @@ importers:
         specifier: 'catalog:'
         version: 5.0.16(@types/react@19.3.0)(react@19.3.1)
     devDependencies:
-      '@engraver/vexflow':
-        specifier: workspace:*
-        version: link:../vexflow
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.2
