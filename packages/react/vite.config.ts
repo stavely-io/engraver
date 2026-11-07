@@ -28,7 +28,7 @@ export default defineConfig({
         dependsOn: ["build"],
       },
       check: {
-        command: "vp check",
+        command: ["vp check", "stylelint 'src/**/*.css'"],
         dependsOn: [
           "publint",
           { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },

@@ -11,7 +11,7 @@ export default defineConfig({
   run: {
     tasks: {
       check: {
-        command: "vp check",
+        command: ["vp check", "stylelint 'src/**/*.css'"],
         dependsOn: [
           { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },
         ],

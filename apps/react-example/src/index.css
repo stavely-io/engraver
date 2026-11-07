@@ -1,13 +1,14 @@
 :root {
   color-scheme: light dark;
-  --app-background: oklch(1 0 0);
-  --app-foreground: oklch(0.145 0 0);
+
+  --app-background: oklch(100% 0 0deg);
+  --app-foreground: oklch(14.5% 0 0deg);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --app-background: oklch(0.145 0 0);
-    --app-foreground: oklch(0.985 0 0);
+    --app-background: oklch(14.5% 0 0deg);
+    --app-foreground: oklch(98.5% 0 0deg);
   }
 }
 
