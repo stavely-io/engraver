@@ -1,5 +1,3 @@
-"use client";
-
 import { type FC, useEffect, useRef } from "react";
 import { useStore } from "zustand";
 

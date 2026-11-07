@@ -3,5 +3,5 @@
   "compilerOptions": {
     "types": []
   },
-  "include": ["src", "entry", "tests", "vite.config.ts"]
+  "include": ["src", "entry", "tests", "vite.config.ts", "vp.fragment.ts"]
 }

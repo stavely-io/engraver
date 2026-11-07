@@ -31,19 +31,17 @@
   "scripts": {
     "build": "vp pack",
     "dev": "vp pack --watch",
-    "test": "vp test",
-    "check": "vp check",
-    "publint": "publint",
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
+    "@engraver/vexflow": "workspace:*",
     "smplr": "catalog:",
     "zustand": "catalog:"
   },
   "devDependencies": {
-    "@engraver/vexflow": "workspace:*",
-    "@types/node": "^26.1.1",
+    "@types/node": "catalog:",
     "bumpp": "^11.1.0",
+    "publint": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   }
