@@ -34,11 +34,11 @@
     "prepublishOnly": "vp run build"
   },
   "dependencies": {
+    "@engraver/vexflow": "workspace:*",
     "smplr": "catalog:",
     "zustand": "catalog:"
   },
   "devDependencies": {
-    "@engraver/vexflow": "workspace:*",
     "@types/node": "catalog:",
     "bumpp": "^11.1.0",
     "publint": "catalog:",
