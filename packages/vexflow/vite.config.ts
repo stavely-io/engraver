@@ -12,4 +12,19 @@ export default defineConfig({
       instances: [{ browser: "chromium" }],
     },
   },
+  run: {
+    tasks: {
+      "install-browsers": {
+        command: "playwright install chromium ${CI:+--with-deps}",
+        cache: false,
+      },
+      check: {
+        command: "vp check",
+      },
+      test: {
+        command: "vp test",
+        dependsOn: ["install-browsers"],
+      },
+    },
+  },
 });

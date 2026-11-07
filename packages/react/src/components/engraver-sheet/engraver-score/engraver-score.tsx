@@ -1,4 +1,3 @@
-"use client";
 import { type FC, useEffect, useRef } from "react";
 
 import { useEngraverController } from "../../../hooks/context/use-engraver-controller";

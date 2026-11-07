@@ -21,4 +21,25 @@ export default defineConfig({
   test: {
     passWithNoTests: true,
   },
+  run: {
+    tasks: {
+      publint: {
+        command: "publint",
+        dependsOn: ["build"],
+      },
+      check: {
+        command: "vp check",
+        dependsOn: [
+          "publint",
+          { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },
+        ],
+      },
+      test: {
+        command: "vp test",
+        dependsOn: [
+          { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },
+        ],
+      },
+    },
+  },
 });

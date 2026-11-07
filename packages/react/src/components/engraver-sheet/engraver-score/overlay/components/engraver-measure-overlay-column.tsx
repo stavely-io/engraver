@@ -1,4 +1,3 @@
-"use client";
 import { Pitch, MEASURE_OVERLAY_COLUMN_HEIGHT } from "@engraver/core";
 
 import clsx from "clsx";

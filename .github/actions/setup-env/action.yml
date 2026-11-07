@@ -1,0 +1,8 @@
+name: Setup environment
+description: Sets up the environment. Sets up vite-plus, installs dependencies.
+
+runs:
+  using: composite
+  steps:
+    - name: Setup vite-plus
+      uses: voidzero-dev/setup-vp@v1.22.0

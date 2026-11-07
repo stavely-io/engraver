@@ -1,4 +1,3 @@
-"use client";
 import { EngraverThemeType, type EngraverConfig } from "@engraver/core";
 
 import { type FC, useRef } from "react";

@@ -1,4 +1,3 @@
-"use client";
 import { BasePitchIterator, Pitch } from "@engraver/core";
 
 import clsx from "clsx";

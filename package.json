@@ -4,10 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "ready": "vp check && vp run -r test && vp run -r build && vp run -r publint"
+    "prepare": "vp config --no-agent"
   },
   "devDependencies": {
-    "publint": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@commitlint/types": "catalog:",
     "vite-plus": "catalog:"
   },
   "devEngines": {
