@@ -1,5 +1,3 @@
-"use client";
-
 import { type FC } from "react";
 
 import { useEngraverActions } from "../../hooks/view/use-engraver-actions";
