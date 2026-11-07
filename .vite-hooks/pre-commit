@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-vp staged
+vp staged --fail-on-changes
