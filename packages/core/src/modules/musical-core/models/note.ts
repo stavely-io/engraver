@@ -1,5 +1,5 @@
-import { Pitch } from "./pitch";
-import { Tie } from "./tie";
+import { type Pitch } from "./pitch";
+import { type Tie } from "./tie";
 
 export class Note {
   public leftTie: Tie | null = null;
@@ -13,5 +13,9 @@ export class Note {
 
   public get isTied(): boolean {
     return this.rightTie !== null || this.leftTie !== null;
+  }
+
+  public toString(): string {
+    return `Note(pitch=${this.pitch.toString()}, leftTie=${this.leftTie?.toString()}, rightTie=${this.rightTie?.toString()})`;
   }
 }

@@ -2,7 +2,7 @@ import { onlyUnique } from "@/utils/array";
 
 import { Duration } from "../../../../musical-core/models/duration";
 import {
-  Accidental,
+  type Accidental,
   DEFAULT_ACCIDENTAL_TYPES,
 } from "../../../../musical-core/types/accidental.enum";
 import {

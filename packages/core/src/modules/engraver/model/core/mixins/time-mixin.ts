@@ -1,7 +1,7 @@
 import { Fraction } from "@engraver/vexflow";
 
 import { DurationIterator } from "@/modules/musical-core/iterators/duration-iterator";
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { type Tickable } from "@/modules/musical-core/models/abstract/tickable";
 import { Chord } from "@/modules/musical-core/models/chord";
 import { Duration } from "@/modules/musical-core/models/duration";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";

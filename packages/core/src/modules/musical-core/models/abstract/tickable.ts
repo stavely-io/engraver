@@ -1,6 +1,6 @@
-import { Fraction } from "@engraver/vexflow";
+import { type Fraction } from "@engraver/vexflow";
 
-import { Duration } from "../duration";
+import { type Duration } from "../duration";
 
 export abstract class Tickable {
   private readonly _duration: Duration;

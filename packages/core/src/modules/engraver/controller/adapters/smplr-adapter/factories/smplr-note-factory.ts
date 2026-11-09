@@ -1,6 +1,6 @@
-import { Fraction } from "@engraver/vexflow";
+import { type Fraction } from "@engraver/vexflow";
 
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { SmplrPlayer } from "@/modules/player/smplr/model/abstract/smplr-player";
 import type { SmplrNote } from "@/modules/player/smplr/types/smplr";

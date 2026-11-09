@@ -1,8 +1,8 @@
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
 import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
 import { Chord } from "@/modules/musical-core/models/chord";
-import { Duration } from "@/modules/musical-core/models/duration";
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Duration } from "@/modules/musical-core/models/duration";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 
 import type { ScoreData } from "../../api/types/engraver-api.types";
@@ -10,7 +10,7 @@ import type { EngraverBlockConfig } from "../../view/types/config/score/engraver
 import { EngraverStave } from "../containers/engraver-stave";
 import {
   type EngraverBlockable,
-  EngraverChromaticShiftDirection,
+  type EngraverChromaticShiftDirection,
   type EngraverSelectable,
   type EngraverTickable,
 } from "../core/types/engraver-model.types";
@@ -102,10 +102,14 @@ export class EngraverScore implements EngraverBlockable {
         ];
 
       if (!(leftTickable instanceof Chord)) {
-        throw Error(`Coordinates: ${tie.leftNoteCoordinates} do not lead to a chord`);
+        throw Error(
+          `Coordinates: ${JSON.stringify(tie.leftNoteCoordinates)} do not lead to a chord`,
+        );
       }
       if (!(rightTickable instanceof Chord)) {
-        throw Error(`Coordinates: ${tie.rightNoteCoordinates} do not lead to a chord`);
+        throw Error(
+          `Coordinates: ${JSON.stringify(tie.rightNoteCoordinates)} do not lead to a chord`,
+        );
       }
 
       const leftNote = leftTickable.notes[leftNoteIndex];

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-declaration-merging */
 import { Fraction } from "@engraver/vexflow";
 
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { type KeySignature } from "@/modules/musical-core/models/key-signature";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 import { Rest } from "@/modules/musical-core/models/rest";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 
@@ -11,21 +11,21 @@ import { Chord } from "../../../musical-core/models/chord";
 import { Duration } from "../../../musical-core/models/duration";
 import { Accidental } from "../../../musical-core/types/accidental.enum";
 import { BaseDuration } from "../../../musical-core/types/base-duration.enum";
-import { TimeSignature } from "../../../musical-core/types/time-signature.types";
+import { type TimeSignature } from "../../../musical-core/types/time-signature.types";
 import { applyMixins } from "../../utils/mixin";
 import { MAX_VOICE_COUNT } from "../constants/limitations";
 import { TimeMixin } from "../core/mixins/time-mixin";
 import {
   type EngraverBlockable,
-  EngraverChromaticShiftDirection,
+  type EngraverChromaticShiftDirection,
   EngraverStaveVoice,
   type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
-import { EngraverNote } from "../elements/events/engraver-note";
+import { type EngraverNote } from "../elements/events/engraver-note";
 import { EngraverRest } from "../elements/events/engraver-rest";
 import { AccidentalScope } from "../helpers/accidental-scope";
-import { EngraverStave } from "./engraver-stave";
+import { type EngraverStave } from "./engraver-stave";
 import { EngraverVoice } from "./engraver-voice";
 
 export class EngraverMeasureInitError extends Error {

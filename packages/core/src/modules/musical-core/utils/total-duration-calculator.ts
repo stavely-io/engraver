@@ -1,8 +1,8 @@
 import { Fraction } from "@engraver/vexflow";
 
-import { Tickable } from "../models/abstract/tickable";
+import { type Tickable } from "../models/abstract/tickable";
 import { Chord } from "../models/chord";
-import { Note } from "../models/note";
+import { type Note } from "../models/note";
 import { Rest } from "../models/rest";
 
 export function calculateNoteTotalDuration(

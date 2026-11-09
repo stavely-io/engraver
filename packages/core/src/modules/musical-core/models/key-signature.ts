@@ -2,10 +2,10 @@ import { SEMITONES_IN_OCTAVE } from "../constants/general";
 import { KEY_SIGNATURES_DATA } from "../constants/key-signature/key-signatures-data";
 import { BasePitchLabel } from "../types/base-pitch-label.enum";
 import {
-  KeySignatureMode,
-  KeySignatureName,
+  type KeySignatureMode,
+  type KeySignatureName,
   type KeySignatureProps,
-  KeySignatureType,
+  type KeySignatureType,
 } from "../types/key-signature.types";
 import { Pitch } from "./pitch";
 

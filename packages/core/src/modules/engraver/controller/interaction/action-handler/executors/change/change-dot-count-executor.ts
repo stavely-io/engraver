@@ -9,7 +9,7 @@ import { Duration } from "@/modules/musical-core/models/duration";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 
 import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { type EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ChangeDotCountExecutor extends EngraverActionExecutor<EngraverActionType.CHANGE_DOT_COUNT> {

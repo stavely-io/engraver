@@ -3,9 +3,9 @@ import { Pitch } from "@/modules/musical-core/models/pitch";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
 import { ClefType } from "@/modules/musical-core/types/clef.types";
 
-import { EngraverStave } from "../../../../model/containers/engraver-stave";
+import { type EngraverStave } from "../../../../model/containers/engraver-stave";
 import { DEFAULT_ENGRAVER_VOICES } from "../../../../model/core/types/engraver-model.types";
-import { EngraverScore } from "../../../../model/score/engraver-score";
+import { type EngraverScore } from "../../../../model/score/engraver-score";
 import { MEASURE_OVERLAY_COLUMN_HEIGHT } from "../../../presentation/constants/layout";
 import { EngraverLayoutCalculator } from "../../../presentation/layout/engraver-layout-calculator";
 import type {

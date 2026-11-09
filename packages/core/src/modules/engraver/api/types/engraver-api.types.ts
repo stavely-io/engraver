@@ -1,5 +1,5 @@
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
-import { Tie } from "@/modules/musical-core/models/tie";
+import { type Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { type Tie } from "@/modules/musical-core/models/tie";
 
 export type EngraverStaveData = Tickable[][][];
 

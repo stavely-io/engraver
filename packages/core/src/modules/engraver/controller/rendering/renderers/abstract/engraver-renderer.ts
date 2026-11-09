@@ -1,4 +1,4 @@
-import { RenderContext, Renderer } from "@engraver/vexflow";
+import { type RenderContext, Renderer } from "@engraver/vexflow";
 
 import type { Args } from "../../../../model/types/misc.types";
 

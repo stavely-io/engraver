@@ -1,4 +1,4 @@
-import { BasePitchIterator, Pitch } from "@engraver/core";
+import { BasePitchIterator, type Pitch } from "@engraver/core";
 
 import clsx from "clsx";
 import { type FC, useContext, useMemo } from "react";

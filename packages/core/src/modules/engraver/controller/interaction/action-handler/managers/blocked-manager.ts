@@ -2,8 +2,8 @@ import { Fraction } from "@engraver/vexflow";
 
 import type { EngraverTickable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
-import { Duration } from "@/modules/musical-core/models/duration";
+import { type EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+import { type Duration } from "@/modules/musical-core/models/duration";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 
 import type { EngraverActionExecutorContext } from "../executors/types/engraver-action-executor-context";

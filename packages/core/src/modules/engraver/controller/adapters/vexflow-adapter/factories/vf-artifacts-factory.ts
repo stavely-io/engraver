@@ -1,8 +1,8 @@
-import { StaveConnector, StaveNote, StaveTie } from "@engraver/vexflow";
+import { type StaveConnector, type StaveNote, type StaveTie } from "@engraver/vexflow";
 
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
-import { EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import { type EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+import { type EngraverTie } from "@/modules/engraver/model/elements/notation/engraver-tie";
+import { type EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 import type {
   VFScoreArtifacts,

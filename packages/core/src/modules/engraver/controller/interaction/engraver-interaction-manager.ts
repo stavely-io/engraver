@@ -1,13 +1,13 @@
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 import type { PlayerStore } from "@/modules/player/store/player-store";
 
 import type { StoreApi } from "zustand";
 
-import { EngraverScore } from "../../model/score/engraver-score";
-import { EngraverRenderingService } from "../rendering/engraver-rendering-service";
+import { type EngraverScore } from "../../model/score/engraver-score";
+import { type EngraverRenderingService } from "../rendering/engraver-rendering-service";
 import type { VFScoreData } from "../rendering/types/vf-data";
 import type { EngraverStoreAPI } from "../store/types/store-api";
-import { EngraverThemeManager } from "../theme/engraver-theme-manager";
+import { type EngraverThemeManager } from "../theme/engraver-theme-manager";
 import { EngraverActionHandler } from "./action-handler/engraver-action-handler";
 import type { EngraverAction } from "./action-handler/types/actions/engraver-action";
 import type { EngraverOverlayCoordinates } from "./action-handler/types/engraver-coordinates";

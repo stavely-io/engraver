@@ -1,16 +1,16 @@
-import { Tickable } from "@/modules/musical-core/models/abstract/tickable";
+import { type Tickable } from "@/modules/musical-core/models/abstract/tickable";
 import { Chord } from "@/modules/musical-core/models/chord";
 
 import { Duration } from "../../../musical-core/models/duration";
 import { BaseDuration } from "../../../musical-core/types/base-duration.enum";
 import {
   type EngraverBlockable,
-  EngraverStaveVoice,
+  type EngraverStaveVoice,
   type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverRest } from "../elements/events/engraver-rest";
-import { EngraverMeasure } from "./engraver-measure";
+import { type EngraverMeasure } from "./engraver-measure";
 
 /**
  * Represents a musical voice within a measure for engraving purposes.

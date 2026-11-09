@@ -1,4 +1,4 @@
-import { Pitch } from "../models/pitch";
+import { type Pitch } from "../models/pitch";
 
 export interface Clef {
   type: ClefType;

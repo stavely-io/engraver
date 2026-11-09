@@ -1,8 +1,8 @@
 import { Stave } from "@engraver/vexflow";
 
-import { EngraverMeasure } from "../../../model/containers/engraver-measure";
-import { EngraverStave } from "../../../model/containers/engraver-stave";
-import { EngraverScore } from "../../../model/score/engraver-score";
+import { type EngraverMeasure } from "../../../model/containers/engraver-measure";
+import { type EngraverStave } from "../../../model/containers/engraver-stave";
+import { type EngraverScore } from "../../../model/score/engraver-score";
 import type { EngraverPlayableSelectableColorMap } from "../../../view/types/config/score/engraver-theme-config";
 import type {
   VFMeasureData,

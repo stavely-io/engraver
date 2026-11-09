@@ -1,4 +1,4 @@
-import { EngraverThemeType, type EngraverConfig } from "@engraver/core";
+import { type EngraverThemeType, type EngraverConfig } from "@engraver/core";
 
 import { type FC, useRef } from "react";
 

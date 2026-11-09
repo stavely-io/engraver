@@ -1,11 +1,11 @@
-import { EngraverChromaticShiftDirection } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type EngraverChromaticShiftDirection } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 
 import type {
   EngraverPlayableSelectableCoordinates,
   EngraverTickableCoordinates,
 } from "../engraver-coordinates";
-import { EngraverMoveSelectionDirection } from "../selection/engraver-move-selected-direction.enum";
+import { type EngraverMoveSelectionDirection } from "../selection/engraver-move-selected-direction.enum";
 
 // Toggle actions
 export type EngraverToggleActionPayload = Record<PropertyKey, never>;

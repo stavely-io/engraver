@@ -1,10 +1,10 @@
 import { Dot, StaveNote } from "@engraver/vexflow";
 
-import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
-import { Duration } from "@/modules/musical-core/models/duration";
+import { type EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { type EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
+import { type Duration } from "@/modules/musical-core/models/duration";
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
-import { ClefType } from "@/modules/musical-core/types/clef.types";
+import { type ClefType } from "@/modules/musical-core/types/clef.types";
 
 import {
   REST_PLACEMENT_MAP,

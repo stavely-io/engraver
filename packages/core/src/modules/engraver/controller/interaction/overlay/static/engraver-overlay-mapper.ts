@@ -2,7 +2,7 @@ import { StaveNote } from "@engraver/vexflow";
 
 import type { EngraverSelectable } from "@/modules/engraver/model/core/types/engraver-model.types";
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import { type EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 import type { EngraverPlayableSelectableCoordinates } from "../../action-handler/types/engraver-coordinates";

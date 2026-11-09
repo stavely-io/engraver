@@ -1,11 +1,11 @@
 import {
-  Pitch,
-  Accidental,
-  BaseDuration,
-  DotCount,
+  type Pitch,
+  type Accidental,
+  type BaseDuration,
+  type DotCount,
   EngraverActionFactory,
   type EngraverTickableCoordinates,
-  EngraverStaveVoice,
+  type EngraverStaveVoice,
 } from "@engraver/core";
 
 import { useEngraverController } from "../context/use-engraver-controller";

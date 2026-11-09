@@ -1,8 +1,8 @@
-import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { EngraverViewMode } from "@/modules/engraver/view/types/engraver-mode.types";
-import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
-import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
+import { type EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { type EngraverViewMode } from "@/modules/engraver/view/types/engraver-mode.types";
+import { type Accidental } from "@/modules/musical-core/types/accidental.enum";
+import { type BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
+import { type DotCount } from "@/modules/musical-core/types/dot-count.enum";
 
 import type {
   EngraverApplyActionPayload,
@@ -15,7 +15,7 @@ import type {
   EngraverSelectTickableActionPayload,
   EngraverToggleActionPayload,
 } from "./engraver-action-payload";
-import { EngraverActionType } from "./engraver-action-type.enum";
+import { type EngraverActionType } from "./engraver-action-type.enum";
 
 export interface EngraverScoreActionMap {
   [EngraverActionType.SCORE_ADD_TICKABLE]: EngraverScoreAddTickableActionPayload;

@@ -7,7 +7,7 @@ import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { EngraverActionFactory } from "../../action-handler/engraver-action-factory";
 import type { EngraverAction } from "../../action-handler/types/actions/engraver-action";
 import { EngraverMoveSelectionDirection } from "../../action-handler/types/selection/engraver-move-selected-direction.enum";
-import { KeyboardClickContextKeyFactory } from "../factories/keyboard-click-context-key-factory";
+import { type KeyboardClickContextKeyFactory } from "../factories/keyboard-click-context-key-factory";
 import { KeyboardKey } from "./keyboard-keys.enum";
 
 export type KeyboardClickContext = ReturnType<typeof KeyboardClickContextKeyFactory.create>;

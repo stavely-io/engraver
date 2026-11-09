@@ -1,0 +1,11 @@
+const MIN_MEASURE_WIDTH = 200;
+const STAVE_GAP = 100;
+const SYSTEM_GAP = 100;
+const STAVE_CONNECTOR_PADDING = 1;
+
+export const SystemDividerConstants = {
+  MIN_MEASURE_WIDTH,
+  STAVE_GAP,
+  SYSTEM_GAP,
+  STAVE_CONNECTOR_PADDING,
+};

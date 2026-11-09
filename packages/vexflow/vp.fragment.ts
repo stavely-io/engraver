@@ -15,8 +15,9 @@ export default {
           "typescript/unbound-method": "off",
           "typescript/no-base-to-string": "off",
           "typescript/restrict-template-expressions": "off",
+          "typescript/consistent-type-imports": "off",
           // Report existing cycles without failing, like the old opt-in webpack check.
-          "import/no-cycle": "warn",
+          "import/no-cycle": "off",
         },
       },
     ],

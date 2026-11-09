@@ -6,7 +6,7 @@ import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-
 import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-rest";
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
-import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
+import { type BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { commonElementProperty } from "@/utils/array";
 
 import type { SelectableEngraverMenuValues } from "../../../store/slices/menu/engraver-menu-values.slice";

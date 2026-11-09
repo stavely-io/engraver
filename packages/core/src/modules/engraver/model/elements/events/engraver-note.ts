@@ -1,6 +1,6 @@
-import { Note } from "@/modules/musical-core/models/note";
+import { type Note } from "@/modules/musical-core/models/note";
 
-import { Duration } from "../../../../musical-core/models/duration";
+import { type Duration } from "../../../../musical-core/models/duration";
 import { Pitch } from "../../../../musical-core/models/pitch";
 import { Accidental } from "../../../../musical-core/types/accidental.enum";
 import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
@@ -10,9 +10,9 @@ import {
   EngraverChromaticShiftDirection,
   type IEngraverPlayableSelectable,
 } from "../../core/types/engraver-model.types";
-import { AccidentalScope } from "../../helpers/accidental-scope";
+import { type AccidentalScope } from "../../helpers/accidental-scope";
 import { EngraverTie } from "../notation/engraver-tie";
-import { EngraverChord } from "./engraver-chord";
+import { type EngraverChord } from "./engraver-chord";
 
 export class EngraverNote
   extends EngraverSelectableMixin(Object)

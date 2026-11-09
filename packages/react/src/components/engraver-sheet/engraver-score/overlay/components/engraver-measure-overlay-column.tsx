@@ -1,4 +1,4 @@
-import { Pitch, MEASURE_OVERLAY_COLUMN_HEIGHT } from "@engraver/core";
+import { type Pitch, MEASURE_OVERLAY_COLUMN_HEIGHT } from "@engraver/core";
 
 import clsx from "clsx";
 import { type FC, useContext } from "react";

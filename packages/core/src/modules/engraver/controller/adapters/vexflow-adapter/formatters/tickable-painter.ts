@@ -1,4 +1,4 @@
-import { StaveNote } from "@engraver/vexflow";
+import { type StaveNote } from "@engraver/vexflow";
 
 import type { Color } from "@/modules/engraver/view/types/colors.types";
 import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";

@@ -1,4 +1,4 @@
-import { SMPLR_INSTRUMENT_MAP, SmplrInstrumentType } from "@/modules/player/smplr";
+import { SMPLR_INSTRUMENT_MAP, type SmplrInstrumentType } from "@/modules/player/smplr";
 
 import type { StateCreator } from "zustand";
 

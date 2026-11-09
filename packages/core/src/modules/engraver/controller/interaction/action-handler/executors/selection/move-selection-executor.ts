@@ -4,7 +4,7 @@ import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helper
 
 import { EngraverOverlayMapper } from "../../../overlay/static/engraver-overlay-mapper";
 import type { EngraverActionMap } from "../../types/actions/engraver-action";
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { type EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import type { EngraverPlayableSelectableCoordinates } from "../../types/engraver-coordinates";
 import { EngraverMoveSelectionDirection } from "../../types/selection/engraver-move-selected-direction.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";

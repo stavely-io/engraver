@@ -1,6 +1,14 @@
-import { Accidental, Dot, Formatter, Stave, StaveNote, Voice, VoiceMode } from "@engraver/vexflow";
+import {
+  Accidental,
+  Dot,
+  Formatter,
+  Stave,
+  type StaveNote,
+  Voice,
+  VoiceMode,
+} from "@engraver/vexflow";
 
-import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
+import { type EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
 import {
   type EngraverNoteModifiers,
   EngraverStaveVoice,
@@ -11,7 +19,7 @@ import { EngraverRest } from "@/modules/engraver/model/elements/events/engraver-
 import type { EngraverGhostOverlayTheme } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 import { EngraverInputMode } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Duration } from "@/modules/musical-core/models/duration";
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 
 import type { VFGhostVoice, VFMeasureData } from "../../../rendering/types/vf-data";
 import { VFChordFactory } from "./core/vf-chord-factory";

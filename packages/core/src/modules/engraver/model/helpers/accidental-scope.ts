@@ -1,4 +1,4 @@
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
+import { type KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
