@@ -23,6 +23,10 @@ export default defineConfig({
   },
   run: {
     tasks: {
+      build: {
+        command: "vp pack",
+        dependsOn: [{ task: "build", from: ["dependencies", "peerDependencies"] }],
+      },
       publint: {
         command: "publint",
         dependsOn: ["build"],

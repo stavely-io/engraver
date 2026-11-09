@@ -29,7 +29,6 @@
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack",
     "dev": "vp pack --watch",
     "prepublishOnly": "vp run build"
   },
