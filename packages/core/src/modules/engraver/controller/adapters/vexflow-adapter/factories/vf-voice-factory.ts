@@ -1,6 +1,6 @@
-import { StaveNote, Voice } from "@engraver/vexflow";
+import { type StaveNote, Voice } from "@engraver/vexflow";
 
-import { EngraverVoice } from "@/modules/engraver/model/containers/engraver-voice";
+import { type EngraverVoice } from "@/modules/engraver/model/containers/engraver-voice";
 
 import type { EngraverTickable } from "../../../../model/core/types/engraver-model.types";
 import { EngraverChord } from "../../../../model/elements/events/engraver-chord";

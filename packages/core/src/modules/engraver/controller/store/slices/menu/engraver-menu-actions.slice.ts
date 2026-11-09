@@ -1,10 +1,10 @@
-import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { type EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import {
   EngraverInputMode,
   EngraverViewMode,
 } from "@/modules/engraver/view/types/engraver-mode.types";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
-import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
+import { type BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
 
 import type { StateCreator } from "zustand";

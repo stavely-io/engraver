@@ -1,9 +1,9 @@
-import { EngraverScore } from "../../model/score/engraver-score";
+import { type EngraverScore } from "../../model/score/engraver-score";
 import type { EngraverThemeConfig } from "../../view/types/config/score/engraver-theme-config";
 import { VexflowAdapter } from "../adapters/vexflow-adapter/vexfow-adapter";
-import { EngraverScoreRenderer } from "../rendering/renderers/engraver-score-renderer";
+import { type EngraverScoreRenderer } from "../rendering/renderers/engraver-score-renderer";
 import type { VFScoreData } from "../rendering/types/vf-data";
-import { EngraverThemeManager } from "../theme/engraver-theme-manager";
+import { type EngraverThemeManager } from "../theme/engraver-theme-manager";
 
 export class EngraverScorePresenter {
   private readonly adapter: VexflowAdapter = new VexflowAdapter();

@@ -1,8 +1,8 @@
-import { SmplrInstrumentType } from "@/modules/player/smplr";
+import { type SmplrInstrumentType } from "@/modules/player/smplr";
 
 import { createStore } from "zustand/vanilla";
 
-import { SmplrPlayer } from "../../smplr/model/abstract/smplr-player";
+import { type SmplrPlayer } from "../../smplr/model/abstract/smplr-player";
 import { createLazyPlayerAPIMethod } from "./create-lazy-player-api-method";
 
 type RegisterGetter<T> = (getter: () => T) => () => void;

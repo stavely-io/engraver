@@ -39,9 +39,19 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   lint: {
-    plugins: ["typescript", "unicorn", "oxc"],
+    plugins: ["typescript", "unicorn", "oxc", "import"],
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
-    rules: { "vite-plus/prefer-vite-plus-imports": "error" },
+    rules: {
+      "vite-plus/prefer-vite-plus-imports": "error",
+      "import/no-cycle": "error",
+      "typescript/consistent-type-imports": [
+        "error",
+        {
+          prefer: "type-imports",
+          fixStyle: "inline-type-imports",
+        },
+      ],
+    },
     options: { typeAware: true, typeCheck: true },
     ignorePatterns: packages.lintIgnorePatterns,
     overrides: packages.lintOverrides,

@@ -1,9 +1,9 @@
 import { EngraverTickableUtils } from "@/modules/engraver/model/helpers/static/engraver-tickable-utils";
-import { Tie } from "@/modules/musical-core/models/tie";
+import { type Tie } from "@/modules/musical-core/models/tie";
 
 import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
-import { EngraverStave } from "../../containers/engraver-stave";
-import { EngraverNote } from "../events/engraver-note";
+import { type EngraverStave } from "../../containers/engraver-stave";
+import { type EngraverNote } from "../events/engraver-note";
 
 // TODO: move alongside white-box tests task
 export class EngraverTieInitError extends Error {

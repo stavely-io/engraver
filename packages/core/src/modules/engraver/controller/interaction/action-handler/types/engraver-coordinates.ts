@@ -1,6 +1,6 @@
-import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
+import { type EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 
-import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../factories/engraver-playable-selectable-key-factory";
+import { type EngraverPlayableSelectableCoordinatesKeyFactory } from "../factories/engraver-playable-selectable-key-factory";
 
 export interface EngraverTickableCoordinates {
   staveIndex: number;

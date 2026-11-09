@@ -1,4 +1,4 @@
-import { Stave, StaveConnector } from "@engraver/vexflow";
+import { type Stave, StaveConnector } from "@engraver/vexflow";
 
 export class VFStaveConnectorFactory {
   public static create(

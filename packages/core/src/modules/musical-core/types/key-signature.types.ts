@@ -1,5 +1,5 @@
-import { Pitch } from "../models/pitch";
-import { BasePitchLabel } from "./base-pitch-label.enum";
+import { type Pitch } from "../models/pitch";
+import { type BasePitchLabel } from "./base-pitch-label.enum";
 
 export interface KeySignatureProps {
   name: KeySignatureName;

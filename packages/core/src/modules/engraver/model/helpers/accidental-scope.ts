@@ -1,4 +1,4 @@
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
+import { type KeySignature } from "@/modules/musical-core/models/key-signature";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 import { BasePitchLabel } from "@/modules/musical-core/types/base-pitch-label.enum";
@@ -40,9 +40,6 @@ export class AccidentalScope {
       case KeySignatureType.FLAT:
         accidental = Accidental.FLAT;
         break;
-      default:
-        // TODO: add custom error for testing
-        throw new Error(`Unknown keySignatureType: ${type}`);
     }
     Object.values(BasePitchLabel).forEach((basePitch) => {
       for (let octave = LOWEST_OCTAVE; octave <= HIGHEST_OCTAVE; octave++) {

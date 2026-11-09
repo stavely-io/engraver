@@ -1,11 +1,11 @@
-import { Pitch } from "@/modules/musical-core/models/pitch";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
 
-import { EngraverScore } from "../../../model/score/engraver-score";
+import { type EngraverScore } from "../../../model/score/engraver-score";
 import { VFGhostTickableFactory } from "../../adapters/vexflow-adapter/factories/vf-ghost-tickable-factory";
-import { EngraverRenderingService } from "../../rendering/engraver-rendering-service";
+import { type EngraverRenderingService } from "../../rendering/engraver-rendering-service";
 import type { VFScoreData } from "../../rendering/types/vf-data";
 import type { EngraverStoreAPI } from "../../store/types/store-api";
-import { EngraverThemeManager } from "../../theme/engraver-theme-manager";
+import { type EngraverThemeManager } from "../../theme/engraver-theme-manager";
 import type { EngraverOverlayCoordinates } from "../action-handler/types/engraver-coordinates";
 import { EngraverSelectionHighlighter } from "./observer/engraver-selection-highlighter";
 import { EngraverOverlayMapper } from "./static/engraver-overlay-mapper";

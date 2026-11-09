@@ -8,7 +8,6 @@ import {
   WHOLE_NOTE_BEATS,
 } from "@/modules/musical-core/constants/time";
 
-import { DurationIterator } from "../iterators/duration-iterator";
 import { BaseDuration } from "../types/base-duration.enum";
 import { DotCount } from "../types/dot-count.enum";
 
@@ -52,16 +51,14 @@ export class Duration {
   }
 
   public toFractionValue(): Fraction {
-    let totalDuration = this.baseValueToFraction();
+    // each dot is adding half of the previous amount creating geometric sequence
+    // for baseValue B and dotCount N we can use geometric sequence sum
+    // important: this sequence starts from 0th element; so the sum:
+    // S = B * (1 - (1/2)^(N+1)) / (1 - 1/2) = B * (2^N - 1) / 2^N
 
-    const durationIterator = new DurationIterator(this, false);
-    durationIterator.next();
+    const dotFraction = new Fraction(2 ** (this.dotCount + 1) - 1, 2 ** this.dotCount);
+    const base = this.baseValueToFraction();
 
-    for (let i = 0; i < this.dotCount; i++) {
-      const nextDuration = durationIterator.next().value;
-      totalDuration = totalDuration.add(nextDuration.baseValueToFraction());
-    }
-
-    return totalDuration.simplify();
+    return base.multiply(dotFraction).simplify();
   }
 }

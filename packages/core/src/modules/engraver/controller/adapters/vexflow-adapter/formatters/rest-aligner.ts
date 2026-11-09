@@ -1,4 +1,4 @@
-import { StaveNote, Voice } from "@engraver/vexflow";
+import { StaveNote, type Voice } from "@engraver/vexflow";
 
 import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 

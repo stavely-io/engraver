@@ -1,4 +1,4 @@
-import { EngraverController } from "@engraver/core";
+import { type EngraverController } from "@engraver/core";
 
 import { useEffect } from "react";
 

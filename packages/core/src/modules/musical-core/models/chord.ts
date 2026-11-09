@@ -1,5 +1,5 @@
 import { Tickable } from "./abstract/tickable";
-import { Duration } from "./duration";
+import { type Duration } from "./duration";
 import { Note } from "./note";
 import { Pitch } from "./pitch";
 

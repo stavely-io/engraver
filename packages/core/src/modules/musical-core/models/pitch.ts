@@ -7,7 +7,7 @@ import {
 } from "@/modules/musical-core/constants/pitch";
 
 import { Accidental } from "../types/accidental.enum";
-import { BasePitchLabel } from "../types/base-pitch-label.enum";
+import { type BasePitchLabel } from "../types/base-pitch-label.enum";
 
 export const PITCH_REGEX = /^([A-G])(?:(#{1,2}|b{1,2}))?\/(-?\d+)$/;
 

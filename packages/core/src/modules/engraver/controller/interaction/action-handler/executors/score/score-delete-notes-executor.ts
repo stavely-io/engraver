@@ -1,6 +1,6 @@
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+import { type EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 
-import { EngraverActionType } from "../../types/actions/engraver-action-type.enum";
+import { type EngraverActionType } from "../../types/actions/engraver-action-type.enum";
 import { EngraverActionExecutor } from "../abstract/engraver-action-executor";
 
 export class ScoreDeleteNotesExecutor extends EngraverActionExecutor<EngraverActionType.SCORE_DELETE_NOTES> {

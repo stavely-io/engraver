@@ -1,6 +1,6 @@
 import { EngraverActionFactory } from "../action-handler/engraver-action-factory";
 import type { EngraverAction } from "../action-handler/types/actions/engraver-action";
-import { EngraverFocusManager } from "../focus-manager/engraver-focus-manager";
+import { type EngraverFocusManager } from "../focus-manager/engraver-focus-manager";
 import type { EngraverOverlayElement } from "../overlay/types/engraver-overlay-element";
 import { KeyboardClickContextKeyFactory } from "./factories/keyboard-click-context-key-factory";
 import { ENGRAVER_KEYBOARD_BINDINGS } from "./types/keyboard-registry.types";

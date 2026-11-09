@@ -31,7 +31,7 @@ function strict(): void {
 
   const voice = new Voice(Flow.TIME4_4);
   expect(voice.getTotalTicks().value(), "4/4 Voice has 4 beats").toBe(BEAT * 4);
-  expect(voice.getTicksUsed().value(), "No beats in voice").toBe(BEAT * 0);
+  expect(voice.getTicksUsed().value(), "No beats in voice").toBe(0);
   voice.addTickables(tickables);
   expect(voice.getTicksUsed().value(), "Three beats in voice").toBe(BEAT * 3);
   voice.addTickable(createTickable());

@@ -2,9 +2,9 @@ import type { PlayerStore } from "@/modules/player/store/player-store";
 
 import type { StoreApi } from "zustand";
 
-import { EngraverScore } from "../../../model/score/engraver-score";
+import { type EngraverScore } from "../../../model/score/engraver-score";
 import type { EngraverStoreAPI } from "../../store/types/store-api";
-import { EngraverActionExecutor } from "./executors/abstract/engraver-action-executor";
+import { type EngraverActionExecutor } from "./executors/abstract/engraver-action-executor";
 import { ApplyChromaticShiftExecutor } from "./executors/apply/apply-chromatic-shift-executor";
 import { ApplyTieExecutor } from "./executors/apply/apply-tie-executor";
 import { ApplyTupletExecutor } from "./executors/apply/apply-tuplet-executor";

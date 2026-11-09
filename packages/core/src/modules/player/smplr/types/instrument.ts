@@ -1,4 +1,4 @@
-import { SplendidGrandPiano } from "smplr";
+import { type SplendidGrandPiano } from "smplr";
 
 export enum SmplrInstrumentType {
   PIANO = "PIANO",

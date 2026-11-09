@@ -1,5 +1,5 @@
 import { SmplrInstrumentType } from "../types/instrument";
-import { SmplrPlayer } from "./abstract/smplr-player";
+import { type SmplrPlayer } from "./abstract/smplr-player";
 import { SmplrCelloPlayer } from "./instruments/smplr-cello-player";
 import { SmplrGuitarPlayer } from "./instruments/smplr-guitar-player";
 import { SmplrMarimbaPlayer } from "./instruments/smplr-marimba-player";

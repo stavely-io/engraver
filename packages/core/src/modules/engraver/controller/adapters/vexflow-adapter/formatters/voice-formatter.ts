@@ -1,4 +1,4 @@
-import { Formatter, Voice } from "@engraver/vexflow";
+import { Formatter, type Voice } from "@engraver/vexflow";
 
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
 

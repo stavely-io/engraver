@@ -1,4 +1,4 @@
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import { type EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 import type { ScoreLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
 import { SystemHorizontalDivider } from "./system-horizontal-divider";

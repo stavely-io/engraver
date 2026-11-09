@@ -1,4 +1,4 @@
-import { EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
+import { type EngraverNote } from "@/modules/engraver/model/elements/events/engraver-note";
 
 import { BlockedManager } from "../../managers/blocked-manager";
 import { SelectionManager } from "../../managers/selection-manager";

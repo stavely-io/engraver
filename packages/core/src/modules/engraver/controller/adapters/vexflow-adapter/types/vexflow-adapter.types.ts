@@ -1,4 +1,4 @@
-import { RenderContext } from "@engraver/vexflow";
+import { type RenderContext } from "@engraver/vexflow";
 
 export enum VFStaveNoteType {
   NOTE = "n",

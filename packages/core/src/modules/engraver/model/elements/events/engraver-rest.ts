@@ -1,7 +1,7 @@
-import { Duration } from "../../../../musical-core/models/duration";
+import { type Duration } from "../../../../musical-core/models/duration";
 import { Rest } from "../../../../musical-core/models/rest";
 import type { EngraverPlayableSelectableCoordinates } from "../../../controller/interaction/action-handler/types/engraver-coordinates";
-import { EngraverVoice } from "../../containers/engraver-voice";
+import { type EngraverVoice } from "../../containers/engraver-voice";
 import { EngraverSelectableMixin } from "../../core/mixins/engraver-selectable-mixin";
 import type {
   EngraverBlockable,

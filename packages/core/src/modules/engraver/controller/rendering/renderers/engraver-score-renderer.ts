@@ -1,4 +1,4 @@
-import { StaveNote, Voice } from "@engraver/vexflow";
+import { StaveNote, type Voice } from "@engraver/vexflow";
 
 import type { Color } from "../../../view/types/colors.types";
 import type { VFScoreData } from "../types/vf-data";

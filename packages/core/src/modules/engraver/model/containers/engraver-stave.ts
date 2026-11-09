@@ -1,26 +1,26 @@
-import { Fraction } from "@engraver/vexflow";
+import { type Fraction } from "@engraver/vexflow";
 
 import { Duration } from "@/modules/musical-core/models/duration";
-import { KeySignature } from "@/modules/musical-core/models/key-signature";
-import { Pitch } from "@/modules/musical-core/models/pitch";
-import { Tie } from "@/modules/musical-core/models/tie";
+import { type KeySignature } from "@/modules/musical-core/models/key-signature";
+import { type Pitch } from "@/modules/musical-core/models/pitch";
+import { type Tie } from "@/modules/musical-core/models/tie";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
-import { DotCount } from "@/modules/musical-core/types/dot-count.enum";
-import { TimeSignature } from "@/modules/musical-core/types/time-signature.types";
+import { type DotCount } from "@/modules/musical-core/types/dot-count.enum";
+import { type TimeSignature } from "@/modules/musical-core/types/time-signature.types";
 
 import type { EngraverStaveData } from "../../api/types/engraver-api.types";
 import type { EngraverPlayableSelectableCoordinates } from "../../controller/interaction/action-handler/types/engraver-coordinates";
 import {
   type EngraverBlockable,
   type EngraverPlayableSelectable,
-  EngraverStaveVoice,
+  type EngraverStaveVoice,
   type EngraverTickable,
 } from "../core/types/engraver-model.types";
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverRest } from "../elements/events/engraver-rest";
 import { EngraverTie } from "../elements/notation/engraver-tie";
-import { EngraverScore } from "../score/engraver-score";
+import { type EngraverScore } from "../score/engraver-score";
 import { EngraverMeasure } from "./engraver-measure";
 
 export class EngraverStaveInitError extends Error {

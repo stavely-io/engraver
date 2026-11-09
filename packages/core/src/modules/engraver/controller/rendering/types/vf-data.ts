@@ -1,4 +1,4 @@
-import { Stave, StaveConnector, StaveTie, Voice } from "@engraver/vexflow";
+import { type Stave, type StaveConnector, type StaveTie, type Voice } from "@engraver/vexflow";
 
 export type VFMeasureData = {
   vfMeasure: Stave;

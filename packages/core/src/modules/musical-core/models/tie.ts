@@ -1,5 +1,5 @@
 import type { EngraverPlayableSelectableCoordinates } from "../../engraver/controller/interaction/action-handler/types/engraver-coordinates";
-import { Note } from "./note";
+import type { Note } from "./note";
 
 export class Tie {
   constructor(
@@ -8,4 +8,8 @@ export class Tie {
     public readonly leftNoteCoordinates: EngraverPlayableSelectableCoordinates,
     public readonly rightNoteCoordinates: EngraverPlayableSelectableCoordinates,
   ) {}
+
+  public toString(): string {
+    return `Tie(leftNote=${this.leftNote.toString()}, rightNote=${this.rightNote.toString()})`;
+  }
 }

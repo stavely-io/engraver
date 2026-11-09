@@ -1,7 +1,7 @@
 import { Accidental, Dot, StaveNote, Stem } from "@engraver/vexflow";
 
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
+import { type EngraverChord } from "@/modules/engraver/model/elements/events/engraver-chord";
 import { Pitch } from "@/modules/musical-core/models/pitch";
 
 import { STEM_DIRECTION_UP_STARTING_PITCH_MAP } from "../../constants/stem-direction";

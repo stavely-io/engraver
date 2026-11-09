@@ -2,18 +2,15 @@ import {
   ENGRAVER_OCTAVE_RANGE_HEIGHT,
   MEASURE_OVERLAY_COLUMN_HEIGHT,
 } from "@/modules/engraver/controller/presentation/constants/layout";
-import { EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import { type EngraverMeasure } from "@/modules/engraver/model/containers/engraver-measure";
+import { type EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 
 import { EngraverViewOverlayLayoutFactory } from "../../../../interaction/overlay/static/engraver-view-overlay-factory";
 import type { SystemLayout, SystemXLayout } from "../../types/vexflow-adapter.types";
+import { STAVE_GAP, SYSTEM_GAP } from "./constants";
 
 export class SystemVerticalDivider {
-  public static readonly STAVE_GAP = 100;
-  public static readonly SYSTEM_GAP = 100;
-  public static readonly MIN_MEASURE_WIDTH = 200;
-
   private static scoreHeight: number = 0;
 
   public static divide(score: EngraverScore, systemsXLayouts: SystemXLayout[]): SystemLayout[] {
@@ -50,12 +47,12 @@ export class SystemVerticalDivider {
         }
 
         if (!isLastStave) {
-          accumulatedScoreHeight += SystemVerticalDivider.STAVE_GAP;
+          accumulatedScoreHeight += STAVE_GAP;
         }
       }
 
       if (!isLastSystem) {
-        accumulatedScoreHeight += SystemVerticalDivider.SYSTEM_GAP;
+        accumulatedScoreHeight += SYSTEM_GAP;
       }
 
       systemsLayouts.push({

@@ -1,12 +1,12 @@
-import { EngraverStave } from "@/modules/engraver/model/containers/engraver-stave";
+import { type EngraverStave } from "@/modules/engraver/model/containers/engraver-stave";
 import type { EngraverStaveModifiers } from "@/modules/engraver/model/core/types/engraver-model.types";
-import { EngraverScore } from "@/modules/engraver/model/score/engraver-score";
+import { type EngraverScore } from "@/modules/engraver/model/score/engraver-score";
 
 import { EngraverLayoutCalculator } from "../../../../presentation/layout/engraver-layout-calculator";
 import type { SystemXLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
+import { STAVE_CONNECTOR_PADDING } from "./constants";
 
 export class SystemHorizontalDivider {
-  public static readonly STAVE_CONNECTOR_PADDING = 1;
   public static divide(score: EngraverScore, context: VexflowAdapterContext): SystemXLayout[] {
     const rawMeasureWidths = EngraverLayoutCalculator.calculateRawMeasureWidths(
       score,
@@ -141,9 +141,6 @@ export class SystemHorizontalDivider {
   }
 
   public static getScoreWidth(systemsLayouts: SystemXLayout[]): number {
-    return (
-      systemsLayouts[0].measureWidths.reduce((acc, w) => acc + w, 0) +
-      SystemHorizontalDivider.STAVE_CONNECTOR_PADDING
-    );
+    return systemsLayouts[0].measureWidths.reduce((acc, w) => acc + w, 0) + STAVE_CONNECTOR_PADDING;
   }
 }
