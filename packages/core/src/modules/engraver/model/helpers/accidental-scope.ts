@@ -40,9 +40,6 @@ export class AccidentalScope {
       case KeySignatureType.FLAT:
         accidental = Accidental.FLAT;
         break;
-      default:
-        // TODO: add custom error for testing
-        throw new Error(`Unknown keySignatureType: ${type}`);
     }
     Object.values(BasePitchLabel).forEach((basePitch) => {
       for (let octave = LOWEST_OCTAVE; octave <= HIGHEST_OCTAVE; octave++) {
