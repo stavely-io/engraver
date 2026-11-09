@@ -26,6 +26,7 @@ catalog:
   "@commitlint/types": ^21.2.3
   stylelint: ^18.0.0
   stylelint-config-standard: ^41.0.0
+  "@actions/github": ^9.1.1
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"

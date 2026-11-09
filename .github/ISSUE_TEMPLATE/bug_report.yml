@@ -1,0 +1,60 @@
+name: Bug report
+description: Something doesn't work the way it should.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect to happen instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Steps, a code snippet, or a link to a minimal repo that shows the problem.
+      placeholder: |
+        1. Render a score with ...
+        2. Call ...
+        3. See ...
+    validations:
+      required: true
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - core
+        - react
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "0.1.0"
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, OS, and Node version.
+      placeholder: |
+        Browser: Firefox 140
+        OS: macOS 15
+        Node: 22.18.0
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Console output, stack traces, or screenshots.
+  - type: checkboxes
+    id: searched
+    attributes:
+      label: Existing issues
+      options:
+        - label: I searched the existing issues and this isn't a duplicate.
+          required: true
