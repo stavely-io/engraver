@@ -15,7 +15,7 @@ export default defineConfig({
   run: {
     tasks: {
       "install-browsers": {
-        command: "playwright install chromium ${CI:+--with-deps}",
+        command: "playwright install chromium --only-shell ${CI:+--with-deps}",
         cache: false,
       },
       check: {

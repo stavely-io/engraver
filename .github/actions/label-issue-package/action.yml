@@ -1,0 +1,12 @@
+name: Label issue package
+description: Adds a pkg:* label from the issue form's Package dropdown.
+
+runs:
+  using: composite
+  steps:
+    - name: Label package from issue form
+      uses: actions/github-script@v9
+      with:
+        script: |
+          const { default: labelIssuePackage } = await import("${{ github.action_path }}/script.ts");
+          await labelIssuePackage({ github, context });
