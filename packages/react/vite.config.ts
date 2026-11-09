@@ -1,12 +1,36 @@
-import { defineConfig } from "vite-plus";
+import { transform } from "@svgr/core";
+import jsx from "@svgr/plugin-jsx";
+import { defineConfig, type Plugin } from "vite-plus";
+
+import { readFile } from "node:fs/promises";
+
+/**
+ * Compiles imported SVGs (@engraver/core's icons) into React components at build time,
+ * so consumers need no SVG loader.
+ */
+function svgComponents(): Plugin {
+  return {
+    name: "engraver:svg-components",
+    async load(id) {
+      if (!id.endsWith(".svg")) return null;
+
+      const svg = await readFile(id, "utf8");
+      const code = await transform(
+        svg,
+        { plugins: [jsx], jsxRuntime: "automatic" },
+        { filePath: id },
+      );
+      return { code, moduleType: "jsx" };
+    },
+  };
+}
 
 export default defineConfig({
   pack: {
     platform: "browser",
     dts: {},
     exports: true,
-    // Inline @engraver/core's SVG icons as strings, so consumers need no SVG loader
-    loader: { ".svg": "text" },
+    plugins: [svgComponents()],
     // Bundle all component CSS into dist/style.css and keep its import in the JS output,
     // so consumers get the styles without importing them manually
     css: { inject: true },

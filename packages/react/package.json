@@ -39,6 +39,8 @@
     "zustand": "catalog:"
   },
   "devDependencies": {
+    "@svgr/core": "catalog:",
+    "@svgr/plugin-jsx": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "bumpp": "^11.1.0",
