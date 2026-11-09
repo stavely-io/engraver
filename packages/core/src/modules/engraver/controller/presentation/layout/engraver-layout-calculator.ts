@@ -4,7 +4,7 @@ import { type EngraverMeasure } from "../../../model/containers/engraver-measure
 import type { EngraverStaveModifiers } from "../../../model/core/types/engraver-model.types";
 import { type EngraverScore } from "../../../model/score/engraver-score";
 import { VFVoiceFactory } from "../../adapters/vexflow-adapter/factories/vf-voice-factory";
-import { SystemDividerConstants } from "../../adapters/vexflow-adapter/formatters/system-divider/constants";
+import { MIN_MEASURE_WIDTH } from "../../adapters/vexflow-adapter/formatters/system-divider/constants";
 
 export class EngraverLayoutCalculator {
   public static calculateRawMeasureWidths(
@@ -23,7 +23,7 @@ export class EngraverLayoutCalculator {
 
     return Math.min(
       Math.max(
-        SystemDividerConstants.MIN_MEASURE_WIDTH,
+        MIN_MEASURE_WIDTH,
         new Formatter().joinVoices(vfVoices).preCalculateMinTotalWidth(vfVoices),
       ),
       containerWidth,
@@ -49,7 +49,7 @@ export class EngraverLayoutCalculator {
       );
     }
 
-    const vfStave = new Stave(0, 0, SystemDividerConstants.MIN_MEASURE_WIDTH);
+    const vfStave = new Stave(0, 0, MIN_MEASURE_WIDTH);
     if (staveOrModifiers.clef) vfStave.addClef(staveOrModifiers.clef.type);
     if (staveOrModifiers.key) vfStave.addKeySignature(staveOrModifiers.key.name);
     if (staveOrModifiers.time) vfStave.addTimeSignature(staveOrModifiers.time);

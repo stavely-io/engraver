@@ -4,7 +4,7 @@ import { type EngraverScore } from "@/modules/engraver/model/score/engraver-scor
 
 import { EngraverLayoutCalculator } from "../../../../presentation/layout/engraver-layout-calculator";
 import type { SystemXLayout, VexflowAdapterContext } from "../../types/vexflow-adapter.types";
-import { SystemDividerConstants } from "./constants";
+import { STAVE_CONNECTOR_PADDING } from "./constants";
 
 export class SystemHorizontalDivider {
   public static divide(score: EngraverScore, context: VexflowAdapterContext): SystemXLayout[] {
@@ -141,9 +141,6 @@ export class SystemHorizontalDivider {
   }
 
   public static getScoreWidth(systemsLayouts: SystemXLayout[]): number {
-    return (
-      systemsLayouts[0].measureWidths.reduce((acc, w) => acc + w, 0) +
-      SystemDividerConstants.STAVE_CONNECTOR_PADDING
-    );
+    return systemsLayouts[0].measureWidths.reduce((acc, w) => acc + w, 0) + STAVE_CONNECTOR_PADDING;
   }
 }

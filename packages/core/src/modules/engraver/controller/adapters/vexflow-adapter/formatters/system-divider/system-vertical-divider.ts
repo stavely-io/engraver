@@ -8,7 +8,7 @@ import type { Clef } from "@/modules/musical-core/types/clef.types";
 
 import { EngraverViewOverlayLayoutFactory } from "../../../../interaction/overlay/static/engraver-view-overlay-factory";
 import type { SystemLayout, SystemXLayout } from "../../types/vexflow-adapter.types";
-import { SystemDividerConstants } from "./constants";
+import { STAVE_GAP, SYSTEM_GAP } from "./constants";
 
 export class SystemVerticalDivider {
   private static scoreHeight: number = 0;
@@ -47,12 +47,12 @@ export class SystemVerticalDivider {
         }
 
         if (!isLastStave) {
-          accumulatedScoreHeight += SystemDividerConstants.STAVE_GAP;
+          accumulatedScoreHeight += STAVE_GAP;
         }
       }
 
       if (!isLastSystem) {
-        accumulatedScoreHeight += SystemDividerConstants.SYSTEM_GAP;
+        accumulatedScoreHeight += SYSTEM_GAP;
       }
 
       systemsLayouts.push({

@@ -4,7 +4,7 @@ import type { StateCreator } from "zustand";
 
 import { MAX_VOICE_COUNT } from "../../../model/constants/limitations";
 import type { EngraverScoreConfig } from "../../../view/types/config/score/engraver-score-config";
-import { SystemDividerConstants } from "../../adapters/vexflow-adapter/formatters/system-divider";
+import { MIN_MEASURE_WIDTH } from "../../adapters/vexflow-adapter/formatters/system-divider";
 import type { EngraverOverlayElement } from "../../interaction/overlay/types/engraver-overlay-element";
 
 export interface EngraverMeasureLayout {
@@ -52,7 +52,7 @@ export const createEngraverOverlaySlice =
         systemMeasureCount: 0,
         measureWidths: Array.from(
           { length: engraverScoreConfig.scoreTemplate.measureCount },
-          () => SystemDividerConstants.MIN_MEASURE_WIDTH,
+          () => MIN_MEASURE_WIDTH,
         ),
         globalMeasureIndices: Array.from(
           { length: engraverScoreConfig.scoreTemplate.measureCount },
@@ -68,9 +68,7 @@ export const createEngraverOverlaySlice =
               () => {
                 return {
                   measureLeftX: 0,
-                  voiceSpacings: Array.from({ length: MAX_VOICE_COUNT }, () => [
-                    SystemDividerConstants.MIN_MEASURE_WIDTH,
-                  ]),
+                  voiceSpacings: Array.from({ length: MAX_VOICE_COUNT }, () => [MIN_MEASURE_WIDTH]),
                 };
               },
             ),
