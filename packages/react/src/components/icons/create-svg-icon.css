@@ -1,6 +1,6 @@
 @layer engraver {
   .engraver-icon {
-    display: inline-flex;
+    display: inline-block;
     flex-shrink: 0;
   }
 }

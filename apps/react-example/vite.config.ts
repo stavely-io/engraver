@@ -10,6 +10,17 @@ export default defineConfig({
   },
   run: {
     tasks: {
+      dev: {
+        command: [
+          "vp run --filter 'react-example^...' build",
+          "vp run --filter 'react-example...' --parallel watch",
+        ],
+        cache: false,
+      },
+      watch: {
+        command: "vp dev",
+        cache: false,
+      },
       check: {
         command: ["vp check", "stylelint 'src/**/*.css'"],
         dependsOn: [

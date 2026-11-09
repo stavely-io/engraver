@@ -18,6 +18,10 @@ export default defineConfig({
         command: "playwright install chromium --only-shell ${CI:+--with-deps}",
         cache: false,
       },
+      watch: {
+        command: "tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+        cache: false,
+      },
       check: {
         command: "vp check",
       },

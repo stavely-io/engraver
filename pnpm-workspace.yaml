@@ -27,6 +27,8 @@ catalog:
   stylelint: ^18.0.0
   stylelint-config-standard: ^41.0.0
   "@actions/github": ^9.1.1
+  "@svgr/core": ^8.1.0
+  "@svgr/plugin-jsx": ^8.1.0
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"

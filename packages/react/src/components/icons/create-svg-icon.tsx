@@ -1,21 +1,16 @@
 import clsx from "clsx";
-import type { FC, HTMLAttributes } from "react";
+import type { FC, SVGProps } from "react";
 
 import "./create-svg-icon.css";
 
-export type SvgIconProps = HTMLAttributes<HTMLSpanElement>;
+export type SvgIconProps = SVGProps<SVGSVGElement>;
 
 /**
- * Wraps raw SVG markup in a component. Icons use `currentColor`, so they follow the text color.
+ * Wraps an SVG component with shared icon defaults. Icons use `currentColor`, so they follow the text color.
  */
-export function createSvgIcon(svg: string, displayName: string): FC<SvgIconProps> {
+export function createSvgIcon(Svg: FC<SvgIconProps>, displayName: string): FC<SvgIconProps> {
   const SvgIcon: FC<SvgIconProps> = ({ className, ...props }) => (
-    <span
-      aria-hidden
-      className={clsx("engraver-icon", className)}
-      dangerouslySetInnerHTML={{ __html: svg }}
-      {...props}
-    />
+    <Svg aria-hidden className={clsx("engraver-icon", className)} {...props} />
   );
   SvgIcon.displayName = displayName;
   return SvgIcon;
