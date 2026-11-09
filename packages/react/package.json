@@ -28,7 +28,6 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "vp pack --watch",
     "prepublishOnly": "vp run build"
   },
   "dependencies": {

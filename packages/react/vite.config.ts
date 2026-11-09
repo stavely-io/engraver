@@ -51,6 +51,10 @@ export default defineConfig({
         command: "vp pack",
         dependsOn: [{ task: "build", from: ["dependencies", "peerDependencies"] }],
       },
+      watch: {
+        command: "vp pack --watch --no-clean",
+        cache: false,
+      },
       publint: {
         command: "publint",
         dependsOn: ["build"],
