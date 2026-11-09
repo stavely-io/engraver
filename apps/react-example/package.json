@@ -13,15 +13,14 @@
     "@engraver/core": "workspace:*",
     "@engraver/react": "workspace:*",
     "react": "catalog:",
-    "react-dom": "^19.3.1"
+    "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
-    "@types/react-dom": "^19.3.0",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "^6.1.2",
-    "tailwindcss": "catalog:",
+    "stylelint": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plus": "catalog:"

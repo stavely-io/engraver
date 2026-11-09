@@ -1,6 +1,7 @@
+import clsx from "clsx";
 import { type FC, type HTMLAttributes } from "react";
 
-import { cn } from "../../../utils/style";
+import "./engraver-menu-cell.css";
 
 export const EngraverMenuCell: FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
@@ -8,13 +9,7 @@ export const EngraverMenuCell: FC<HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => {
   return (
-    <div
-      {...props}
-      className={cn(
-        "border-muted-foreground flex flex-row gap-[6px] border-r px-[6px] py-[5px]",
-        className,
-      )}
-    >
+    <div {...props} className={clsx("engraver-menu-cell", className)}>
       {children}
     </div>
   );

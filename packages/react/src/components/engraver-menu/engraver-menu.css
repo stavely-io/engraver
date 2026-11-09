@@ -1,0 +1,11 @@
+@layer engraver {
+  .engraver-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: var(--engraver-border-width) solid var(--engraver-border);
+    border-radius: var(--engraver-radius);
+    background: var(--engraver-background);
+  }
+}

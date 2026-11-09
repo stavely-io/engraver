@@ -1,0 +1,51 @@
+@layer engraver {
+  :root {
+    --engraver-background: oklch(100% 0 0deg);
+    --engraver-foreground: oklch(20.5% 0 0deg);
+    --engraver-border: oklch(55.6% 0 0deg);
+    --engraver-hover-background: color-mix(in oklch, var(--engraver-foreground) 10%, transparent);
+    --engraver-active-background: color-mix(in oklch, var(--engraver-foreground) 20%, transparent);
+    --engraver-selected-background: oklch(60.9% 0.126 221.723deg);
+    --engraver-selected-active-background: oklch(52% 0.105 223.128deg);
+    --engraver-selected-foreground: oklch(100% 0 0deg);
+    --engraver-overlay-background: color-mix(in oklch, oklch(97% 0 0deg) 40%, transparent);
+    --engraver-sheet-overlay-background: oklch(97% 0 0deg);
+    --engraver-radius: 8px;
+    --engraver-border-width: 1px;
+    --engraver-gap: 4px;
+    --engraver-button-size: 32px;
+    --engraver-icon-size: 24px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --engraver-background: oklch(14.5% 0 0deg);
+      --engraver-foreground: oklch(92.2% 0 0deg);
+      --engraver-border: oklch(70.8% 0 0deg);
+      --engraver-overlay-background: color-mix(in oklch, oklch(26.9% 0 0deg) 90%, transparent);
+      --engraver-sheet-overlay-background: oklch(20.5% 0 0deg);
+    }
+  }
+
+  :where(.engraver),
+  :where(.engraver) *,
+  :where(.engraver) ::before,
+  :where(.engraver) ::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  :where(.engraver) button {
+    appearance: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  :where(.engraver) svg {
+    display: block;
+  }
+}

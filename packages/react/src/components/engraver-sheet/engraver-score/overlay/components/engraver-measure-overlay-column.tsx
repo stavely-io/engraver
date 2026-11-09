@@ -33,13 +33,19 @@ const MeasureOverlayColumn: FC<MeasureOverlayColumnProps> = ({
   return (
     <div
       data-testid="engraver-measure-overlay-column"
-      className={clsx("flex flex-col", !isEditable && "pointer-events-none")}
+      className={clsx(
+        "engraver-measure-overlay-column",
+        !isEditable && "engraver-measure-overlay-column--inert",
+      )}
     >
       {pitches.map((pitch, index) => (
         <div
           data-testid="measure-overlay-row"
           style={{ width: `${width}px`, height: `${MEASURE_OVERLAY_COLUMN_HEIGHT}px` }}
-          className={clsx("z-10", !isEditable && "pointer-events-none")}
+          className={clsx(
+            "engraver-measure-overlay-row",
+            !isEditable && "engraver-measure-overlay-row--inert",
+          )}
           key={index}
           onClick={(event) => {
             event.stopPropagation();

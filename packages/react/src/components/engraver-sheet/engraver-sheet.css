@@ -1,0 +1,16 @@
+@layer engraver {
+  .engraver-sheet {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border: var(--engraver-border-width) solid var(--engraver-border);
+    border-radius: var(--engraver-radius);
+    background: var(--engraver-background);
+  }
+
+  .engraver-sheet .engraver-disabled-overlay {
+    background: var(--engraver-sheet-overlay-background);
+  }
+}

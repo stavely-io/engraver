@@ -3,6 +3,7 @@ import { type FC, useEffect, useRef } from "react";
 import { useEngraverController } from "../../../hooks/context/use-engraver-controller";
 import { useEngraverMenuState } from "../../../hooks/view/use-engraver-menu-state";
 import EngraverOverlay from "./overlay/engraver-overlay";
+import "./engraver-score.css";
 
 const EngraverScore: FC = () => {
   const engraverScoreRef = useRef<HTMLDivElement>(null);
@@ -18,8 +19,8 @@ const EngraverScore: FC = () => {
   const { isEditable } = useEngraverMenuState();
 
   return (
-    <div className="relative flex w-[90%] items-center justify-center">
-      <div ref={engraverScoreRef} id="engraver" className="h-full w-full bg-inherit" />
+    <div className="engraver-score">
+      <div ref={engraverScoreRef} id="engraver" className="engraver-score__canvas" />
       {isEditable && <EngraverOverlay />}
     </div>
   );

@@ -4,6 +4,7 @@ import { useStore } from "zustand";
 import { useEngraverController } from "../../../../hooks/context/use-engraver-controller";
 import { useEngraverStore } from "../../../../hooks/context/use-engraver-store";
 import EngraverSystemOverlay from "./components/engraver-system-overlay";
+import "./engraver-overlay.css";
 
 const EngraverOverlay: FC = () => {
   const engraverController = useEngraverController();
@@ -19,7 +20,7 @@ const EngraverOverlay: FC = () => {
   }, [engraverController, engraverOverlayRef]);
 
   return (
-    <div ref={engraverOverlayRef} className="absolute top-0 w-full" data-testid="engraver-overlay">
+    <div ref={engraverOverlayRef} className="engraver-overlay" data-testid="engraver-overlay">
       {Array.from({ length: systemCount }, (_, index) => (
         <EngraverSystemOverlay key={index} systemIndex={index} />
       ))}

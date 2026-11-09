@@ -1,0 +1,8 @@
+@layer engraver {
+  .engraver-separator {
+    flex-shrink: 0;
+    width: 100%;
+    height: var(--engraver-border-width);
+    background: var(--engraver-border);
+  }
+}

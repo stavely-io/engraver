@@ -45,7 +45,7 @@ const ENGRAVER_CONFIG: EngraverConfig = {
 
 function App() {
   return (
-    <div className="relative flex h-full min-h-full w-full flex-col gap-y-6">
+    <div className="app">
       <Engraver config={ENGRAVER_CONFIG} />
     </div>
   );

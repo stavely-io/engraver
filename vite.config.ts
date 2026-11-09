@@ -50,7 +50,7 @@ export default defineConfig({
     tasks: {
       "check-root": {
         command:
-          "vp check .github .vscode package.json pnpm-workspace.yaml tsconfig.json vite.config.ts vp.workspace.ts commitlint.config.ts README.md",
+          "vp check .github .vscode package.json pnpm-workspace.yaml stylelint.config.mjs tsconfig.json vite.config.ts vp.workspace.ts commitlint.config.ts README.md",
       },
       check: {
         command: "vp run check-root && vp run -r check",
