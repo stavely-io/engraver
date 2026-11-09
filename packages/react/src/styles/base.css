@@ -1,9 +1,4 @@
-/*
- * All @engraver/react styles live in the `engraver` cascade layer, so any unlayered
- * consumer CSS overrides them regardless of specificity or load order.
- */
 @layer engraver {
-  /* Design tokens: override any of these on :root, .engraver or a wrapping element */
   :root {
     --engraver-background: oklch(100% 0 0deg);
     --engraver-foreground: oklch(20.5% 0 0deg);
@@ -32,7 +27,6 @@
     }
   }
 
-  /* Scoped reset: zero specificity, so component classes always win */
   :where(.engraver),
   :where(.engraver) *,
   :where(.engraver) ::before,
