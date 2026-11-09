@@ -9,11 +9,6 @@ body:
       description: What problem are you trying to solve, and what would you like to see?
     validations:
       required: true
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives
-      description: Other approaches or workarounds you've tried.
   - type: dropdown
     id: package
     attributes:

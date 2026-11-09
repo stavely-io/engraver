@@ -7,6 +7,7 @@
     "prepare": "vp config --no-agent"
   },
   "devDependencies": {
+    "@actions/github": "catalog:",
     "@commitlint/cli": "catalog:",
     "@commitlint/config-conventional": "catalog:",
     "@commitlint/types": "catalog:",
