@@ -1,0 +1,23 @@
+name: Question
+description: Ask how something works or how to use it.
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+    validations:
+      required: true
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - core
+        - react
+        - Not sure
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: What you've tried so far, or any code that helps explain the question.

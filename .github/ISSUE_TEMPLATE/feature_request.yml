@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest something new or a change to how something works.
+labels: ["feature-request"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What problem are you trying to solve, and what would you like to see?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Other approaches or workarounds you've tried.
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options:
+        - core
+        - react
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else that helps, like links, sketches, or examples from other libraries.
