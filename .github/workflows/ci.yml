@@ -1,0 +1,111 @@
+name: "CI"
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      shared: ${{ steps.filter.outputs.shared }}
+      vexflow: ${{ steps.filter.outputs.vexflow }}
+      core: ${{ steps.filter.outputs.core }}
+      react: ${{ steps.filter.outputs.react }}
+      react-example: ${{ steps.filter.outputs.react-example }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Filter paths
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            shared: &shared
+              - ".github/**"
+              - ".vscode/**"
+              - "README.md"
+              - "commitlint.config.ts"
+              - "package.json"
+              - "pnpm-lock.yaml"
+              - "pnpm-workspace.yaml"
+              - "stylelint.config.mjs"
+              - "tsconfig.json"
+              - "vite.config.ts"
+              - "vp.workspace.ts"
+            vexflow:
+              - *shared
+              - "packages/vexflow/**"
+            core: &core
+              - *shared
+              - "packages/core/**"
+              - "packages/vexflow/**"
+            react:
+              - *shared
+              - *core
+              - "packages/react/**"
+            react-example:
+              - *shared
+              - *core
+              - "apps/react-example/**"
+              - "packages/react/**"
+
+  root:
+    needs: changes
+    if: needs.changes.outputs.shared == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+
+      - name: Check root files
+        run: vp run -w check-root
+
+  vexflow:
+    needs: changes
+    if: needs.changes.outputs.vexflow == 'true'
+    uses: ./.github/workflows/check-package.yml
+    with:
+      package: "@engraver/vexflow"
+
+  core:
+    needs: changes
+    if: needs.changes.outputs.core == 'true'
+    uses: ./.github/workflows/check-package.yml
+    with:
+      package: "@engraver/core"
+
+  react:
+    needs: changes
+    if: needs.changes.outputs.react == 'true'
+    uses: ./.github/workflows/check-package.yml
+    with:
+      package: "@engraver/react"
+
+  react-example:
+    needs: changes
+    if: needs.changes.outputs.react-example == 'true'
+    uses: ./.github/workflows/check-package.yml
+    with:
+      package: react-example
+
+  gate:
+    if: always()
+    needs: [changes, root, vexflow, core, react, react-example]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any job failed or was cancelled
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1

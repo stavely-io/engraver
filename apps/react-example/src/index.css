@@ -1,0 +1,42 @@
+:root {
+  color-scheme: light dark;
+
+  --app-background: oklch(100% 0 0deg);
+  --app-foreground: oklch(14.5% 0 0deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-background: oklch(14.5% 0 0deg);
+    --app-foreground: oklch(98.5% 0 0deg);
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100svh;
+  margin: 0;
+  background: var(--app-background);
+  color: var(--app-foreground);
+}
+
+#root {
+  width: 100%;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 1.5rem;
+}
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  min-height: 100%;
+}

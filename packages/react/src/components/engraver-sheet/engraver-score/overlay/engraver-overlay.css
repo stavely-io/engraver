@@ -1,0 +1,34 @@
+@layer engraver {
+  .engraver-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .engraver-stave-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .engraver-measure-overlay {
+    position: absolute;
+    display: flex;
+  }
+
+  .engraver-measure-overlay-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .engraver-measure-overlay-row {
+    z-index: 10;
+  }
+
+  .engraver-stave-overlay--inert,
+  .engraver-measure-overlay--inert,
+  .engraver-measure-overlay-column--inert,
+  .engraver-measure-overlay-row--inert {
+    pointer-events: none;
+  }
+}

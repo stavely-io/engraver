@@ -1,0 +1,14 @@
+@layer engraver {
+  .engraver-menu-cell {
+    display: flex;
+    flex-direction: row;
+    gap: var(--engraver-gap);
+    padding: var(--engraver-gap);
+    border-right: var(--engraver-border-width) solid var(--engraver-border);
+  }
+
+  .engraver-menu-cell--trailing {
+    border-right: 0;
+    border-left: var(--engraver-border-width) solid var(--engraver-border);
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "engraver monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare": "vp config --no-agent"
+  },
+  "devDependencies": {
+    "@actions/github": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@commitlint/types": "catalog:",
+    "stylelint": "catalog:",
+    "stylelint-config-standard": "catalog:",
+    "vite-plus": "catalog:"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.9.1",
+      "onFail": "download"
+    }
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

@@ -1,0 +1,26 @@
+name: "Check package"
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        description: "Workspace package name, ex.: '@engraver/core'"
+        required: true
+        type: string
+
+jobs:
+  check:
+    name: ${{ inputs.package }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup environment
+        uses: ./.github/actions/setup-env
+
+      - name: Check
+        run: vp run "${{ inputs.package }}#check"
+
+      - name: Test
+        run: vp run "${{ inputs.package }}#test"

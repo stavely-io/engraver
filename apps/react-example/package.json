@@ -1,0 +1,27 @@
+{
+  "name": "react-example",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vp build",
+    "lint": "vp lint",
+    "preview": "vp preview"
+  },
+  "dependencies": {
+    "@engraver/core": "workspace:*",
+    "@engraver/react": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.1.2",
+    "stylelint": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}

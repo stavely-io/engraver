@@ -1,0 +1,79 @@
+import { type Pitch } from "@/modules/musical-core/models/pitch";
+
+import type { StateCreator } from "zustand";
+
+import { MAX_VOICE_COUNT } from "../../../model/constants/limitations";
+import type { EngraverScoreConfig } from "../../../view/types/config/score/engraver-score-config";
+import { MIN_MEASURE_WIDTH } from "../../adapters/vexflow-adapter/formatters/system-divider";
+import type { EngraverOverlayElement } from "../../interaction/overlay/types/engraver-overlay-element";
+
+export interface EngraverMeasureLayout {
+  measureLeftX: number;
+  voiceSpacings: number[][];
+}
+
+export interface EngraverStaveLayout {
+  topPitchRangeStaveOffset: number;
+  measureLayouts: EngraverMeasureLayout[];
+  lowestPitch: Pitch;
+  highestPitch: Pitch;
+}
+
+export interface EngraverSystemLayout {
+  systemWidth: number;
+  systemMeasureCount: number;
+  measureWidths: number[];
+  globalMeasureIndices: number[];
+  staveLayouts: EngraverStaveLayout[];
+}
+
+export interface EngraverViewOverlay {
+  systemCount: number;
+  systemLayouts: EngraverSystemLayout[];
+}
+
+export interface EngraverOverlaySlice extends EngraverViewOverlay {
+  selectedSelectablesIDs: Set<number>;
+  IDToEngraverSelectableMap: Map<number, EngraverOverlayElement>;
+}
+
+export const createEngraverOverlaySlice =
+  (
+    engraverScoreConfig: EngraverScoreConfig,
+  ): StateCreator<EngraverOverlaySlice, [], [], EngraverOverlaySlice> =>
+  () => ({
+    selectedSelectablesIDs: new Set(),
+    IDToEngraverSelectableMap: new Map<number, EngraverOverlayElement>(),
+
+    systemCount: 1,
+    systemLayouts: [
+      {
+        systemWidth: 0,
+        systemMeasureCount: 0,
+        measureWidths: Array.from(
+          { length: engraverScoreConfig.scoreTemplate.measureCount },
+          () => MIN_MEASURE_WIDTH,
+        ),
+        globalMeasureIndices: Array.from(
+          { length: engraverScoreConfig.scoreTemplate.measureCount },
+          (_, index) => index,
+        ),
+        staveLayouts: engraverScoreConfig.scoreTemplate.staveConfigs.map((staveConfig) => {
+          return {
+            topPitchRangeStaveOffset: 0,
+            highestPitch: staveConfig.clef.highestPitch,
+            lowestPitch: staveConfig.clef.lowestPitch,
+            measureLayouts: Array.from(
+              { length: engraverScoreConfig.scoreTemplate.measureCount },
+              () => {
+                return {
+                  measureLeftX: 0,
+                  voiceSpacings: Array.from({ length: MAX_VOICE_COUNT }, () => [MIN_MEASURE_WIDTH]),
+                };
+              },
+            ),
+          };
+        }),
+      },
+    ],
+  });
