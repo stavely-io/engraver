@@ -1,23 +1,30 @@
-# vite-plus-starter
+# @engraver/core
 
-A starter for creating a Vite Plus project.
+Framework-agnostic core of [Engraver](https://github.com/stavely-io/engraver): interactive, editable music notation for the web.
+
+> [!NOTE]
+> Engraver is in early development. This package is not published to npm yet and the API will change.
+
+## What's inside
+
+- **Engraver**: score model, editing logic, configuration types and rendering through a bundled fork of [VexFlow](https://vexflow.com)
+- **Musical core**: pitches, durations, clefs, key and time signatures
+- **Player**: score playback built on [smplr](https://github.com/danigb/smplr)
+
+For a ready-made UI, use [`@engraver/react`](../react).
 
 ## Development
 
-- Install dependencies:
+From this directory:
 
 ```bash
-vp install
+vp check # format, lint and type-check
+vp test  # run the tests
+vp pack  # build the package
 ```
 
-- Run the unit tests:
+See the [repository README](https://github.com/stavely-io/engraver#readme) for monorepo-wide commands.
 
-```bash
-vp test
-```
+## Credits
 
-- Build the library:
-
-```bash
-vp pack
-```
+Rendering is built on a fork of [VexFlow](https://github.com/vexflow/vexflow), licensed under MIT. See [`packages/vexflow/LICENSE`](https://github.com/stavely-io/engraver/blob/main/packages/vexflow/LICENSE).

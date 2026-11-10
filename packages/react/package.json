@@ -2,15 +2,20 @@
   "name": "@engraver/react",
   "version": "0.0.0",
   "description": "React bindings for Engraver",
-  "homepage": "https://github.com/author/library#readme",
+  "homepage": "https://github.com/stavely-io/engraver#readme",
   "bugs": {
-    "url": "https://github.com/author/library/issues"
+    "url": "https://github.com/stavely-io/engraver/issues"
   },
   "license": "MIT",
-  "author": "Author Name <author.name@mail.com>",
+  "contributors": [
+    "Jakub Ciszewski <jciszewski123@gmail.com>",
+    "Jakub Kotara <jakub.kotara14@gmail.com>",
+    "Marek Małek <malekmarek56@gmail.com>"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/author/library.git"
+    "url": "git+https://github.com/stavely-io/engraver.git",
+    "directory": "packages/react"
   },
   "files": [
     "dist"
