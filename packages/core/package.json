@@ -8,13 +8,14 @@
   },
   "license": "MIT",
   "contributors": [
-    "Jakub Ciszewski jciszewski123@gmail.com",
-    "Jakub Kotara jakub.kotara14@gmail.com",
-    "Marek Małek malekmarek56@gmail.com"
+    "Jakub Ciszewski <jciszewski123@gmail.com>",
+    "Jakub Kotara <jakub.kotara14@gmail.com>",
+    "Marek Małek <malekmarek56@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stavely-io/engraver.git"
+    "url": "git+https://github.com/stavely-io/engraver.git",
+    "directory": "packages/core"
   },
   "files": [
     "dist"
