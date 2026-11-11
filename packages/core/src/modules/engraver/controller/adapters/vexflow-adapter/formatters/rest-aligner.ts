@@ -4,11 +4,12 @@ import { BaseDuration } from "@/modules/musical-core/types/base-duration.enum";
 
 import { EngraverScoreRenderer } from "../../../rendering/renderers/engraver-score-renderer";
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { EngraverFormatter } from "../types/engraver-formatter";
 import { VFStaveNoteType } from "../types/vexflow-adapter.types";
 
-export class RestAligner {
+export class RestAligner implements EngraverFormatter {
   private static readonly REST_KEY = 3;
-  public static align(vfScoreData: VFScoreCoreData): void {
+  public format(vfScoreData: VFScoreCoreData): void {
     vfScoreData.systems.forEach((system) => {
       system.staves.forEach((stave) => {
         stave.measuresData.forEach((measureData) => {
@@ -18,7 +19,7 @@ export class RestAligner {
     });
   }
 
-  private static alignFirstRest(measureVoices: Voice[]): void {
+  private alignFirstRest(measureVoices: Voice[]): void {
     if (!EngraverScoreRenderer.isVoiceToBeRendered(measureVoices[1], 1)) {
       const firstTickable = measureVoices[0].getTickables()[0];
       if (
