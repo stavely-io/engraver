@@ -1,16 +1,17 @@
 import { type StaveNote } from "@engraver/vexflow";
 
 import type { Color } from "@/modules/engraver/view/types/colors.types";
-import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 
 import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../interaction/action-handler/factories/engraver-playable-selectable-key-factory";
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
-import type { EngraverFormatter } from "../types/engraver-formatter";
+import type { EngraverFormatter, FormatterContext } from "../types/engraver-formatter";
 
 export class TickablePainter implements EngraverFormatter {
-  constructor(private readonly colorMap: EngraverPlayableSelectableColorMap) {}
+  public format(vfScoreData: VFScoreCoreData, ctx: FormatterContext): void {
+    if (!ctx.colorMap) {
+      return;
+    }
 
-  public format(vfScoreData: VFScoreCoreData): void {
     let systemStartingMeasureIndex = 0;
     vfScoreData.systems.forEach((system) => {
       system.staves.forEach((stave, staveIndex) => {
@@ -32,8 +33,8 @@ export class TickablePainter implements EngraverFormatter {
                   noteIndex,
                 };
                 const key = EngraverPlayableSelectableCoordinatesKeyFactory.create(coordinates);
-                if (this.colorMap.has(key)) {
-                  const color = this.colorMap.get(key);
+                if (ctx.colorMap?.has(key)) {
+                  const color = ctx.colorMap.get(key);
                   tickable.setKeyStyle(noteIndex, { fillStyle: color, strokeStyle: color });
                   appliedColors.add(color!);
                   lastColor = color;

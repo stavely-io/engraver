@@ -29,9 +29,12 @@ import type {
 } from "./types/vexflow-adapter.types";
 
 export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFScoreData> {
-  private readonly voiceFormatter = new VoiceFormatter();
-  private readonly restAligner = new RestAligner();
-  private readonly barlinePainter = new BarlinePainter();
+  private readonly formatters: EngraverFormatter[] = [
+    new VoiceFormatter(),
+    new RestAligner(),
+    new BarlinePainter(),
+    new TickablePainter(),
+  ];
 
   public adapt(
     input: EngraverScore,
@@ -40,15 +43,8 @@ export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFSc
   ): VFScoreData {
     const scoreLayout = SystemDivider.divide(input, context);
     const vfScoreCoreData = this.adaptScoreCore(scoreLayout.systems, input);
-    const formatters: EngraverFormatter[] = [
-      this.voiceFormatter,
-      this.restAligner,
-      this.barlinePainter,
-    ];
 
-    if (colorMap) formatters.push(new TickablePainter(colorMap));
-
-    formatters.forEach((formatter) => formatter.format(vfScoreCoreData));
+    this.formatters.forEach((formatter) => formatter.format(vfScoreCoreData, { colorMap }));
 
     return {
       vfScoreCoreData,
