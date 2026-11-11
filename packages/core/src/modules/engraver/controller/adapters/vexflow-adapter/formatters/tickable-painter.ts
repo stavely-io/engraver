@@ -1,13 +1,17 @@
 import { type StaveNote } from "@engraver/vexflow";
 
 import type { Color } from "@/modules/engraver/view/types/colors.types";
-import type { EngraverPlayableSelectableColorMap } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 
 import { EngraverPlayableSelectableCoordinatesKeyFactory } from "../../../interaction/action-handler/factories/engraver-playable-selectable-key-factory";
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { EngraverFormatter, FormatterContext } from "../types/engraver-formatter";
 
-export class TickablePainter {
-  public static paint(vfScoreData: VFScoreCoreData, map: EngraverPlayableSelectableColorMap): void {
+export class TickablePainter implements EngraverFormatter {
+  public format(vfScoreData: VFScoreCoreData, ctx: FormatterContext): void {
+    if (!ctx.colorMap) {
+      return;
+    }
+
     let systemStartingMeasureIndex = 0;
     vfScoreData.systems.forEach((system) => {
       system.staves.forEach((stave, staveIndex) => {
@@ -29,8 +33,8 @@ export class TickablePainter {
                   noteIndex,
                 };
                 const key = EngraverPlayableSelectableCoordinatesKeyFactory.create(coordinates);
-                if (map.has(key)) {
-                  const color = map.get(key);
+                if (ctx.colorMap?.has(key)) {
+                  const color = ctx.colorMap.get(key);
                   tickable.setKeyStyle(noteIndex, { fillStyle: color, strokeStyle: color });
                   appliedColors.add(color!);
                   lastColor = color;

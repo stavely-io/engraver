@@ -21,6 +21,7 @@ import {
   TickablePainter,
   VoiceFormatter,
 } from "./formatters";
+import type { EngraverFormatter } from "./types/engraver-formatter";
 import type {
   MeasureLayout,
   SystemLayout,
@@ -28,6 +29,13 @@ import type {
 } from "./types/vexflow-adapter.types";
 
 export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFScoreData> {
+  private readonly formatters: EngraverFormatter[] = [
+    new VoiceFormatter(),
+    new RestAligner(),
+    new BarlinePainter(),
+    new TickablePainter(),
+  ];
+
   public adapt(
     input: EngraverScore,
     context: VexflowAdapterContext,
@@ -35,11 +43,8 @@ export class VexflowAdapter implements EngraverOneWayAdapter<EngraverScore, VFSc
   ): VFScoreData {
     const scoreLayout = SystemDivider.divide(input, context);
     const vfScoreCoreData = this.adaptScoreCore(scoreLayout.systems, input);
-    VoiceFormatter.format(vfScoreCoreData);
-    RestAligner.align(vfScoreCoreData);
-    BarlinePainter.paint(vfScoreCoreData);
 
-    if (colorMap) TickablePainter.paint(vfScoreCoreData, colorMap);
+    this.formatters.forEach((formatter) => formatter.format(vfScoreCoreData, { colorMap }));
 
     return {
       vfScoreCoreData,

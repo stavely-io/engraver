@@ -1,11 +1,12 @@
 import { Formatter, type Voice } from "@engraver/vexflow";
 
 import type { VFScoreCoreData } from "../../../rendering/types/vf-data";
+import type { EngraverFormatter } from "../types/engraver-formatter";
 
-export class VoiceFormatter {
-  public static readonly COLLISION_FACTOR = 20;
+export class VoiceFormatter implements EngraverFormatter {
+  public readonly COLLISION_FACTOR = 20;
 
-  public static format(vfScoreData: VFScoreCoreData): void {
+  public format(vfScoreData: VFScoreCoreData): void {
     vfScoreData.systems.forEach((system) => {
       const measureCount = system.staves[0]?.measuresData.length ?? 0;
 
