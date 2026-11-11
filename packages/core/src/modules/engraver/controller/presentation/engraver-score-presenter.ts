@@ -1,6 +1,6 @@
 import { type EngraverScore } from "../../model/score/engraver-score";
 import type { EngraverThemeConfig } from "../../view/types/config/score/engraver-theme-config";
-import { VexflowAdapter } from "../adapters/vexflow-adapter/vexfow-adapter";
+import { VexflowAdapter } from "../adapters/vexflow-adapter/vexflow-adapter";
 import { type EngraverScoreRenderer } from "../rendering/renderers/engraver-score-renderer";
 import type { VFScoreData } from "../rendering/types/vf-data";
 import { type EngraverThemeManager } from "../theme/engraver-theme-manager";
