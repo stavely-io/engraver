@@ -5,7 +5,7 @@ import {
   type EngraverThemeType,
 } from "@engraver/core";
 
-import { type FC, type ReactNode, type RefObject, useEffect, useMemo } from "react";
+import { type FC, type ReactNode, type RefObject, useEffect, useState } from "react";
 
 import { usePlayerStore } from "../hooks/context/use-player-store";
 import { EngraverContext } from "./engraver-context";
@@ -24,10 +24,11 @@ export const EngraverProvider: FC<EngraverProviderProps> = ({
   engraverWrapperRef,
 }) => {
   const playerStore = usePlayerStore();
-  const engraverStore = useMemo(() => createEngraverStore(config), [config]);
-  const engraverController = useMemo(
+  // https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state
+  // TODO: reconsider how config is created and applied (live updates vs mount-only, docs for consumers)
+  const [engraverStore] = useState(() => createEngraverStore(config));
+  const [engraverController] = useState(
     () => new EngraverController(config.engraverScoreConfig, engraverStore, playerStore),
-    [config.engraverScoreConfig, engraverStore, playerStore],
   );
 
   useEffect(() => {

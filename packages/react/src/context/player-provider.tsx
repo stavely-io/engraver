@@ -1,6 +1,6 @@
 import { createPlayerStore, SmplrInstrumentType } from "@engraver/core";
 
-import { type FC, type ReactNode, useCallback, useEffect, useRef } from "react";
+import { type FC, type ReactNode, useCallback, useEffect, useState } from "react";
 import { AudioContext as StandarizedAudioContext } from "standardized-audio-context";
 
 import { PlayerContext } from "./player-context";
@@ -10,7 +10,7 @@ interface PlayerProviderProps {
 }
 
 export const PlayerProvider: FC<PlayerProviderProps> = ({ children }) => {
-  const playerStore = useRef(createPlayerStore()).current;
+  const [playerStore] = useState(() => createPlayerStore());
 
   const initInstrument = useCallback(() => {
     playerStore.setState({
