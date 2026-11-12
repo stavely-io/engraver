@@ -1,5 +1,4 @@
 // engraver
-export * from "./modules/engraver/api/types/engraver-api.types";
 export * from "./modules/engraver/controller/engraver-controller";
 export * from "./modules/engraver/controller/interaction/action-handler/engraver-action-factory";
 export * from "./modules/engraver/controller/interaction/action-handler/types/engraver-coordinates";
@@ -10,6 +9,7 @@ export * from "./modules/engraver/controller/store/types/store-api";
 export * from "./modules/engraver/controller/store/types/store-values";
 export * from "./modules/engraver/controller/theme/theme.types";
 export * from "./modules/engraver/model/core/types/engraver-model.types";
+export * from "./modules/engraver/model/score/engraver-score.types";
 export * from "./modules/engraver/view/types/colors.types";
 export * from "./modules/engraver/view/types/config/engraver-config";
 export * from "./modules/engraver/view/types/config/engraver-menu-config";
@@ -39,5 +39,4 @@ export * from "./modules/musical-core/types/time-signature.types";
 
 // player
 export * from "./modules/player";
-export * from "./modules/player/api/store/player-api-store";
 export * from "./modules/player/smplr/model/abstract/smplr-player";

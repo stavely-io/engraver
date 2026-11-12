@@ -5,7 +5,6 @@ import { type Duration } from "@/modules/musical-core/models/duration";
 import { type Pitch } from "@/modules/musical-core/models/pitch";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 
-import type { ScoreData } from "../../api/types/engraver-api.types";
 import type { EngraverBlockConfig } from "../../view/types/config/score/engraver-block-config";
 import { EngraverStave } from "../containers/engraver-stave";
 import {
@@ -17,6 +16,7 @@ import {
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverTie } from "../elements/notation/engraver-tie";
+import type { ScoreData } from "./engraver-score.types";
 
 /**
  * Represents a musical score for the engraver, containing multiple staves and measures.

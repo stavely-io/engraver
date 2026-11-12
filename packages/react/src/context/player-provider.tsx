@@ -3,7 +3,6 @@ import { createPlayerStore, SmplrInstrumentType } from "@engraver/core";
 import { type FC, type ReactNode, useCallback, useEffect, useRef } from "react";
 import { AudioContext as StandarizedAudioContext } from "standardized-audio-context";
 
-import { usePlayerAPIRegistration } from "../hooks/api/private/use-player-api-registration";
 import { PlayerContext } from "./player-context";
 
 interface PlayerProviderProps {
@@ -12,8 +11,6 @@ interface PlayerProviderProps {
 
 export const PlayerProvider: FC<PlayerProviderProps> = ({ children }) => {
   const playerStore = useRef(createPlayerStore()).current;
-
-  usePlayerAPIRegistration(playerStore);
 
   const initInstrument = useCallback(() => {
     playerStore.setState({

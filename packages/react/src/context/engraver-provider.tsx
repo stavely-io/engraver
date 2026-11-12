@@ -7,7 +7,6 @@ import {
 
 import { type FC, type ReactNode, type RefObject, useEffect, useMemo } from "react";
 
-import { useEngraverAPIRegistration } from "../hooks/api/private/use-engraver-api-registration";
 import { usePlayerStore } from "../hooks/context/use-player-store";
 import { EngraverContext } from "./engraver-context";
 
@@ -38,8 +37,6 @@ export const EngraverProvider: FC<EngraverProviderProps> = ({
   useEffect(() => {
     if (config.engraverThemeConfig) engraverController.setTheme(config.engraverThemeConfig);
   }, [engraverController, config.engraverThemeConfig]);
-
-  useEngraverAPIRegistration(engraverController);
 
   useEffect(() => {
     if (!engraverWrapperRef.current) return;

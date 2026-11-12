@@ -2,8 +2,8 @@ import type { StoreApi } from "zustand";
 
 import { type Pitch } from "../../musical-core/models/pitch";
 import type { PlayerStore } from "../../player";
-import type { ScoreData } from "../api/types/engraver-api.types";
 import { EngraverScore } from "../model/score/engraver-score";
+import type { ScoreData } from "../model/score/engraver-score.types";
 import type { EngraverScoreConfig } from "../view/types/config/score/engraver-score-config";
 import type { EngraverThemeConfig } from "../view/types/config/score/engraver-theme-config";
 import type { EngraverAction } from "./interaction/action-handler/types/actions/engraver-action";
