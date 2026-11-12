@@ -5,25 +5,19 @@ import {
   type EngraverThemeType,
 } from "@engraver/core";
 
-import { type FC, type ReactNode, type RefObject, useEffect, useState } from "react";
+import { type FC, type ReactNode, useEffect, useMemo, useState } from "react";
 
-import { usePlayerStore } from "../hooks/context/use-player-store";
+import { usePlayerStoreApi } from "../hooks/context/use-player-store-api";
 import { EngraverContext } from "./engraver-context";
 
 interface EngraverProviderProps {
   config: EngraverConfig;
   theme?: EngraverThemeType;
   children: ReactNode;
-  engraverWrapperRef: RefObject<HTMLElement | null>;
 }
 
-export const EngraverProvider: FC<EngraverProviderProps> = ({
-  config,
-  theme,
-  children,
-  engraverWrapperRef,
-}) => {
-  const playerStore = usePlayerStore();
+export const EngraverProvider: FC<EngraverProviderProps> = ({ config, theme, children }) => {
+  const playerStore = usePlayerStoreApi();
   // https://react.dev/reference/react/useState#avoiding-recreating-the-initial-state
   // TODO: reconsider how config is created and applied (live updates vs mount-only, docs for consumers)
   const [engraverStore] = useState(() => createEngraverStore(config));
@@ -39,17 +33,10 @@ export const EngraverProvider: FC<EngraverProviderProps> = ({
     if (config.engraverThemeConfig) engraverController.setTheme(config.engraverThemeConfig);
   }, [engraverController, config.engraverThemeConfig]);
 
-  useEffect(() => {
-    if (!engraverWrapperRef.current) return;
-    engraverController.onComponentMount(engraverWrapperRef.current);
-    return () => {
-      engraverController.onComponentUnmount();
-    };
-  }, [engraverController, engraverWrapperRef]);
-
-  return (
-    <EngraverContext.Provider value={{ engraverController, engraverStore }}>
-      {children}
-    </EngraverContext.Provider>
+  const contextValue = useMemo(
+    () => ({ engraverController, engraverStore }),
+    [engraverController, engraverStore],
   );
+
+  return <EngraverContext.Provider value={contextValue}>{children}</EngraverContext.Provider>;
 };
