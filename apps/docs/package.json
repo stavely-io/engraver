@@ -1,0 +1,26 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.1.8",
+    "@astrojs/starlight": "^0.42.10",
+    "@engraver/core": "workspace:*",
+    "@engraver/react": "workspace:*",
+    "astro": "^7.4.11",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "stylelint": "catalog:",
+    "typescript": "^6.0.0",
+    "vite-plus": "catalog:"
+  }
+}
