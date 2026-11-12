@@ -13,7 +13,6 @@ export * from "./modules/engraver/model/score/engraver-score.types";
 export * from "./modules/engraver/view/types/colors.types";
 export * from "./modules/engraver/view/types/config/engraver-config";
 export * from "./modules/engraver/view/types/config/engraver-menu-config";
-export * from "./modules/engraver/view/types/config/engraver-ui-config";
 export * from "./modules/engraver/view/types/config/score/engraver-block-config";
 export * from "./modules/engraver/view/types/config/score/engraver-score-config";
 export * from "./modules/engraver/view/types/config/score/engraver-score-template";
