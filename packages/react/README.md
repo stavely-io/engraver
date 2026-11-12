@@ -17,7 +17,7 @@ import {
   TimeSignature,
   type EngraverConfig,
 } from "@engraver/core";
-import { Engraver } from "@engraver/react";
+import { Engraver, EngraverProvider, PlayerProvider } from "@engraver/react";
 
 const config: EngraverConfig = {
   engraverScoreConfig: {
@@ -35,18 +35,19 @@ const config: EngraverConfig = {
 };
 
 export function App() {
-  return <Engraver config={config} />;
+  return (
+    <PlayerProvider>
+      <EngraverProvider config={config}>
+        <Engraver />
+      </EngraverProvider>
+    </PlayerProvider>
+  );
 }
 ```
 
 The component's styles are included automatically when you import the package.
 
-### Props
-
-| Prop     | Type                | Description                                      |
-| -------- | ------------------- | ------------------------------------------------ |
-| `config` | `EngraverConfig`    | Score template, menu, UI and theme configuration |
-| `theme`  | `EngraverThemeType` | Optional colour theme                            |
+`<Engraver />` must be rendered inside an `EngraverProvider`, which must be inside a `PlayerProvider`. A single `PlayerProvider` can be shared by several engravers.
 
 ## Development
 

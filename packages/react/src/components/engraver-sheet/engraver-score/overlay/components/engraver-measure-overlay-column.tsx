@@ -2,9 +2,8 @@ import { type Pitch, MEASURE_OVERLAY_COLUMN_HEIGHT } from "@engraver/core";
 
 import clsx from "clsx";
 import { type FC, useContext } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../../../hooks/view/use-engraver-menu-state";
 import { MeasureContext, StaveContext, SystemContext } from "../contexts/container-contexts";
@@ -26,8 +25,7 @@ const MeasureOverlayColumn: FC<MeasureOverlayColumnProps> = ({
   const { staveIndex } = useContext(StaveContext);
   const { localMeasureIndex } = useContext(MeasureContext);
   const { isEditable } = useEngraverMenuState();
-  const engraverStore = useEngraverStore();
-  const voiceIndex = useStore(engraverStore, (state) => state.selectedVoice);
+  const voiceIndex = useEngraverStore((state) => state.selectedVoice);
   const { overlay } = useEngraverActions();
 
   return (

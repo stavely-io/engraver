@@ -2,9 +2,8 @@ import { BasePitchIterator, type Pitch } from "@engraver/core";
 
 import clsx from "clsx";
 import { type FC, useContext, useMemo } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../../../hooks/view/use-engraver-menu-state";
 import { useMeasureLayout } from "../../../../../hooks/view/use-measure-layout";
@@ -22,7 +21,6 @@ const MeasureOverlay: FC<MeasureOverlayProps> = ({ localMeasureIndex, globalMeas
   const { systemIndex } = useContext(SystemContext);
   const { staveIndex } = useContext(StaveContext);
 
-  const engraverStore = useEngraverStore();
   const { click } = useEngraverActions();
   const { isEditable } = useEngraverMenuState();
   const { measureWidths } = useSystemLayout(systemIndex);
@@ -33,7 +31,7 @@ const MeasureOverlay: FC<MeasureOverlayProps> = ({ localMeasureIndex, globalMeas
     localMeasureIndex,
   );
 
-  const voiceIndex = useStore(engraverStore, (state) => state.selectedVoice);
+  const voiceIndex = useEngraverStore((state) => state.selectedVoice);
   const spacings = useMemo(() => voiceSpacings[voiceIndex], [voiceIndex, voiceSpacings]);
 
   return (

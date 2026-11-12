@@ -1,20 +1,17 @@
 import { EngraverInputMode, EngraverViewMode } from "@engraver/core";
 
 import { useMemo } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../context/use-engraver-store";
+import { useEngraverStore } from "../store/use-engraver-store";
 
 export const useEngraverMenuState = () => {
-  const engraverStore = useEngraverStore();
-
-  const selectedViewMode = useStore(engraverStore, (state) => state.selectedViewMode);
-  const selectedInputMode = useStore(engraverStore, (state) => state.selectedInputMode);
-  const selectedBaseDuration = useStore(engraverStore, (state) => state.selectedBaseDuration);
-  const selectedAccidental = useStore(engraverStore, (state) => state.selectedAccidental);
-  const selectedDotCount = useStore(engraverStore, (state) => state.selectedDotCount);
-  const selectedVoice = useStore(engraverStore, (state) => state.selectedVoice);
-  const isPlayable = useStore(engraverStore, (state) => state.isPlayable);
+  const selectedViewMode = useEngraverStore((state) => state.selectedViewMode);
+  const selectedInputMode = useEngraverStore((state) => state.selectedInputMode);
+  const selectedBaseDuration = useEngraverStore((state) => state.selectedBaseDuration);
+  const selectedAccidental = useEngraverStore((state) => state.selectedAccidental);
+  const selectedDotCount = useEngraverStore((state) => state.selectedDotCount);
+  const selectedVoice = useEngraverStore((state) => state.selectedVoice);
+  const isPlayable = useEngraverStore((state) => state.isPlayable);
 
   return useMemo(
     () => ({

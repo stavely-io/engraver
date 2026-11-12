@@ -1,9 +1,8 @@
 import { DotCount } from "@engraver/core";
 
 import { type FC } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../hooks/view/use-engraver-menu-state";
 import { DottedNote } from "../../icons";
@@ -19,10 +18,8 @@ const DOT_COUNT_ICON_MAP: Record<DotCount, FC | null> = {
 };
 
 export const DotCountMenuCell: FC = () => {
-  const engraverStore = useEngraverStore();
-
   const { selectedDotCount } = useEngraverMenuState();
-  const availableDotCounts = useStore(engraverStore, (state) => state.availableDotCounts);
+  const availableDotCounts = useEngraverStore((state) => state.availableDotCounts);
 
   const { select } = useEngraverActions();
 

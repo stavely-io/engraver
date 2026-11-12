@@ -16,6 +16,6 @@ export class Note {
   }
 
   public toString(): string {
-    return `Note(pitch=${this.pitch.toString()}, leftTie=${this.leftTie?.toString()}, rightTie=${this.rightTie?.toString()})`;
+    return `Note(pitch=${this.pitch.toString()})`;
   }
 }

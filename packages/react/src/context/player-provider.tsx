@@ -1,9 +1,8 @@
 import { createPlayerStore, SmplrInstrumentType } from "@engraver/core";
 
-import { type FC, type ReactNode, useCallback, useEffect, useRef } from "react";
+import { type FC, type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { AudioContext as StandarizedAudioContext } from "standardized-audio-context";
 
-import { usePlayerAPIRegistration } from "../hooks/api/private/use-player-api-registration";
 import { PlayerContext } from "./player-context";
 
 interface PlayerProviderProps {
@@ -11,9 +10,7 @@ interface PlayerProviderProps {
 }
 
 export const PlayerProvider: FC<PlayerProviderProps> = ({ children }) => {
-  const playerStore = useRef(createPlayerStore()).current;
-
-  usePlayerAPIRegistration(playerStore);
+  const [playerStore] = useState(() => createPlayerStore());
 
   const initInstrument = useCallback(() => {
     playerStore.setState({
@@ -26,5 +23,7 @@ export const PlayerProvider: FC<PlayerProviderProps> = ({ children }) => {
     initInstrument();
   }, [initInstrument]);
 
-  return <PlayerContext.Provider value={{ playerStore }}>{children}</PlayerContext.Provider>;
+  const contextValue = useMemo(() => ({ playerStore }), [playerStore]);
+
+  return <PlayerContext.Provider value={contextValue}>{children}</PlayerContext.Provider>;
 };

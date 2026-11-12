@@ -8,7 +8,6 @@ import type { Clef } from "@/modules/musical-core/types/clef.types";
 import { type DotCount } from "@/modules/musical-core/types/dot-count.enum";
 import { type TimeSignature } from "@/modules/musical-core/types/time-signature.types";
 
-import type { EngraverStaveData } from "../../api/types/engraver-api.types";
 import type { EngraverPlayableSelectableCoordinates } from "../../controller/interaction/action-handler/types/engraver-coordinates";
 import {
   type EngraverBlockable,
@@ -21,6 +20,7 @@ import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverRest } from "../elements/events/engraver-rest";
 import { EngraverTie } from "../elements/notation/engraver-tie";
 import { type EngraverScore } from "../score/engraver-score";
+import type { EngraverStaveData } from "../score/engraver-score.types";
 import { EngraverMeasure } from "./engraver-measure";
 
 export class EngraverStaveInitError extends Error {
