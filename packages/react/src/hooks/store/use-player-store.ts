@@ -5,7 +5,7 @@ import { useStore } from "zustand";
 import { usePlayerStoreApi } from "../context/use-player-store-api";
 
 /**
- * Reads a slice of the player store, including its actions. Must be used inside a `PlayerProvider`.
+ * Reads a slice of the player store.
  *
  * @example
  * const bpm = usePlayerStore((state) => state.bpm);

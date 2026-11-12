@@ -5,7 +5,7 @@ import { useStore } from "zustand";
 import { useEngraverStoreApi } from "../context/use-engraver-store-api";
 
 /**
- * Reads a slice of the engraver store. Must be used inside an `EngraverProvider`.
+ * Reads a slice of the engraver store.
  *
  * @example
  * const duration = useEngraverStore((state) => state.selectedBaseDuration);
