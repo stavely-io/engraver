@@ -14,5 +14,5 @@ export interface EngraverContext {
 }
 
 // this way every engraver can use store as a dependency injection, more scalable approach
-// https://github.com/pmndrs/zustand/blob/main/docs/guides/initialize-state-with-props.md
+// https://github.com/pmndrs/zustand/blob/main/docs/learn/guides/initialize-state-with-props.md
 export const EngraverContext = createContext<EngraverContext | null>(null);
