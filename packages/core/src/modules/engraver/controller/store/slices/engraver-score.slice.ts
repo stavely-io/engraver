@@ -1,3 +1,4 @@
+import type { ScoreData } from "@/modules/engraver/model/score/engraver-score.types";
 import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
 import type { Clef } from "@/modules/musical-core/types/clef.types";
 
@@ -8,6 +9,7 @@ export interface EngraverScoreSlice {
   measureClefs: Clef[][];
   staveCount: number;
   isChordInputAllowed: boolean;
+  scoreData: ScoreData;
 }
 
 export const createEngraverScoreSlice =
@@ -24,4 +26,5 @@ export const createEngraverScoreSlice =
     ),
     staveCount: engraverScoreConfig.scoreTemplate.staveConfigs.length,
     isChordInputAllowed: engraverScoreConfig.allowChordInput ?? true,
+    scoreData: { staveData: [], ties: [] },
   });

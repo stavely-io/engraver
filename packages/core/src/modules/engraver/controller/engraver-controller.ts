@@ -1,7 +1,6 @@
 import { type Pitch } from "../../musical-core/models/pitch";
 import type { PlayerStoreApi } from "../../player";
 import { EngraverScore } from "../model/score/engraver-score";
-import type { ScoreData } from "../model/score/engraver-score.types";
 import type { EngraverScoreConfig } from "../view/types/config/score/engraver-score-config";
 import type { EngraverThemeConfig } from "../view/types/config/score/engraver-theme-config";
 import type { EngraverAction } from "./interaction/action-handler/types/actions/engraver-action";
@@ -26,6 +25,7 @@ export class EngraverController {
     private readonly player: PlayerStoreApi,
   ) {
     this.score = new EngraverScore(engraverScoreConfig);
+    this.store.setState({ scoreData: this.score.scoreData });
     this.interactionManager = new EngraverInteractionManager(
       this.score,
       this.store,
@@ -50,12 +50,9 @@ export class EngraverController {
   }
 
   public refreshScore(): void {
+    this.store.setState({ scoreData: this.score.scoreData });
     const presentedData = this.scorePresenter.present(this.score);
     this.interactionManager.onScorePresent(presentedData);
-  }
-
-  public getScoreData(): ScoreData {
-    return this.score.scoreData;
   }
 
   public onComponentMount(engraverWrapper: HTMLElement): void {
