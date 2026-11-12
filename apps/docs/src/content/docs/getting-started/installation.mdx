@@ -1,0 +1,46 @@
+---
+title: Installation
+description: Add Engraver to your project.
+---
+
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+<Tabs syncKey="framework">
+  <TabItem label="React">
+
+```sh
+pnpm add @engraver/core @engraver/react
+```
+
+```tsx
+import {
+  CLEF_DATA,
+  ClefType,
+  KEY_SIGNATURES,
+  TimeSignature,
+  type EngraverConfig,
+} from "@engraver/core";
+import { Engraver } from "@engraver/react";
+
+const config: EngraverConfig = {
+  engraverScoreConfig: {
+    scoreTemplate: {
+      measureCount: 4,
+      staveConfigs: [
+        {
+          clef: CLEF_DATA[ClefType.TREBLE],
+          timeSignature: TimeSignature.FOUR_FOUR,
+          keySignature: KEY_SIGNATURES.C,
+        },
+      ],
+    },
+  },
+};
+
+export function App() {
+  return <Engraver config={config} />;
+}
+```
+
+  </TabItem>
+</Tabs>
