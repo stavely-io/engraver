@@ -1,9 +1,8 @@
 import { Accidental } from "@engraver/core";
 
 import { type FC } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../hooks/view/use-engraver-menu-state";
 import { DoubleFlat } from "../../icons";
@@ -23,10 +22,8 @@ const ACCIDENTAL_TYPE_ICON_MAP: Record<Accidental, FC | null> = {
 };
 
 export const AccidentalMenuCell: FC = () => {
-  const engraverStore = useEngraverStore();
-
   const { selectedAccidental } = useEngraverMenuState();
-  const availableAccidentals = useStore(engraverStore, (state) => state.availableAccidentals);
+  const availableAccidentals = useEngraverStore((state) => state.availableAccidentals);
 
   const { select } = useEngraverActions();
 

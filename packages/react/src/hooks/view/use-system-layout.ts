@@ -1,11 +1,7 @@
 import { type EngraverSystemLayout } from "@engraver/core";
 
-import { useStore } from "zustand";
-
-import { useEngraverStore } from "../context/use-engraver-store";
+import { useEngraverStore } from "../store/use-engraver-store";
 
 export const useSystemLayout = (systemIndex: number): EngraverSystemLayout => {
-  const engraverStore = useEngraverStore();
-
-  return useStore(engraverStore, (state) => state.systemLayouts[systemIndex]);
+  return useEngraverStore((state) => state.systemLayouts[systemIndex]);
 };

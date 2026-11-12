@@ -1,7 +1,6 @@
 import { type FC } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../../../hooks/store/use-engraver-store";
 import { SystemContext } from "../contexts/container-contexts";
 import EngraverStaveOverlay from "./engraver-stave-overlay";
 
@@ -10,8 +9,7 @@ interface EngraverSystemOverlayProps {
 }
 
 const EngraverSystemOverlay: FC<EngraverSystemOverlayProps> = ({ systemIndex }) => {
-  const engraverStore = useEngraverStore();
-  const staveCount = useStore(engraverStore, (state) => state.staveCount);
+  const staveCount = useEngraverStore((state) => state.staveCount);
 
   return (
     <SystemContext.Provider value={{ systemIndex }}>
