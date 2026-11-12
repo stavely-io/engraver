@@ -1,8 +1,11 @@
+import type { EngraverPlayableSelectableCoordinates } from "@/modules/engraver/controller/interaction/action-handler/types/engraver-coordinates";
 import { EngraverPlayableSelectableUtils } from "@/modules/engraver/model/helpers/static/engraver-playable-selectable-utils";
 import type { EngraverScoreConfig } from "@/modules/engraver/view/types/config/score/engraver-score-config";
 import { Chord } from "@/modules/musical-core/models/chord";
 import { type Duration } from "@/modules/musical-core/models/duration";
+import { type Note } from "@/modules/musical-core/models/note";
 import { type Pitch } from "@/modules/musical-core/models/pitch";
+import { Tie } from "@/modules/musical-core/models/tie";
 import { Accidental } from "@/modules/musical-core/types/accidental.enum";
 
 import type { EngraverBlockConfig } from "../../view/types/config/score/engraver-block-config";
@@ -16,7 +19,7 @@ import {
 import { EngraverChord } from "../elements/events/engraver-chord";
 import { EngraverNote } from "../elements/events/engraver-note";
 import { EngraverTie } from "../elements/notation/engraver-tie";
-import type { ScoreData } from "./engraver-score.types";
+import type { EngraverStaveData, ScoreData } from "./engraver-score.types";
 
 /**
  * Represents a musical score for the engraver, containing multiple staves and measures.
@@ -64,64 +67,42 @@ export class EngraverScore implements EngraverBlockable {
   }
 
   /**
-   * Gets the score data for the engraver.
+   * Gets the score data for the engraver as a snapshot.
    *
    * @returns {ScoreData} An array representing the tickable elements of each stave.
    * Each element in the array corresponds to the result of `asTickables()` called on a stave.
    */
   public get scoreData(): ScoreData {
-    const scoreData = {
-      staveData: this.staves.map((stave) => stave.asTickables()),
-      ties: this.staves.flatMap((stave) => stave.getTieData()),
-    };
+    const staveData = this.staves.map((stave) => stave.asTickables());
+    const ties = this.staves
+      .flatMap((stave) => stave.ties)
+      .map((modelTie) => {
+        const leftCoordinates = modelTie.leftNote.coordinates;
+        const rightCoordinates = modelTie.rightNote.coordinates;
+        const leftNote = this.findSnapshotNote(staveData, leftCoordinates);
+        const rightNote = this.findSnapshotNote(staveData, rightCoordinates);
 
-    scoreData.ties.forEach((tie) => {
-      const {
-        staveIndex: leftNoteStaveIndex,
-        measureIndex: leftNoteMeasureIndex,
-        voiceIndex: leftNoteVoiceIndex,
-        tickableIndex: leftNoteTickableIndex,
-        noteIndex: leftNoteIndex,
-      } = tie.leftNoteCoordinates;
+        // create new a Tie so the original ties does not get mutated
+        const tie = new Tie(leftNote, rightNote, leftCoordinates, rightCoordinates);
+        leftNote.rightTie = tie;
+        rightNote.leftTie = tie;
+        return tie;
+      });
 
-      const {
-        staveIndex: rightNoteStaveIndex,
-        measureIndex: rightNoteMeasureIndex,
-        voiceIndex: rightNoteVoiceIndex,
-        tickableIndex: rightNoteTickableIndex,
-        noteIndex: rightNoteIndex,
-      } = tie.rightNoteCoordinates;
+    return { staveData, ties };
+  }
 
-      const leftTickable =
-        scoreData.staveData[leftNoteStaveIndex][leftNoteMeasureIndex][leftNoteVoiceIndex][
-          leftNoteTickableIndex
-        ];
-      const rightTickable =
-        scoreData.staveData[rightNoteStaveIndex][rightNoteMeasureIndex][rightNoteVoiceIndex][
-          rightNoteTickableIndex
-        ];
+  private findSnapshotNote(
+    staveData: EngraverStaveData[],
+    coordinates: EngraverPlayableSelectableCoordinates,
+  ): Note {
+    const { staveIndex, measureIndex, voiceIndex, tickableIndex, noteIndex } = coordinates;
+    const tickable = staveData[staveIndex][measureIndex][voiceIndex][tickableIndex];
 
-      if (!(leftTickable instanceof Chord)) {
-        throw Error(
-          `Coordinates: ${JSON.stringify(tie.leftNoteCoordinates)} do not lead to a chord`,
-        );
-      }
-      if (!(rightTickable instanceof Chord)) {
-        throw Error(
-          `Coordinates: ${JSON.stringify(tie.rightNoteCoordinates)} do not lead to a chord`,
-        );
-      }
-
-      const leftNote = leftTickable.notes[leftNoteIndex];
-      tie.leftNote = leftNote;
-      leftNote.rightTie = tie;
-
-      const rightNote = rightTickable.notes[rightNoteIndex];
-      tie.rightNote = rightNote;
-      rightNote.leftTie = tie;
-    });
-
-    return scoreData;
+    if (!(tickable instanceof Chord)) {
+      throw Error(`Coordinates: ${JSON.stringify(coordinates)} do not lead to a chord`);
+    }
+    return tickable.notes[noteIndex];
   }
 
   /**
