@@ -1,7 +1,5 @@
-import type { StoreApi } from "zustand";
-
 import { type Pitch } from "../../musical-core/models/pitch";
-import type { PlayerStore } from "../../player";
+import type { PlayerStoreApi } from "../../player";
 import { EngraverScore } from "../model/score/engraver-score";
 import type { ScoreData } from "../model/score/engraver-score.types";
 import type { EngraverScoreConfig } from "../view/types/config/score/engraver-score-config";
@@ -11,7 +9,7 @@ import type { EngraverOverlayCoordinates } from "./interaction/action-handler/ty
 import { EngraverInteractionManager } from "./interaction/engraver-interaction-manager";
 import { EngraverScorePresenter } from "./presentation/engraver-score-presenter";
 import { EngraverRenderingService } from "./rendering/engraver-rendering-service";
-import type { EngraverStoreAPI } from "./store/types/store-api";
+import type { EngraverStoreApi } from "./store/types/store-api";
 import { EngraverThemeManager } from "./theme/engraver-theme-manager";
 import { type EngraverThemeType } from "./theme/theme.types";
 
@@ -24,8 +22,8 @@ export class EngraverController {
 
   constructor(
     engraverScoreConfig: EngraverScoreConfig,
-    private readonly store: EngraverStoreAPI,
-    private readonly player: StoreApi<PlayerStore>,
+    private readonly store: EngraverStoreApi,
+    private readonly player: PlayerStoreApi,
   ) {
     this.score = new EngraverScore(engraverScoreConfig);
     this.interactionManager = new EngraverInteractionManager(

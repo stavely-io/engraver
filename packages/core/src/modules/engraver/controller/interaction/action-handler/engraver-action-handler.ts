@@ -1,9 +1,7 @@
-import type { PlayerStore } from "@/modules/player/store/player-store";
-
-import type { StoreApi } from "zustand";
+import type { PlayerStoreApi } from "@/modules/player/store/player-store";
 
 import { type EngraverScore } from "../../../model/score/engraver-score";
-import type { EngraverStoreAPI } from "../../store/types/store-api";
+import type { EngraverStoreApi } from "../../store/types/store-api";
 import { type EngraverActionExecutor } from "./executors/abstract/engraver-action-executor";
 import { ApplyChromaticShiftExecutor } from "./executors/apply/apply-chromatic-shift-executor";
 import { ApplyTieExecutor } from "./executors/apply/apply-tie-executor";
@@ -31,8 +29,8 @@ export class EngraverActionHandler {
   private executors: Record<EngraverActionType, EngraverActionExecutor<keyof EngraverActionMap>>;
   constructor(
     score: EngraverScore,
-    store: EngraverStoreAPI,
-    player: StoreApi<PlayerStore>,
+    store: EngraverStoreApi,
+    player: PlayerStoreApi,
     refreshCallback: () => void,
   ) {
     this.executors = this.createEngraverActionExecutorRegistry({

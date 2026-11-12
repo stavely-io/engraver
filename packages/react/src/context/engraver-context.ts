@@ -1,4 +1,4 @@
-import type { EngraverController, EngraverStoreAPI } from "@engraver/core";
+import type { EngraverController, EngraverStoreApi } from "@engraver/core";
 
 import { createContext } from "react";
 
@@ -9,7 +9,7 @@ export class EngraverContextMissingError extends Error {
 }
 
 export interface EngraverContext {
-  engraverStore: EngraverStoreAPI;
+  engraverStore: EngraverStoreApi;
   engraverController: EngraverController;
 }
 

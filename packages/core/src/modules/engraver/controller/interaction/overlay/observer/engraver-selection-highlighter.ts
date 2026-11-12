@@ -1,7 +1,7 @@
 import { EngraverStaveVoice } from "@/modules/engraver/model/core/types/engraver-model.types";
 import type { EngraverSelectionTheme } from "@/modules/engraver/view/types/config/score/engraver-theme-config";
 
-import type { EngraverStoreAPI } from "../../../store/types/store-api";
+import type { EngraverStoreApi } from "../../../store/types/store-api";
 import type { EngraverOverlayElement } from "../types/engraver-overlay-element";
 
 export class EngraverSelectionHighlighter {
@@ -13,7 +13,7 @@ export class EngraverSelectionHighlighter {
   private unsubscribeFn: () => void = () => {};
 
   constructor(
-    private readonly store: EngraverStoreAPI,
+    private readonly store: EngraverStoreApi,
     private readonly selectionTheme: EngraverSelectionTheme = EngraverSelectionHighlighter.DEFAULT_SELECTION_THEME,
   ) {}
 
