@@ -1,0 +1,434 @@
+/* Riso theme: two spot inks (black text, Flat Gold accent) with halftones and misregistration. Layered on studio.css. */
+@import url("@fontsource-variable/syne");
+@import url("@fontsource-variable/work-sans");
+@import url("@fontsource/dm-mono/400.css");
+@import url("@fontsource/dm-mono/500.css");
+
+:root {
+  --sl-color-white: #fff;
+  --sl-color-gray-1: #f4f4f6;
+  --sl-color-gray-2: #f9f9f9;
+  --sl-color-gray-3: #9b9b9d;
+  --sl-color-gray-4: #606063;
+  --sl-color-gray-5: #3a3a40;
+  --sl-color-gray-6: #1e1e20;
+  --sl-color-black: #07070a;
+  --sl-color-accent: #bb8b41;
+  --sl-color-accent-low: #282018;
+  --sl-color-accent-high: #e8d6be;
+  --sl-color-text-accent: #e8e8e8;
+  --sl-color-bg: #07070a;
+  --sl-color-bg-nav: #07070a;
+  --sl-color-bg-sidebar: #07070a;
+  --sl-color-hairline: #3a3a40;
+  --sl-color-hairline-light: #3a3a40;
+  --sl-color-hairline-shade: #3a3a40;
+  --st-amber: #ff9a5c;
+  --st-green: #5fe0a8;
+  --st-red: #ff6b8a;
+  --sl-color-orange: #ff9a5c;
+  --sl-color-green: #5fe0a8;
+  --sl-color-red: #ff6b8a;
+  --x-ink: #e8e8e8;
+  --x-pink: #bb8b41;
+  --x-pinkfg: #bb8b41;
+  --x-dot: rgb(232 232 232 / 6%);
+  --x-half: rgb(187 139 65 / 42%);
+  --x-halfb: rgb(232 232 232 / 25%);
+  --x-on: #111;
+  --x-staff: #e8e8e8;
+  --x-note: #fff;
+  --sl-font: "Work Sans Variable", system-ui, sans-serif;
+  --sl-font-mono: "DM Mono", ui-monospace, monospace;
+  --x-display: "Syne Variable", var(--sl-font);
+}
+
+:root[data-theme="light"] {
+  --sl-color-white: #000;
+  --sl-color-gray-1: #000;
+  --sl-color-gray-2: #000;
+  --sl-color-gray-3: #60605f;
+  --sl-color-gray-4: #60605f;
+  --sl-color-gray-5: #a8a8a7;
+  --sl-color-gray-6: #e7e7e5;
+  --sl-color-gray-7: #e7e7e5;
+  --sl-color-black: #f7f7f5;
+  --sl-color-accent: #bb8b41;
+  --sl-color-accent-low: #ebe1d2;
+  --sl-color-accent-high: #463213;
+  --sl-color-text-accent: #000;
+  --sl-color-bg: #f7f7f5;
+  --sl-color-bg-nav: #f7f7f5;
+  --sl-color-bg-sidebar: #f7f7f5;
+  --sl-color-hairline: #a8a8a7;
+  --sl-color-hairline-light: #a8a8a7;
+  --sl-color-hairline-shade: #a8a8a7;
+  --st-amber: #c2410c;
+  --st-green: #0f7a4f;
+  --st-red: #d4183d;
+  --sl-color-orange: #c2410c;
+  --sl-color-green: #0f7a4f;
+  --sl-color-red: #d4183d;
+  --x-ink: #000;
+  --x-pink: #bb8b41;
+  --x-pinkfg: #ac803b;
+  --x-dot: rgb(0 0 0 / 7%);
+  --x-half: rgb(187 139 65 / 42%);
+  --x-halfb: rgb(0 0 0 / 20%);
+  --x-on: #111;
+  --x-staff: #000;
+  --x-note: #000;
+}
+
+html .hero {
+  grid-template-columns: 6fr 5fr;
+}
+
+.expressive-code pre,
+.expressive-code code {
+  font-family: var(--sl-font-mono) !important;
+}
+
+body {
+  background-color: var(--sl-color-black);
+  background-image: radial-gradient(var(--x-dot) 1px, transparent 1.3px);
+  background-size: 7px 7px;
+}
+
+html header.header {
+  border-bottom: 2px solid var(--x-ink);
+}
+
+html .site-title {
+  font-family: var(--x-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--x-ink);
+  text-shadow: 2px 1px 0 var(--x-half);
+}
+
+html .site-title::before {
+  border-radius: 50%;
+  background-color: var(--x-pink);
+}
+
+html :is(h1[id="_top"], .hero h1, .sl-markdown-content :is(h2, h3, h4)) {
+  font-family: var(--x-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--sl-color-white);
+}
+
+html :is(h1[id="_top"], .hero h1, .sl-markdown-content h2) {
+  text-shadow: 0.05em 0.035em 0 var(--x-half);
+}
+
+html h1[id="_top"] {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+html .hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 0.92;
+}
+
+html .hero .tagline {
+  font-size: 1.15rem;
+}
+
+html .sl-markdown-content h2 {
+  font-size: 1.9rem;
+}
+
+html
+  .sl-markdown-content
+  a:not(.sl-link-button, .sl-link-card *, .card *, [role="tab"], [data-footnote-backref]) {
+  color: var(--x-ink);
+  font-weight: 600;
+  text-decoration: none;
+  background-image: linear-gradient(
+    transparent 58%,
+    var(--x-half) 58%,
+    var(--x-half) 92%,
+    transparent 92%
+  );
+}
+
+html .sl-markdown-content :not(pre) > code:not(.not-content *) {
+  border: none;
+  border-radius: 3px;
+  background: var(--x-halfb);
+  color: var(--sl-color-white);
+}
+
+html .sl-markdown-content mark {
+  background: var(--x-half);
+}
+
+html .sl-markdown-content blockquote {
+  border: none;
+  font-family: var(--x-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--x-ink);
+  position: relative;
+  padding-inline-start: 2.4rem;
+}
+
+html .sl-markdown-content blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: -0.35em;
+  font: 800 3.6rem/1 var(--x-display);
+  color: var(--x-pinkfg);
+}
+
+/* stylelint-disable custom-property-pattern -- Expressive Code variables */
+html .expressive-code {
+  --ec-brdRad: 6px !important;
+  --ec-brdWd: 2px !important;
+  --ec-brdCol: var(--x-ink) !important;
+  --ec-frm-edActTabIndTopCol: var(--x-pink) !important;
+}
+/* stylelint-enable custom-property-pattern */
+
+html .expressive-code .frame {
+  filter: drop-shadow(5px 5px 0 var(--x-pink)) !important;
+}
+
+html .sl-link-button {
+  border-radius: 999px;
+  font-family: var(--x-display);
+  font-weight: 700;
+  padding: 0.7rem 1.3rem;
+  transition:
+    translate 0.12s ease,
+    filter 0.12s ease,
+    background-size 0.2s ease;
+}
+
+html .sl-link-button.primary {
+  background: var(--x-pink);
+  border: 2px solid var(--x-ink);
+  color: var(--x-on);
+  filter: drop-shadow(3px 3px 0 var(--x-ink));
+}
+
+html .sl-link-button.secondary {
+  border: 2px solid var(--x-ink);
+  color: var(--x-ink);
+  background: var(--sl-color-black);
+  filter: drop-shadow(3px 3px 0 var(--x-ink));
+}
+
+html .sl-link-button.minimal {
+  color: var(--x-ink);
+  border: 2px solid transparent;
+  background: linear-gradient(var(--x-pink), var(--x-pink)) 1.3rem calc(100% - 0.55rem) / 0 2px
+    no-repeat;
+}
+
+html .card {
+  --sl-card-border: var(--sl-color-gray-5);
+  --sl-card-bg: transparent;
+
+  border: 2px solid var(--x-ink);
+  border-radius: 6px;
+  background:
+    linear-gradient(200deg, transparent 15%, var(--sl-color-black) 62%),
+    radial-gradient(var(--x-halfb) 1.1px, transparent 1.5px) 0 0/6px 6px,
+    var(--sl-color-black);
+  filter: drop-shadow(5px 5px 0 var(--x-pink));
+}
+
+html .card:nth-child(even) {
+  background:
+    linear-gradient(200deg, transparent 15%, var(--sl-color-black) 62%),
+    radial-gradient(var(--x-half) 1.1px, transparent 1.5px) 0 0/6px 6px,
+    var(--sl-color-black);
+  filter: drop-shadow(5px 5px 0 var(--x-ink));
+}
+
+html .card .title {
+  font-family: var(--x-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+html .card .icon {
+  color: var(--x-pinkfg);
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+html .starlight-aside {
+  border: 2px solid var(--x-ink);
+  border-radius: 6px;
+  background: var(--sl-color-black);
+  filter: drop-shadow(4px 4px 0 var(--a));
+}
+
+html .starlight-aside--note {
+  --a: var(--x-ink);
+}
+
+html .starlight-aside--tip {
+  --a: var(--x-pinkfg);
+}
+
+html .starlight-aside__title {
+  font-family: var(--x-display);
+  font-weight: 800;
+  color: var(--sl-color-white);
+}
+
+html .starlight-aside__content {
+  color: var(--sl-color-gray-2);
+}
+
+html starlight-tabs .tablist-wrapper {
+  border-bottom: none;
+  margin-bottom: 0.75rem;
+}
+
+html starlight-tabs [role="tab"] {
+  font-family: var(--x-display);
+  font-weight: 700;
+  color: var(--sl-color-white);
+  border: 2px solid var(--x-ink);
+  border-radius: 999px;
+  margin: 0;
+  padding: 0.35rem 0.95rem;
+  box-shadow: none;
+}
+
+html starlight-tabs [role="tablist"] {
+  gap: 0.5rem;
+  border: none;
+  padding: 2px 6px 6px 2px;
+}
+
+html starlight-tabs [role="tab"][aria-selected="true"] {
+  color: var(--sl-color-white);
+  background: var(--sl-color-accent-low);
+  border-color: var(--x-pink);
+  filter: drop-shadow(2px 2px 0 var(--x-pink));
+}
+
+html starlight-tabs [role="tab"][aria-selected="true"] svg {
+  color: var(--x-pinkfg);
+}
+
+html .sl-badge {
+  border-radius: 999px;
+  font-family: var(--x-display);
+  font-weight: 700;
+  color: var(--sl-color-white) !important;
+  background: color-mix(in oklab, var(--b) 20%, var(--sl-color-black)) !important;
+  border: 1.5px solid var(--b) !important;
+}
+
+html .sl-badge.note {
+  --b: var(--x-ink);
+}
+
+html .sl-badge:not(.note, .success, .caution, .danger) {
+  --b: var(--x-pink);
+}
+
+html .sl-steps > li::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--x-pink);
+  border: none;
+  border-radius: 50%;
+  color: var(--x-on);
+  font: 800 0.95rem/1 var(--x-display);
+  filter: drop-shadow(2px 2px 0 var(--x-ink));
+}
+
+html .sl-steps > li::after {
+  background: repeating-linear-gradient(to bottom, var(--x-ink) 0 2px, transparent 2px 6px);
+}
+
+html .sidebar-content a[aria-current="page"],
+html .sidebar-content a[aria-current="page"]:hover {
+  background: radial-gradient(var(--x-half) 1px, transparent 1.4px) 0 0/5px 5px;
+  color: var(--x-ink);
+  border-radius: 999px;
+}
+
+html .sidebar-content summary .large,
+html .sidebar-content .group-label .large {
+  font-family: var(--x-display);
+  font-weight: 800;
+  color: var(--x-ink);
+}
+
+/* A real border with header corners at the border's inner radius (6px - 2px), so fill and frame share one curve */
+html .sl-markdown-content table {
+  display: table;
+  width: 100%;
+  border: 2px solid var(--x-ink);
+  border-radius: 6px;
+}
+
+html .sl-markdown-content th {
+  background: var(--x-ink);
+  color: var(--sl-color-black);
+  font-family: var(--x-display);
+  font-weight: 700;
+  border-radius: 0 !important;
+}
+
+html .sl-markdown-content th:first-child {
+  border-start-start-radius: 4px !important;
+}
+
+html .sl-markdown-content th:last-child {
+  border-start-end-radius: 4px !important;
+}
+
+html starlight-file-tree {
+  border: 2px solid var(--x-ink);
+  border-radius: 6px;
+  filter: drop-shadow(4px 4px 0 var(--x-pink));
+}
+
+html site-search button {
+  border-radius: 999px;
+  border: 2px solid var(--x-ink);
+}
+
+html .hero > img {
+  width: min(100%, 34rem);
+}
+
+/* The landing page has no use for heading anchor links */
+html[data-has-hero] .sl-anchor-link {
+  display: none;
+}
+
+/* Primary and secondary: pressed down into their own shadow */
+html .sl-link-button:is(.primary, .secondary):hover {
+  translate: 3px 3px;
+  filter: drop-shadow(0 0 0 var(--x-ink));
+}
+
+/* Minimal: a gold underline draws in under the label */
+html .sl-link-button.minimal:hover {
+  background-size: calc(100% - 2.6rem) 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html .sl-link-button {
+    transition: none;
+  }
+}

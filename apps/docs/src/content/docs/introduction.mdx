@@ -1,0 +1,30 @@
+---
+title: Introduction
+description: What these docs cover and how they are organised.
+---
+
+These are the docs for Engraver, a library for rendering editable music notation in the browser. They explain how to install it, how to configure a score, and how people edit and play the notes once it is on the page.
+
+:::note
+Engraver is in early development. The packages are not published to npm yet, so pages describe the API as it is in the repository today and may change between releases.
+:::
+
+## How the docs are organised
+
+- **Getting started** walks through installing the packages and rendering a first score.
+- **Demo** is a live, editable score running on this site. Use it to try the editor before writing any code.
+
+More sections, such as guides for editing and playback and an API reference, will be added as the packages stabilise.
+
+## Frameworks
+
+Engraver is split into a framework-agnostic core and a binding per framework. React is supported today; Vue and Svelte are planned. Code examples show a framework picker, and the choice you make is remembered across pages.
+
+| Package           | What it is                                                          |
+| ----------------- | ------------------------------------------------------------------- |
+| `@engraver/core`  | Framework-agnostic score model, editing logic, rendering and player |
+| `@engraver/react` | React component, providers and hooks                                |
+
+## Getting help
+
+The source, issues and discussions live on [GitHub](https://github.com/stavely-io/engraver). If something in the docs is wrong or unclear, open an issue there.

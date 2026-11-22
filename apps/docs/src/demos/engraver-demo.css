@@ -1,0 +1,22 @@
+/* Frame for live Engraver demos, and Engraver's own UI tokens mapped onto the docs palette. */
+.engraver-demo {
+  --engraver-background: var(--sl-color-gray-6);
+  --engraver-foreground: var(--sl-color-white);
+  --engraver-border: var(--sl-color-gray-5);
+  --engraver-hover-background: color-mix(in oklab, var(--sl-color-white) 10%, transparent);
+  --engraver-active-background: color-mix(in oklab, var(--sl-color-white) 18%, transparent);
+  --engraver-selected-background: var(--sl-color-accent);
+  --engraver-selected-active-background: color-mix(in oklab, var(--sl-color-accent) 80%, black);
+  --engraver-selected-foreground: var(--x-on);
+  --engraver-overlay-background: color-mix(in oklab, var(--sl-color-gray-6) 90%, transparent);
+  --engraver-sheet-overlay-background: var(--sl-color-gray-6);
+  --engraver-radius: 6px;
+
+  margin-block: 1.5rem;
+  padding: 1rem;
+  border: 2px solid var(--x-ink);
+  border-radius: 6px;
+  background: var(--sl-color-gray-6);
+  filter: drop-shadow(5px 5px 0 var(--x-pink));
+  overflow-x: auto;
+}

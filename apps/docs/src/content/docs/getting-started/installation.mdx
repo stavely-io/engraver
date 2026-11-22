@@ -5,12 +5,43 @@ description: Add Engraver to your project.
 
 import { TabItem, Tabs } from "@astrojs/starlight/components";
 
-<Tabs syncKey="framework">
-  <TabItem label="React">
+Install the core package and the binding for your framework.
+
+<Tabs syncKey="pkg">
+  <TabItem label="pnpm" icon="pnpm">
 
 ```sh
 pnpm add @engraver/core @engraver/react
 ```
+
+  </TabItem>
+  <TabItem label="npm" icon="npm">
+
+```sh
+npm install @engraver/core @engraver/react
+```
+
+  </TabItem>
+  <TabItem label="yarn" icon="seti:yarn">
+
+```sh
+yarn add @engraver/core @engraver/react
+```
+
+  </TabItem>
+  <TabItem label="bun" icon="bun">
+
+```sh
+bun add @engraver/core @engraver/react
+```
+
+  </TabItem>
+</Tabs>
+
+Render a score from a template config:
+
+<Tabs syncKey="framework">
+  <TabItem label="React" icon="seti:react">
 
 ```tsx
 import {
