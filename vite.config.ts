@@ -1,10 +1,12 @@
 import { defineConfig } from "vite-plus";
 
+import docs from "./apps/docs/vp.fragment.ts";
 import reactExample from "./apps/react-example/vp.fragment.ts";
 import vexflow from "./packages/vexflow/vp.fragment.ts";
 import { withPackages } from "./vp.workspace.ts";
 
 const packages = withPackages({
+  "apps/docs": docs,
   "apps/react-example": reactExample,
   "packages/vexflow": vexflow,
 });

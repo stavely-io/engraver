@@ -29,9 +29,18 @@ catalog:
   "@actions/github": ^9.1.1
   "@svgr/core": ^8.1.0
   "@svgr/plugin-jsx": ^8.1.0
+  astro: ^7.4.11
+  "@astrojs/check": ^0.9.12
+  "@astrojs/react": ^7.1.8
+  "@astrojs/starlight": ^0.42.10
+  "@fontsource-variable/syne": ^5.3.0
+  "@fontsource-variable/work-sans": ^5.3.0
+  "@fontsource/dm-mono": ^5.3.0
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"
+  # astro check does not support TypeScript 7 yet
+  docs>typescript: 6.0.3
 peerDependencyRules:
   allowAny:
     - vite

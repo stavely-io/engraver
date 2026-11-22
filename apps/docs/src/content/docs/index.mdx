@@ -1,0 +1,54 @@
+---
+title: Engraver
+description: Interactive, editable music notation for the web.
+template: splash
+prev: false
+next: false
+hero:
+  title: Notation you can edit.
+  tagline: Engraver renders music scores with VexFlow and lets people enter, select and play notes with the mouse and keyboard.
+  image:
+    light: ../../assets/hero-light.svg
+    dark: ../../assets/hero-dark.svg
+    alt: A staff of notes with the second measure selected for editing
+  actions:
+    - text: Get started
+      link: /engraver/getting-started/installation/
+      icon: right-arrow
+    - text: Live demo
+      link: /engraver/demo/
+      variant: secondary
+    - text: GitHub
+      link: https://github.com/stavely-io/engraver
+      variant: minimal
+      icon: external
+---
+
+import { Aside, Card, CardGrid } from "@astrojs/starlight/components";
+
+<Aside>
+  Engraver is in early development. The packages are not published to npm yet and the API will
+  change.
+</Aside>
+
+<CardGrid>
+  <Card title="Editable" icon="pencil">
+    Select measures and enter notes with the toolbar or keyboard shortcuts.
+  </Card>
+  <Card title="Playback" icon="rocket">
+    Sampled instruments, loaded on demand, with a built-in player.
+  </Card>
+  <Card title="Framework-agnostic" icon="puzzle">
+    A plain TypeScript core with React bindings. Vue and Svelte are planned.
+  </Card>
+  <Card title="SVG rendering" icon="document">
+    Scores render to SVG through a bundled VexFlow fork.
+  </Card>
+</CardGrid>
+
+## Packages
+
+| Package           | Description                                                         |
+| ----------------- | ------------------------------------------------------------------- |
+| `@engraver/core`  | Framework-agnostic score model, editing logic, rendering and player |
+| `@engraver/react` | React component, providers and hooks                                |

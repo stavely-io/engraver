@@ -1,0 +1,77 @@
+---
+title: Installation
+description: Add Engraver to your project.
+---
+
+import { TabItem, Tabs } from "@astrojs/starlight/components";
+
+Install the core package and the binding for your framework.
+
+<Tabs syncKey="pkg">
+  <TabItem label="pnpm" icon="pnpm">
+
+```sh
+pnpm add @engraver/core @engraver/react
+```
+
+  </TabItem>
+  <TabItem label="npm" icon="npm">
+
+```sh
+npm install @engraver/core @engraver/react
+```
+
+  </TabItem>
+  <TabItem label="yarn" icon="seti:yarn">
+
+```sh
+yarn add @engraver/core @engraver/react
+```
+
+  </TabItem>
+  <TabItem label="bun" icon="bun">
+
+```sh
+bun add @engraver/core @engraver/react
+```
+
+  </TabItem>
+</Tabs>
+
+Render a score from a template config:
+
+<Tabs syncKey="framework">
+  <TabItem label="React" icon="seti:react">
+
+```tsx
+import {
+  CLEF_DATA,
+  ClefType,
+  KEY_SIGNATURES,
+  TimeSignature,
+  type EngraverConfig,
+} from "@engraver/core";
+import { Engraver } from "@engraver/react";
+
+const config: EngraverConfig = {
+  engraverScoreConfig: {
+    scoreTemplate: {
+      measureCount: 4,
+      staveConfigs: [
+        {
+          clef: CLEF_DATA[ClefType.TREBLE],
+          timeSignature: TimeSignature.FOUR_FOUR,
+          keySignature: KEY_SIGNATURES.C,
+        },
+      ],
+    },
+  },
+};
+
+export function App() {
+  return <Engraver config={config} />;
+}
+```
+
+  </TabItem>
+</Tabs>

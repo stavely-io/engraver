@@ -1,0 +1,490 @@
+/* Base layout and component styling. Colours and type come from riso.css. */
+
+:root {
+  --sl-text-h1: 2.5rem;
+  --sl-text-h2: 1.625rem;
+  --sl-text-h3: 1.25rem;
+  --st-radius: 10px;
+  --st-card: var(--sl-color-gray-6);
+  --st-shadow: none;
+  --sl-color-text-accent: var(--sl-color-accent);
+}
+
+:root[data-theme="light"] {
+  --st-card: #fff;
+  --st-shadow: 0 1px 2px rgb(0 0 0 / 4%), 0 2px 8px -4px rgb(0 0 0 / 6%);
+}
+
+/* Header and wordmark: Engraver's quarter-note glyph in an accent square */
+header.header {
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+.site-title {
+  gap: 0.625rem;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-white);
+}
+
+.site-title::before {
+  content: "";
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  background: var(--sl-color-accent);
+  mask:
+    url("../assets/mark.svg") center / 1.375rem no-repeat exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* Headings */
+h1[id="_top"] {
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.sl-markdown-content :is(h2, h3) {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.sl-markdown-content h2 {
+  margin-top: 2.75rem;
+}
+
+.content-panel + .content-panel {
+  border-top-color: var(--sl-color-gray-5);
+}
+
+/* Sidebar: soft tinted active item */
+.sidebar-content a {
+  border-radius: 7px;
+  font-weight: 400;
+  color: var(--sl-color-gray-2);
+}
+
+.sidebar-content a:hover {
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-white);
+}
+
+.sidebar-content a[aria-current="page"],
+.sidebar-content a[aria-current="page"]:hover,
+.sidebar-content a[aria-current="page"]:focus {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+}
+
+.sidebar-content summary .large,
+.sidebar-content .group-label .large {
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+
+.right-sidebar a[aria-current="true"] {
+  color: var(--sl-color-accent);
+}
+
+/* Badges: tinted, rounded, text face */
+.sl-badge {
+  --b: var(--sl-color-accent);
+
+  font-family: var(--sl-font);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  color: color-mix(in oklab, var(--b) 75%, var(--sl-color-white)) !important;
+  background: color-mix(in oklab, var(--b) 12%, transparent) !important;
+  border: 1px solid color-mix(in oklab, var(--b) 28%, transparent) !important;
+}
+
+.sl-badge.caution {
+  --b: var(--st-amber);
+}
+
+.sl-badge.success {
+  --b: var(--st-green);
+}
+
+.sl-badge.danger {
+  --b: var(--st-red);
+}
+
+/* Asides: bordered card with a coloured icon, no saturated fill */
+.starlight-aside {
+  --a: var(--sl-color-accent);
+
+  border: 1px solid color-mix(in oklab, var(--a) 28%, var(--sl-color-gray-5));
+  border-radius: var(--st-radius);
+  background: color-mix(in oklab, var(--a) 6%, var(--sl-color-black));
+  padding: 0.875rem 1rem;
+}
+
+.starlight-aside--caution {
+  --a: var(--st-amber);
+}
+
+.starlight-aside--danger {
+  --a: var(--st-red);
+}
+
+.starlight-aside__title {
+  color: var(--sl-color-white);
+  font-size: var(--sl-text-sm);
+  font-weight: 600;
+  gap: 0.5rem;
+}
+
+.starlight-aside__icon {
+  color: var(--a);
+  width: 1rem;
+  height: 1rem;
+}
+
+.starlight-aside__content {
+  color: var(--sl-color-gray-2);
+  font-size: var(--sl-text-sm);
+}
+
+/* Steps */
+.sl-steps > li::before {
+  background: var(--st-card);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 8px;
+  box-shadow: none;
+  color: var(--sl-color-white);
+  font: 500 0.8125rem/1 var(--sl-font-mono);
+}
+
+.sl-steps > li::after {
+  background: var(--sl-color-gray-5);
+  width: 1px;
+}
+
+/* Cards and pagination */
+.sl-link-card,
+/* stylelint-disable-next-line no-descending-specificity -- unrelated to the sidebar links */
+.pagination-links a {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  background: var(--st-card);
+  box-shadow: var(--st-shadow);
+}
+
+.sl-link-card:hover,
+.pagination-links a:hover {
+  border-color: color-mix(in oklab, var(--sl-color-accent) 55%, var(--sl-color-gray-5));
+  background: var(--st-card);
+}
+
+.sl-link-card .title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.pagination-links .link-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Code */
+.sl-markdown-content :not(pre) > code:not(.not-content *) {
+  background: var(--sl-color-gray-6);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 6px;
+  padding: 0.1em 0.35em;
+  font-size: 0.875em;
+}
+
+/* Untitled terminal snippets: no empty title bar, so the code panel carries the full border */
+.expressive-code .frame.is-terminal:not(.has-title) .header {
+  display: none;
+}
+
+.expressive-code .frame.is-terminal:not(.has-title) .copy {
+  inset-block-start: 0.6rem;
+}
+
+/* stylelint-disable custom-property-pattern -- Expressive Code variables */
+.expressive-code .frame.is-terminal:not(.has-title) pre {
+  border-top: var(--ec-brdWd) solid var(--ec-brdCol);
+  border-radius: var(--ec-brdRad);
+}
+/* stylelint-enable custom-property-pattern */
+
+.expressive-code .frame {
+  box-shadow: none !important;
+}
+
+.starlight-aside--note {
+  --a: var(--sl-color-gray-3);
+}
+
+.starlight-aside--tip {
+  --a: var(--sl-color-accent);
+}
+
+/* ---- Typography ---- */
+
+.sl-markdown-content
+  a:not(.sl-link-button, .sl-link-card *, .card *, [role="tab"], [data-footnote-backref]) {
+  color: var(--sl-color-text-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in oklab, var(--sl-color-accent) 35%, transparent);
+  transition: text-decoration-color 0.15s;
+}
+
+.sl-markdown-content
+  a:not(.sl-link-button, .sl-link-card *, .card *, [role="tab"], [data-footnote-backref]):hover {
+  text-decoration-color: currentcolor;
+}
+
+.sl-markdown-content strong {
+  color: var(--sl-color-white);
+  font-weight: 600;
+}
+
+.sl-markdown-content del {
+  color: var(--sl-color-gray-3);
+  text-decoration-color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content mark {
+  background: color-mix(in oklab, var(--sl-color-accent) 22%, transparent);
+  color: inherit;
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
+}
+
+.sl-markdown-content kbd {
+  font: 500 0.75em/1 var(--sl-font-mono);
+  padding: 0.25em 0.45em;
+  border-radius: 5px;
+  background: var(--st-card);
+  border: 1px solid var(--sl-color-gray-5);
+  border-bottom-width: 2px;
+  color: var(--sl-color-white);
+}
+
+.sl-markdown-content blockquote {
+  border-inline-start: 2px solid var(--sl-color-accent);
+  padding-inline-start: 1rem;
+  color: var(--sl-color-gray-2);
+  font-style: normal;
+  background: none;
+}
+
+.sl-markdown-content ul > li::marker,
+.sl-markdown-content ol > li::marker {
+  color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content hr {
+  border-color: var(--sl-color-gray-5);
+}
+
+.sl-markdown-content :is(h4, h5) {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sl-markdown-content h5 {
+  font-size: var(--sl-text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: var(--st-radius);
+  font-size: var(--sl-text-sm);
+}
+
+.sl-markdown-content :is(th, td) {
+  border: none;
+  border-bottom: 1px solid var(--sl-color-gray-5);
+  padding: 0.625rem 0.875rem;
+}
+
+.sl-markdown-content tr:last-child td {
+  border-bottom: none;
+}
+
+.sl-markdown-content th {
+  background: var(--sl-color-gray-6);
+  font-weight: 600;
+  color: var(--sl-color-white);
+  text-align: start;
+}
+
+.sl-markdown-content th:first-child {
+  border-start-start-radius: var(--st-radius);
+}
+
+.sl-markdown-content th:last-child {
+  border-start-end-radius: var(--st-radius);
+}
+
+.sl-markdown-content input[type="checkbox"] {
+  accent-color: var(--sl-color-accent);
+}
+
+.sl-markdown-content .footnotes {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+  border-top: 1px solid var(--sl-color-gray-5);
+}
+
+/* ---- Tabs ---- */
+starlight-tabs .tablist-wrapper {
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+
+starlight-tabs [role="tablist"] {
+  border: none;
+  gap: 0.25rem;
+}
+
+starlight-tabs [role="tab"] {
+  font-size: var(--sl-text-sm);
+  font-weight: 500;
+  color: var(--sl-color-gray-3);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+  gap: 0.45rem;
+}
+
+starlight-tabs [role="tab"]:hover {
+  color: var(--sl-color-white);
+}
+
+starlight-tabs [role="tab"][aria-selected="true"] {
+  color: var(--sl-color-white);
+  border-bottom-color: var(--sl-color-accent);
+}
+
+starlight-tabs [role="tab"] svg {
+  color: var(--sl-color-gray-3);
+}
+
+starlight-tabs [role="tab"][aria-selected="true"] svg {
+  color: var(--sl-color-accent);
+}
+
+/* ---- Buttons, cards, file tree ---- */
+.sl-link-button {
+  border-radius: 8px;
+  font-size: var(--sl-text-sm);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.sl-link-button.primary {
+  background: var(--sl-color-accent);
+  border-color: var(--sl-color-accent);
+  color: var(--sl-color-black);
+}
+
+.sl-link-button.secondary {
+  background: var(--st-card);
+  border: 1px solid var(--sl-color-gray-5);
+  color: var(--sl-color-white);
+}
+
+.sl-link-button.minimal {
+  color: var(--sl-color-text-accent);
+}
+
+.card {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  background: var(--st-card);
+  box-shadow: var(--st-shadow);
+}
+
+.card .title {
+  font-weight: 600;
+  font-size: var(--sl-text-base);
+}
+
+starlight-file-tree {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: var(--st-radius);
+  background: var(--st-card);
+}
+
+starlight-file-tree .highlight {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+  border-radius: 4px;
+}
+
+/* ---- Fixes ---- */
+starlight-tabs a[role="tab"] {
+  text-decoration: none;
+}
+
+/* stylelint-disable custom-property-pattern -- Expressive Code variables */
+.expressive-code .ec-line.mark {
+  --tmLineBgCol: color-mix(in oklab, var(--sl-color-accent) 13%, transparent);
+  --tmLineBrdCol: var(--sl-color-accent);
+}
+
+.expressive-code .ec-line.ins {
+  --tmLineBgCol: color-mix(in oklab, var(--st-green) 13%, transparent);
+  --tmLineBrdCol: var(--st-green);
+}
+
+.expressive-code .ec-line.del {
+  --tmLineBgCol: color-mix(in oklab, var(--st-red) 13%, transparent);
+  --tmLineBrdCol: var(--st-red);
+}
+/* stylelint-enable custom-property-pattern */
+
+.expressive-code .ec-line.ins::before {
+  color: var(--st-green);
+}
+
+.expressive-code .ec-line.del::before {
+  color: var(--st-red);
+}
+
+.sl-markdown-content li:has(> input[type="checkbox"]) {
+  list-style: none;
+  margin-inline-start: -1.25rem;
+}
+
+.sl-markdown-content [data-footnote-backref] {
+  font-size: 0;
+  text-decoration: none;
+}
+
+.sl-markdown-content [data-footnote-backref]::after {
+  content: "\2191";
+  font-size: var(--sl-text-sm);
+  font-family: var(--sl-font-mono);
+  color: var(--sl-color-text-accent);
+}
+
+.card .icon {
+  background: none;
+  padding: 0;
+  color: var(--sl-color-accent);
+
+  --sl-icon-size: 1.5rem;
+}

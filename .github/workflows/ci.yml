@@ -21,6 +21,7 @@ jobs:
       core: ${{ steps.filter.outputs.core }}
       react: ${{ steps.filter.outputs.react }}
       react-example: ${{ steps.filter.outputs.react-example }}
+      docs: ${{ steps.filter.outputs.docs }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -57,6 +58,11 @@ jobs:
               - *shared
               - *core
               - "apps/react-example/**"
+              - "packages/react/**"
+            docs:
+              - *shared
+              - *core
+              - "apps/docs/**"
               - "packages/react/**"
 
   root:
@@ -101,9 +107,16 @@ jobs:
     with:
       package: react-example
 
+  docs:
+    needs: changes
+    if: needs.changes.outputs.docs == 'true'
+    uses: ./.github/workflows/check-package.yml
+    with:
+      package: docs
+
   gate:
     if: always()
-    needs: [changes, root, vexflow, core, react, react-example]
+    needs: [changes, root, vexflow, core, react, react-example, docs]
     runs-on: ubuntu-latest
     steps:
       - name: Fail if any job failed or was cancelled
