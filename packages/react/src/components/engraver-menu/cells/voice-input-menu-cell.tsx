@@ -1,9 +1,8 @@
 import { DEFAULT_ENGRAVER_VOICES, EngraverStaveVoice } from "@engraver/core";
 
 import { type FC } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../hooks/view/use-engraver-menu-state";
 import { FirstVoice, SecondVoice } from "../../icons";
@@ -15,14 +14,10 @@ const VOICE_ICON_MAP: Record<EngraverStaveVoice, FC> = {
 };
 
 export const VoiceInputMenuCell: FC = () => {
-  const engraverStore = useEngraverStore();
   const { selectedVoice } = useEngraverMenuState();
   const { select } = useEngraverActions();
 
-  const isMultipleVoicesAvailable = useStore(
-    engraverStore,
-    (state) => state.isMultipleVoicesAvailable,
-  );
+  const isMultipleVoicesAvailable = useEngraverStore((state) => state.isMultipleVoicesAvailable);
 
   if (!isMultipleVoicesAvailable) return null;
 

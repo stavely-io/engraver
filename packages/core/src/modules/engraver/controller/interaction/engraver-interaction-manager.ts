@@ -1,12 +1,10 @@
 import { type Pitch } from "@/modules/musical-core/models/pitch";
-import type { PlayerStore } from "@/modules/player/store/player-store";
-
-import type { StoreApi } from "zustand";
+import type { PlayerStoreApi } from "@/modules/player/store/player-store";
 
 import { type EngraverScore } from "../../model/score/engraver-score";
 import { type EngraverRenderingService } from "../rendering/engraver-rendering-service";
 import type { VFScoreData } from "../rendering/types/vf-data";
-import type { EngraverStoreAPI } from "../store/types/store-api";
+import type { EngraverStoreApi } from "../store/types/store-api";
 import { type EngraverThemeManager } from "../theme/engraver-theme-manager";
 import { EngraverActionHandler } from "./action-handler/engraver-action-handler";
 import type { EngraverAction } from "./action-handler/types/actions/engraver-action";
@@ -23,10 +21,10 @@ export class EngraverInteractionManager {
 
   constructor(
     score: EngraverScore,
-    store: EngraverStoreAPI,
+    store: EngraverStoreApi,
     refreshCallback: () => void,
     renderingService: EngraverRenderingService,
-    player: StoreApi<PlayerStore>,
+    player: PlayerStoreApi,
     private readonly themeManager: EngraverThemeManager,
   ) {
     this.actionHandler = new EngraverActionHandler(score, store, player, refreshCallback);

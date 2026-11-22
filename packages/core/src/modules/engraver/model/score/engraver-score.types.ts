@@ -7,5 +7,3 @@ export type ScoreData = {
   staveData: EngraverStaveData[];
   ties?: Tie[];
 };
-
-export type EngraverAPIGet<T> = () => T;

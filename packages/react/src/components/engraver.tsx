@@ -1,30 +1,32 @@
-import { type EngraverThemeType, type EngraverConfig } from "@engraver/core";
+import { type FC, useEffect, useRef } from "react";
 
-import { type FC, useRef } from "react";
-
-import { EngraverProvider } from "../context/engraver-provider";
-import { PlayerProvider } from "../context/player-provider";
+import { useEngraverController } from "../hooks/context/use-engraver-controller";
 import { EngraverMenu } from "./engraver-menu/engraver-menu";
 import { EngraverSheet } from "./engraver-sheet/engraver-sheet";
 import "./engraver.css";
 
 interface EngraverProps {
-  config: EngraverConfig;
-  theme?: EngraverThemeType;
+  isMenuDisabled?: boolean;
+  isSheetDisabled?: boolean;
 }
 
-const Engraver: FC<EngraverProps> = ({ config, theme }) => {
+const Engraver: FC<EngraverProps> = ({ isMenuDisabled, isSheetDisabled }) => {
+  const engraverController = useEngraverController();
   const engraverWrapperRef = useRef<HTMLElement | null>(null);
 
+  useEffect(() => {
+    if (!engraverWrapperRef.current) return;
+    engraverController.onComponentMount(engraverWrapperRef.current);
+    return () => {
+      engraverController.onComponentUnmount();
+    };
+  }, [engraverController]);
+
   return (
-    <PlayerProvider>
-      <EngraverProvider config={config} theme={theme} engraverWrapperRef={engraverWrapperRef}>
-        <section ref={engraverWrapperRef} tabIndex={-1} className="engraver">
-          <EngraverMenu isDisabled={config.engraverUIConfig?.isMenuDisabled} />
-          <EngraverSheet isDisabled={config.engraverUIConfig?.isSheetDisabled} />
-        </section>
-      </EngraverProvider>
-    </PlayerProvider>
+    <section ref={engraverWrapperRef} tabIndex={-1} className="engraver">
+      <EngraverMenu isDisabled={isMenuDisabled} />
+      <EngraverSheet isDisabled={isSheetDisabled} />
+    </section>
   );
 };
 

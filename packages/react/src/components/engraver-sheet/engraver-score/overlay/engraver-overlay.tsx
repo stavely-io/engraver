@@ -1,8 +1,7 @@
 import { type FC, useEffect, useRef } from "react";
-import { useStore } from "zustand";
 
 import { useEngraverController } from "../../../../hooks/context/use-engraver-controller";
-import { useEngraverStore } from "../../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../../hooks/store/use-engraver-store";
 import EngraverSystemOverlay from "./components/engraver-system-overlay";
 import "./engraver-overlay.css";
 
@@ -10,8 +9,7 @@ const EngraverOverlay: FC = () => {
   const engraverController = useEngraverController();
   const engraverOverlayRef = useRef<HTMLDivElement>(null);
 
-  const engraverStore = useEngraverStore();
-  const systemCount = useStore(engraverStore, (state) => state.systemCount);
+  const systemCount = useEngraverStore((state) => state.systemCount);
 
   useEffect(() => {
     if (!engraverOverlayRef.current) return;

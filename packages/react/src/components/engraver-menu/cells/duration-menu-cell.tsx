@@ -1,9 +1,8 @@
 import { BaseDuration } from "@engraver/core";
 
 import { type FC } from "react";
-import { useStore } from "zustand";
 
-import { useEngraverStore } from "../../../hooks/context/use-engraver-store";
+import { useEngraverStore } from "../../../hooks/store/use-engraver-store";
 import { useEngraverActions } from "../../../hooks/view/use-engraver-actions";
 import { useEngraverMenuState } from "../../../hooks/view/use-engraver-menu-state";
 import { EighthNote } from "../../icons";
@@ -22,10 +21,8 @@ const DURATION_ICON_MAP: Record<BaseDuration, FC> = {
 };
 
 export const DurationMenuCell: FC = () => {
-  const engraverStore = useEngraverStore();
-
   const { selectedBaseDuration } = useEngraverMenuState();
-  const availableDurations = useStore(engraverStore, (state) => state.availableDurations);
+  const availableDurations = useEngraverStore((state) => state.availableDurations);
 
   const { select } = useEngraverActions();
 

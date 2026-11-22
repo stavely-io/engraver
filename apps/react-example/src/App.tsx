@@ -8,7 +8,7 @@ import {
   type EngraverMenuConfig,
   type EngraverScoreConfig,
 } from "@engraver/core";
-import { Engraver } from "@engraver/react";
+import { Engraver, EngraverProvider, PlayerProvider } from "@engraver/react";
 
 const ENGRAVER_SCORE_CONFIG: EngraverScoreConfig = {
   allowChordInput: false,
@@ -46,7 +46,11 @@ const ENGRAVER_CONFIG: EngraverConfig = {
 function App() {
   return (
     <div className="app">
-      <Engraver config={ENGRAVER_CONFIG} />
+      <PlayerProvider>
+        <EngraverProvider config={ENGRAVER_CONFIG}>
+          <Engraver />
+        </EngraverProvider>
+      </PlayerProvider>
     </div>
   );
 }

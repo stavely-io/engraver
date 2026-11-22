@@ -1,4 +1,4 @@
-import { createStore } from "zustand/vanilla";
+import { createStore, type StoreApi } from "zustand/vanilla";
 
 import { createPlayerActionsSlice, type PlayerSliceActions } from "./slices/player-actions.slice";
 import { createPlayerValuesSlice, type PlayerSliceValues } from "./slices/player-values.slice";
@@ -10,3 +10,5 @@ export const createPlayerStore = () =>
     ...createPlayerActionsSlice()(...params),
     ...createPlayerValuesSlice()(...params),
   }));
+
+export type PlayerStoreApi = StoreApi<PlayerStore>;
