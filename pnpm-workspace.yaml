@@ -13,7 +13,7 @@ catalog:
   react: ^19.3.1
   react-dom: ^19.3.1
   smplr: ^1.1.0
-  typescript: ^7.0.2
+  typescript: ^7.0.2 # apps/docs pins 6.0.3: astro check does not support TS 7 yet
   "@types/react": "^19.3.0"
   "@types/react-dom": "^19.3.0"
   "@types/node": "^24.19.2"
@@ -29,6 +29,13 @@ catalog:
   "@actions/github": ^9.1.1
   "@svgr/core": ^8.1.0
   "@svgr/plugin-jsx": ^8.1.0
+  astro: ^7.4.11
+  "@astrojs/check": ^0.9.12
+  "@astrojs/react": ^7.1.8
+  "@astrojs/starlight": ^0.42.10
+  "@fontsource-variable/syne": ^5.3.0
+  "@fontsource-variable/work-sans": ^5.3.0
+  "@fontsource/dm-mono": ^5.3.0
 overrides:
   vite@*: "catalog:"
   vitest@*: "catalog:"

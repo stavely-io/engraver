@@ -9,15 +9,11 @@ export default defineConfig({
       dev: {
         command: "astro dev",
         cache: false,
-        dependsOn: [
-          { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },
-        ],
+        dependsOn: [{ task: "build", from: ["dependencies", "peerDependencies"] }],
       },
       build: {
         command: "astro build",
-        dependsOn: [
-          { task: "build", from: ["dependencies", "devDependencies", "peerDependencies"] },
-        ],
+        dependsOn: [{ task: "build", from: ["dependencies", "peerDependencies"] }],
       },
       check: {
         command: ["vp check", "astro check", "stylelint 'src/**/*.css'"],

@@ -7,20 +7,23 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/react": "^7.1.8",
-    "@astrojs/starlight": "^0.42.10",
+    "@astrojs/react": "catalog:",
+    "@astrojs/starlight": "catalog:",
     "@engraver/core": "workspace:*",
     "@engraver/react": "workspace:*",
-    "astro": "^7.4.11",
+    "@fontsource-variable/syne": "catalog:",
+    "@fontsource-variable/work-sans": "catalog:",
+    "@fontsource/dm-mono": "catalog:",
+    "astro": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.12",
+    "@astrojs/check": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "stylelint": "catalog:",
-    "typescript": "^6.0.0",
+    "typescript": "6.0.3",
     "vite-plus": "catalog:"
   }
 }
